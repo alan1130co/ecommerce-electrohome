@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Modelo de usuario personalizado - DEBE IR ANTES DE INSTALLED_APPS
+AUTH_USER_MODEL = 'user.Usuario'
 
 # Application definition
 
@@ -43,6 +45,7 @@ INSTALLED_APPS = [
     'application.product',
     'application.order',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -125,3 +128,8 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+import os
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')

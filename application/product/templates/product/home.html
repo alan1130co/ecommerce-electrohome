@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio - Electrohome ⚡</title>
+</head>
+<body>
+    <h2>Bienvenido a Electrohome ⚡</h2>
+
+    {% if messages %}
+      <ul>
+        {% for message in messages %}
+          <li style="color: green;">{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    {% if user.is_authenticated %}
+      <p>Hola {{ user.first_name|default:user.username }}, disfruta de nuestras ofertas 🎉</p>
+      <p><a href="{% url 'user:logout' %}">Cerrar sesión</a></p>
+    {% else %}
+      <p><a href="{% url 'user:login' %}">Inicia sesión</a> o <a href="{% url 'user:register' %}">Regístrate</a> para continuar.</p>
+    {% endif %}
+</body>
+</html>

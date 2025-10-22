@@ -27,7 +27,7 @@ class Pedido(models.Model):
         self.save(update_fields=['total'])
     
     def __str__(self):
-        return f"Pedido #{self.id} - {self.usuario.username}"
+        return f"Pedido #{self.id} - {self.usuario.email}"
     
     class Meta:
         ordering = ['-fecha_pedido']

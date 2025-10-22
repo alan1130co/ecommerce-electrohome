@@ -102,3 +102,24 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Configuración de usuario personalizado
+AUTH_USER_MODEL = 'user.Usuario'
+
+# URLs de autenticación
+LOGIN_URL = 'user:login'
+LOGIN_REDIRECT_URL = 'product:home'
+LOGOUT_REDIRECT_URL = 'user:login'
+
+# Backend de autenticación personalizado
+AUTHENTICATION_BACKENDS = [
+    'application.user.backends.EmailBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+# Configuración de templates
+import os
+TEMPLATES[0]['DIRS'] = [os.path.join(BASE_DIR, 'templates')]
+
+# WSGI
+WSGI_APPLICATION = 'electrohome.wsgi.application'

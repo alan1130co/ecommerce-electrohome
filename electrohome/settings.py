@@ -27,8 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-# Modelo de usuario personalizado - DEBE IR ANTES DE INSTALLED_APPS
-AUTH_USER_MODEL = 'user.Usuario'
+
 
 # Application definition
 
@@ -39,9 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #application local
-    
-    'application.user',
+    # Application local
+    'application.user.apps.UserConfig',  # ← ASÍ
     'application.product',
     'application.order',
 ]
@@ -59,14 +57,19 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'electrohome.urls'
 
+import os
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),  # ✅ Carpeta global (recomendada)
+        ],
+        'APP_DIRS': True,  # ✅ Esto ya busca dentro de cada app automáticamente
         'OPTIONS': {
             'context_processors': [
-                'django.template.context_processors.request',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',  # ✅ necesario para CSRF
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
@@ -131,5 +134,17 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 import os
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+#MEDIA_URL = '/media/'
+#MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
+AUTH_USER_MODEL = 'application.user.Usuario'
+LOGIN_URL = 'user:login'
+LOGIN_REDIRECT_URL = 'product:home'
+LOGOUT_REDIRECT_URL = 'user:login'
+
+# Backend de autenticación personalizado
+AUTHENTICATION_BACKENDS = [
+    'application.user.backends.EmailBackend',  # Tu backend personalizado
+    'django.contrib.auth.backends.ModelBackend',  # Fallback
+]
+ESTO_ES_UN_ERROR_DE_PRUEBA

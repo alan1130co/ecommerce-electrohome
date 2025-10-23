@@ -147,4 +147,3 @@ AUTHENTICATION_BACKENDS = [
     'application.user.backends.EmailBackend',  # Tu backend personalizado
     'django.contrib.auth.backends.ModelBackend',  # Fallback
 ]
-ESTO_ES_UN_ERROR_DE_PRUEBA

@@ -5,10 +5,10 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('allauth.urls')),  # ← AGREGAR ESTA LÍNEA
+    path('accounts/', include('allauth.urls')),
     path('order/', include('application.order.urls')),
     path('user/', include('application.user.urls')),
-    path('', include('application.product.urls')),  # Solo esta línea para product
+    path('', include('application.product.urls')),  # ← CAMBIADO: sin tupla
 ]
 
 # Archivos multimedia

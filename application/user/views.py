@@ -8,7 +8,7 @@ from .forms import RegisterForm, LoginForm
 @csrf_protect
 def login_view(request):
     if request.user.is_authenticated:
-        return redirect('product:home')
+        return redirect('home')  # ← CAMBIADO
 
     form = LoginForm(request.POST or None)
 
@@ -21,7 +21,7 @@ def login_view(request):
         if user:
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             messages.success(request, f'¡Bienvenido de nuevo, {user.first_name or user.email}!')
-            return redirect('product:home')
+            return redirect('home')  # ← CAMBIADO
         else:
             messages.error(request, 'Correo o contraseña incorrectos.')
 
@@ -30,7 +30,7 @@ def login_view(request):
 @csrf_protect
 def register_view(request):
     if request.user.is_authenticated:
-        return redirect('product:home')
+        return redirect('home')  # ← CAMBIADO
 
     form = RegisterForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
@@ -38,11 +38,12 @@ def register_view(request):
         # Especificar el backend de autenticación
         login(request, user, backend='django.contrib.auth.backends.ModelBackend')
         messages.success(request, f'¡Bienvenido {user.first_name or user.email}! Tu cuenta ha sido creada 🎉')
-        return redirect('product:home')
+        return redirect('home')  # ← CAMBIADO
     elif request.method == 'POST':
         messages.error(request, 'Por favor corrige los errores en el formulario.')
 
     return render(request, 'user/register.html', {'form': form})
+
 def logout_view(request):
     logout(request)
     messages.success(request, 'Has cerrado sesión correctamente.')

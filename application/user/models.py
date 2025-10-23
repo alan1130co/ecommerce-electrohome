@@ -1,5 +1,41 @@
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, UserManager as BaseUserManager
 from django.db import models
+
+
+class UsuarioManager(BaseUserManager):
+    """Manager personalizado para el modelo Usuario"""
+    
+    def create_user(self, email, password=None, **extra_fields):
+        """Crea y guarda un usuario regular"""
+        if not email:
+            raise ValueError('El email es obligatorio')
+        
+        email = self.normalize_email(email)
+        
+        # Generar username automáticamente si no se proporciona
+        if 'username' not in extra_fields or not extra_fields.get('username'):
+            import uuid
+            base_username = email.split('@')[0]
+            extra_fields['username'] = f"{base_username}_{uuid.uuid4().hex[:8]}"
+        
+        user = self.model(email=email, **extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+    
+    def create_superuser(self, email, password=None, **extra_fields):
+        """Crea y guarda un superusuario"""
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+        extra_fields.setdefault('tipo_usuario', 'admin')
+        
+        if extra_fields.get('is_staff') is not True:
+            raise ValueError('El superusuario debe tener is_staff=True.')
+        if extra_fields.get('is_superuser') is not True:
+            raise ValueError('El superusuario debe tener is_superuser=True.')
+        
+        return self.create_user(email, password, **extra_fields)
+
 
 class Usuario(AbstractUser):
     # Email como campo único y obligatorio
@@ -24,7 +60,10 @@ class Usuario(AbstractUser):
     
     # Configurar email como campo de login principal
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []  # Solo email es requerido
+    REQUIRED_FIELDS = []
+    
+    # Usar el manager personalizado
+    objects = UsuarioManager()
     
     # Sobrescribir los campos para evitar conflictos
     groups = models.ManyToManyField(
@@ -64,3 +103,20 @@ class Usuario(AbstractUser):
         verbose_name = 'Usuario'
         verbose_name_plural = 'Usuarios'
         ordering = ['-fecha_registro']
+
+
+# Proxy Model para Administradores
+class Administrador(Usuario):
+    class Meta:
+        proxy = True
+        verbose_name = 'Administrador'
+        verbose_name_plural = 'Administradores'
+        app_label = 'auth'  # Esto lo pondrá en AUTHENTICATION AND AUTHORIZATION
+
+
+# Proxy Model para Clientes
+class Cliente(Usuario):
+    class Meta:
+        proxy = True
+        verbose_name = 'Cliente'
+        verbose_name_plural = 'Clientes'

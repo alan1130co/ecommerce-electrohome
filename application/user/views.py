@@ -19,7 +19,7 @@ def login_view(request):
         # ⚡ Importante: usamos username=email porque tu USERNAME_FIELD es email
         user = authenticate(request, username=email, password=password)
         if user:
-            login(request, user)
+            login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             messages.success(request, f'¡Bienvenido de nuevo, {user.first_name or user.email}!')
             return redirect('product:home')
         else:
@@ -35,14 +35,14 @@ def register_view(request):
     form = RegisterForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
         user = form.save()
-        login(request, user)
+        # Especificar el backend de autenticación
+        login(request, user, backend='django.contrib.auth.backends.ModelBackend')
         messages.success(request, f'¡Bienvenido {user.first_name or user.email}! Tu cuenta ha sido creada 🎉')
         return redirect('product:home')
     elif request.method == 'POST':
         messages.error(request, 'Por favor corrige los errores en el formulario.')
 
     return render(request, 'user/register.html', {'form': form})
-
 def logout_view(request):
     logout(request)
     messages.success(request, 'Has cerrado sesión correctamente.')

@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-j!&amsgcyeces&3lvzhfy*al7(zowo@227_y*$gt51bws(4lgm'
 
- #Application definition
+# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -31,14 +31,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',  # ← AGREGAR ESTO
     
-    #app locales 
-    
+    # app locales 
     'application.order',
     'application.product',
     'application.user',
     
-    
+    # Allauth - AGREGAR ESTO
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
@@ -49,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',  # ← AGREGAR ESTO
 ]
 
 ROOT_URLCONF = 'electrohome.urls'
@@ -111,10 +116,11 @@ LOGIN_URL = 'user:login'
 LOGIN_REDIRECT_URL = 'product:home'
 LOGOUT_REDIRECT_URL = 'user:login'
 
-# Backend de autenticación personalizado
+# Backend de autenticación - MODIFICADO
 AUTHENTICATION_BACKENDS = [
     'application.user.backends.EmailBackend',
     'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',  # ← AGREGAR ESTO
 ]
 
 # Configuración de templates
@@ -123,3 +129,15 @@ TEMPLATES[0]['DIRS'] = [os.path.join(BASE_DIR, 'templates')]
 
 # WSGI
 WSGI_APPLICATION = 'electrohome.wsgi.application'
+
+# ===== CONFIGURACIÓN DE ALLAUTH =====
+SITE_ID = 1
+
+# Configuración moderna de allauth (sin deprecations)
+ACCOUNT_LOGIN_METHODS = {'email'}  # Solo login con email
+ACCOUNT_SIGNUP_FIELDS = ['email*', 'first_name', 'last_name', 'password1*', 'password2*']  # Campos para registro
+SOCIALACCOUNT_AUTO_SIGNUP = True
+
+# Adaptador personalizado para usar tu modelo Usuario
+ACCOUNT_ADAPTER = 'allauth.account.adapter.DefaultAccountAdapter'
+SOCIALACCOUNT_ADAPTER = 'allauth.socialaccount.adapter.DefaultSocialAccountAdapter'

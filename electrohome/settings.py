@@ -147,3 +147,9 @@ AUTHENTICATION_BACKENDS = [
     'application.user.backends.EmailBackend',  # Tu backend personalizado
     'django.contrib.auth.backends.ModelBackend',  # Fallback
 ]
+
+
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]

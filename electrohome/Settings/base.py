@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -21,6 +21,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-j!&amsgcyeces&3lvzhfy*al7(zowo@227_y*$gt51bws(4lgm'
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True
+
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -141,3 +146,16 @@ SOCIALACCOUNT_AUTO_SIGNUP = True
 # Adaptador personalizado para usar tu modelo Usuario
 ACCOUNT_ADAPTER = 'allauth.account.adapter.DefaultAccountAdapter'
 SOCIALACCOUNT_ADAPTER = 'allauth.socialaccount.adapter.DefaultSocialAccountAdapter'
+
+# ===== CONFIGURACIÓN DE ARCHIVOS ESTÁTICOS =====
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# ===== CONFIGURACIÓN DE ARCHIVOS MEDIA (para uploads de usuarios) =====
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'

@@ -1,277 +1,695 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="es">
+  <head>
+    <!-- Configuración básica -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-    <!-- Configuracion basica-->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!--SEO y descripcion-->
+    <!-- SEO y descripción -->
     <title>ElectroHome - Calidad y ahorro en un solo click</title>
-    <meta name="description" content="ElectroHome - Tu tienda de electrodomésticos online con las mejores ofertas">
+    <meta
+      name="description"
+      content="ElectroHome - Tu tienda de electrodomésticos online con las mejores ofertas"
+    />
 
-    <!--Conectar TailwindCSS-->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    
-    <!--Font Awesome para iconos-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- TailwindCSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
 
     <style>
-        .scrollbar-hide::-webkit-scrollbar {
-            display: none;
-        }
-        .scrollbar-hide {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+      .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
     </style>
-</head>
+  </head>
 
-<body class="bg-gray-50 font-sans">
-    <!-- Header/Navegacion -->
-    <header class="bg-blue-800 shadow-2xl border-b-4 border-blue-500 sticky top-0 z-50">
-        <nav class="container mx-auto px-4 py-4">
-            <div class="flex justify-between items-center">
-                <div class="flex items-center space-x-2">
-                    <img src="{% static 'img/logo-electrohome.png' %}" alt="ElectroHome"
-                        class="w-20 h-auto hover:scale-105 transition-transform duration-500">
-                </div>
-                
-                <!--Desktop Menu-->
-                <div class="hidden md:flex space-x-6">
-                    <a href="{% url 'home' %}" class="text-gray-50 hover:text-yellow-300 hover:underline">Inicio</a>
-                    <a href="#promociones" class="text-gray-50 hover:text-yellow-300 hover:underline">Productos</a>
-                    <a href="#categorias" class="text-gray-50 hover:text-yellow-300 hover:underline">Categorías</a>
-                    <a href="#contacto" class="text-gray-50 hover:text-yellow-300 hover:underline">Contacto</a>
-                </div>
-                
-                <!--Mobile Menu & User-->
-                <div class="flex items-center space-x-4">
-                    {% if user.is_authenticated %}
-                        <span class="text-white text-sm hidden md:block">Hola, {{ user.first_name|default:user.username }}</span>
-                        <a href="{% url 'user:logout' %}" class="text-yellow-300 hover:text-yellow-100 text-sm">Salir</a>
-                    {% else %}
-                        <a href="{% url 'user:login' %}" class="text-yellow-300 hover:text-yellow-100 text-sm">Iniciar sesión</a>
-                        <a href="{% url 'user:register' %}" class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 text-sm">Registrarse</a>
-                    {% endif %}
-                    
-                    <a href="#carrito" class="relative text-yellow-500 hover:text-yellow-200">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                                d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.1 5M7 13l-1.1 5m0 0h3.1M17 21a2 2 0 100-4 2 2 0 000 4zM9 21a2 2 0 100-4 2 2 0 000 4z">
-                            </path>
-                        </svg>
-                        <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-1"
-                            id="cart-counter">0</span>
-                    </a>
+  <body class="bg-gray-50 font-sans">
+    <!-- HEADER / NAVEGACIÓN -->
+    <header
+      class="bg-blue-800 shadow-2xl border-b-4 border-blue-500 sticky top-0 z-50"
+    >
+      <nav class="container mx-auto px-4 py-4">
+        <div class="flex justify-between items-center">
+          <!-- Logo -->
+          <div class="flex items-center space-x-2">
+            <img
+              src="{% static 'img/logo_de_electrohome.png' %}"
+              alt="ElectroHome"
+              class="w-20 h-auto hover:scale-105 transition-transform duration-500"
+            />
+          </div>
 
-                    <!--Mobile Menu button-->
-                    <button class="md:hidden text-gray-50 hover:text-yellow-300" id="mobile-menu-button">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-            
-            <!--Mobile Menu-->
-            <div class="md:hidden mt-6 hidden" id="mobile-menu">
-                <div class="flex flex-col space-y-2 pb-4">
-                    <a href="{% url 'home' %}" class="text-gray-50 hover:text-yellow-300 hover:underline">Inicio</a>
-                    <a href="#promociones" class="text-gray-50 hover:text-yellow-300 hover:underline">Productos</a>
-                    <a href="#categorias" class="text-gray-50 hover:text-yellow-300 hover:underline">Categorías</a>
-                    <a href="#contacto" class="text-gray-50 hover:text-yellow-300 hover:underline">Contacto</a>
-                </div>
-            </div>
-        </nav>
+          <!-- Desktop Menu -->
+          <div class="hidden md:flex space-x-6">
+            <a
+              href="{% url 'product:home' %}"
+              class="text-gray-50 hover:text-yellow-300 hover:underline"
+              >Inicio</a
+            >
+            <a
+              href="#promociones"
+              class="text-gray-50 hover:text-yellow-300 hover:underline"
+              >Productos</a
+            >
+            <a
+              href="#categorias"
+              class="text-gray-50 hover:text-yellow-300 hover:underline"
+              >Categorías</a
+            >
+            <a
+              href="#contacto"
+              class="text-gray-50 hover:text-yellow-300 hover:underline"
+              >Contacto</a
+            >
+          </div>
+
+          <!-- User Menu & Cart -->
+          <div class="flex items-center space-x-4">
+            {% if user.is_authenticated %}
+            <span class="text-white text-sm hidden md:block"
+              >Hola, {{ user.first_name|default:user.username }}</span
+            >
+            <a
+              href="{% url 'user:logout' %}"
+              class="text-yellow-300 hover:text-yellow-100 text-sm"
+              >Salir</a
+            >
+            {% else %}
+            <a
+              href="{% url 'user:login' %}"
+              class="text-yellow-300 hover:text-yellow-100 text-sm"
+              >Iniciar sesión</a
+            >
+            <a
+              href="{% url 'user:register' %}"
+              class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 text-sm"
+              >Registrarse</a
+            >
+            {% endif %}
+
+            <!-- Carrito -->
+            <a
+              href="#carrito"
+              class="relative text-yellow-500 hover:text-yellow-200"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.1 5M7 13l-1.1 5m0 0h3.1M17 21a2 2 0 100-4 2 2 0 000 4zM9 21a2 2 0 100-4 2 2 0 000 4z"
+                ></path>
+              </svg>
+              <span
+                class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-1"
+                id="cart-counter"
+                >0</span
+              >
+            </a>
+
+            <!-- Mobile Menu Button -->
+            <button
+              class="md:hidden text-gray-50 hover:text-yellow-300"
+              id="mobile-menu-button"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="md:hidden mt-6 hidden" id="mobile-menu">
+          <div class="flex flex-col space-y-2 pb-4 items-center"></div>
+            <a
+              href="{% url 'product:home' %}"
+              class="text-gray-50 hover:text-yellow-300 hover:underline"
+              >Inicio</a
+            >
+            <a
+              href="#promociones"
+              class="text-gray-50 hover:text-yellow-300 hover:underline"
+              >Productos</a
+            >
+            <a
+              href="#categorias"
+              class="text-gray-50 hover:text-yellow-300 hover:underline"
+              >Categorías</a
+            >
+            <a
+              href="#contacto"
+              class="text-gray-50 hover:text-yellow-300 hover:underline"
+              >Contacto</a
+            >
+          </div>
+        </div>
+      </nav>
     </header>
 
     <!-- Mensajes de Django -->
     {% if messages %}
     <div class="container mx-auto px-4 mt-4">
-        {% for message in messages %}
-        <div class="bg-{{ message.tags }}-100 border border-{{ message.tags }}-400 text-{{ message.tags }}-700 px-4 py-3 rounded relative mb-2" role="alert">
-            <span class="block sm:inline">{{ message }}</span>
-        </div>
-        {% endfor %}
+      {% for message in messages %}
+      <div
+        class="bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative mb-2"
+        role="alert"
+      >
+        <span class="block sm:inline">{{ message }}</span>
+      </div>
+      {% endfor %}
     </div>
     {% endif %}
 
     <main>
-        <!--Hero Section-->
-<section class="hero relative text-white py-20 flex flex-col items-center justify-center text-center bg-gradient-to-r from-blue-600 via-blue-700 to-blue-900">
-    <div class="container mx-auto px-4 text-center relative z-10">
-        <h1 class="text-5xl md:text-6xl font-bold mb-6 animate-fade-in">
-            Bienvenido a <span class="text-yellow-400">ElectroHome</span>
-        </h1>
-        <p class="text-xl md:text-2xl mb-8 opacity-90 text-yellow-300">
+      <!-- HERO SECTION -->
+      <section
+        class="hero relative text-white py-40 md:py-52 flex flex-col items-center justify-center text-center"
+        style="background-image: url('{% static 'img/home_fondo_img.webp' %}'); background-size: cover; background-position: center;">
+        <div class="absolute inset-0 bg-black opacity-10"></div>
+        <div class="container mx-auto px-4 text-center relative z-10">
+          <h1 class="text-5xl md:text-6xl font-bold mb-6 animate-fade-in">
+            Bienvenido a <span class="text-yellow-600">ElectroHome</span>
+          </h1>
+          <p class="text-xl md:text-2xl mb-8 opacity-90 text-yellow-400">
             Calidad y ahorro en un solo click
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#promociones" class="bg-white text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold 
-                hover:bg-gray-100 transition duration-300 transform hover:scale-105">
-                Ver Productos
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="#promociones"
+              class="bg-white text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition duration-300 transform hover:scale-105"
+            >
+              Ver Productos
             </a>
-            <a href="#ofertas" class="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold
-                hover:bg-white hover:text-blue-800 transition duration-300">
-                Ofertas Especiales
-            </a>
+            <button
+              class="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-blue-800 transition duration-300"
+            >
+              Ofertas Especiales
+            </button>
+          </div>
         </div>
-    </div>
-</section>
-        <!--Promociones Especiales-->
-        <section id="promociones" class="py-20 bg-gradient-to-b from-white via-gray-50 to-gray-100">
-            <div class="container mx-auto px-4">
-                <!-- Encabezado -->
-                <div class="text-center mb-14">
-                    <h2 class="text-4xl font-extrabold mb-3 text-yellow-500 drop-shadow-sm">
-                        🛒 Promociones Especiales
-                    </h2>
-                    <p class="text-blue-600 text-lg font-medium">
-                        Consigue lo Mejor al Menor Precio Ahora
-                    </p>
+      </section>
+
+      <!-- PROMOCIONES ESPECIALES -->
+      <section
+        id="promociones"
+        class="py-20 bg-gradient-to-b from-white via-gray-50 to-gray-100"
+      >
+        <div class="container mx-auto px-4">
+          <!-- Encabezado -->
+          <div class="text-center mb-14">
+            <h2
+              class="text-4xl font-extrabold mb-3 text-yellow-400 drop-shadow-sm"
+            >
+              🛒 Promociones Especiales
+            </h2>
+            <p class="text-blue-600 text-lg font-medium">
+              Consigue lo Mejor al Menor Precio Ahora
+            </p>
+          </div>
+
+          <!-- Grid de productos -->
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10"
+            id="productos-grid"
+          >
+            <!-- Tarjeta de producto (ejemplo) -->
+            {% for i in "123" %}
+            <div
+              class="border border-blue-200 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl hover:scale-[1.02] transition-transform duration-300 bg-white group"
+            >
+              <!-- Imagen y descuento -->
+              <div class="relative h-64 bg-gray-100">
+                <img
+                  src="{% static 'img/productos/producto-ejemplo.jpg' %}"
+                  alt="Producto"
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <span
+                  class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-md"
+                >
+                  -50%
+                </span>
+              </div>
+
+              <!-- Contenido -->
+              <div class="p-6">
+                <h3 class="font-semibold text-2xl text-blue-700 mb-2">
+                  Licuadora Express
+                </h3>
+                <p class="text-gray-600 mb-3">
+                  Potente motor de 800W, 3 velocidades, y diseño ergonómico.
+                </p>
+
+                <!-- Calificación -->
+                <div class="flex items-center mb-4">
+                  <div class="text-yellow-400 text-lg">⭐⭐⭐⭐⭐</div>
+                  <span class="text-gray-500 text-sm ml-2"
+                    >(440,003 reseñas)</span
+                  >
                 </div>
 
-                <!-- Grid de productos -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-                    <!-- Tarjeta de producto 1 -->
-                    <div class="border border-blue-200 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl hover:scale-105 transition-transform duration-300 bg-white group">
-                        <div class="relative h-64 bg-gray-100">
-                            <img src="{% static 'img/productos/licuadora.jpg' %}" alt="Licuadora Express"
-                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                            <span class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-md">
-                                -50%
-                            </span>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="font-semibold text-2xl text-blue-700 mb-2">Licuadora Express</h3>
-                            <p class="text-gray-600 mb-3">Potente motor de 800W, 3 velocidades, y diseño ergonómico.</p>
-                            <div class="flex items-center mb-4">
-                                <div class="text-yellow-400 text-lg">⭐⭐⭐⭐⭐</div>
-                                <span class="text-gray-500 text-sm ml-2">(440,003 reseñas)</span>
-                            </div>
-                            <div class="flex items-baseline mb-5">
-                                <span class="text-gray-400 line-through text-sm">$119,999</span>
-                                <span class="text-3xl font-bold text-blue-600 ml-3">$59,999</span>
-                            </div>
-                            <div class="flex space-x-4">
-                                <button class="flex-1 bg-blue-500 text-white px-5 py-2 rounded-xl hover:bg-blue-600 transition font-medium">
-                                    Detalles
-                                </button>
-                                <button class="flex-1 bg-yellow-500 text-white px-5 py-2 rounded-xl hover:bg-yellow-600 transition font-medium">
-                                    Comprar
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Repite tarjetas similares según necesites -->
-                    <!-- Puedes usar un for loop de Django aquí cuando tengas productos en la base de datos -->
-                    {% comment %}
-                    {% for producto in productos %}
-                    <div class="border border-blue-200 rounded-2xl...">
-                        ...
-                    </div>
-                    {% endfor %}
-                    {% endcomment %}
+                <!-- Precio -->
+                <div class="flex items-baseline mb-5">
+                  <span class="text-gray-400 line-through text-sm"
+                    >$119,999</span
+                  >
+                  <span class="text-3xl font-bold text-blue-600 ml-3"
+                    >$101,999</span
+                  >
                 </div>
+
+                <!-- Botones -->
+                <div class="flex space-x-4">
+                  <button
+                    class="flex-1 bg-blue-500 text-white px-5 py-2 rounded-xl hover:bg-blue-600 transition font-medium"
+                  >
+                    Detalles
+                  </button>
+                  <button
+                    class="flex-1 bg-yellow-500 text-white px-5 py-2 rounded-xl hover:bg-yellow-600 transition font-medium"
+                  >
+                    Comprar
+                  </button>
+                </div>
+              </div>
             </div>
-        </section>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
 
-        <!--Recomendaciones Carousel-->
-        <section id="recomendaciones" class="py-20 bg-gradient-to-b from-white via-gray-50 to-gray-100">
-            <div class="container mx-auto px-4">
-                <div class="mb-10">
-                    <h2 class="text-4xl font-bold text-blue-500 mb-2">Recomendaciones</h2>
-                    <p class="text-yellow-600 font-bold text-lg">Desliza para descubrir el producto indicado para ti</p>
+      <!-- RECOMENDACIONES (CARRUSEL) -->
+      <section
+        id="recomendaciones"
+        class="py-20 bg-gradient-to-b from-white via-gray-50 to-gray-100"
+      >
+        <div class="container mx-auto px-4">
+          <!-- Título -->
+          <div class="mb-10">
+            <h2 class="text-4xl font-bold text-blue-500 mb-2">
+              Recomendaciones
+            </h2>
+            <p class="text-yellow-600 font-bold text-lg">
+              Desliza para descubrir el producto indicado para ti
+            </p>
+          </div>
+
+          <!-- Contenedor del carrusel -->
+          <div class="relative">
+            <!-- Botón izquierda -->
+            <button
+              id="scroll-left-recom"
+              class="absolute left-0 top-1/2 -translate-y-1/2 bg-yellow-500 text-white p-3 rounded-full shadow-md hover:bg-yellow-600 transition z-10 hidden md:block"
+            >
+              ◀
+            </button>
+
+            <!-- Scroll horizontal -->
+            <div
+              id="carousel-recom"
+              class="flex overflow-x-auto space-x-6 scrollbar-hide scroll-smooth snap-x snap-mandatory pb-4 px-2"
+            >
+              <!-- Tarjeta producto (ejemplo - repetir varias veces) -->
+              {% for i in "123456789012345" %}
+              <div
+                class="min-w-[280px] sm:min-w-[320px] bg-white rounded-2xl shadow-md hover:shadow-xl transition-transform transform hover:-translate-y-2 snap-start border border-blue-100"
+              >
+                <div class="relative h-56 overflow-hidden rounded-t-2xl">
+                  <img
+                    src="{% static 'img/productos/producto-ejemplo.jpg' %}"
+                    alt="Producto"
+                    class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                  />
+                  <span
+                    class="absolute top-3 right-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold"
+                    >-35%</span
+                  >
                 </div>
-
-                <div class="relative">
-                    <button id="scroll-left-1" class="absolute left-0 top-1/2 -translate-y-1/2 bg-yellow-500 text-white p-3 rounded-full shadow-md hover:bg-yellow-600 transition z-10 hidden md:block">
-                        ◀
+                <div class="p-5">
+                  <h3 class="text-blue-700 font-bold text-xl mb-1">
+                    Cafetera Premium
+                  </h3>
+                  <p class="text-gray-600 text-sm mb-2">
+                    Filtro metálico | 1.5L | Diseño moderno
+                  </p>
+                  <div class="flex items-center mb-2">
+                    <div class="text-yellow-400">⭐⭐⭐⭐⭐</div>
+                    <span class="text-gray-500 text-xs ml-2">(320,154)</span>
+                  </div>
+                  <div class="flex items-baseline mb-4">
+                    <span class="text-gray-400 line-through text-sm"
+                      >$259,999</span
+                    >
+                    <span class="text-2xl font-bold text-blue-600 ml-2"
+                      >$169,999</span
+                    >
+                  </div>
+                  <div class="flex space-x-3">
+                    <button
+                      class="flex-1 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition font-medium"
+                    >
+                      Detalles
                     </button>
-
-                    <div id="carousel-1" class="flex overflow-x-auto space-x-6 scrollbar-hide scroll-smooth snap-x snap-mandatory pb-4 px-2">
-                        <!-- Tarjetas de productos -->
-                    </div>
-
-                    <button id="scroll-right-1" class="absolute right-0 top-1/2 -translate-y-1/2 bg-yellow-500 text-white p-3 rounded-full shadow-md hover:bg-yellow-600 transition z-10 hidden md:block">
-                        ▶
+                    <button
+                      class="flex-1 bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition font-medium"
+                    >
+                      Comprar
                     </button>
+                  </div>
                 </div>
+              </div>
+              {% endfor %}
             </div>
-        </section>
+
+            <!-- Botón derecha -->
+            <button
+              id="scroll-right-recom"
+              class="absolute right-0 top-1/2 -translate-y-1/2 bg-yellow-500 text-white p-3 rounded-full shadow-md hover:bg-yellow-600 transition z-10 hidden md:block"
+            >
+              ▶
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- CATEGORÍA: LIMPIEZA -->
+      <section
+        id="limpieza"
+        class="py-20 bg-gradient-to-b from-white via-gray-50 to-gray-100"
+      >
+        <div class="container mx-auto px-4">
+          <div class="mb-10">
+            <h2 class="text-4xl font-bold text-blue-500 mb-2">Limpieza</h2>
+          </div>
+
+          <div class="relative">
+            <button
+              id="scroll-left-limpieza"
+              class="absolute left-0 top-1/2 -translate-y-1/2 bg-yellow-500 text-white p-3 rounded-full shadow-md hover:bg-yellow-600 transition z-10 hidden md:block"
+            >
+              ◀
+            </button>
+
+            <div
+              id="carousel-limpieza"
+              class="flex overflow-x-auto space-x-6 scrollbar-hide scroll-smooth snap-x snap-mandatory pb-4 px-2"
+            >
+              {% for i in "123456789012345" %}
+              <div
+                class="min-w-[280px] sm:min-w-[320px] bg-white rounded-2xl shadow-md hover:shadow-xl transition-transform transform hover:-translate-y-2 snap-start border border-blue-100"
+              >
+                <div class="relative h-56 overflow-hidden rounded-t-2xl">
+                  <img
+                    src="{% static 'img/productos/producto-ejemplo.jpg' %}"
+                    alt="Producto"
+                    class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                  />
+                  <span
+                    class="absolute top-3 right-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold"
+                    >-50%</span
+                  >
+                </div>
+                <div class="p-5">
+                  <h3 class="text-blue-700 font-bold text-xl mb-1">
+                    Aspiradora Potente
+                  </h3>
+                  <p class="text-gray-600 text-sm mb-2">
+                    Motor 1200W | Filtro HEPA | Diseño compacto
+                  </p>
+                  <div class="flex items-center mb-2">
+                    <div class="text-yellow-400">⭐⭐⭐⭐⭐</div>
+                    <span class="text-gray-500 text-xs ml-2">(440,003)</span>
+                  </div>
+                  <div class="flex items-baseline mb-4">
+                    <span class="text-gray-400 line-through text-sm"
+                      >$119,999</span
+                    >
+                    <span class="text-2xl font-bold text-blue-600 ml-2"
+                      >$101,999</span
+                    >
+                  </div>
+                  <div class="flex space-x-3">
+                    <button
+                      class="flex-1 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition font-medium"
+                    >
+                      Detalles
+                    </button>
+                    <button
+                      class="flex-1 bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition font-medium"
+                    >
+                      Comprar
+                    </button>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+
+            <button
+              id="scroll-right-limpieza"
+              class="absolute right-0 top-1/2 -translate-y-1/2 bg-yellow-500 text-white p-3 rounded-full shadow-md hover:bg-yellow-600 transition z-10 hidden md:block"
+            >
+              ▶
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- CATEGORÍA: COCINA -->
+      <section
+        id="cocina"
+        class="py-20 bg-gradient-to-b from-white via-gray-50 to-gray-100"
+      >
+        <div class="container mx-auto px-4">
+          <div class="mb-10">
+            <h2 class="text-4xl font-bold text-blue-500 mb-2">Cocina</h2>
+          </div>
+
+          <div class="relative">
+            <button
+              id="scroll-left-cocina"
+              class="absolute left-0 top-1/2 -translate-y-1/2 bg-yellow-500 text-white p-3 rounded-full shadow-md hover:bg-yellow-600 transition z-10 hidden md:block"
+            >
+              ◀
+            </button>
+
+            <div
+              id="carousel-cocina"
+              class="flex overflow-x-auto space-x-6 scrollbar-hide scroll-smooth snap-x snap-mandatory pb-4 px-2"
+            >
+              {% for i in "123456789012345" %}
+              <div
+                class="min-w-[280px] sm:min-w-[320px] bg-white rounded-2xl shadow-md hover:shadow-xl transition-transform transform hover:-translate-y-2 snap-start border border-blue-100"
+              >
+                <div class="relative h-56 overflow-hidden rounded-t-2xl">
+                  <img
+                    src="{% static 'img/productos/producto-ejemplo.jpg' %}"
+                    alt="Producto"
+                    class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                  />
+                  <span
+                    class="absolute top-3 right-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold"
+                    >-35%</span
+                  >
+                </div>
+                <div class="p-5">
+                  <h3 class="text-blue-700 font-bold text-xl mb-1">
+                    Olla Arrocera
+                  </h3>
+                  <p class="text-gray-600 text-sm mb-2">
+                    Capacidad 2L | Antiadherente | Timer digital
+                  </p>
+                  <div class="flex items-center mb-2">
+                    <div class="text-yellow-400">⭐⭐⭐⭐⭐</div>
+                    <span class="text-gray-500 text-xs ml-2">(320,154)</span>
+                  </div>
+                  <div class="flex items-baseline mb-4">
+                    <span class="text-gray-400 line-through text-sm"
+                      >$259,999</span
+                    >
+                    <span class="text-2xl font-bold text-blue-600 ml-2"
+                      >$169,999</span
+                    >
+                  </div>
+                  <div class="flex space-x-3">
+                    <button
+                      class="flex-1 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition font-medium"
+                    >
+                      Detalles
+                    </button>
+                    <button
+                      class="flex-1 bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition font-medium"
+                    >
+                      Comprar
+                    </button>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+
+            <button
+              id="scroll-right-cocina"
+              class="absolute right-0 top-1/2 -translate-y-1/2 bg-yellow-500 text-white p-3 rounded-full shadow-md hover:bg-yellow-600 transition z-10 hidden md:block"
+            >
+              ▶
+            </button>
+          </div>
+        </div>
+      </section>
     </main>
 
-    <!--Footer-->
+    <!-- Newsletter Section -->
+    <section class="py-16 bg-gradient-to-r from-blue-600 to-indigo-600">
+      <!-- Formulario Newsletter -->
+    </section>
+
+    <!-- FOOTER -->
     <footer id="contacto" class="bg-gray-900 text-white py-12">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="text-center md:text-left mb-6 md:mb-0">
-                    <p>&copy; 2025 ElectroHome. Todos los derechos reservados.</p>
-                    <p class="mt-2">Dirección: Calle 1 #2-40, Bogotá, Colombia</p>
-                    <p class="mt-1">Teléfono: +57 300 760 7645</p>
-                    <p class="mt-1">Email: <a href="mailto:info@electrohome.com" class="underline text-blue-400">info@electrohome.com</a></p>
-                </div>
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <!-- Información de contacto -->
+          <div class="text-center md:text-left mb-6 md:mb-0">
+            <p>&copy; 2025 ElectroHome. Todos los derechos reservados.</p>
+            <p class="mt-2">
+              Dirección: Calle 1 #2-40, Cartagena de Indias, Colombia
+            </p>
+            <p class="mt-1">Teléfono: +57 300 760 7645</p>
+            <p class="mt-1">
+              Email:
+              <a
+                href="mailto:info@electrohome.com"
+                class="underline text-blue-400"
+                >info@electrohome.com</a
+              >
+            </p>
+          </div>
 
-                <div class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-8">
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white">Política de privacidad</a>
-                        <a href="#" class="text-gray-400 hover:text-white">Términos de servicio</a>
-                        <a href="#contacto" class="text-gray-400 hover:text-white">Contacto</a>
-                    </div>
-
-                    <div class="flex space-x-4">
-                        <a href="https://facebook.com" target="_blank" class="text-blue-500 hover:text-blue-400">
-                            <i class="fab fa-facebook" style="font-size:30px;"></i>
-                        </a>
-                        <a href="https://tiktok.com" target="_blank" class="text-white hover:text-gray-300">
-                            <i class="fab fa-tiktok" style="font-size:30px;"></i>
-                        </a>
-                        <a href="https://instagram.com" target="_blank" class="text-pink-500 hover:text-pink-400">
-                            <i class="fab fa-instagram" style="font-size:30px;"></i>
-                        </a>
-                        <a href="https://twitter.com" target="_blank" class="text-blue-400 hover:text-blue-300">
-                            <i class="fab fa-x-twitter" style="font-size:30px;"></i>
-                        </a>
-                    </div>
-                </div>
+          <!-- Enlaces y redes sociales -->
+          <div
+            class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-8"
+          >
+            <!-- Enlaces legales -->
+            <div class="flex space-x-4">
+              <a href="#" class="text-gray-400 hover:text-white"
+                >Política de privacidad</a
+              >
+              <a href="#" class="text-gray-400 hover:text-white"
+                >Términos de servicio</a
+              >
+              <a href="#contacto" class="text-gray-400 hover:text-white"
+                >Contacto</a
+              >
             </div>
+
+            <!-- Redes sociales -->
+            <div class="flex space-x-4">
+              <a href="https://facebook.com" target="_blank">
+                <i
+                  class="fab fa-facebook"
+                  style="font-size: 30px; color: #1877f2"
+                ></i>
+              </a>
+              <a href="https://www.tiktok.com" target="_blank">
+                <i
+                  class="fab fa-tiktok"
+                  style="font-size: 30px; color: #ffffff"
+                ></i>
+              </a>
+              <a href="https://instagram.com" target="_blank">
+                <i
+                  class="fab fa-instagram"
+                  style="font-size: 30px; color: #e1306c"
+                ></i>
+              </a>
+              <a href="https://twitter.com" target="_blank">
+                <i
+                  class="fab fa-x-twitter"
+                  style="font-size: 30px; color: #ffffff"
+                ></i>
+              </a>
+            </div>
+          </div>
         </div>
+      </div>
     </footer>
 
-    <!--Scripts-->
+    <!-- JAVASCRIPT -->
     <script>
-        // Mobile menu toggle
-        document.getElementById('mobile-menu-button').addEventListener('click', function() {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
+      // Mobile menu toggle
+      document
+        .getElementById("mobile-menu-button")
+        .addEventListener("click", function () {
+          document.getElementById("mobile-menu").classList.toggle("hidden");
         });
 
-        // Carousel scroll functionality
-        const carousels = [
-            { carousel: 'carousel-1', left: 'scroll-left-1', right: 'scroll-right-1' }
-        ];
+      // Carruseles - Scroll functionality
+      const carousels = [
+        {
+          carousel: "carousel-recom",
+          left: "scroll-left-recom",
+          right: "scroll-right-recom",
+        },
+        {
+          carousel: "carousel-limpieza",
+          left: "scroll-left-limpieza",
+          right: "scroll-right-limpieza",
+        },
+        {
+          carousel: "carousel-cocina",
+          left: "scroll-left-cocina",
+          right: "scroll-right-cocina",
+        },
+      ];
 
-        carousels.forEach(item => {
-            const carousel = document.getElementById(item.carousel);
-            const leftBtn = document.getElementById(item.left);
-            const rightBtn = document.getElementById(item.right);
+      carousels.forEach((item) => {
+        const carousel = document.getElementById(item.carousel);
+        const leftBtn = document.getElementById(item.left);
+        const rightBtn = document.getElementById(item.right);
 
-            if (carousel && leftBtn && rightBtn) {
-                leftBtn.addEventListener('click', () => {
-                    carousel.scrollBy({ left: -350, behavior: 'smooth' });
-                });
+        if (carousel && leftBtn && rightBtn) {
+          leftBtn.addEventListener("click", () => {
+            carousel.scrollBy({ left: -350, behavior: "smooth" });
+          });
 
-                rightBtn.addEventListener('click', () => {
-                    carousel.scrollBy({ left: 350, behavior: 'smooth' });
-                });
-            }
-        });
+          rightBtn.addEventListener("click", () => {
+            carousel.scrollBy({ left: 350, behavior: "smooth" });
+          });
+        }
+      });
     </script>
-    
+
+    <!-- Scripts externos -->
     <script src="{% static 'js/carrito.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
-</body>
+  </body>
 </html>

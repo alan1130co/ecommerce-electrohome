@@ -196,7 +196,7 @@
                         <input type="checkbox" name="remember" id="remember">
                         <span>Recordarme</span>
                     </label>
-                    <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+                    <a href="{% url 'user:password_reset' %}" class="forgot-password">¿Olvidaste tu contraseña?</a>
                 </div>
 
                 <button type="submit" class="btn-login">Iniciar Sesión</button>

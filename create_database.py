@@ -48,4 +48,5 @@ except Exception as e:
     print(f"   1. PostgreSQL está corriendo")
     print(f"   2. La contraseña en el archivo .env es correcta")
     print(f"   3. El puerto {db_port} es el correcto")
+
     

@@ -3,6 +3,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect, ensure_csrf_cookie
+from django.views.decorators.cache import never_cache 
 from .forms import RegisterForm, LoginForm
 
 @ensure_csrf_cookie
@@ -52,6 +53,12 @@ def register_view(request):
         form = RegisterForm()
 
     return render(request, 'user/register.html', {'form': form})
+ # ← esto evita el almacenamiento en caché de la vista
+@never_cache 
+def logout_view(request):
+    logout(request)
+    messages.success(request, 'Has cerrado sesión correctamente.')
+    return redirect('user:login')
 
 def logout_view(request):
     logout(request)

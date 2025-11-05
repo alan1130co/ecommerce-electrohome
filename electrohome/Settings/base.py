@@ -61,6 +61,8 @@ MIDDLEWARE = [
     'allauth.account.middleware.AccountMiddleware',  # ← AGREGAR ESTO
 ]
 
+CACHE_MIDDLEWARE_SECONDS = 0
+
 ROOT_URLCONF = 'electrohome.urls'
 
 TEMPLATES = [

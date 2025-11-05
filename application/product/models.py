@@ -22,7 +22,7 @@ class Producto(models.Model):
     precio = models.DecimalField(max_digits=10, decimal_places=2)
     stock = models.PositiveIntegerField()
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name='productos')
-    imagen_principal = models.ImageField(upload_to='productos/', blank=True, null=True)
+    imagen_principal = models.ImageField(upload_to='productos/galeria', blank=True, null=True)
     activo = models.BooleanField(default=True)
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     fecha_actualizacion = models.DateTimeField(auto_now=True)

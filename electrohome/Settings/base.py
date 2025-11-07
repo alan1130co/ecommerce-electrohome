@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -36,14 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sites',  # ← AGREGAR ESTO
+    'django.contrib.sites',
     
-    # app locales 
+    # App locales 
     'application.order',
     'application.product',
     'application.user',
     
-    # Allauth - AGREGAR ESTO
+    # Allauth
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -58,10 +59,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'allauth.account.middleware.AccountMiddleware',  # ← AGREGAR ESTO
+    'allauth.account.middleware.AccountMiddleware',
 ]
-
-CACHE_MIDDLEWARE_SECONDS = 0
 
 ROOT_URLCONF = 'electrohome.urls'
 
@@ -72,13 +71,18 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'application.product.context_processors.cart_context',
             ],
         },
     },
 ]
+
+# WSGI
+WSGI_APPLICATION = 'electrohome.wsgi.application'
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -101,63 +105,66 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
+LANGUAGE_CODE = 'es-co'  # Español Colombia
+TIME_ZONE = 'America/Bogota'  # Zona horaria Colombia
 
 USE_I18N = True
-
 USE_TZ = True
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Configuración de usuario personalizado
+# ===== CONFIGURACIÓN DE USUARIO PERSONALIZADO =====
 AUTH_USER_MODEL = 'user.Usuario'
 
-# URLs de autenticación
+# ===== URLs DE AUTENTICACIÓN =====
 LOGIN_URL = 'user:login'
 LOGIN_REDIRECT_URL = 'product:home'
 LOGOUT_REDIRECT_URL = 'user:login'
 
-# Backend de autenticación - MODIFICADO
+# ===== BACKEND DE AUTENTICACIÓN =====
 AUTHENTICATION_BACKENDS = [
     'application.user.backends.EmailBackend',
     'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',  # ← AGREGAR ESTO
+    'allauth.account.auth_backends.AuthenticationBackend',
 ]
-
-# Configuración de templates
-import os
-TEMPLATES[0]['DIRS'] = [os.path.join(BASE_DIR, 'templates')]
-
-# WSGI
-WSGI_APPLICATION = 'electrohome.wsgi.application'
 
 # ===== CONFIGURACIÓN DE ALLAUTH =====
 SITE_ID = 1
 
 # Configuración moderna de allauth (sin deprecations)
-ACCOUNT_LOGIN_METHODS = {'email'}  # Solo login con email
-ACCOUNT_SIGNUP_FIELDS = ['email*', 'first_name', 'last_name', 'password1*', 'password2*']  # Campos para registro
+ACCOUNT_LOGIN_METHODS = {'email'}
+ACCOUNT_SIGNUP_FIELDS = ['email*', 'first_name', 'last_name', 'password1*', 'password2*']
 SOCIALACCOUNT_AUTO_SIGNUP = True
 
-# Adaptador personalizado para usar tu modelo Usuario
+# Adaptadores
 ACCOUNT_ADAPTER = 'allauth.account.adapter.DefaultAccountAdapter'
 SOCIALACCOUNT_ADAPTER = 'allauth.socialaccount.adapter.DefaultSocialAccountAdapter'
 
 # ===== CONFIGURACIÓN DE ARCHIVOS ESTÁTICOS =====
 STATIC_URL = '/static/'
-
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
-
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# ===== CONFIGURACIÓN DE ARCHIVOS MEDIA (para uploads de usuarios) =====
+# ===== CONFIGURACIÓN DE ARCHIVOS MEDIA =====
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+# ===== CONFIGURACIÓN DE CACHÉ (SE SOBRESCRIBE EN local.py y production.py) =====
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+    }
+}
+
+# ===== CONFIGURACIÓN DE RECOMENDACIONES (GLOBAL) =====
+RECOMMENDATION_CACHE_TIMEOUT = 3600  # 1 hora por defecto
+
+# ===== CONFIGURACIÓN DE FORMATOS DE FECHA =====
+DATE_FORMAT = 'd/m/Y'
+DATETIME_FORMAT = 'd/m/Y H:i:s'
+SHORT_DATE_FORMAT = 'd/m/Y'

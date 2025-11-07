@@ -68,3 +68,23 @@ def logout_view(request):
 @login_required
 def profile_view(request):
     return render(request, 'user/profile.html', {'user': request.user})
+
+@login_required
+def edit_profile(request):
+    """Editar perfil del usuario"""
+    if request.method == 'POST':
+        user = request.user
+        user.first_name = request.POST.get('first_name', '').strip()
+        user.last_name = request.POST.get('last_name', '').strip()
+        user.email = request.POST.get('email', '').strip()
+        
+        # Validar email
+        if not user.email:
+            messages.error(request, 'El email es obligatorio')
+            return redirect('user:edit_profile')
+        
+        user.save()
+        messages.success(request, '¡Perfil actualizado correctamente! ✅')
+        return redirect('user:profile')
+    
+    return render(request, 'user/edit_profile.html', {'user': request.user})

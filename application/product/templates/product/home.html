@@ -1,4 +1,5 @@
 {% load static %}
+{% load custom_filters %}
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -42,143 +43,216 @@
 
   <body class="bg-gray-50 font-sans">
     <!-- HEADER / NAVEGACIÓN -->
-    <header
-      class="bg-blue-800 shadow-2xl border-b-4 border-blue-500 sticky top-0 z-50"
-    >
-      <nav class="container mx-auto px-4 py-4">
-        <div class="flex justify-between items-center">
-          <!-- Logo -->
-          <div class="flex items-center space-x-2">
-            <img
-              src="{% static 'img/logo_de_electrohome.png' %}"
-              alt="ElectroHome"
-              class="w-20 h-auto hover:scale-105 transition-transform duration-500"
-            />
-          </div>
+    <header class="bg-blue-800 shadow-2xl border-b-4 border-blue-500 sticky top-0 z-50">
+  <nav class="container mx-auto px-4 py-4">
+    <div class="flex justify-between items-center gap-4">
+      <!-- Logo -->
+      <div class="flex items-center space-x-2 flex-shrink-0">
+        <a href="{% url 'product:home' %}">
+          <img
+            src="{% static 'img/logo_de_electrohome.png' %}"
+            alt="ElectroHome"
+            class="w-20 h-auto hover:scale-105 transition-transform duration-500"
+          />
+        </a>
+      </div>
 
-          <!-- Desktop Menu -->
-          <div class="hidden md:flex space-x-6">
-            <a
-              href="{% url 'product:home' %}"
-              class="text-gray-50 hover:text-yellow-300 hover:underline"
-              >Inicio</a
-            >
-            <a
-              href="#promociones"
-              class="text-gray-50 hover:text-yellow-300 hover:underline"
-              >Productos</a
-            >
-            <a
-              href="#categorias"
-              class="text-gray-50 hover:text-yellow-300 hover:underline"
-              >Categorías</a
-            >
-            <a
-              href="#contacto"
-              class="text-gray-50 hover:text-yellow-300 hover:underline"
-              >Contacto</a
-            >
-          </div>
+      <!-- Buscador (Desktop) -->
+      <div class="hidden md:flex flex-grow max-w-xl mx-4">
+        <form action="{% url 'product:search' %}" method="GET" class="relative w-full">
+          <input 
+            type="text" 
+            name="q" 
+            placeholder="Buscar productos..." 
+            class="w-full px-4 py-2 pr-12 rounded-lg border-2 border-blue-300 focus:border-yellow-400 focus:outline-none text-gray-800"
+            value="{{ request.GET.q }}"
+          />
+          <button 
+            type="submit" 
+            class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-yellow-500 text-white px-4 py-1 rounded-lg hover:bg-yellow-600 transition"
+          >
+            <i class="fas fa-search"></i>
+          </button>
+        </form>
+      </div>
 
-          <!-- User Menu & Cart -->
-          <div class="flex items-center space-x-4">
-            {% if user.is_authenticated %}
-            <span class="text-white text-sm hidden md:block"
-              >Hola, {{ user.first_name|default:user.username }}</span
-            >
-            <a
-              href="{% url 'user:logout' %}"
-              class="text-yellow-300 hover:text-yellow-100 text-sm"
-              >Salir</a
-            >
-            {% else %}
-            <a
-              href="{% url 'user:login' %}"
-              class="text-yellow-300 hover:text-yellow-100 text-sm"
-              >Iniciar sesión</a
-            >
-            <a
-              href="{% url 'user:register' %}"
-              class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 text-sm"
-              >Registrarse</a
-            >
-            {% endif %}
+      <!-- Desktop Navigation -->
+      <div class="hidden lg:flex space-x-6">
+        <a href="{% url 'product:home' %}" class="text-gray-50 hover:text-yellow-300">Inicio</a>
+        <a href="#productos" class="text-gray-50 hover:text-yellow-300">Productos</a>
+        <a href="#categorias" class="text-gray-50 hover:text-yellow-300">Categorías</a>
+        <a href="#contacto" class="text-gray-50 hover:text-yellow-300">Contacto</a>
+      </div>
 
-            <!-- Carrito -->
-            <a
-              href="#carrito"
-              class="relative text-yellow-500 hover:text-yellow-200"
+      <!-- User Menu & Cart -->
+      <div class="flex items-center space-x-4">
+        <!-- Carrito -->
+<a href="{% url 'product:cart' %}" class="relative text-white hover:text-yellow-300 transition">
+  <i class="fas fa-shopping-cart text-2xl"></i>
+  <span id="cart-counter" class="absolute -top-1 -right-2 bg-red-500 text-white text-xs font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">
+    {{ cart_items_count|default:0 }}
+  </span>
+</a>
+        {% if user.is_authenticated %}
+          <!-- Menú de Usuario con Dropdown -->
+          <div class="relative">
+            <button 
+              id="user-menu-btn"
+              class="w-10 h-10 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg hover:scale-110 transition-transform focus:outline-none focus:ring-2 focus:ring-yellow-300"
             >
-              <svg
-                class="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.1 5M7 13l-1.1 5m0 0h3.1M17 21a2 2 0 100-4 2 2 0 000 4zM9 21a2 2 0 100-4 2 2 0 000 4z"
-                ></path>
-              </svg>
-              <span
-                class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-1"
-                id="cart-counter"
-                >0</span
-              >
-            </a>
-
-            <!-- Mobile Menu Button -->
-            <button
-              class="md:hidden text-gray-50 hover:text-yellow-300"
-              id="mobile-menu-button"
-            >
-              <svg
-                class="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                ></path>
-              </svg>
+              {{ user.first_name.0|default:user.username.0|upper }}{{ user.last_name.0|default:""|upper }}
             </button>
-          </div>
-        </div>
 
-        <!-- Mobile Menu -->
-        <div class="md:hidden mt-6 hidden" id="mobile-menu">
-          <div class="flex flex-col space-y-2 pb-4 items-center">
-            <a
-              href="{% url 'product:home' %}"
-              class="text-gray-50 hover:text-yellow-300 hover:underline"
-              >Inicio</a
+            <!-- Dropdown Menu (oculto por defecto) -->
+            <div 
+              id="user-dropdown"
+              class="hidden absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-2xl z-50"
             >
-            <a
-              href="#promociones"
-              class="text-gray-50 hover:text-yellow-300 hover:underline"
-              >Productos</a
-            >
-            <a
-              href="#categorias"
-              class="text-gray-50 hover:text-yellow-300 hover:underline"
-              >Categorías</a
-            >
-            <a
-              href="#contacto"
-              class="text-gray-50 hover:text-yellow-300 hover:underline"
-              >Contacto</a
-            >
+              <!-- Header del dropdown -->
+              <div class="p-4 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-blue-100">
+                <div class="flex items-center space-x-3">
+                  <div class="w-12 h-12 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">
+                    {{ user.first_name.0|default:user.username.0|upper }}{{ user.last_name.0|default:""|upper }}
+                  </div>
+                  <div>
+                    <p class="font-bold text-gray-800">
+                      {% if user.first_name %}
+                        {{ user.first_name }} {{ user.last_name }}
+                      {% else %}
+                        {{ user.username }}
+                      {% endif %}
+                    </p>
+                    <span class="inline-block px-2 py-1 bg-blue-500 text-white text-xs font-semibold rounded-full">
+                      Cliente
+                    </span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Opciones del menú -->
+              <div class="py-2">
+                <a href="{% url 'user:profile' %}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 transition group">
+                  <i class="fas fa-user text-blue-600 w-6 group-hover:scale-110 transition-transform"></i>
+                  <span class="ml-3 font-semibold">Mi Perfil</span>
+                </a>
+                
+                <a href="{% url 'order:order_list' %}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 transition group">
+                  <i class="fas fa-shopping-bag text-blue-600 w-6 group-hover:scale-110 transition-transform"></i>
+                  <span class="ml-3 font-semibold">Mis Pedidos</span>
+                </a>
+                
+                <hr class="my-2 border-gray-200">
+                
+                <a href="{% url 'user:logout' %}" class="flex items-center px-4 py-3 text-red-600 hover:bg-red-50 transition group">
+                  <i class="fas fa-sign-out-alt w-6 group-hover:scale-110 transition-transform"></i>
+                  <span class="ml-3 font-semibold">Cerrar Sesión</span>
+                </a>
+              </div>
+            </div>
           </div>
-        </div>
-      </nav>
-    </header>
+        {% else %}
+          <!-- Botones Login/Register -->
+          <a href="{% url 'user:login' %}" class="hidden md:inline-block text-white hover:text-yellow-300 font-semibold">
+            <i class="fas fa-sign-in-alt"></i> Ingresar
+          </a>
+          <a href="{% url 'user:register' %}" class="bg-yellow-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-yellow-600 transition">
+            Registrarse
+          </a>
+        {% endif %}
 
+        <!-- Mobile Menu Button -->
+        <button class="lg:hidden text-gray-50 hover:text-yellow-300" id="mobile-menu-button">
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Buscador Mobile -->
+    <div class="md:hidden mt-4">
+      <form action="{% url 'product:search' %}" method="GET" class="relative">
+        <input 
+          type="text" 
+          name="q" 
+          placeholder="Buscar productos..." 
+          class="w-full px-4 py-2 pr-12 rounded-lg border-2 border-blue-300 focus:border-yellow-400 focus:outline-none text-gray-800"
+          value="{{ request.GET.q }}"
+        />
+        <button 
+          type="submit" 
+          class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-yellow-500 text-white px-4 py-1 rounded-lg hover:bg-yellow-600 transition"
+        >
+          <i class="fas fa-search"></i>
+        </button>
+      </form>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="lg:hidden mt-4 pb-4 hidden" id="mobile-menu">
+      <div class="flex flex-col space-y-3">
+        <a href="{% url 'product:home' %}" class="text-gray-50 hover:text-yellow-300 py-2">
+          <i class="fas fa-home mr-2"></i>Inicio
+        </a>
+        <a href="#productos" class="text-gray-50 hover:text-yellow-300 py-2">
+          <i class="fas fa-tag mr-2"></i>Productos
+        </a>
+        <a href="#categorias" class="text-gray-50 hover:text-yellow-300 py-2">
+          <i class="fas fa-th-large mr-2"></i>Categorías
+        </a>
+        <a href="#contacto" class="text-gray-50 hover:text-yellow-300 py-2">
+          <i class="fas fa-envelope mr-2"></i>Contacto
+        </a>
+        
+        <hr class="border-blue-600">
+
+        {% if user.is_authenticated %}
+          <a href="{% url 'user:profile' %}" class="flex items-center text-white hover:text-yellow-300 py-2">
+            <i class="fas fa-user mr-3"></i>Mi Perfil
+          </a>
+          <a href="{% url 'order:order_list' %}" class="flex items-center text-white hover:text-yellow-300 py-2">
+            <i class="fas fa-shopping-bag mr-3"></i>Mis Pedidos
+          </a>
+          <a href="{% url 'user:logout' %}" class="flex items-center text-red-300 hover:text-red-100 py-2">
+            <i class="fas fa-sign-out-alt mr-3"></i>Cerrar Sesión
+          </a>
+        {% else %}
+          <a href="{% url 'user:login' %}" class="flex items-center text-white hover:text-yellow-300 py-2">
+            <i class="fas fa-sign-in-alt mr-3"></i>Ingresar
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script>
+  // Toggle dropdown del usuario
+  const userMenuBtn = document.getElementById('user-menu-btn');
+  const userDropdown = document.getElementById('user-dropdown');
+
+  if (userMenuBtn && userDropdown) {
+    userMenuBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      userDropdown.classList.toggle('hidden');
+    });
+
+    // Cerrar dropdown al hacer click fuera
+    document.addEventListener('click', function(e) {
+      if (!userMenuBtn.contains(e.target) && !userDropdown.contains(e.target)) {
+        userDropdown.classList.add('hidden');
+      }
+    });
+  }
+
+  // Toggle menú mobile
+  const mobileMenuBtn = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  if (mobileMenuBtn && mobileMenu) {
+    mobileMenuBtn.addEventListener('click', function() {
+      mobileMenu.classList.toggle('hidden');
+    });
+  }
+</script>
     <!-- Mensajes de Django -->
     {% if messages %}
     <div class="container mx-auto px-4 mt-4">
@@ -292,14 +366,14 @@
                 <div class="flex items-baseline mb-5">
                   {% if producto.descuento and producto.descuento > 0 %}
                   <span class="text-gray-400 line-through text-sm"
-                    >${{ producto.precio|floatformat:0 }}</span
+                    >${{ producto.precio|formato_precio }}</span
                   >
                   <span class="text-3xl font-bold text-blue-600 ml-3"
-                    >${{ producto.precio_descuento|floatformat:0 }}</span
+                    >${{ producto.precio_descuento|formato_precio }}</span
                   >
                   {% else %}
                   <span class="text-3xl font-bold text-blue-600"
-                    >${{ producto.precio|floatformat:0 }}</span
+                    >${{ producto.precio|formato_precio }}</span
                   >
                   {% endif %}
                 </div>
@@ -400,14 +474,14 @@
                   <div class="flex items-baseline mb-4">
                     {% if producto.descuento and producto.descuento > 0 %}
                     <span class="text-gray-400 line-through text-sm"
-                      >${{ producto.precio|floatformat:0 }}</span
+                      >${{ producto.precio|formato_precio }}</span
                     >
                     <span class="text-2xl font-bold text-blue-600 ml-2"
-                      >${{ producto.precio_descuento|floatformat:0 }}</span
+                      >${{ producto.precio_descuento|formato_precio }}</span
                     >
                     {% else %}
                     <span class="text-2xl font-bold text-blue-600"
-                      >${{ producto.precio|floatformat:0 }}</span
+                      >${{ producto.precio|formato_precio }}</span
                     >
                     {% endif %}
                   </div>
@@ -506,14 +580,14 @@
                   <div class="flex items-baseline mb-4">
                     {% if producto.descuento and producto.descuento > 0 %}
                     <span class="text-gray-400 line-through text-sm"
-                      >${{ producto.precio|floatformat:0 }}</span
+                      >${{ producto.precio|formato_precio }}</span
                     >
                     <span class="text-2xl font-bold text-blue-600 ml-2"
-                      >${{ producto.precio_descuento|floatformat:0 }}</span
+                      >${{ producto.precio_descuento|formato_precio }}</span
                     >
                     {% else %}
                     <span class="text-2xl font-bold text-blue-600"
-                      >${{ producto.precio|floatformat:0 }}</span
+                      >${{ producto.precio|formato_precio }}</span
                     >
                     {% endif %}
                   </div>
@@ -611,14 +685,14 @@
                   <div class="flex items-baseline mb-4">
                     {% if producto.descuento and producto.descuento > 0 %}
                     <span class="text-gray-400 line-through text-sm"
-                      >${{ producto.precio|floatformat:0 }}</span
+                      >${{ producto.precio|formato_precio }}</span
                     >
                     <span class="text-2xl font-bold text-blue-600 ml-2"
-                      >${{ producto.precio_descuento|floatformat:0 }}</span
+                      >${{ producto.precio_descuento|formato_precio }}</span
                     >
                     {% else %}
                     <span class="text-2xl font-bold text-blue-600"
-                      >${{ producto.precio|floatformat:0 }}</span
+                      >${{ producto.precio|formato_precio }}</span
                     >
                     {% endif %}
                   </div>
@@ -657,90 +731,210 @@
     </main>
 
     <!-- Newsletter Section -->
-    <section class="py-16 bg-gradient-to-r from-blue-600 to-indigo-600">
-      <!-- Formulario Newsletter -->
-    </section>
+    <!--<section class="py-16 bg-gradient-to-r from-blue-600 to-indigo-600">
+      <!- Formulario Newsletter -->
+    <!--</section>
 
-    <!-- FOOTER -->
-    <footer id="contacto" class="bg-gray-900 text-white py-12">
-      <div class="container mx-auto px-4">
-        <div class="flex flex-col md:flex-row justify-between items-center">
-          <!-- Información de contacto -->
-          <div class="text-center md:text-left mb-6 md:mb-0">
-            <p>&copy; 2025 ElectroHome. Todos los derechos reservados.</p>
-            <p class="mt-2">
-              Dirección: Calle 1 #2-40, Cartagena de Indias, Colombia
-            </p>
-            <p class="mt-1">Teléfono: +57 300 760 7645</p>
-            <p class="mt-1">
-              Email:
-              <a
-                href="mailto:info@electrohome.com"
-                class="underline text-blue-400"
-                >info@electrohome.com</a
-              >
-            </p>
-          </div>
+    <!-FOOTER -->
+<footer class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-gray-200 py-12 mt-10">
+  <div class="container mx-auto px-6">
+    <!-- Sección principal -->
+    <div class="text-center mb-8">
+      <h2 class="text-3xl font-bold text-white mb-3 tracking-wide">ElectroHome</h2>
+      <p class="text-gray-400 max-w-md mx-auto text-sm">
+        La mejor tecnología para tu hogar. Compra fácil, rápido y con total seguridad.
+      </p>
+    </div>
 
-          <!-- Enlaces y redes sociales -->
-          <div
-            class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-8"
-          >
-            <!-- Enlaces legales -->
-            <div class="flex space-x-4">
-              <a href="#" class="text-gray-400 hover:text-white"
-                >Política de privacidad</a
-              >
-              <a href="#" class="text-gray-400 hover:text-white"
-                >Términos de servicio</a
-              >
-              <a href="#contacto" class="text-gray-400 hover:text-white"
-                >Contacto</a
-              >
-            </div>
+    <!-- Redes sociales -->
+    <div class="flex justify-center space-x-8 mb-10">
+      <a href="https://facebook.com" target="_blank" class="transition transform hover:scale-110">
+        <i class="fab fa-facebook-f text-2xl text-blue-500 hover:text-blue-400"></i>
+      </a>
+      <a href="https://instagram.com" target="_blank" class="transition transform hover:scale-110">
+        <i class="fab fa-instagram text-2xl text-pink-500 hover:text-pink-400"></i>
+      </a>
+      <a href="https://tiktok.com" target="_blank" class="transition transform hover:scale-110">
+        <i class="fab fa-tiktok text-2xl text-white hover:text-gray-300"></i>
+      </a>
+      <a href="https://twitter.com" target="_blank" class="transition transform hover:scale-110">
+        <i class="fab fa-x-twitter text-2xl text-gray-200 hover:text-white"></i>
+      </a>
+    </div>
 
-            <!-- Redes sociales -->
-            <div class="flex space-x-4">
-              <a href="https://facebook.com" target="_blank">
-                <i
-                  class="fab fa-facebook"
-                  style="font-size: 30px; color: #1877f2"
-                ></i>
-              </a>
-              <a href="https://www.tiktok.com" target="_blank">
-                <i
-                  class="fab fa-tiktok"
-                  style="font-size: 30px; color: #ffffff"
-                ></i>
-              </a>
-              <a href="https://instagram.com" target="_blank">
-                <i
-                  class="fab fa-instagram"
-                  style="font-size: 30px; color: #e1306c"
-                ></i>
-              </a>
-              <a href="https://twitter.com" target="_blank">
-                <i
-                  class="fab fa-x-twitter"
-                  style="font-size: 30px; color: #ffffff"
-                ></i>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
+    <!-- Enlaces rápidos -->
+    <div class="flex flex-wrap justify-center space-x-6 text-sm mb-8">
+      <a href="#" class="hover:text-white transition">Inicio</a>
+      <a href="#" class="hover:text-white transition">Productos</a>
+      <a href="#" class="hover:text-white transition">Ofertas</a>
+      <a href="#" class="hover:text-white transition">Nosotros</a>
+      <a href="#" class="hover:text-white transition">Contacto</a>
+    </div>
+
+    <!-- Información de contacto -->
+    <div class="text-center text-gray-400 text-sm mb-8">
+      <p>📍 Calle 1 #2-40, Cartagena de Indias, Colombia</p>
+      <p>📞 +57 300 760 7645</p>
+      <p>
+        ✉️ <a href="mailto:info@electrohome.com" class="underline hover:text-blue-400">info@electrohome.com</a>
+      </p>
+    </div>
+
+    <!-- Línea divisoria -->
+    <div class="border-t border-gray-700 pt-6 text-center text-xs text-gray-500">
+      &copy; 2025 <span class="text-white font-semibold">ElectroHome</span>. Todos los derechos reservados.
+    </div>
+  </div>
+</footer>
+
 
     <!-- JAVASCRIPT -->
     <script>
-      // Mobile menu toggle
+      // ====================================
+      // FUNCIONES DEL CARRITO
+      // ====================================
+      
+      // Obtener CSRF Token
+      function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+          const cookies = document.cookie.split(';');
+          for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+              cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+              break;
+            }
+          }
+        }
+        return cookieValue;
+      }
+
+      const csrftoken = getCookie('csrftoken');
+
+      // Función principal para agregar al carrito
+      function agregarAlCarrito(productId, quantity = 1) {
+    console.log('Agregando al carrito:', productId);
+    
+    fetch(`/carrito/agregar/${productId}/`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-CSRFToken': csrftoken
+        },
+        body: `quantity=${quantity}`
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // ✅ Actualizar contador
+            actualizarContadorCarrito(data.cart_total_items);
+            
+            // ✅ Mostrar mensaje de éxito
+            mostrarNotificacion('✅ ' + data.message, 'success');
+            
+        } else {
+            mostrarNotificacion('❌ ' + data.message, 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        mostrarNotificacion('❌ Error al agregar al carrito', 'error');
+    });
+}
+
+// Función para actualizar el contador
+function actualizarContadorCarrito(cantidad) {
+    const cartCounter = document.getElementById('cart-counter');
+    if (cartCounter) {
+        cartCounter.textContent = cantidad;
+        
+        // Animación de pulso
+        cartCounter.classList.add('animate-pulse');
+        setTimeout(() => {
+            cartCounter.classList.remove('animate-pulse');
+        }, 1000);
+    }
+}
+
+// Función para mostrar notificaciones
+function mostrarNotificacion(mensaje, tipo) {
+    const notif = document.createElement('div');
+    notif.className = `fixed top-24 right-4 z-50 px-6 py-4 rounded-lg shadow-lg transition-all duration-300 ${
+        tipo === 'success' ? 'bg-green-500' : 'bg-red-500'
+    } text-white font-bold`;
+    notif.textContent = mensaje;
+    document.body.appendChild(notif);
+    
+    setTimeout(() => {
+        notif.style.opacity = '0';
+        setTimeout(() => notif.remove(), 300);
+    }, 3000);
+}
+
+      // Actualizar contador del carrito
+      function actualizarContadorCarrito(cantidad) {
+        const cartCounter = document.getElementById('cart-counter');
+        if (cartCounter) {
+          console.log('Actualizando contador a:', cantidad);
+          cartCounter.textContent = cantidad;
+          
+          // Mostrar el contador si hay items
+          if (cantidad > 0) {
+            cartCounter.style.display = 'block';
+          }
+          
+          // Animar el contador
+          cartCounter.classList.add('animate-pulse');
+          setTimeout(() => {
+            cartCounter.classList.remove('animate-pulse');
+          }, 1000);
+        } else {
+          console.error('No se encontró el elemento cart-counter');
+        }
+      }
+
+      // Cargar contador del carrito al iniciar
+      document.addEventListener('DOMContentLoaded', function() {
+        console.log('Página cargada. Función agregarAlCarrito disponible:', typeof agregarAlCarrito);
+        cargarContadorCarrito();
+      });
+
+      // Función para cargar el contador del carrito
+      function cargarContadorCarrito() {
+        fetch('/carrito/', {
+          method: 'GET',
+          headers: {
+            'X-Requested-With': 'XMLHttpRequest'
+          }
+        })
+        .then(response => response.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, 'text/html');
+          const serverCounter = doc.getElementById('cart-counter');
+          
+          if (serverCounter) {
+            actualizarContadorCarrito(serverCounter.textContent);
+          }
+        })
+        .catch(error => {
+          console.log('No se pudo cargar el contador del carrito:', error);
+        });
+      }
+
+      // ====================================
+      // MOBILE MENU
+      // ====================================
       document
         .getElementById("mobile-menu-button")
         .addEventListener("click", function () {
           document.getElementById("mobile-menu").classList.toggle("hidden");
         });
 
-      // Carruseles - Scroll functionality
+      // ====================================
+      // CARRUSELES
+      // ====================================
       const carousels = [
         {
           carousel: "carousel-recom",
@@ -775,9 +969,5 @@
         }
       });
     </script>
-
-    <!-- Scripts externos -->
-    <script src="{% static 'js/carrito.js' %}"></script>
-    <script src="{% static 'js/main.js' %}"></script>
   </body>
 </html>

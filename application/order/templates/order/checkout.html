@@ -1,0 +1,518 @@
+{% load static %}
+{% load custom_filters %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout - ElectroHome</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body class="bg-gray-50">
+    <!-- HEADER / NAVEGACIÓN -->
+    <header class="bg-blue-800 shadow-2xl border-b-4 border-blue-500 sticky top-0 z-50">
+  <nav class="container mx-auto px-4 py-4">
+    <div class="flex justify-between items-center gap-4">
+      <!-- Logo -->
+      <div class="flex items-center space-x-2 flex-shrink-0">
+        <a href="{% url 'product:home' %}">
+          <img
+            src="{% static 'img/logo_de_electrohome.png' %}"
+            alt="ElectroHome"
+            class="w-20 h-auto hover:scale-105 transition-transform duration-500"
+          />
+        </a>
+      </div>
+
+      <!-- Buscador (Desktop) -->
+      <div class="hidden md:flex flex-grow max-w-xl mx-4">
+        <form action="{% url 'product:search' %}" method="GET" class="relative w-full">
+          <input 
+            type="text" 
+            name="q" 
+            placeholder="Buscar productos..." 
+            class="w-full px-4 py-2 pr-12 rounded-lg border-2 border-blue-300 focus:border-yellow-400 focus:outline-none text-gray-800"
+            value="{{ request.GET.q }}"
+          />
+          <button 
+            type="submit" 
+            class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-yellow-500 text-white px-4 py-1 rounded-lg hover:bg-yellow-600 transition"
+          >
+            <i class="fas fa-search"></i>
+          </button>
+        </form>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden lg:flex space-x-6">
+        <a href="{% url 'product:home' %}" class="text-gray-50 hover:text-yellow-300">Inicio</a>
+        <a href="#productos" class="text-gray-50 hover:text-yellow-300">Productos</a>
+        <a href="#categorias" class="text-gray-50 hover:text-yellow-300">Categorías</a>
+        <a href="#contacto" class="text-gray-50 hover:text-yellow-300">Contacto</a>
+      </div>
+
+      <!-- User Menu & Cart -->
+      <div class="flex items-center space-x-4">
+        <!-- Carrito -->
+<a href="{% url 'product:cart' %}" class="relative text-white hover:text-yellow-300 transition">
+  <i class="fas fa-shopping-cart text-2xl"></i>
+  <span id="cart-counter" class="absolute -top-1 -right-2 bg-red-500 text-white text-xs font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">
+    {{ cart_items_count|default:0 }}
+  </span>
+</a>
+        {% if user.is_authenticated %}
+          <!-- Menú de Usuario con Dropdown -->
+          <div class="relative">
+            <button 
+              id="user-menu-btn"
+              class="w-10 h-10 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg hover:scale-110 transition-transform focus:outline-none focus:ring-2 focus:ring-yellow-300"
+            >
+              {{ user.first_name.0|default:user.username.0|upper }}{{ user.last_name.0|default:""|upper }}
+            </button>
+
+            <!-- Dropdown Menu (oculto por defecto) -->
+            <div 
+              id="user-dropdown"
+              class="hidden absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-2xl z-50"
+            >
+              <!-- Header del dropdown -->
+              <div class="p-4 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-blue-100">
+                <div class="flex items-center space-x-3">
+                  <div class="w-12 h-12 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">
+                    {{ user.first_name.0|default:user.username.0|upper }}{{ user.last_name.0|default:""|upper }}
+                  </div>
+                  <div>
+                    <p class="font-bold text-gray-800">
+                      {% if user.first_name %}
+                        {{ user.first_name }} {{ user.last_name }}
+                      {% else %}
+                        {{ user.username }}
+                      {% endif %}
+                    </p>
+                    <span class="inline-block px-2 py-1 bg-blue-500 text-white text-xs font-semibold rounded-full">
+                      Cliente
+                    </span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Opciones del menú -->
+              <div class="py-2">
+                <a href="{% url 'user:profile' %}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 transition group">
+                  <i class="fas fa-user text-blue-600 w-6 group-hover:scale-110 transition-transform"></i>
+                  <span class="ml-3 font-semibold">Mi Perfil</span>
+                </a>
+                
+                <a href="{% url 'order:order_list' %}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 transition group">
+                  <i class="fas fa-shopping-bag text-blue-600 w-6 group-hover:scale-110 transition-transform"></i>
+                  <span class="ml-3 font-semibold">Mis Pedidos</span>
+                </a>
+                
+                <hr class="my-2 border-gray-200">
+                
+                <a href="{% url 'user:logout' %}" class="flex items-center px-4 py-3 text-red-600 hover:bg-red-50 transition group">
+                  <i class="fas fa-sign-out-alt w-6 group-hover:scale-110 transition-transform"></i>
+                  <span class="ml-3 font-semibold">Cerrar Sesión</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        {% else %}
+          <!-- Botones Login/Register -->
+          <a href="{% url 'user:login' %}" class="hidden md:inline-block text-white hover:text-yellow-300 font-semibold">
+            <i class="fas fa-sign-in-alt"></i> Ingresar
+          </a>
+          <a href="{% url 'user:register' %}" class="bg-yellow-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-yellow-600 transition">
+            Registrarse
+          </a>
+        {% endif %}
+
+        <!-- Mobile Menu Button -->
+        <button class="lg:hidden text-gray-50 hover:text-yellow-300" id="mobile-menu-button">
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Buscador Mobile -->
+    <div class="md:hidden mt-4">
+      <form action="{% url 'product:search' %}" method="GET" class="relative">
+        <input 
+          type="text" 
+          name="q" 
+          placeholder="Buscar productos..." 
+          class="w-full px-4 py-2 pr-12 rounded-lg border-2 border-blue-300 focus:border-yellow-400 focus:outline-none text-gray-800"
+          value="{{ request.GET.q }}"
+        />
+        <button 
+          type="submit" 
+          class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-yellow-500 text-white px-4 py-1 rounded-lg hover:bg-yellow-600 transition"
+        >
+          <i class="fas fa-search"></i>
+        </button>
+      </form>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="lg:hidden mt-4 pb-4 hidden" id="mobile-menu">
+      <div class="flex flex-col space-y-3">
+        <a href="{% url 'product:home' %}" class="text-gray-50 hover:text-yellow-300 py-2">
+          <i class="fas fa-home mr-2"></i>Inicio
+        </a>
+        <a href="#productos" class="text-gray-50 hover:text-yellow-300 py-2">
+          <i class="fas fa-tag mr-2"></i>Productos
+        </a>
+        <a href="#categorias" class="text-gray-50 hover:text-yellow-300 py-2">
+          <i class="fas fa-th-large mr-2"></i>Categorías
+        </a>
+        <a href="#contacto" class="text-gray-50 hover:text-yellow-300 py-2">
+          <i class="fas fa-envelope mr-2"></i>Contacto
+        </a>
+        
+        <hr class="border-blue-600">
+
+        {% if user.is_authenticated %}
+          <a href="{% url 'user:profile' %}" class="flex items-center text-white hover:text-yellow-300 py-2">
+            <i class="fas fa-user mr-3"></i>Mi Perfil
+          </a>
+          <a href="{% url 'order:order_list' %}" class="flex items-center text-white hover:text-yellow-300 py-2">
+            <i class="fas fa-shopping-bag mr-3"></i>Mis Pedidos
+          </a>
+          <a href="{% url 'user:logout' %}" class="flex items-center text-red-300 hover:text-red-100 py-2">
+            <i class="fas fa-sign-out-alt mr-3"></i>Cerrar Sesión
+          </a>
+        {% else %}
+          <a href="{% url 'user:login' %}" class="flex items-center text-white hover:text-yellow-300 py-2">
+            <i class="fas fa-sign-in-alt mr-3"></i>Ingresar
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+</header>
+    <!-- MAIN CONTENT -->
+    <main class="container mx-auto px-4 py-12">
+        <div class="max-w-6xl mx-auto">
+            <!-- Breadcrumb -->
+            <div class="mb-8 flex items-center text-sm text-gray-600">
+                <a href="{% url 'product:home' %}" class="hover:text-blue-600">Inicio</a>
+                <i class="fas fa-chevron-right mx-2 text-xs"></i>
+                <a href="{% url 'product:cart' %}" class="hover:text-blue-600">Carrito</a>
+                <i class="fas fa-chevron-right mx-2 text-xs"></i>
+                <span class="text-blue-600 font-semibold">Checkout</span>
+            </div>
+
+            <h1 class="text-4xl font-bold text-blue-800 mb-8">
+                <i class="fas fa-credit-card"></i> Finalizar Compra
+            </h1>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- FORMULARIO DE CHECKOUT -->
+                <div class="lg:col-span-2">
+                    <form id="checkout-form" class="space-y-6">
+                        {% csrf_token %}
+                        
+                        <!-- Información de Contacto -->
+                        <div class="bg-white rounded-lg shadow-md p-6">
+                            <h2 class="text-2xl font-bold text-blue-800 mb-4">
+                                <i class="fas fa-user"></i> Información de Contacto
+                            </h2>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-gray-700 font-semibold mb-2">
+                                        Email <span class="text-red-500">*</span>
+                                    </label>
+                                    <input 
+                                        type="email" 
+                                        name="email" 
+                                        value="{{ user.email }}"
+                                        required
+                                        class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none"
+                                        placeholder="tu@email.com"
+                                    />
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-gray-700 font-semibold mb-2">
+                                        Teléfono <span class="text-red-500">*</span>
+                                    </label>
+                                    <input 
+                                        type="tel" 
+                                        name="phone" 
+                                        required
+                                        class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none"
+                                        placeholder="3001234567"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Dirección de Envío -->
+                        <div class="bg-white rounded-lg shadow-md p-6">
+                            <h2 class="text-2xl font-bold text-blue-800 mb-4">
+                                <i class="fas fa-map-marker-alt"></i> Dirección de Envío
+                            </h2>
+                            
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-gray-700 font-semibold mb-2">
+                                        Dirección Completa <span class="text-red-500">*</span>
+                                    </label>
+                                    <input 
+                                        type="text" 
+                                        name="shipping_address" 
+                                        required
+                                        class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none"
+                                        placeholder="Calle 123 #45-67, Apto 890"
+                                    />
+                                </div>
+                                
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                    <div>
+                                        <label class="block text-gray-700 font-semibold mb-2">
+                                            Ciudad <span class="text-red-500">*</span>
+                                        </label>
+                                        <input 
+                                            type="text" 
+                                            name="shipping_city" 
+                                            required
+                                            class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none"
+                                            placeholder="Bogotá"
+                                        />
+                                    </div>
+                                    
+                                    <div>
+                                        <label class="block text-gray-700 font-semibold mb-2">
+                                            Departamento <span class="text-red-500">*</span>
+                                        </label>
+                                        <input 
+                                            type="text" 
+                                            name="shipping_department" 
+                                            required
+                                            class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none"
+                                            placeholder="Cundinamarca"
+                                        />
+                                    </div>
+                                    
+                                    <div>
+                                        <label class="block text-gray-700 font-semibold mb-2">
+                                            Código Postal
+                                        </label>
+                                        <input 
+                                            type="text" 
+                                            name="shipping_postal_code" 
+                                            class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none"
+                                            placeholder="110111"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Método de Pago -->
+                        <div class="bg-white rounded-lg shadow-md p-6">
+                            <h2 class="text-2xl font-bold text-blue-800 mb-4">
+                                <i class="fas fa-wallet"></i> Método de Pago
+                            </h2>
+                            
+                            <div class="space-y-3">
+                                <label class="flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:bg-blue-50 transition">
+                                    <input type="radio" name="payment_method" value="credit_card" checked class="mr-3 w-5 h-5" />
+                                    <i class="fas fa-credit-card text-blue-600 mr-3 text-xl"></i>
+                                    <span class="font-semibold">Tarjeta de Crédito</span>
+                                </label>
+                                
+                                <label class="flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:bg-blue-50 transition">
+                                    <input type="radio" name="payment_method" value="debit_card" class="mr-3 w-5 h-5" />
+                                    <i class="fas fa-credit-card text-green-600 mr-3 text-xl"></i>
+                                    <span class="font-semibold">Tarjeta de Débito</span>
+                                </label>
+                                
+                                <label class="flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:bg-blue-50 transition">
+                                    <input type="radio" name="payment_method" value="pse" class="mr-3 w-5 h-5" />
+                                    <i class="fas fa-university text-purple-600 mr-3 text-xl"></i>
+                                    <span class="font-semibold">PSE</span>
+                                </label>
+                                
+                                <label class="flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:bg-blue-50 transition">
+                                    <input type="radio" name="payment_method" value="cash" class="mr-3 w-5 h-5" />
+                                    <i class="fas fa-money-bill-wave text-green-600 mr-3 text-xl"></i>
+                                    <span class="font-semibold">Efectivo Contraentrega</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Notas Adicionales -->
+                        <div class="bg-white rounded-lg shadow-md p-6">
+                            <h2 class="text-2xl font-bold text-blue-800 mb-4">
+                                <i class="fas fa-comment"></i> Notas Adicionales (Opcional)
+                            </h2>
+                            <textarea 
+                                name="notes" 
+                                rows="3"
+                                class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none"
+                                placeholder="Información adicional sobre tu pedido..."
+                            ></textarea>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- RESUMEN DEL PEDIDO -->
+                <div class="lg:col-span-1">
+                    <div class="bg-white rounded-lg shadow-lg p-6 sticky top-24">
+                        <h2 class="text-2xl font-bold text-blue-800 mb-6">Resumen del Pedido</h2>
+                        
+                        <!-- Productos -->
+                        <div class="mb-6 max-h-64 overflow-y-auto">
+                            {% for item in items %}
+                            <div class="flex items-center gap-3 mb-4 pb-4 border-b border-gray-200">
+                                <div class="w-16 h-16 flex-shrink-0">
+                                    {% if item.product.imagen_principal %}
+                                    <img src="{{ item.product.imagen_principal.url }}" alt="{{ item.product.nombre }}" class="w-full h-full object-cover rounded" />
+                                    {% else %}
+                                    <div class="w-full h-full bg-gray-200 rounded flex items-center justify-center">
+                                        <i class="fas fa-image text-gray-400"></i>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <div class="flex-grow">
+                                    <h4 class="font-semibold text-sm text-gray-800">{{ item.product.nombre|truncatewords:5 }}</h4>
+                                    <p class="text-xs text-gray-500">Cantidad: {{ item.quantity }}</p>
+                                    <p class="text-sm font-bold text-blue-600">${{ item.subtotal|formato_precio }}</p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                        <!-- Totales -->
+                        <div class="space-y-3 mb-6">
+                            <div class="flex justify-between text-gray-700">
+                                <span>Subtotal:</span>
+                                <span class="font-semibold">${{ subtotal|formato_precio }}</span>
+                            </div>
+                            <div class="flex justify-between text-gray-700">
+                                <span>IVA (19%):</span>
+                                <span class="font-semibold">${{ tax|formato_precio }}</span>
+                            </div>
+                            <div class="flex justify-between text-gray-700">
+                                <span>Envío:</span>
+                                <span class="font-semibold">${{ shipping_cost|formato_precio }}</span>
+                            </div>
+                            <hr class="border-gray-300" />
+                            <div class="flex justify-between text-2xl font-bold text-blue-800">
+                                <span>Total:</span>
+                                <span>${{ grand_total|formato_precio }}</span>
+                            </div>
+                        </div>
+
+                        <!-- Botones -->
+                        <button 
+                            type="submit" 
+                            form="checkout-form"
+                            id="submit-btn"
+                            class="w-full bg-yellow-500 text-white py-4 rounded-lg font-bold hover:bg-yellow-600 transition mb-3 flex items-center justify-center"
+                        >
+                            <i class="fas fa-check-circle mr-2"></i>
+                            <span id="btn-text">Confirmar Pedido</span>
+                            <span id="btn-loading" class="hidden">
+                                <i class="fas fa-spinner fa-spin mr-2"></i>
+                                Procesando...
+                            </span>
+                        </button>
+                        
+                        <a href="{% url 'product:cart' %}" class="block w-full text-center bg-gray-200 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-300 transition">
+                            <i class="fas fa-arrow-left"></i> Volver al Carrito
+                        </a>
+
+                        <!-- Seguridad -->
+                        <div class="mt-6 text-center">
+                            <p class="text-xs text-gray-500 flex items-center justify-center">
+                                <i class="fas fa-lock mr-2 text-green-600"></i>
+                                Pago 100% seguro y protegido
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-white py-12 mt-20">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2025 ElectroHome. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    const csrftoken = getCookie('csrftoken');
+
+    document.getElementById('checkout-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const submitBtn = document.getElementById('submit-btn');
+        const btnText = document.getElementById('btn-text');
+        const btnLoading = document.getElementById('btn-loading');
+        
+        // Deshabilitar botón y mostrar loading
+        submitBtn.disabled = true;
+        btnText.classList.add('hidden');
+        btnLoading.classList.remove('hidden');
+        
+        const formData = new FormData(this);
+        
+        fetch('{% url "order:process_checkout" %}', {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': csrftoken
+            },
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Mostrar mensaje de éxito
+                alert('¡Orden creada exitosamente! Número de orden: ' + data.order_number);
+                
+                // Redirigir a la página de confirmación
+                window.location.href = data.redirect_url;
+            } else {
+                alert('Error: ' + data.message);
+                
+                // Rehabilitar botón
+                submitBtn.disabled = false;
+                btnText.classList.remove('hidden');
+                btnLoading.classList.add('hidden');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error al procesar el pedido. Por favor intenta nuevamente.');
+            
+            // Rehabilitar botón
+            submitBtn.disabled = false;
+            btnText.classList.remove('hidden');
+            btnLoading.classList.add('hidden');
+        });
+    });
+    </script>
+</body>
+</html>

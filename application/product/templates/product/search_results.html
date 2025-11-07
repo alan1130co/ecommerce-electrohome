@@ -1,0 +1,73 @@
+{% load static %}
+{% load custom_filters %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados de búsqueda - ElectroHome</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="bg-gray-50">
+    {% include 'includes/header.html' %}
+
+    <div class="container mx-auto px-4 py-12">
+        <h1 class="text-3xl font-bold text-blue-800 mb-6">
+            {% if query %}
+                Resultados para: "{{ query }}"
+            {% else %}
+                Búsqueda de Productos
+            {% endif %}
+        </h1>
+
+        {% if query %}
+            <p class="text-gray-600 mb-8">
+                Se encontraron <strong>{{ total_results }}</strong> producto(s)
+            </p>
+
+            {% if products %}
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    {% for product in products %}
+                    <div class="bg-white rounded-lg shadow-md hover:shadow-xl transition overflow-hidden">
+                        <a href="{% url 'product:detail' product.id %}">
+                            {% if product.imagen_principal %}
+                            <img src="{{ product.imagen_principal.url }}" alt="{{ product.nombre }}" class="w-full h-48 object-cover">
+                            {% else %}
+                            <div class="w-full h-48 bg-gray-200 flex items-center justify-center">
+                                <i class="fas fa-image text-gray-400 text-4xl"></i>
+                            </div>
+                            {% endif %}
+                        </a>
+                        <div class="p-4">
+                            <h3 class="font-bold text-gray-800 mb-2">{{ product.nombre|truncatewords:8 }}</h3>
+                            <p class="text-2xl font-bold text-blue-600 mb-3">${{ product.precio|formato_precio }}</p>
+                            <a href="{% url 'product:detail' product.id %}" class="block w-full bg-yellow-500 text-white text-center py-2 rounded-lg font-semibold hover:bg-yellow-600 transition">
+                                Ver Producto
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="text-center py-20">
+                    <i class="fas fa-search text-gray-300 text-9xl mb-6"></i>
+                    <h2 class="text-2xl font-bold text-gray-600 mb-4">No se encontraron resultados</h2>
+                    <p class="text-gray-500 mb-8">Intenta con otros términos de búsqueda</p>
+                    <a href="{% url 'product:home' %}" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition">
+                        Volver al Inicio
+                    </a>
+                </div>
+            {% endif %}
+        {% else %}
+            <div class="text-center py-20">
+                <i class="fas fa-search text-gray-300 text-9xl mb-6"></i>
+                <h2 class="text-2xl font-bold text-gray-600 mb-4">Escribe algo para buscar</h2>
+                <p class="text-gray-500">Encuentra tus productos favoritos</p>
+            </div>
+        {% endif %}
+    </div>
+
+    {% include 'includes/footer.html' %}
+</body>
+</html>

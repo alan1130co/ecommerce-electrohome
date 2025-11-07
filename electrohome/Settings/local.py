@@ -1,5 +1,6 @@
 from .base import *
 from decouple import config
+import os
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -18,34 +19,67 @@ DATABASES = {
     }
 }
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.2/howto/static-files/
+# ===== CONFIGURACIÓN DE CACHÉ PARA RECOMENDACIONES (DESARROLLO) =====
+# Opción 1: Caché en memoria local (NO REQUIERE REDIS - Fácil para desarrollo)
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'electrohome-cache',
+        'OPTIONS': {
+            'MAX_ENTRIES': 1000,
+        }
+    }
+}
+
+# Opción 2: Redis (DESCOMENTA si instalaste Redis para mejor performance)
+# Instalar: pip install django-redis redis
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django_redis.cache.RedisCache',
+#         'LOCATION': 'redis://127.0.0.1:6379/1',
+#         'OPTIONS': {
+#             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+#             'IGNORE_EXCEPTIONS': True,  # No romper la app si Redis falla
+#         },
+#         'KEY_PREFIX': 'electrohome_dev',
+#         'TIMEOUT': 3600,
+#     }
+# }
+
+# Configuración de timeouts de caché para recomendaciones
+RECOMMENDATION_CACHE_TIMEOUT = 3600  # 1 hora
+CACHE_MIDDLEWARE_SECONDS = 300  # 5 minutos
+
+# ===== CONFIGURACIÓN DE ARCHIVOS ESTÁTICOS =====
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# ===== CONFIGURACIÓN DE ARCHIVOS MEDIA (IMÁGENES) =====
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # ===== CONFIGURACIÓN CSRF PARA DESARROLLO =====
-# Estas configuraciones solucionan el error "CSRF verification failed"
-CSRF_COOKIE_SECURE = False  # No requiere HTTPS en desarrollo
-CSRF_COOKIE_HTTPONLY = False  # Permite acceso JavaScript si es necesario
+CSRF_COOKIE_SECURE = False
+CSRF_COOKIE_HTTPONLY = False
 CSRF_TRUSTED_ORIGINS = [
     'http://127.0.0.1:8000',
     'http://localhost:8000'
 ]
 
 # ===== CONFIGURACIÓN DE SESIONES =====
-SESSION_COOKIE_SECURE = False  # No requiere HTTPS en desarrollo
-SESSION_COOKIE_SAMESITE = 'Lax'  # Permite cookies entre pestañas
-CSRF_COOKIE_SAMESITE = 'Lax'  # Compatibilidad con navegadores modernos
+SESSION_COOKIE_SECURE = False
+SESSION_COOKIE_SAMESITE = 'Lax'
+CSRF_COOKIE_SAMESITE = 'Lax'
+SESSION_COOKIE_AGE = 86400  # 24 horas
+SESSION_SAVE_EVERY_REQUEST = False
 
 # ===== CONFIGURACIÓN PARA DESARROLLO =====
-# Estas líneas son útiles para debugging
-CSRF_FAILURE_VIEW = 'django.views.csrf.csrf_failure'  # Vista por defecto de error CSRF
-
-# ===== CONFIGURACIÓN DE ARCHIVOS MEDIA (IMÁGENES) =====
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+CSRF_FAILURE_VIEW = 'django.views.csrf.csrf_failure'
 
 # ===== CONFIGURACIÓN DE EMAIL PARA RECUPERACIÓN DE CONTRASEÑA =====
-# Para desarrollo: Los emails se mostrarán en la consola del servidor
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Para producción con Gmail (descomenta cuando lo necesites):
@@ -57,5 +91,65 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='tu_contraseña_app')
 # DEFAULT_FROM_EMAIL = config('EMAIL_HOST_USER', default='tu_email@gmail.com')
 
-# Configuración adicional para recuperación de contraseña
-PASSWORD_RESET_TIMEOUT = 86400  # 24 horas en segundos (por defecto es 3 días)
+PASSWORD_RESET_TIMEOUT = 86400  # 24 horas
+
+# ===== CONFIGURACIÓN DE RECOMENDACIONES =====
+RECOMMENDATION_CONFIG = {
+    'CACHE_TIMEOUT': 3600,  # 1 hora
+    'MIN_RATINGS_FOR_BEST_RATED': 3,
+    'GLOBAL_AVERAGE_RATING': 3.5,
+    'SIMILAR_USERS_LIMIT': 20,
+    'TRENDING_DAYS': 7,
+    'POPULAR_DAYS': 30,
+    'VIEW_DUPLICATE_THRESHOLD_MINUTES': 5,
+}
+
+# ===== LOGGING PARA DEBUGGING =====
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'INFO',
+        },
+        'application': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+        'django.db.backends': {
+            'handlers': ['console'],
+            'level': 'DEBUG',  # Ver queries SQL (útil para optimizar)
+        },
+    },
+}
+
+# ===== DJANGO DEBUG TOOLBAR (OPCIONAL - MUY ÚTIL) =====
+# Instalar: pip install django-debug-toolbar
+# Descomentar para activar:
+"""
+INSTALLED_APPS += ['debug_toolbar']
+MIDDLEWARE = ['debug_toolbar.middleware.DebugToolbarMiddleware'] + MIDDLEWARE
+INTERNAL_IPS = ['127.0.0.1']
+
+DEBUG_TOOLBAR_CONFIG = {
+    'SHOW_TOOLBAR_CALLBACK': lambda request: DEBUG,
+    'SHOW_COLLAPSED': True,
+}
+"""

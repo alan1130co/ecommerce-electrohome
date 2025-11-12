@@ -132,7 +132,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 # ===== CONFIGURACIÓN DE ALLAUTH =====
-SITE_ID = 1
+SITE_ID = 2
 
 # Configuración moderna de allauth (sin deprecations)
 ACCOUNT_LOGIN_METHODS = {'email'}

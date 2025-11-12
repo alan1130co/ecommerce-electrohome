@@ -79,9 +79,21 @@ SESSION_SAVE_EVERY_REQUEST = False
 # ===== CONFIGURACIÓN PARA DESARROLLO =====
 CSRF_FAILURE_VIEW = 'django.views.csrf.csrf_failure'
 
-# ===== CONFIGURACIÓN DE EMAIL PARA RECUPERACIÓN DE CONTRASEÑA =====
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# ===== CONFIGURACIÓN DE EMAIL =====
+# Para desarrollo (muestra emails en consola)
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+# Para producción con Gmail (ACTIVAR ESTO)
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')  # Leer desde .env
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')  # Leer desde .env
+DEFAULT_FROM_EMAIL = config('EMAIL_HOST_USER')
+SERVER_EMAIL = config('EMAIL_HOST_USER')
+
+PASSWORD_RESET_TIMEOUT = 86400  # 24 horas
 # Para producción con Gmail (descomenta cuando lo necesites):
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # EMAIL_HOST = 'smtp.gmail.com'
@@ -153,3 +165,8 @@ DEBUG_TOOLBAR_CONFIG = {
     'SHOW_COLLAPSED': True,
 }
 """
+
+# Configuración de allauth para Google
+SOCIALACCOUNT_QUERY_EMAIL = True
+SOCIALACCOUNT_EMAIL_REQUIRED = True
+SOCIALACCOUNT_STORE_TOKENS = True

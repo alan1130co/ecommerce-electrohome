@@ -5,6 +5,8 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from django.http import JsonResponse
 from django.contrib import messages
+from django.core.mail import send_mail
+from django.conf import settings
 from application.product.cart_services import CartService
 from .order_services import OrderService
 from .models import Order
@@ -87,6 +89,72 @@ def process_checkout(request):
         
         # Crear la orden
         order = OrderService.create_order_from_cart(request.user, cart, order_data)
+        
+        # ===== ENVIAR EMAIL DE CONFIRMACIÓN =====
+        try:
+            subject = f'Confirmación de Pedido #{order.order_number} - ElectroHome'
+            
+            # Construir lista de productos
+            items_text = ""
+            for item in order.items.all():
+                items_text += f"  • {item.product_name} x{item.quantity} - ${item.product_price:,.0f}\n"
+            
+            message = f'''
+Hola {request.user.first_name or request.user.email},
+
+¡Gracias por tu compra en ElectroHome! 🎉
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+DETALLES DE TU PEDIDO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Número de pedido: #{order.order_number}
+Estado: {order.get_status_display()}
+Fecha: {order.created_at.strftime('%d/%m/%Y %H:%M')}
+
+PRODUCTOS:
+{items_text}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Subtotal: ${order.subtotal:,.0f} COP
+Envío: ${order.shipping_cost:,.0f} COP
+IVA: ${order.tax:,.0f} COP
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+TOTAL: ${order.total:,.0f} COP
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+DIRECCIÓN DE ENVÍO:
+{order.shipping_address}
+{order.shipping_city}, {order.shipping_department}
+Código Postal: {order.shipping_postal_code or 'N/A'}
+Teléfono: {order.phone}
+
+MÉTODO DE PAGO:
+{order.get_payment_method_display()}
+
+{f"NOTAS: {order.notes}" if order.notes else ""}
+
+Nos pondremos en contacto contigo pronto para coordinar la entrega.
+
+¿Tienes preguntas? Responde a este correo.
+
+Saludos,
+El equipo de ElectroHome 🏠
+            '''
+            
+            send_mail(
+                subject,
+                message,
+                settings.DEFAULT_FROM_EMAIL,
+                [order.email],
+                fail_silently=False,
+            )
+            
+            print(f"✅ Correo de confirmación enviado a {order.email}")
+            
+        except Exception as e:
+            print(f"⚠️ Error al enviar correo: {e}")
+            # No detenemos el proceso, solo registramos el error
+        # ===== FIN EMAIL =====
         
         # Limpiar caché de recomendaciones
         engine = RecommendationEngine(user=request.user)

@@ -1,7 +1,8 @@
 # application/order/models.py
 from django.db import models
 from django.conf import settings
-from application.product.models import Producto   # Importar desde product
+from django.core.validators import RegexValidator
+from application.product.models import Producto
 import random
 import string
 from django.utils import timezone
@@ -25,6 +26,12 @@ class Order(models.Model):
         ('cash', 'Efectivo Contraentrega'),
     ]
     
+    # Validador para el teléfono
+    phone_validator = RegexValidator(
+        regex=r'^\d{10}$',
+        message='El número de teléfono debe contener exactamente 10 dígitos numéricos.'
+    )
+    
     # Información del usuario
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
@@ -34,7 +41,12 @@ class Order(models.Model):
     
     # Datos de contacto
     email = models.EmailField()
-    phone = models.CharField(max_length=20)
+    phone = models.CharField(
+        max_length=10,
+        validators=[phone_validator],
+        verbose_name='Teléfono',
+        help_text='Ingrese 10 dígitos numéricos'
+    )
     
     # Dirección de envío
     shipping_address = models.CharField(max_length=255, verbose_name='Dirección')

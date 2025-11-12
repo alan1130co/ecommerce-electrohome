@@ -47,9 +47,8 @@
       <!-- Desktop Navigation -->
       <div class="hidden lg:flex space-x-6">
         <a href="{% url 'product:home' %}" class="text-gray-50 hover:text-yellow-300">Inicio</a>
-        <a href="#productos" class="text-gray-50 hover:text-yellow-300">Productos</a>
-        <a href="#categorias" class="text-gray-50 hover:text-yellow-300">Categorías</a>
-        <a href="#contacto" class="text-gray-50 hover:text-yellow-300">Contacto</a>
+        <a href="{% url 'product:products_list' %}" class="text-gray-50 hover:text-yellow-300">Productos</a>
+        <a href="{% url 'product:contact' %}" class="text-gray-50 hover:text-yellow-300">Contacto</a>
       </div>
 
       <!-- User Menu & Cart -->
@@ -380,7 +379,7 @@
             <i class="fas fa-shopping-cart text-gray-300 text-9xl mb-6"></i>
             <h2 class="text-3xl font-bold text-gray-600 mb-4">Tu carrito está vacío</h2>
             <p class="text-gray-500 mb-8">¡Agrega productos para empezar tu compra!</p>
-            <a href="{% url 'product:home' %}" class="inline-block bg-yellow-500 text-white px-8 py-3 rounded-lg font-bold hover:bg-yellow-600 transition">
+            <a href="{% url 'product:products_list' %}" class="inline-block bg-yellow-500 text-white px-8 py-3 rounded-lg font-bold hover:bg-yellow-600 transition">
                 <i class="fas fa-shopping-bag"></i> Ir a Comprar
             </a>
         </div>

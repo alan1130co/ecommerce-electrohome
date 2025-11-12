@@ -1,0 +1,548 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - ElectroHome</title>
+    
+    <!-- TailwindCSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body class="bg-gray-50">
+    <!-- HEADER -->
+<header class="bg-blue-800 shadow-2xl border-b-4 border-blue-500 sticky top-0 z-50">
+  <nav class="container mx-auto px-4 py-4">
+    <div class="flex justify-between items-center gap-4">
+      <!-- Logo -->
+      <div class="flex items-center space-x-2 flex-shrink-0">
+        <a href="{% url 'product:home' %}">
+          <img
+            src="{% static 'img/logo_de_electrohome.png' %}"
+            alt="ElectroHome"
+            class="w-20 h-auto hover:scale-105 transition-transform duration-500"
+          />
+        </a>
+      </div>
+
+      <!-- Buscador (Desktop) -->
+      <div class="hidden md:flex flex-grow max-w-xl mx-4">
+        <form action="{% url 'product:search' %}" method="GET" class="relative w-full">
+          <input 
+            type="text" 
+            name="q" 
+            placeholder="Buscar productos..." 
+            class="w-full px-4 py-2 pr-12 rounded-lg border-2 border-blue-300 focus:border-yellow-400 focus:outline-none text-gray-800"
+            value="{{ request.GET.q }}"
+          />
+          <button 
+            type="submit" 
+            class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-yellow-500 text-white px-4 py-1 rounded-lg hover:bg-yellow-600 transition"
+          >
+            <i class="fas fa-search"></i>
+          </button>
+        </form>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden lg:flex space-x-6">
+        <a href="{% url 'product:home' %}" class="text-gray-50 hover:text-yellow-300">Inicio</a>
+        <a href="{% url 'product:products_list' %}" class="text-gray-50 hover:text-yellow-300">Productos</a>
+        <a href="{% url 'product:contact' %}" class="text-yellow-500">Contacto</a>
+      </div>
+
+      <!-- User Menu & Cart -->
+      <div class="flex items-center space-x-4">
+        <!-- Carrito -->
+        <a href="{% url 'product:cart' %}" class="relative text-white hover:text-yellow-300 transition">
+          <i class="fas fa-shopping-cart text-2xl"></i>
+          <span id="cart-counter" class="absolute -top-1 -right-2 bg-red-500 text-white text-xs font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">
+            {{ total_items|default:0 }}
+          </span>
+        </a>
+
+        {% if user.is_authenticated %}
+          <!-- Menú de Usuario con Dropdown -->
+          <div class="relative">
+            <button 
+              id="user-menu-btn"
+              class="w-10 h-10 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg hover:scale-110 transition-transform focus:outline-none focus:ring-2 focus:ring-yellow-300"
+            >
+              {{ user.first_name.0|default:user.username.0|upper }}{{ user.last_name.0|default:""|upper }}
+            </button>
+
+            <!-- Dropdown Menu -->
+            <div 
+              id="user-dropdown"
+              class="hidden absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-2xl z-50"
+            >
+              <!-- Header del dropdown -->
+              <div class="p-4 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-blue-100">
+                <div class="flex items-center space-x-3">
+                  <div class="w-12 h-12 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">
+                    {{ user.first_name.0|default:user.username.0|upper }}{{ user.last_name.0|default:""|upper }}
+                  </div>
+                  <div>
+                    <p class="font-bold text-gray-800">
+                      {% if user.first_name %}
+                        {{ user.first_name }} {{ user.last_name }}
+                      {% else %}
+                        {{ user.username }}
+                      {% endif %}
+                    </p>
+                    <span class="inline-block px-2 py-1 bg-blue-500 text-white text-xs font-semibold rounded-full">
+                      Cliente
+                    </span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Opciones del menú -->
+              <div class="py-2">
+                <a href="{% url 'user:profile' %}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 transition group">
+                  <i class="fas fa-user text-blue-600 w-6 group-hover:scale-110 transition-transform"></i>
+                  <span class="ml-3 font-semibold">Mi Perfil</span>
+                </a>
+                
+                <a href="{% url 'order:order_list' %}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 transition group">
+                  <i class="fas fa-shopping-bag text-blue-600 w-6 group-hover:scale-110 transition-transform"></i>
+                  <span class="ml-3 font-semibold">Mis Pedidos</span>
+                </a>
+                
+                <hr class="my-2 border-gray-200">
+                
+                <a href="{% url 'user:logout' %}" class="flex items-center px-4 py-3 text-red-600 hover:bg-red-50 transition group">
+                  <i class="fas fa-sign-out-alt w-6 group-hover:scale-110 transition-transform"></i>
+                  <span class="ml-3 font-semibold">Cerrar Sesión</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        {% else %}
+          <!-- Botones Login/Register -->
+          <a href="{% url 'user:login' %}" class="hidden md:inline-block text-white hover:text-yellow-300 font-semibold">
+            <i class="fas fa-sign-in-alt"></i> Ingresar
+          </a>
+          <a href="{% url 'user:register' %}" class="bg-yellow-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-yellow-600 transition">
+            Registrarse
+          </a>
+        {% endif %}
+
+        <!-- Mobile Menu Button -->
+        <button class="lg:hidden text-gray-50 hover:text-yellow-300" id="mobile-menu-button">
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Buscador Mobile -->
+    <div class="md:hidden mt-4">
+      <form action="{% url 'product:search' %}" method="GET" class="relative">
+        <input 
+          type="text" 
+          name="q" 
+          placeholder="Buscar productos..." 
+          class="w-full px-4 py-2 pr-12 rounded-lg border-2 border-blue-300 focus:border-yellow-400 focus:outline-none text-gray-800"
+          value="{{ request.GET.q }}"
+        />
+        <button 
+          type="submit" 
+          class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-yellow-500 text-white px-4 py-1 rounded-lg hover:bg-yellow-600 transition"
+        >
+          <i class="fas fa-search"></i>
+        </button>
+      </form>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="lg:hidden mt-4 pb-4 hidden" id="mobile-menu">
+      <div class="flex flex-col space-y-3">
+        <a href="{% url 'product:home' %}" class="text-gray-50 hover:text-yellow-300 py-2">
+          <i class="fas fa-home mr-2"></i>Inicio
+        </a>
+        <a href="#productos" class="text-gray-50 hover:text-yellow-300 py-2">
+          <i class="fas fa-tag mr-2"></i>Productos
+        </a>
+        <a href="#categorias" class="text-gray-50 hover:text-yellow-300 py-2">
+          <i class="fas fa-th-large mr-2"></i>Categorías
+        </a>
+        <a href="#contacto" class="text-gray-50 hover:text-yellow-300 py-2">
+          <i class="fas fa-envelope mr-2"></i>Contacto
+        </a>
+        
+        <hr class="border-blue-600">
+
+        {% if user.is_authenticated %}
+          <a href="{% url 'user:profile' %}" class="flex items-center text-white hover:text-yellow-300 py-2">
+            <i class="fas fa-user mr-3"></i>Mi Perfil
+          </a>
+          <a href="{% url 'order:order_list' %}" class="flex items-center text-white hover:text-yellow-300 py-2">
+            <i class="fas fa-shopping-bag mr-3"></i>Mis Pedidos
+          </a>
+          <a href="{% url 'user:logout' %}" class="flex items-center text-red-300 hover:text-red-100 py-2">
+            <i class="fas fa-sign-out-alt mr-3"></i>Cerrar Sesión
+          </a>
+        {% else %}
+          <a href="{% url 'user:login' %}" class="flex items-center text-white hover:text-yellow-300 py-2">
+            <i class="fas fa-sign-in-alt mr-3"></i>Ingresar
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script>
+  // Toggle dropdown del usuario
+  const userMenuBtn = document.getElementById('user-menu-btn');
+  const userDropdown = document.getElementById('user-dropdown');
+
+  if (userMenuBtn && userDropdown) {
+    userMenuBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      userDropdown.classList.toggle('hidden');
+    });
+
+    // Cerrar dropdown al hacer click fuera
+    document.addEventListener('click', function(e) {
+      if (!userMenuBtn.contains(e.target) && !userDropdown.contains(e.target)) {
+        userDropdown.classList.add('hidden');
+      }
+    });
+  }
+
+  // Toggle menú mobile
+  const mobileMenuBtn = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  if (mobileMenuBtn && mobileMenu) {
+    mobileMenuBtn.addEventListener('click', function() {
+      mobileMenu.classList.toggle('hidden');
+    });
+  }
+</script>
+
+    <!-- HERO SECTION -->
+    <section class="bg-blue-700 text-yellow-500 py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">
+                <i class="fas fa-envelope mr-3"></i>Contáctanos
+            </h1>
+            <p class="text-xl">
+                Estamos aquí para ayudarte. Envíanos tu mensaje y te responderemos pronto.
+            </p>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <main class="container mx-auto px-4 py-12">
+        <div class="grid md:grid-cols-2 gap-10 max-w-6xl mx-auto">
+            
+            <!-- FORMULARIO DE CONTACTO -->
+            <div class="bg-white rounded-lg shadow-lg p-8 border-t-4 border-blue-700">
+                <h2 class="text-3xl font-bold mb-6 text-yellow-300">
+                    Envíanos un mensaje
+                </h2>
+
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="mb-4 p-4 rounded-lg {% if message.tags == 'success' %}bg-green-100 border border-green-400 text-green-700{% else %}bg-red-100 border border-red-400 text-red-700{% endif %}">
+                        <i class="fas {% if message.tags == 'success' %}fa-check-circle{% else %}fa-exclamation-circle{% endif %} mr-2"></i>
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+
+                <form method="POST" class="space-y-5">
+                    {% csrf_token %}
+                    
+                    <!-- Nombre -->
+                    <div>
+                        <label for="name" class="block text-gray-700 font-semibold mb-2">
+                            <i class="fas fa-user text-blue-600 mr-2"></i>Nombre Completo
+                        </label>
+                        <input 
+                            type="text" 
+                            id="name" 
+                            name="name" 
+                            required
+                            class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-600 focus:outline-none transition"
+                            placeholder="Tu nombre"
+                        >
+                    </div>
+
+                    <!-- Email -->
+                    <div>
+                        <label for="email" class="block text-gray-700 font-semibold mb-2">
+                            <i class="fas fa-envelope text-blue-600 mr-2"></i>Correo Electrónico
+                        </label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            required
+                            class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-600 focus:outline-none transition"
+                            placeholder="tu@email.com"
+                        >
+                    </div>
+
+                    <!-- Teléfono (opcional) -->
+                    <div>
+                        <label for="phone" class="block text-gray-700 font-semibold mb-2">
+                            <i class="fas fa-phone text-blue-600 mr-2"></i>Teléfono (opcional)
+                        </label>
+                        <input 
+                            type="tel" 
+                            id="phone" 
+                            name="phone"
+                            class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-600 focus:outline-none transition"
+                            placeholder="+57 300 123 4567"
+                        >
+                    </div>
+
+                    <!-- Asunto -->
+                    <div>
+                        <label for="subject" class="block text-gray-700 font-semibold mb-2">
+                            <i class="fas fa-tag text-blue-600 mr-2"></i>Asunto
+                        </label>
+                        <select 
+                            id="subject" 
+                            name="subject" 
+                            required
+                            class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-600 focus:outline-none transition"
+                        >
+                            <option value="">Selecciona un asunto</option>
+                            <option value="consulta">Consulta General</option>
+                            <option value="soporte">Soporte Técnico</option>
+                            <option value="compra">Información de Compra</option>
+                            <option value="garantia">Garantías</option>
+                            <option value="envio">Envíos y Entregas</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                    </div>
+
+                    <!-- Mensaje -->
+                    <div>
+                        <label for="message" class="block text-gray-700 font-semibold mb-2">
+                            <i class="fas fa-comment text-blue-600 mr-2"></i>Mensaje
+                        </label>
+                        <textarea 
+                            id="message" 
+                            name="message" 
+                            rows="5" 
+                            required
+                            class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-600 focus:outline-none transition resize-none"
+                            placeholder="Escribe tu mensaje aquí..."
+                        ></textarea>
+                    </div>
+
+                    <!-- Botón -->
+                    <button 
+                        type="submit" 
+                        class="w-full bg-yellow-400 text-white font-bold py-4 rounded-lg hover:bg-blue-800 transition transform hover:scale-[1.02] shadow-lg"
+                    >
+                        <i class="fas fa-paper-plane mr-2"></i>Enviar Mensaje
+                    </button>
+                </form>
+            </div>
+
+            <!-- INFORMACIÓN DE CONTACTO -->
+            <div class="space-y-6">
+                <!-- Información General -->
+                <div class="bg-white rounded-lg shadow-lg p-8 border-l-4 border-blue-700">
+                    <h3 class="text-2xl font-bold mb-6 text-blue-800">
+                        <i class="fas fa-info-circle mr-2"></i>
+                        Información de Contacto
+                    </h3>
+                    
+                    <div class="space-y-5">
+                        <!-- Dirección -->
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-blue-100 p-3 rounded-lg">
+                                <i class="fas fa-map-marker-alt text-blue-700 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Dirección</h4>
+                                <p class="text-gray-600">Calle 1 #2-40<br>Cartagena de Indias, Colombia</p>
+                            </div>
+                        </div>
+
+                        <!-- Teléfono -->
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-blue-100 p-3 rounded-lg">
+                                <i class="fas fa-phone text-blue-700 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Teléfono</h4>
+                                <p class="text-gray-600">+57 300 760 7645</p>
+                            </div>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-blue-100 p-3 rounded-lg">
+                                <i class="fas fa-envelope text-blue-700 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Email</h4>
+                                <p class="text-gray-600">info@electrohome.com</p>
+                            </div>
+                        </div>
+
+                        <!-- Horario -->
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-blue-100 p-3 rounded-lg">
+                                <i class="fas fa-clock text-blue-700 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Horario de Atención</h4>
+                                <p class="text-gray-600">
+                                    Lunes - Viernes: 8:00 AM - 6:00 PM<br>
+                                    Sábados: 9:00 AM - 2:00 PM<br>
+                                    Domingos: Cerrado
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Redes Sociales -->
+                <div class="bg-white rounded-lg shadow-lg p-8 border-t-4 border-blue-700">
+                    <h3 class="text-2xl font-bold mb-4 text-blue-800">
+                        <i class="fas fa-share-alt mr-2"></i>Síguenos en Redes Sociales
+                    </h3>
+                    <p class="mb-8 text-gray-600">Conéctate con nosotros</p>
+                    
+                    <div class="space-y-3">
+                        <!-- Facebook -->
+                        <a href="https://facebook.com" target="_blank" class="flex items-center justify-between p-4 border-2 border-gray-200 rounded-lg hover:border-blue-600 hover:bg-blue-50 transition group">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <i class="fab fa-facebook-f text-white text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-gray-800">Facebook</p>
+                                    <p class="text-xs text-gray-500">@electrohome</p>
+                                </div>
+                            </div>
+                            <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all"></i>
+                        </a>
+                        
+                        <!-- Instagram -->
+                        <a href="https://instagram.com" target="_blank" class="flex items-center justify-between p-4 border-2 border-gray-200 rounded-lg hover:border-pink-500 hover:bg-pink-50 transition group">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-purple-600 via-pink-600 to-orange-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <i class="fab fa-instagram text-white text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-gray-800">Instagram</p>
+                                    <p class="text-xs text-gray-500">@electrohome</p>
+                                </div>
+                            </div>
+                            <i class="fas fa-arrow-right text-gray-400 group-hover:text-pink-600 group-hover:translate-x-1 transition-all"></i>
+                        </a>
+                        
+                        <!-- TikTok -->
+                        <a href="https://tiktok.com" target="_blank" class="flex items-center justify-between p-4 border-2 border-gray-200 rounded-lg hover:border-gray-900 hover:bg-gray-50 transition group">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <i class="fab fa-tiktok text-white text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-gray-800">TikTok</p>
+                                    <p class="text-xs text-gray-500">@electrohome</p>
+                                </div>
+                            </div>
+                            <i class="fas fa-arrow-right text-gray-400 group-hover:text-gray-900 group-hover:translate-x-1 transition-all"></i>
+                        </a>
+                        
+                        <!-- Twitter/X -->
+                        <a href="https://twitter.com" target="_blank" class="flex items-center justify-between p-4 border-2 border-gray-200 rounded-lg hover:border-gray-900 hover:bg-gray-50 transition group">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-gray-900 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <i class="fab fa-x-twitter text-white text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-gray-800">Twitter</p>
+                                    <p class="text-xs text-gray-500">@electrohome</p>
+                                </div>
+                            </div>
+                            <i class="fas fa-arrow-right text-gray-400 group-hover:text-gray-900 group-hover:translate-x-1 transition-all"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- Mapa (opcional) -->
+                <div class="bg-white rounded-lg shadow-lg p-8 border-t-4 border-blue-700">
+                    <h3 class="text-2xl font-bold mb-4 text-blue-800">
+                        <i class="fas fa-map mr-2"></i>Ubicación
+                    </h3>
+                    <div class="bg-gray-100 rounded-lg h-64 flex items-center justify-center">
+                        <div class="text-center">
+                            <i class="fas fa-map-marked-alt text-6xl text-blue-700 mb-3"></i>
+                            <p class="text-gray-600 font-semibold">Mapa de ubicación</p>
+                        </div>
+                        <!-- Aquí puedes integrar Google Maps si lo deseas -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+ <!-- FOOTER -->
+<footer class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-gray-200 py-12 mt-10">
+  <div class="container mx-auto px-6">
+    <!-- Sección principal -->
+    <div class="text-center mb-8">
+      <h2 class="text-3xl font-bold text-white mb-3 tracking-wide">ElectroHome</h2>
+      <p class="text-gray-400 max-w-md mx-auto text-sm">
+        La mejor tecnología para tu hogar. Compra fácil, rápido y con total seguridad.
+      </p>
+    </div>
+
+    <!-- Redes sociales -->
+    <div class="flex justify-center space-x-8 mb-10">
+      <a href="https://facebook.com" target="_blank" class="transition transform hover:scale-110">
+        <i class="fab fa-facebook-f text-2xl text-blue-500 hover:text-blue-400"></i>
+      </a>
+      <a href="https://instagram.com" target="_blank" class="transition transform hover:scale-110">
+        <i class="fab fa-instagram text-2xl text-pink-500 hover:text-pink-400"></i>
+      </a>
+      <a href="https://tiktok.com" target="_blank" class="transition transform hover:scale-110">
+        <i class="fab fa-tiktok text-2xl text-white hover:text-gray-300"></i>
+      </a>
+      <a href="https://twitter.com" target="_blank" class="transition transform hover:scale-110">
+        <i class="fab fa-x-twitter text-2xl text-gray-200 hover:text-white"></i>
+      </a>
+    </div>
+
+    <!-- Enlaces rápidos -->
+    <div class="flex flex-wrap justify-center space-x-6 text-sm mb-8">
+      <a href="#" class="hover:text-white transition">Inicio</a>
+      <a href="#" class="hover:text-white transition">Productos</a>
+      <a href="#" class="hover:text-white transition">Ofertas</a>
+      <a href="#" class="hover:text-white transition">Nosotros</a>
+      <a href="#" class="hover:text-white transition">Contacto</a>
+    </div>
+
+    <!-- Información de contacto -->
+    <div class="text-center text-gray-400 text-sm mb-8">
+      <p>📍 Calle 1 #2-40, Cartagena de Indias, Colombia</p>
+      <p>📞 +57 300 760 7645</p>
+      <p>
+        ✉️ <a href="mailto:info@electrohome.com" class="underline hover:text-blue-400">info@electrohome.com</a>
+      </p>
+    </div>
+
+    <!-- Línea divisoria -->
+    <div class="border-t border-gray-700 pt-6 text-center text-xs text-gray-500">
+      &copy; 2025 <span class="text-white font-semibold">ElectroHome</span>. Todos los derechos reservados.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

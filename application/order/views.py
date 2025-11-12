@@ -9,6 +9,7 @@ from application.product.cart_services import CartService
 from .order_services import OrderService
 from .models import Order
 from application.product.recommendations import RecommendationEngine
+import re
 
 
 @login_required
@@ -47,9 +48,20 @@ def process_checkout(request):
                 'message': 'Tu carrito está vacío'
             }, status=400)
         
+        # Obtener y validar el teléfono
+        phone = request.POST.get('phone', '')
+        phone_cleaned = re.sub(r'\D', '', phone)  # Eliminar caracteres no numéricos
+        
+        # Validar que tenga exactamente 10 dígitos
+        if len(phone_cleaned) != 10:
+            return JsonResponse({
+                'success': False,
+                'message': 'El teléfono debe tener exactamente 10 números.'
+            }, status=400)
+        
         order_data = {
             'email': request.POST.get('email', request.user.email),
-            'phone': request.POST.get('phone'),
+            'phone': phone_cleaned,  # Usar el teléfono limpio
             'shipping_address': request.POST.get('shipping_address'),
             'shipping_city': request.POST.get('shipping_city'),
             'shipping_department': request.POST.get('shipping_department'),
@@ -62,9 +74,15 @@ def process_checkout(request):
         required_fields = ['phone', 'shipping_address', 'shipping_city', 'shipping_department']
         for field in required_fields:
             if not order_data.get(field):
+                field_names = {
+                    'phone': 'Teléfono',
+                    'shipping_address': 'Dirección',
+                    'shipping_city': 'Ciudad',
+                    'shipping_department': 'Departamento'
+                }
                 return JsonResponse({
                     'success': False,
-                    'message': f'El campo {field} es requerido'
+                    'message': f'El campo {field_names.get(field, field)} es requerido'
                 }, status=400)
         
         # Crear la orden
@@ -79,33 +97,7 @@ def process_checkout(request):
             'message': 'Orden creada exitosamente',
             'order_id': order.id,
             'order_number': order.order_number,
-            'redirect_url': reverse('order:order_confirmation', kwargs={'order_id': order.id})  # ✅ CORREGIDO
-        })
-        
-    except ValueError as e:
-        return JsonResponse({
-            'success': False,
-            'message': str(e)
-        }, status=400)
-    except Exception as e:
-        return JsonResponse({
-            'success': False,
-            'message': 'Error al procesar la orden'
-        }, status=500)
-        
-        # Crear la orden
-        order = OrderService.create_order_from_cart(request.user, cart, order_data)
-        
-        # Limpiar caché de recomendaciones
-        engine = RecommendationEngine(user=request.user)
-        engine.clear_user_cache()
-        
-        return JsonResponse({
-            'success': True,
-            'message': 'Orden creada exitosamente',
-            'order_id': order.id,
-            'order_number': order.order_number,
-            'redirect_url': f'/order/{order.id}/'
+            'redirect_url': reverse('order:order_confirmation', kwargs={'order_id': order.id})
         })
         
     except ValueError as e:

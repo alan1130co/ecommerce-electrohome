@@ -78,10 +78,9 @@
 
       <!-- Desktop Navigation -->
       <div class="hidden lg:flex space-x-6">
-        <a href="{% url 'product:home' %}" class="text-gray-50 hover:text-yellow-300">Inicio</a>
-        <a href="#productos" class="text-gray-50 hover:text-yellow-300">Productos</a>
-        <a href="#categorias" class="text-gray-50 hover:text-yellow-300">Categorías</a>
-        <a href="#contacto" class="text-gray-50 hover:text-yellow-300">Contacto</a>
+        <a href="{% url 'product:home' %}" class="text-yellow-400">Inicio</a>
+        <a href="{% url 'product:products_list' %}" class="text-gray-50 hover:text-yellow-300 ">productos</a>
+        <a href="{% url 'product:contact' %}" class="text-gray-50 hover:text-yellow-300">Contacto</a>
       </div>
 
       <!-- User Menu & Cart -->
@@ -192,7 +191,7 @@
         <a href="{% url 'product:home' %}" class="text-gray-50 hover:text-yellow-300 py-2">
           <i class="fas fa-home mr-2"></i>Inicio
         </a>
-        <a href="#productos" class="text-gray-50 hover:text-yellow-300 py-2">
+        <a href="{% url 'product:products_list' %}" class="text-gray-50 hover:text-yellow-300 py-2">
           <i class="fas fa-tag mr-2"></i>Productos
         </a>
         <a href="#categorias" class="text-gray-50 hover:text-yellow-300 py-2">
@@ -381,7 +380,7 @@
                 <!-- Botones -->
                 <div class="flex space-x-4">
                   <a
-                    href="{% url 'product:home' %}"
+                    href="{% url 'product:product_detail' producto.id %}"
                     class="flex-1 bg-blue-500 text-white px-5 py-2 rounded-xl hover:bg-blue-600 transition font-medium text-center"
                   >
                     Detalles
@@ -487,7 +486,7 @@
                   </div>
                   <div class="flex space-x-3">
                     <a
-                      href="{% url 'product:home' %}"
+                      href="{% url 'product:product_detail' producto.id %}"
                       class="flex-1 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition font-medium text-center"
                     >
                       Detalles
@@ -593,7 +592,7 @@
                   </div>
                   <div class="flex space-x-3">
                     <a
-                      href="{% url 'product:home' %}"
+                      href="{% url 'product:product_detail' producto.id %}"
                       class="flex-1 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition font-medium text-center"
                     >
                       Detalles
@@ -698,7 +697,7 @@
                   </div>
                   <div class="flex space-x-3">
                     <a
-                      href="{% url 'product:home' %}"
+                      href="{% url 'product:product_detail' producto.id %}"
                       class="flex-1 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition font-medium text-center"
                     >
                       Detalles

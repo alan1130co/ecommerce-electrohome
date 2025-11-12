@@ -198,3 +198,131 @@ def search_view(request):
     
     return render(request, 'product/search_results.html', context)
 
+def product_detail(request, product_id):
+    """Vista de detalle del producto"""
+    producto = get_object_or_404(Producto.objects.prefetch_related('galeria'), id=product_id)
+    
+    # Registrar la vista del producto para recomendaciones
+    if request.user.is_authenticated:
+        from .models import ProductView
+        ProductView.objects.create(user=request.user, product=producto)
+    
+    # Obtener productos relacionados de la misma categoría
+    productos_relacionados = Producto.objects.filter(
+        categoria=producto.categoria,
+        activo=True
+    ).exclude(id=producto.id)[:4]
+    
+    context = {
+        'producto': producto,
+        'productos_relacionados': productos_relacionados,
+    }
+    
+    return render(request, 'product/product_detail.html', context)
+
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Q, Min, Max
+
+def products_list(request):
+    """Vista de listado de productos con filtros y paginación"""
+    
+    # Obtener todos los productos activos
+    productos = Producto.objects.filter(activo=True).select_related('categoria')
+    
+    # FILTROS
+    # Filtro por categoría
+    categoria_id = request.GET.get('categoria')
+    if categoria_id:
+        productos = productos.filter(categoria_id=categoria_id)
+    
+    # Filtro por búsqueda
+    search_query = request.GET.get('q')
+    if search_query:
+        productos = productos.filter(
+            Q(nombre__icontains=search_query) |
+            Q(descripcion__icontains=search_query)
+        )
+    
+    # Filtro por rango de precio
+    precio_min = request.GET.get('precio_min')
+    precio_max = request.GET.get('precio_max')
+    if precio_min:
+        productos = productos.filter(precio__gte=precio_min)
+    if precio_max:
+        productos = productos.filter(precio__lte=precio_max)
+    
+    # Filtro por disponibilidad
+    disponible = request.GET.get('disponible')
+    if disponible == '1':
+        productos = productos.filter(stock__gt=0)
+    
+    # Ordenamiento
+    orden = request.GET.get('orden', '-fecha_creacion')
+    orden_opciones = {
+        'nombre_asc': 'nombre',
+        'nombre_desc': '-nombre',
+        'precio_asc': 'precio',
+        'precio_desc': '-precio',
+        'nuevo': '-fecha_creacion',
+        'antiguo': 'fecha_creacion',
+    }
+    productos = productos.order_by(orden_opciones.get(orden, '-fecha_creacion'))
+    
+    # PAGINACIÓN
+    paginator = Paginator(productos, 8)  # 8 productos por página
+    page = request.GET.get('page', 1)
+    
+    try:
+        productos_paginados = paginator.page(page)
+    except PageNotAnInteger:
+        productos_paginados = paginator.page(1)
+    except EmptyPage:
+        productos_paginados = paginator.page(paginator.num_pages)
+    
+    # Obtener rango de precios para el filtro
+    precio_range = Producto.objects.filter(activo=True).aggregate(
+        min_precio=Min('precio'),
+        max_precio=Max('precio')
+    )
+    
+    # Obtener todas las categorías
+    categorias = Categoria.objects.filter(activo=True)
+    
+    context = {
+        'productos': productos_paginados,
+        'categorias': categorias,
+        'total_productos': paginator.count,
+        'precio_range': precio_range,
+        'filtros_activos': {
+            'categoria': categoria_id,
+            'search': search_query,
+            'precio_min': precio_min,
+            'precio_max': precio_max,
+            'disponible': disponible,
+            'orden': orden,
+        }
+    }
+    
+    return render(request, 'product/products_list.html', context)
+
+def contact(request):
+    if request.method == 'POST':
+        # Obtener datos del formulario
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone', '')
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+        
+        # Aquí puedes:
+        # 1. Guardar en la base de datos
+        # 2. Enviar un email
+        # 3. Enviar notificación
+        
+        # Por ahora, solo mostramos un mensaje de éxito
+        messages.success(request, '¡Gracias por contactarnos! Te responderemos pronto.')
+        
+        return redirect('product:contact')
+    
+    return render(request, 'product/contact.html')
+

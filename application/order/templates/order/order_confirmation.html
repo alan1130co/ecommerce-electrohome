@@ -5,6 +5,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <title>Orden Confirmada - ElectroHome</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -482,6 +485,35 @@
             submitBtn.disabled = false;
             btnText.classList.remove('hidden');
             btnLoading.classList.add('hidden');
+        });
+    });
+    // ============================================
+    // ✅ PREVENIR CACHÉ DESPUÉS DE LOGOUT
+    // ============================================
+
+    window.addEventListener('pageshow', function(event) {
+        // Si la página viene del caché del navegador (botón atrás)
+        if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
+            // Recargar la página para verificar la sesión
+            window.location.reload();
+        }
+    });
+
+    // Limpiar storage al cerrar sesión
+    document.addEventListener('DOMContentLoaded', function() {
+        const logoutLinks = document.querySelectorAll('a[href*="logout"]');
+        
+        logoutLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Limpiar storage del navegador
+                sessionStorage.clear();
+                localStorage.clear();
+                
+                // Redirigir con replace (no permite volver atrás)
+                window.location.replace(this.href);
+            });
         });
     });
     </script>

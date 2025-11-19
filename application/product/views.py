@@ -180,24 +180,33 @@ from django.db.models import Q
 
 def search_view(request):
     """Vista de búsqueda de productos"""
-    query = request.GET.get('q', '')
-    products = []
+    query = request.GET.get('q', '').strip()
+    productos = []
+    sugerencias = []
     
     if query:
-        products = Product.objects.filter(
+        productos = Producto.objects.filter(
             Q(nombre__icontains=query) |
             Q(descripcion__icontains=query) |
             Q(categoria__nombre__icontains=query)
-        ).filter(stock__gt=0)
+        ).filter(stock__gt=0, activo=True).select_related('categoria')
+        
+        # Sugerencias si no hay resultados
+        if not productos.exists() and len(query) >= 3:
+            sugerencias = Producto.objects.filter(
+                nombre__istartswith=query[:3],
+                activo=True,
+                stock__gt=0
+            ).select_related('categoria')[:6]
     
     context = {
-        'products': products,
+        'productos': productos,
         'query': query,
-        'total_results': products.count()
+        'total_results': productos.count() if productos else 0,
+        'sugerencias': sugerencias,
     }
     
     return render(request, 'product/search_results.html', context)
-
 def product_detail(request, product_id):
     """Vista de detalle del producto"""
     producto = get_object_or_404(Producto.objects.prefetch_related('galeria'), id=product_id)

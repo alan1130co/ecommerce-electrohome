@@ -5,6 +5,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <title>Mis Órdenes - ElectroHome</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -339,7 +342,7 @@
                 <i class="fas fa-shopping-bag text-gray-300 text-9xl mb-6"></i>
                 <h2 class="text-3xl font-bold text-gray-600 mb-4">No tienes órdenes aún</h2>
                 <p class="text-gray-500 mb-8">¡Realiza tu primera compra!</p>
-                <a href="{% url 'order:home' %}" class="inline-block bg-yellow-500 text-white px-8 py-3 rounded-lg font-bold hover:bg-yellow-600 transition">
+                <a href="{% url 'product:home' %}" class="inline-block bg-yellow-500 text-white px-8 py-3 rounded-lg font-bold hover:bg-yellow-600 transition">
                     <i class="fas fa-shopping-cart"></i> Ir a Comprar
                 </a>
             </div>
@@ -494,6 +497,35 @@
             submitBtn.disabled = false;
             btnText.classList.remove('hidden');
             btnLoading.classList.add('hidden');
+        });
+    });
+    // ============================================
+    // ✅ PREVENIR CACHÉ DESPUÉS DE LOGOUT
+    // ============================================
+
+    window.addEventListener('pageshow', function(event) {
+        // Si la página viene del caché del navegador (botón atrás)
+        if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
+            // Recargar la página para verificar la sesión
+            window.location.reload();
+        }
+    });
+
+    // Limpiar storage al cerrar sesión
+    document.addEventListener('DOMContentLoaded', function() {
+        const logoutLinks = document.querySelectorAll('a[href*="logout"]');
+        
+        logoutLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Limpiar storage del navegador
+                sessionStorage.clear();
+                localStorage.clear();
+                
+                // Redirigir con replace (no permite volver atrás)
+                window.location.replace(this.href);
+            });
         });
     });
     </script>

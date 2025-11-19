@@ -5,6 +5,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <title>Checkout - ElectroHome</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -439,7 +442,7 @@
     </main>
 
     
-    <!-FOOTER -->
+    <!-- footer -->
 <footer class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-gray-200 py-12 mt-10">
   <div class="container mx-auto px-6">
     <!-- Sección principal -->
@@ -697,6 +700,35 @@ function showSuccessModal(title, message) {
     `;
     document.body.appendChild(modal);
 }
+// ============================================
+    // ✅ PREVENIR CACHÉ DESPUÉS DE LOGOUT
+    // ============================================
+
+    window.addEventListener('pageshow', function(event) {
+        // Si la página viene del caché del navegador (botón atrás)
+        if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
+            // Recargar la página para verificar la sesión
+            window.location.reload();
+        }
+    });
+
+    // Limpiar storage al cerrar sesión
+    document.addEventListener('DOMContentLoaded', function() {
+        const logoutLinks = document.querySelectorAll('a[href*="logout"]');
+        
+        logoutLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Limpiar storage del navegador
+                sessionStorage.clear();
+                localStorage.clear();
+                
+                // Redirigir con replace (no permite volver atrás)
+                window.location.replace(this.href);
+            });
+        });
+    });
 </script>
 </body>
 </html>

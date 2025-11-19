@@ -60,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'allauth.account.middleware.AccountMiddleware',
+    'application.user.middleware.NoCacheMiddleware',
 ]
 
 ROOT_URLCONF = 'electrohome.urls'
@@ -168,3 +169,13 @@ RECOMMENDATION_CACHE_TIMEOUT = 3600  # 1 hora por defecto
 DATE_FORMAT = 'd/m/Y'
 DATETIME_FORMAT = 'd/m/Y H:i:s'
 SHORT_DATE_FORMAT = 'd/m/Y'
+
+# Configuración de sesión
+SESSION_COOKIE_AGE = 3600  # 1 hora
+SESSION_SAVE_EVERY_REQUEST = True
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+# Headers de seguridad
+SECURE_BROWSER_XSS_FILTER = True
+X_FRAME_OPTIONS = 'DENY'
+SECURE_CONTENT_TYPE_NOSNIFF = True

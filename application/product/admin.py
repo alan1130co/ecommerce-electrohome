@@ -32,19 +32,32 @@ class CategoriaAdmin(admin.ModelAdmin):
 
 @admin.register(Producto)
 class ProductoAdmin(admin.ModelAdmin):
-    list_display = ('id', 'nombre', 'categoria', 'precio', 'stock', 'activo', 'disponible', 'vistas_totales', 'fecha_creacion')
-    list_filter = ('activo', 'categoria', 'fecha_creacion')
-    search_fields = ('nombre', 'descripcion')
+    list_display = (
+        'id', 'nombre', 'marca', 'categoria', 'precio', 
+        'stock', 'activo', 'disponible', 'vistas_totales', 'fecha_creacion'
+    )
+    list_filter = ('activo', 'categoria', 'marca', 'fecha_creacion')
+    search_fields = ('nombre', 'descripcion', 'marca', 'caracteristicas_destacadas')
     list_editable = ('activo', 'stock', 'precio')
     readonly_fields = ('fecha_creacion', 'fecha_actualizacion')
     inlines = [ImagenProductoInline]
     
     fieldsets = (
         ('Información Básica', {
-            'fields': ('nombre', 'descripcion', 'categoria', 'imagen_principal')
+            'fields': ('nombre', 'descripcion', 'categoria', 'imagen_principal', 'activo')
         }),
         ('Precio y Stock', {
-            'fields': ('precio', 'stock', 'activo')
+            'fields': ('precio', 'stock')
+        }),
+        ('Especificaciones Técnicas', {
+            'fields': ('marca', 'capacidad', 'potencia', 'color', 'garantia_meses'),
+            'classes': ('collapse',),
+            'description': 'Completa estos campos para habilitar filtros de búsqueda'
+        }),
+        ('Características Destacadas', {
+            'fields': ('caracteristicas_destacadas',),
+            'classes': ('collapse',),
+            'description': 'Separa las características con comas. Ej: No Frost, Inverter, Digital'
         }),
         ('Fechas', {
             'fields': ('fecha_creacion', 'fecha_actualizacion'),

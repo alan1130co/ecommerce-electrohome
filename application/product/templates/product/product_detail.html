@@ -5,6 +5,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <title>{{ producto.nombre }} - ElectroHome</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -472,11 +475,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const userDropdown = document.getElementById('user-dropdown');
 
     if (userMenuBtn && userDropdown) {
+        // Toggle dropdown al hacer clic en el botón
         userMenuBtn.addEventListener('click', function(e) {
             e.stopPropagation();
             userDropdown.classList.toggle('hidden');
         });
 
+        // Cerrar dropdown al hacer clic fuera
         document.addEventListener('click', function(e) {
             if (!userMenuBtn.contains(e.target) && !userDropdown.contains(e.target)) {
                 userDropdown.classList.add('hidden');
@@ -484,6 +489,85 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+
+// ============================================
+// MENÚ MÓVIL
+// ============================================
+
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuBtn = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+        });
+    }
+});
+
+
+// ============================================
+// ✅ MANEJO DE LOGOUT CON CONFIRMACIÓN
+// ============================================
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Obtener todos los enlaces de cerrar sesión
+    const logoutLinks = document.querySelectorAll('a[href*="logout"]');
+    
+    logoutLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault(); // Prevenir navegación inmediata
+            
+            // Confirmación opcional (puedes comentar esto si no quieres confirmación)
+            const confirmLogout = confirm('¿Estás seguro de que deseas cerrar sesión?');
+            
+            if (confirmLogout) {
+                // Mostrar indicador de carga (opcional)
+                const originalText = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Cerrando sesión...';
+                
+                // Redirigir al logout
+                window.location.href = this.href;
+            }
+        });
+    });
+});
+
+
+// ============================================
+// PREVENCIÓN DE CACHÉ DESPUÉS DEL LOGOUT
+// ============================================
+
+window.addEventListener('pageshow', function(event) {
+    // Si la página se carga desde el caché del navegador después de logout
+    if (event.persisted) {
+        window.location.reload();
+    }
+});
+
+
+// ============================================
+// VERIFICAR ESTADO DE AUTENTICACIÓN
+// (Útil para páginas que deberían requerir login)
+// ============================================
+
+function checkAuthRequired() {
+    // Este código se puede usar en páginas protegidas
+    const userMenuBtn = document.getElementById('user-menu-btn');
+    const currentPath = window.location.pathname;
+    
+    // Páginas que requieren autenticación
+    const protectedPaths = ['/perfil/', '/pedidos/', '/checkout/'];
+    
+    // Si no hay botón de usuario y estamos en ruta protegida
+    if (!userMenuBtn && protectedPaths.some(path => currentPath.includes(path))) {
+        window.location.href = '/user/login/?next=' + currentPath;
+    }
+}
+
+// Ejecutar al cargar la página
+document.addEventListener('DOMContentLoaded', checkAuthRequired);
 
 // Cambiar imagen principal
 function changeImage(src) {
@@ -613,6 +697,35 @@ function buyNow(productId) {
         alert('Error al procesar la compra');
     });
 }
+// ============================================
+    // ✅ PREVENIR CACHÉ DESPUÉS DE LOGOUT
+    // ============================================
+
+    window.addEventListener('pageshow', function(event) {
+        // Si la página viene del caché del navegador (botón atrás)
+        if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
+            // Recargar la página para verificar la sesión
+            window.location.reload();
+        }
+    });
+
+    // Limpiar storage al cerrar sesión
+    document.addEventListener('DOMContentLoaded', function() {
+        const logoutLinks = document.querySelectorAll('a[href*="logout"]');
+        
+        logoutLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Limpiar storage del navegador
+                sessionStorage.clear();
+                localStorage.clear();
+                
+                // Redirigir con replace (no permite volver atrás)
+                window.location.replace(this.href);
+            });
+        });
+    });
 </script>
 </body>
 </html>

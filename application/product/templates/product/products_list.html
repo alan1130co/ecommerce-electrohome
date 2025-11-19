@@ -5,6 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <title>Productos - ElectroHome</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -297,105 +300,125 @@
                     </form>
                 </div>
             </aside>
-
-            <!-- GRID DE PRODUCTOS -->
-            <div class="lg:col-span-3">
-                {% if productos %}
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                    {% for producto in productos %}
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                        <a href="{% url 'product:product_detail' producto.id %}">
-                            {% if producto.imagen_principal %}
-                            <img src="{{ producto.imagen_principal.url }}" alt="{{ producto.nombre }}" class="w-full h-48 object-cover">
-                            {% else %}
-                            <div class="w-full h-48 bg-gray-200 flex items-center justify-center">
-                                <i class="fas fa-image text-gray-400 text-4xl"></i>
-                            </div>
-                            {% endif %}
-                        </a>
-
-                        <div class="p-4">
-                            <a href="{% url 'product:product_detail' producto.id %}">
-                                <h3 class="font-bold text-gray-800 mb-2 hover:text-blue-600 line-clamp-2">{{ producto.nombre }}</h3>
-                            </a>
-
-                            <p class="text-gray-600 text-sm mb-3 line-clamp-2">{{ producto.descripcion|truncatewords:10 }}</p>
-
-                            <div class="flex items-center justify-between mb-3">
-                                <span class="text-2xl font-bold text-blue-800">${{ producto.precio|formato_precio }}</span>
-                                {% if producto.stock > 0 %}
-                                <span class="text-xs text-green-600 font-semibold">
-                                    <i class="fas fa-check-circle"></i> Disponible
-                                </span>
-                                {% else %}
-                                <span class="text-xs text-red-600 font-semibold">
-                                    <i class="fas fa-times-circle"></i> Agotado
-                                </span>
-                                {% endif %}
-                            </div>
-
-                            <div class="flex gap-2">
-                                {% if producto.stock > 0 %}
-                                <button onclick="quickAddToCart({{ producto.id }})" class="flex-1 bg-yellow-500 text-white py-2 rounded-lg font-semibold hover:bg-yellow-600 transition text-sm">
-                                    <i class="fas fa-cart-plus"></i>
-                                </button>
-                                {% else %}
-                                <button disabled class="flex-1 bg-gray-300 text-gray-500 py-2 rounded-lg font-semibold cursor-not-allowed text-sm">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                                {% endif %}
-                                <a href="{% url 'product:product_detail' producto.id %}" class="flex-1 bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition text-center text-sm">
-                                    Ver
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
+            
+              <!-- GRID DE PRODUCTOS -->
+<div class="lg:col-span-3">
+    {% if productos %}
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        {% for producto in productos %}
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col">
+            <!-- Imagen con altura fija y object-contain -->
+            <a href="{% url 'product:product_detail' producto.id %}" class="block">
+                {% if producto.imagen_principal %}
+                <div class="w-full h-56 overflow-hidden bg-gray-50 flex items-center justify-center">
+                    <img src="{{ producto.imagen_principal.url }}" alt="{{ producto.nombre }}" class="w-full h-full object-contain hover:scale-105 transition-transform duration-300">
                 </div>
-
-                <!-- PAGINACIÓN -->
-                {% if productos.has_other_pages %}
-                <div class="flex justify-center items-center mt-8 space-x-2">
-                    {% if productos.has_previous %}
-                    <a href="?page=1{% if filtros_activos.categoria %}&categoria={{ filtros_activos.categoria }}{% endif %}{% if filtros_activos.search %}&q={{ filtros_activos.search }}{% endif %}{% if filtros_activos.precio_min %}&precio_min={{ filtros_activos.precio_min }}{% endif %}{% if filtros_activos.precio_max %}&precio_max={{ filtros_activos.precio_max }}{% endif %}{% if filtros_activos.disponible %}&disponible={{ filtros_activos.disponible }}{% endif %}{% if filtros_activos.orden %}&orden={{ filtros_activos.orden }}{% endif %}" class="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-blue-50 transition">
-                        <i class="fas fa-angle-double-left"></i>
-                    </a>
-                    <a href="?page={{ productos.previous_page_number }}{% if filtros_activos.categoria %}&categoria={{ filtros_activos.categoria }}{% endif %}{% if filtros_activos.search %}&q={{ filtros_activos.search }}{% endif %}{% if filtros_activos.precio_min %}&precio_min={{ filtros_activos.precio_min }}{% endif %}{% if filtros_activos.precio_max %}&precio_max={{ filtros_activos.precio_max }}{% endif %}{% if filtros_activos.disponible %}&disponible={{ filtros_activos.disponible }}{% endif %}{% if filtros_activos.orden %}&orden={{ filtros_activos.orden }}{% endif %}" class="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-blue-50 transition">
-                        <i class="fas fa-angle-left"></i>
-                    </a>
-                    {% endif %}
-
-                    <span class="px-4 py-2 bg-blue-600 text-white font-bold rounded-lg">
-                        {{ productos.number }} de {{ productos.paginator.num_pages }}
-                    </span>
-
-                    {% if productos.has_next %}
-                    <a href="?page={{ productos.next_page_number }}{% if filtros_activos.categoria %}&categoria={{ filtros_activos.categoria }}{% endif %}{% if filtros_activos.search %}&q={{ filtros_activos.search }}{% endif %}{% if filtros_activos.precio_min %}&precio_min={{ filtros_activos.precio_min }}{% endif %}{% if filtros_activos.precio_max %}&precio_max={{ filtros_activos.precio_max }}{% endif %}{% if filtros_activos.disponible %}&disponible={{ filtros_activos.disponible }}{% endif %}{% if filtros_activos.orden %}&orden={{ filtros_activos.orden }}{% endif %}" class="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-blue-50 transition">
-                        <i class="fas fa-angle-right"></i>
-                    </a>
-                    <a href="?page={{ productos.paginator.num_pages }}{% if filtros_activos.categoria %}&categoria={{ filtros_activos.categoria }}{% endif %}{% if filtros_activos.search %}&q={{ filtros_activos.search }}{% endif %}{% if filtros_activos.precio_min %}&precio_min={{ filtros_activos.precio_min }}{% endif %}{% if filtros_activos.precio_max %}&precio_max={{ filtros_activos.precio_max }}{% endif %}{% if filtros_activos.disponible %}&disponible={{ filtros_activos.disponible }}{% endif %}{% if filtros_activos.orden %}&orden={{ filtros_activos.orden }}{% endif %}" class="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-blue-50 transition">
-                        <i class="fas fa-angle-double-right"></i>
-                    </a>
-                    {% endif %}
-                </div>
-                {% endif %}
-
                 {% else %}
-                <!-- No hay productos -->
-                <div class="bg-white rounded-lg shadow-lg p-12 text-center">
-                    <i class="fas fa-box-open text-gray-300 text-6xl mb-4"></i>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-2">No se encontraron productos</h3>
-                    <p class="text-gray-600 mb-6">Intenta ajustar los filtros o buscar algo diferente</p>
-                    <a href="{% url 'product:products_list' %}" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-700 transition">
-                        Ver todos los productos
-                    </a>
+                <div class="w-full h-56 bg-gray-200 flex items-center justify-center">
+                    <i class="fas fa-image text-gray-400 text-4xl"></i>
                 </div>
                 {% endif %}
+            </a>
+
+            <!-- Contenido de la tarjeta -->
+            <div class="p-4 flex flex-col flex-1">
+                <!-- Título del producto - Solo 2 líneas -->
+                <a href="{% url 'product:product_detail' producto.id %}" class="block mb-4">
+                    <h3 class="font-bold text-gray-800 hover:text-blue-600 transition line-clamp-2 text-base min-h-[3rem]">
+                        {{ producto.nombre }}
+                    </h3>
+                </a>
+
+                <!-- Espaciador flexible -->
+                <div class="flex-1"></div>
+
+                <!-- Precio y Estado de disponibilidad -->
+                <div class="flex items-center justify-between mb-4 mt-2">
+                    <span class="text-2xl font-bold text-blue-800">
+                        ${{ producto.precio|formato_precio }}
+                    </span>
+                    {% if producto.stock > 0 %}
+                    <span class="text-xs text-green-600 font-semibold flex items-center gap-1">
+                        <i class="fas fa-check-circle"></i> Disponible
+                    </span>
+                    {% else %}
+                    <span class="text-xs text-red-600 font-semibold flex items-center gap-1">
+                        <i class="fas fa-times-circle"></i> Agotado
+                    </span>
+                    {% endif %}
+                </div>
+
+                <!-- Botones de acción -->
+                <div class="flex gap-2">
+                    {% if producto.stock > 0 %}
+                    <button onclick="quickAddToCart({{ producto.id }})" 
+                            class="flex-1 bg-yellow-500 text-white py-2.5 rounded-lg font-semibold hover:bg-yellow-600 transition duration-200 flex items-center justify-center">
+                        <i class="fas fa-cart-plus text-lg"></i>
+                    </button>
+                    {% else %}
+                    <button disabled 
+                            class="flex-1 bg-gray-300 text-gray-500 py-2.5 rounded-lg font-semibold cursor-not-allowed flex items-center justify-center">
+                        <i class="fas fa-times text-lg"></i>
+                    </button>
+                    {% endif %}
+                    <a href="{% url 'product:product_detail' producto.id %}" 
+                       class="flex-1 bg-blue-600 text-white py-2.5 rounded-lg font-semibold hover:bg-blue-700 transition duration-200 flex items-center justify-center">
+                        Ver
+                    </a>
+                </div>
             </div>
         </div>
-    </main>
+        {% endfor %}
+    </div>
 
-<!-FOOTER -->
+    <!-- PAGINACIÓN -->
+    {% if productos.has_other_pages %}
+    <div class="flex justify-center items-center mt-8 space-x-2">
+        {% if productos.has_previous %}
+        <a href="?page=1{% if filtros_activos.categoria %}&categoria={{ filtros_activos.categoria }}{% endif %}{% if filtros_activos.search %}&q={{ filtros_activos.search }}{% endif %}{% if filtros_activos.precio_min %}&precio_min={{ filtros_activos.precio_min }}{% endif %}{% if filtros_activos.precio_max %}&precio_max={{ filtros_activos.precio_max }}{% endif %}{% if filtros_activos.disponible %}&disponible={{ filtros_activos.disponible }}{% endif %}{% if filtros_activos.orden %}&orden={{ filtros_activos.orden }}{% endif %}" 
+           class="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-blue-50 transition">
+            <i class="fas fa-angle-double-left"></i>
+        </a>
+        <a href="?page={{ productos.previous_page_number }}{% if filtros_activos.categoria %}&categoria={{ filtros_activos.categoria }}{% endif %}{% if filtros_activos.search %}&q={{ filtros_activos.search }}{% endif %}{% if filtros_activos.precio_min %}&precio_min={{ filtros_activos.precio_min }}{% endif %}{% if filtros_activos.precio_max %}&precio_max={{ filtros_activos.precio_max }}{% endif %}{% if filtros_activos.disponible %}&disponible={{ filtros_activos.disponible }}{% endif %}{% if filtros_activos.orden %}&orden={{ filtros_activos.orden }}{% endif %}" 
+           class="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-blue-50 transition">
+            <i class="fas fa-angle-left"></i>
+        </a>
+        {% endif %}
+
+        <span class="px-4 py-2 bg-blue-600 text-white font-bold rounded-lg">
+            {{ productos.number }} de {{ productos.paginator.num_pages }}
+        </span>
+
+        {% if productos.has_next %}
+        <a href="?page={{ productos.next_page_number }}{% if filtros_activos.categoria %}&categoria={{ filtros_activos.categoria }}{% endif %}{% if filtros_activos.search %}&q={{ filtros_activos.search }}{% endif %}{% if filtros_activos.precio_min %}&precio_min={{ filtros_activos.precio_min }}{% endif %}{% if filtros_activos.precio_max %}&precio_max={{ filtros_activos.precio_max }}{% endif %}{% if filtros_activos.disponible %}&disponible={{ filtros_activos.disponible }}{% endif %}{% if filtros_activos.orden %}&orden={{ filtros_activos.orden }}{% endif %}" 
+           class="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-blue-50 transition">
+            <i class="fas fa-angle-right"></i>
+        </a>
+        <a href="?page={{ productos.paginator.num_pages }}{% if filtros_activos.categoria %}&categoria={{ filtros_activos.categoria }}{% endif %}{% if filtros_activos.search %}&q={{ filtros_activos.search }}{% endif %}{% if filtros_activos.precio_min %}&precio_min={{ filtros_activos.precio_min }}{% endif %}{% if filtros_activos.precio_max %}&precio_max={{ filtros_activos.precio_max }}{% endif %}{% if filtros_activos.disponible %}&disponible={{ filtros_activos.disponible }}{% endif %}{% if filtros_activos.orden %}&orden={{ filtros_activos.orden }}{% endif %}" 
+           class="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-blue-50 transition">
+            <i class="fas fa-angle-double-right"></i>
+        </a>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    {% else %}
+    <!-- No hay productos -->
+    <div class="bg-white rounded-lg shadow-lg p-12 text-center">
+        <i class="fas fa-box-open text-gray-300 text-6xl mb-4"></i>
+        <h3 class="text-2xl font-bold text-gray-800 mb-2">No se encontraron productos</h3>
+        <p class="text-gray-600 mb-6">Intenta ajustar los filtros o buscar algo diferente</p>
+        <a href="{% url 'product:products_list' %}" 
+           class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-700 transition">
+            Ver todos los productos
+        </a>
+    </div>
+    {% endif %}
+</div> 
+</div>
+</main>
+
+<!--FOOTER -->
 <footer class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-gray-200 py-12 mt-10">
   <div class="container mx-auto px-6">
     <!-- Sección principal -->
@@ -447,7 +470,7 @@
   </div>
 </footer>
     <!-- JAVASCRIPT -->
-    <script>
+   <script>
     // User dropdown
     document.addEventListener('DOMContentLoaded', function() {
         const userMenuBtn = document.getElementById('user-menu-btn');
@@ -509,6 +532,36 @@
             alert('Error al agregar el producto');
         });
     }
-    </script>
+
+    // ============================================
+    // ✅ PREVENIR CACHÉ DESPUÉS DE LOGOUT
+    // ============================================
+
+    window.addEventListener('pageshow', function(event) {
+        // Si la página viene del caché del navegador (botón atrás)
+        if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
+            // Recargar la página para verificar la sesión
+            window.location.reload();
+        }
+    });
+
+    // Limpiar storage al cerrar sesión
+    document.addEventListener('DOMContentLoaded', function() {
+        const logoutLinks = document.querySelectorAll('a[href*="logout"]');
+        
+        logoutLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Limpiar storage del navegador
+                sessionStorage.clear();
+                localStorage.clear();
+                
+                // Redirigir con replace (no permite volver atrás)
+                window.location.replace(this.href);
+            });
+        });
+    });
+</script>
 </body>
 </html>

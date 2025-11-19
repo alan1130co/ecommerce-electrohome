@@ -28,6 +28,53 @@ class Producto(models.Model):
     activo = models.BooleanField(default=True)
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     fecha_actualizacion = models.DateTimeField(auto_now=True)
+    
+    # ===== NUEVOS CAMPOS PARA FILTROS =====
+    marca = models.CharField(
+        max_length=100, 
+        blank=True, 
+        null=True,
+        verbose_name="Marca",
+        help_text="Marca del electrodoméstico (Samsung, LG, Haceb, etc.)"
+    )
+    
+    capacidad = models.CharField(
+        max_length=50, 
+        blank=True, 
+        null=True,
+        verbose_name="Capacidad",
+        help_text="Capacidad del producto (250L, 15kg, 1.5L, etc.)"
+    )
+    
+    potencia = models.CharField(
+        max_length=50, 
+        blank=True, 
+        null=True,
+        verbose_name="Potencia",
+        help_text="Potencia eléctrica (1200W, 800W, etc.)"
+    )
+    
+    color = models.CharField(
+        max_length=50, 
+        blank=True, 
+        null=True,
+        verbose_name="Color",
+        help_text="Color principal del producto"
+    )
+    
+    caracteristicas_destacadas = models.TextField(
+        blank=True, 
+        null=True,
+        verbose_name="Características destacadas",
+        help_text="Separadas por comas (ej: No Frost, Inverter, Digital, Automático)"
+    )
+    
+    garantia_meses = models.PositiveIntegerField(
+        blank=True,
+        null=True,
+        verbose_name="Garantía (meses)",
+        help_text="Meses de garantía del producto"
+    )
 
     def __str__(self):
         return self.nombre
@@ -35,6 +82,13 @@ class Producto(models.Model):
     @property
     def disponible(self):
         return self.stock > 0
+    
+    @property
+    def caracteristicas_lista(self):
+        """Retorna las características como una lista"""
+        if self.caracteristicas_destacadas:
+            return [c.strip() for c in self.caracteristicas_destacadas.split(',')]
+        return []
     
     class Meta:
         verbose_name = 'Producto'

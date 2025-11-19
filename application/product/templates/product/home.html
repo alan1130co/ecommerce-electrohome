@@ -38,6 +38,7 @@
         -ms-overflow-style: none;
         scrollbar-width: none;
       }
+      
     </style>
   </head>
 
@@ -295,439 +296,565 @@
         </div>
       </section>
 
-      <!-- PROMOCIONES ESPECIALES -->
-      <section
-        id="promociones"
-        class="py-20 bg-gradient-to-b from-white via-gray-50 to-gray-100"
-      >
-        <div class="container mx-auto px-4">
-          <!-- Encabezado -->
-          <div class="text-center mb-14">
-            <h2
-              class="text-4xl font-extrabold mb-3 text-yellow-400 drop-shadow-sm"
-            >
-              🛒 Promociones Especiales
+      <!-- AGREGAR ESTOS ESTILOS EN EL <HEAD> DE home.html, después de TailwindCSS -->
+<style>
+/* ============================================
+   TARJETAS DE PRODUCTOS ARREGLADAS
+   ============================================ */
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border-radius: 1rem;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+    transition: all 0.3s ease;
+    border: 1px solid #BFDBFE;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px rgba(0, 0, 0, 0.15);
+}
+
+.product-image-container {
+    position: relative;
+    height: 280px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e3e8ef 100%);
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.product-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 1rem;
+    transition: transform 0.5s ease;
+}
+
+.product-card:hover .product-image-container img {
+    transform: scale(1.08);
+}
+
+.discount-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.875rem;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+    z-index: 10;
+}
+
+.product-content {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    flex-grow: 1;
+}
+
+.product-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #1e40af;
+    margin-bottom: 0.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 3.5rem;
+    line-height: 1.75rem;
+}
+
+.product-description {
+    color: #6b7280;
+    font-size: 0.875rem;
+    margin-bottom: 0.75rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 2.5rem;
+    line-height: 1.25rem;
+}
+
+.product-rating {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    height: 1.5rem;
+}
+
+.product-stars {
+    color: #fbbf24;
+    font-size: 1rem;
+    margin-right: 0.5rem;
+}
+
+.product-reviews {
+    color: #9ca3af;
+    font-size: 0.75rem;
+}
+
+.product-pricing {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 1.5rem;
+    min-height: 2.5rem;
+}
+
+.product-price-original {
+    color: #9ca3af;
+    text-decoration: line-through;
+    font-size: 0.875rem;
+    margin-right: 0.75rem;
+}
+
+.product-price-current {
+    font-size: 1.875rem;
+    font-weight: 800;
+    color: #1e40af;
+}
+
+.product-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: auto;
+}
+
+.btn-details {
+    flex: 1;
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: white;
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-details:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+}
+
+.btn-buy {
+    flex: 1;
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+    color: white;
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-buy:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(251, 191, 36, 0.4);
+}
+
+/* Grid responsive */
+@media (max-width: 640px) {
+    .product-image-container {
+        height: 240px;
+    }
+    .product-title {
+        font-size: 1rem;
+    }
+    .product-price-current {
+        font-size: 1.5rem;
+    }
+}
+</style>
+
+<!-- REEMPLAZAR LA SECCIÓN DE PROMOCIONES ESPECIALES CON ESTE CÓDIGO -->
+<section id="promociones" class="py-20 bg-gradient-to-b from-white via-gray-50 to-gray-100">
+    <div class="container mx-auto px-4">
+        <!-- Encabezado -->
+        <div class="text-center mb-14">
+            <h2 class="text-4xl font-extrabold mb-3 text-yellow-400 drop-shadow-sm">
+                🛒 Promociones Especiales
             </h2>
             <p class="text-blue-600 text-lg font-medium">
-              Consigue lo Mejor al Menor Precio Ahora
+                Consigue lo Mejor al Menor Precio Ahora
             </p>
-          </div>
+        </div>
 
-          <!-- Grid de productos -->
-          <div
-            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10"
-            id="productos-grid"
-          >
+        <!-- Grid de productos CORREGIDO -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="productos-grid">
             {% for producto in productos|slice:":6" %}
-            <div
-              class="border border-blue-200 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl hover:scale-[1.02] transition-transform duration-300 bg-white group"
-            >
-              <!-- Imagen y descuento -->
-              <div class="relative h-64 bg-gray-100">
-                {% if producto.imagen_principal %}
-                <img
-                  src="{{ producto.imagen_principal.url }}"
-                  alt="{{ producto.nombre }}"
-                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                {% else %}
-                <img
-                  src="{% static 'img/productos/producto-ejemplo.jpg' %}"
-                  alt="{{ producto.nombre }}"
-                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                {% endif %}
-                {% if producto.descuento and producto.descuento > 0 %}
-                <span
-                  class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-md"
-                >
-                  -{{ producto.descuento }}%
-                </span>
-                {% endif %}
-              </div>
-
-              <!-- Contenido -->
-              <div class="p-6">
-                <h3 class="font-semibold text-2xl text-blue-700 mb-2">
-                  {{ producto.nombre }}
-                </h3>
-                <p class="text-gray-600 mb-3">
-                  {{ producto.descripcion|truncatewords:12 }}
-                </p>
-
-                <!-- Calificación -->
-                <div class="flex items-center mb-4">
-                  <div class="text-yellow-400 text-lg">⭐⭐⭐⭐⭐</div>
-                  <span class="text-gray-500 text-sm ml-2">(0 reseñas)</span>
+            <div class="product-card">
+                <!-- Imagen del producto -->
+                <div class="product-image-container">
+                    {% if producto.imagen_principal %}
+                    <img src="{{ producto.imagen_principal.url }}" alt="{{ producto.nombre }}">
+                    {% else %}
+                    <img src="{% static 'img/productos/producto-ejemplo.jpg' %}" alt="{{ producto.nombre }}">
+                    {% endif %}
+                    
+                    <!-- Badge de descuento -->
+                    {% if producto.descuento and producto.descuento > 0 %}
+                    <span class="discount-badge">-{{ producto.descuento }}%</span>
+                    {% endif %}
                 </div>
 
-                <!-- Precio -->
-                <div class="flex items-baseline mb-5">
-                  {% if producto.descuento and producto.descuento > 0 %}
-                  <span class="text-gray-400 line-through text-sm"
-                    >${{ producto.precio|formato_precio }}</span
-                  >
-                  <span class="text-3xl font-bold text-blue-600 ml-3"
-                    >${{ producto.precio_descuento|formato_precio }}</span
-                  >
-                  {% else %}
-                  <span class="text-3xl font-bold text-blue-600"
-                    >${{ producto.precio|formato_precio }}</span
-                  >
-                  {% endif %}
-                </div>
+                <!-- Contenido del producto -->
+                <div class="product-content">
+                    <h3 class="product-title">{{ producto.nombre }}</h3>
+                    <p class="product-description">{{ producto.descripcion|truncatewords:12 }}</p>
 
-                <!-- Botones -->
-                <div class="flex space-x-4">
-                  <a
-                    href="{% url 'product:product_detail' producto.id %}"
-                    class="flex-1 bg-blue-500 text-white px-5 py-2 rounded-xl hover:bg-blue-600 transition font-medium text-center"
-                  >
-                    Detalles
-                  </a>
-                  <button
-                    class="flex-1 bg-yellow-500 text-white px-5 py-2 rounded-xl hover:bg-yellow-600 transition font-medium"
-                    onclick="agregarAlCarrito({{ producto.id }})"
-                  >
-                    Comprar
-                  </button>
+                    <!-- Calificación -->
+                    <div class="product-rating">
+                        <div class="product-stars">⭐⭐⭐⭐⭐</div>
+                        <span class="product-reviews">(0 reseñas)</span>
+                    </div>
+
+                    <!-- Precio -->
+                    <div class="product-pricing">
+                        {% if producto.descuento and producto.descuento > 0 %}
+                        <span class="product-price-original">${{ producto.precio|formato_precio }}</span>
+                        <span class="product-price-current">${{ producto.precio_descuento|formato_precio }}</span>
+                        {% else %}
+                        <span class="product-price-current">${{ producto.precio|formato_precio }}</span>
+                        {% endif %}
+                    </div>
+
+                    <!-- Botones -->
+                    <div class="product-actions">
+                        <a href="{% url 'product:product_detail' producto.id %}" class="btn-details">Detalles</a>
+                        <button class="btn-buy" onclick="agregarAlCarrito({{ producto.id }})">Comprar</button>
+                    </div>
                 </div>
-              </div>
             </div>
             {% empty %}
             <div class="col-span-3 text-center py-10">
-              <p class="text-gray-500 text-lg">No hay productos disponibles en este momento.</p>
+                <p class="text-gray-500 text-lg">No hay productos disponibles en este momento.</p>
             </div>
             {% endfor %}
-          </div>
         </div>
-      </section>
+    </div>
+</section>
 
-      <!-- RECOMENDACIONES (CARRUSEL) -->
-      <section
-        id="recomendaciones"
-        class="py-20 bg-gradient-to-b from-white via-gray-50 to-gray-100"
-      >
-        <div class="container mx-auto px-4">
-          <!-- Título -->
-          <div class="mb-10">
-            <h2 class="text-4xl font-bold text-blue-500 mb-2">
-              Recomendaciones
-            </h2>
-            <p class="text-yellow-600 font-bold text-lg">
-              Desliza para descubrir el producto indicado para ti
-            </p>
-          </div>
+      <!-- AGREGAR ESTE CSS ADICIONAL PARA LOS CARRUSELES EN EL <HEAD> -->
+<style>
+/* ============================================
+   TARJETAS PARA CARRUSELES (altura uniforme)
+   ============================================ */
 
-          <!-- Contenedor del carrusel -->
-          <div class="relative">
+.carousel-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 280px;
+    max-width: 320px;
+    height: 540px; /* ← Altura fija para todas las tarjetas del carrusel */
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+    transition: all 0.3s ease;
+    border: 1px solid #BFDBFE;
+    overflow: hidden;
+}
+
+.carousel-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px rgba(0, 0, 0, 0.15);
+}
+
+.carousel-image-container {
+    position: relative;
+    height: 220px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e3e8ef 100%);
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.carousel-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 0.75rem;
+    transition: transform 0.5s ease;
+}
+
+.carousel-card:hover .carousel-image-container img {
+    transform: scale(1.1);
+}
+
+.carousel-content {
+    display: flex;
+    flex-direction: column;
+    padding: 1.25rem;
+    flex-grow: 1;
+}
+
+.carousel-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1e40af;
+    margin-bottom: 0.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 3rem;
+    line-height: 1.5rem;
+}
+
+.carousel-description {
+    color: #6b7280;
+    font-size: 0.8rem;
+    margin-bottom: 0.75rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 2.4rem;
+    line-height: 1.2rem;
+}
+
+.carousel-rating {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    height: 1.25rem;
+}
+
+.carousel-pricing {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 1.25rem;
+    min-height: 2.25rem;
+}
+
+.carousel-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: auto;
+}
+
+.carousel-actions .btn-details,
+.carousel-actions .btn-buy {
+    padding: 0.625rem 0.875rem;
+    font-size: 0.875rem;
+}
+
+@media (max-width: 640px) {
+    .carousel-card {
+        min-width: 260px;
+        max-width: 280px;
+        height: 500px;
+    }
+    
+    .carousel-image-container {
+        height: 200px;
+    }
+}
+</style>
+
+<!-- ============================================
+     CÓDIGO PARA CARRUSEL DE RECOMENDACIONES
+     REEMPLAZAR la sección completa
+     ============================================ -->
+<section id="recomendaciones" class="py-20 bg-gradient-to-b from-white via-gray-50 to-gray-100">
+    <div class="container mx-auto px-4">
+        <!-- Título -->
+        <div class="mb-10">
+            <h2 class="text-4xl font-bold text-blue-500 mb-2">Recomendaciones</h2>
+            <p class="text-yellow-600 font-bold text-lg">Desliza para descubrir el producto indicado para ti</p>
+        </div>
+
+        <!-- Contenedor del carrusel -->
+        <div class="relative">
             <!-- Botón izquierda -->
-            <button
-              id="scroll-left-recom"
-              class="absolute left-0 top-1/2 -translate-y-1/2 bg-yellow-500 text-white p-3 rounded-full shadow-md hover:bg-yellow-600 transition z-10 hidden md:block"
-            >
-              ◀
+            <button id="scroll-left-recom" class="absolute left-0 top-1/2 -translate-y-1/2 bg-yellow-500 text-white p-3 rounded-full shadow-md hover:bg-yellow-600 transition z-10 hidden md:block">
+                ◀
             </button>
 
             <!-- Scroll horizontal -->
-            <div
-              id="carousel-recom"
-              class="flex overflow-x-auto space-x-6 scrollbar-hide scroll-smooth snap-x snap-mandatory pb-4 px-2"
-            >
-              {% for producto in productos|slice:":15" %}
-              <div
-                class="min-w-[280px] sm:min-w-[320px] bg-white rounded-2xl shadow-md hover:shadow-xl transition-transform transform hover:-translate-y-2 snap-start border border-blue-100"
-              >
-                <div class="relative h-56 overflow-hidden rounded-t-2xl">
-                  {% if producto.imagen_principal %}
-                  <img
-                    src="{{ producto.imagen_principal.url }}"
-                    alt="{{ producto.nombre }}"
-                    class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-                  />
-                  {% else %}
-                  <img
-                    src="{% static 'img/productos/producto-ejemplo.jpg' %}"
-                    alt="{{ producto.nombre }}"
-                    class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-                  />
-                  {% endif %}
-                  {% if producto.descuento and producto.descuento > 0 %}
-                  <span
-                    class="absolute top-3 right-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold"
-                    >-{{ producto.descuento }}%</span
-                  >
-                  {% endif %}
+            <div id="carousel-recom" class="flex overflow-x-auto space-x-6 scrollbar-hide scroll-smooth snap-x snap-mandatory pb-4 px-2">
+                {% for producto in productos|slice:":15" %}
+                <div class="carousel-card snap-start">
+                    <div class="carousel-image-container">
+                        {% if producto.imagen_principal %}
+                        <img src="{{ producto.imagen_principal.url }}" alt="{{ producto.nombre }}">
+                        {% else %}
+                        <img src="{% static 'img/productos/producto-ejemplo.jpg' %}" alt="{{ producto.nombre }}">
+                        {% endif %}
+                        {% if producto.descuento and producto.descuento > 0 %}
+                        <span class="discount-badge">-{{ producto.descuento }}%</span>
+                        {% endif %}
+                    </div>
+                    <div class="carousel-content">
+                        <h3 class="carousel-title">{{ producto.nombre }}</h3>
+                        <p class="carousel-description">{{ producto.descripcion|truncatewords:8 }}</p>
+                        <div class="carousel-rating">
+                            <div class="product-stars">⭐⭐⭐⭐⭐</div>
+                            <span class="product-reviews">(0)</span>
+                        </div>
+                        <div class="carousel-pricing">
+                            {% if producto.descuento and producto.descuento > 0 %}
+                            <span class="product-price-original">${{ producto.precio|formato_precio }}</span>
+                            <span class="product-price-current">${{ producto.precio_descuento|formato_precio }}</span>
+                            {% else %}
+                            <span class="product-price-current">${{ producto.precio|formato_precio }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="carousel-actions">
+                            <a href="{% url 'product:product_detail' producto.id %}" class="btn-details">Detalles</a>
+                            <button class="btn-buy" onclick="agregarAlCarrito({{ producto.id }})">Comprar</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="p-5">
-                  <h3 class="text-blue-700 font-bold text-xl mb-1">
-                    {{ producto.nombre }}
-                  </h3>
-                  <p class="text-gray-600 text-sm mb-2">
-                    {{ producto.descripcion|truncatewords:8 }}
-                  </p>
-                  <div class="flex items-center mb-2">
-                    <div class="text-yellow-400">⭐⭐⭐⭐⭐</div>
-                    <span class="text-gray-500 text-xs ml-2">(0)</span>
-                  </div>
-                  <div class="flex items-baseline mb-4">
-                    {% if producto.descuento and producto.descuento > 0 %}
-                    <span class="text-gray-400 line-through text-sm"
-                      >${{ producto.precio|formato_precio }}</span
-                    >
-                    <span class="text-2xl font-bold text-blue-600 ml-2"
-                      >${{ producto.precio_descuento|formato_precio }}</span
-                    >
-                    {% else %}
-                    <span class="text-2xl font-bold text-blue-600"
-                      >${{ producto.precio|formato_precio }}</span
-                    >
-                    {% endif %}
-                  </div>
-                  <div class="flex space-x-3">
-                    <a
-                      href="{% url 'product:product_detail' producto.id %}"
-                      class="flex-1 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition font-medium text-center"
-                    >
-                      Detalles
-                    </a>
-                    <button
-                      class="flex-1 bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition font-medium"
-                      onclick="agregarAlCarrito({{ producto.id }})"
-                    >
-                      Comprar
-                    </button>
-                  </div>
+                {% empty %}
+                <div class="min-w-full text-center py-10">
+                    <p class="text-gray-500">No hay productos disponibles.</p>
                 </div>
-              </div>
-              {% empty %}
-              <div class="min-w-full text-center py-10">
-                <p class="text-gray-500">No hay productos disponibles.</p>
-              </div>
-              {% endfor %}
+                {% endfor %}
             </div>
 
             <!-- Botón derecha -->
-            <button
-              id="scroll-right-recom"
-              class="absolute right-0 top-1/2 -translate-y-1/2 bg-yellow-500 text-white p-3 rounded-full shadow-md hover:bg-yellow-600 transition z-10 hidden md:block"
-            >
-              ▶
+            <button id="scroll-right-recom" class="absolute right-0 top-1/2 -translate-y-1/2 bg-yellow-500 text-white p-3 rounded-full shadow-md hover:bg-yellow-600 transition z-10 hidden md:block">
+                ▶
             </button>
-          </div>
         </div>
-      </section>
+    </div>
+</section>
 
-      <!-- CATEGORÍA: LIMPIEZA -->
-      <section
-        id="limpieza"
-        class="py-20 bg-gradient-to-b from-white via-gray-50 to-gray-100"
-      >
-        <div class="container mx-auto px-4">
-          <div class="mb-10">
+<!-- ============================================
+     CARRUSEL DE LIMPIEZA - REEMPLAZAR
+     ============================================ -->
+<section id="limpieza" class="py-20 bg-gradient-to-b from-white via-gray-50 to-gray-100">
+    <div class="container mx-auto px-4">
+        <div class="mb-10">
             <h2 class="text-4xl font-bold text-blue-500 mb-2">Limpieza</h2>
-          </div>
+        </div>
 
-          <div class="relative">
-            <button
-              id="scroll-left-limpieza"
-              class="absolute left-0 top-1/2 -translate-y-1/2 bg-yellow-500 text-white p-3 rounded-full shadow-md hover:bg-yellow-600 transition z-10 hidden md:block"
-            >
-              ◀
+        <div class="relative">
+            <button id="scroll-left-limpieza" class="absolute left-0 top-1/2 -translate-y-1/2 bg-yellow-500 text-white p-3 rounded-full shadow-md hover:bg-yellow-600 transition z-10 hidden md:block">
+                ◀
             </button>
 
-            <div
-              id="carousel-limpieza"
-              class="flex overflow-x-auto space-x-6 scrollbar-hide scroll-smooth snap-x snap-mandatory pb-4 px-2"
-            >
-              {% for producto in productos_limpieza %}
-              <div
-                class="min-w-[280px] sm:min-w-[320px] bg-white rounded-2xl shadow-md hover:shadow-xl transition-transform transform hover:-translate-y-2 snap-start border border-blue-100"
-              >
-                <div class="relative h-56 overflow-hidden rounded-t-2xl">
-                  {% if producto.imagen_principal %}
-                  <img
-                    src="{{ producto.imagen_principal.url }}"
-                    alt="{{ producto.nombre }}"
-                    class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-                  />
-                  {% else %}
-                  <img
-                    src="{% static 'img/productos/producto-ejemplo.jpg' %}"
-                    alt="{{ producto.nombre }}"
-                    class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-                  />
-                  {% endif %}
-                  {% if producto.descuento and producto.descuento > 0 %}
-                  <span
-                    class="absolute top-3 right-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold"
-                    >-{{ producto.descuento }}%</span
-                  >
-                  {% endif %}
+            <div id="carousel-limpieza" class="flex overflow-x-auto space-x-6 scrollbar-hide scroll-smooth snap-x snap-mandatory pb-4 px-2">
+                {% for producto in productos_limpieza %}
+                <div class="carousel-card snap-start">
+                    <div class="carousel-image-container">
+                        {% if producto.imagen_principal %}
+                        <img src="{{ producto.imagen_principal.url }}" alt="{{ producto.nombre }}">
+                        {% else %}
+                        <img src="{% static 'img/productos/producto-ejemplo.jpg' %}" alt="{{ producto.nombre }}">
+                        {% endif %}
+                        {% if producto.descuento and producto.descuento > 0 %}
+                        <span class="discount-badge">-{{ producto.descuento }}%</span>
+                        {% endif %}
+                    </div>
+                    <div class="carousel-content">
+                        <h3 class="carousel-title">{{ producto.nombre }}</h3>
+                        <p class="carousel-description">{{ producto.descripcion|truncatewords:8 }}</p>
+                        <div class="carousel-rating">
+                            <div class="product-stars">⭐⭐⭐⭐⭐</div>
+                            <span class="product-reviews">(0)</span>
+                        </div>
+                        <div class="carousel-pricing">
+                            {% if producto.descuento and producto.descuento > 0 %}
+                            <span class="product-price-original">${{ producto.precio|formato_precio }}</span>
+                            <span class="product-price-current">${{ producto.precio_descuento|formato_precio }}</span>
+                            {% else %}
+                            <span class="product-price-current">${{ producto.precio|formato_precio }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="carousel-actions">
+                            <a href="{% url 'product:product_detail' producto.id %}" class="btn-details">Detalles</a>
+                            <button class="btn-buy" onclick="agregarAlCarrito({{ producto.id }})">Comprar</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="p-5">
-                  <h3 class="text-blue-700 font-bold text-xl mb-1">
-                    {{ producto.nombre }}
-                  </h3>
-                  <p class="text-gray-600 text-sm mb-2">
-                    {{ producto.descripcion|truncatewords:8 }}
-                  </p>
-                  <div class="flex items-center mb-2">
-                    <div class="text-yellow-400">⭐⭐⭐⭐⭐</div>
-                    <span class="text-gray-500 text-xs ml-2">(0)</span>
-                  </div>
-                  <div class="flex items-baseline mb-4">
-                    {% if producto.descuento and producto.descuento > 0 %}
-                    <span class="text-gray-400 line-through text-sm"
-                      >${{ producto.precio|formato_precio }}</span
-                    >
-                    <span class="text-2xl font-bold text-blue-600 ml-2"
-                      >${{ producto.precio_descuento|formato_precio }}</span
-                    >
-                    {% else %}
-                    <span class="text-2xl font-bold text-blue-600"
-                      >${{ producto.precio|formato_precio }}</span
-                    >
-                    {% endif %}
-                  </div>
-                  <div class="flex space-x-3">
-                    <a
-                      href="{% url 'product:product_detail' producto.id %}"
-                      class="flex-1 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition font-medium text-center"
-                    >
-                      Detalles
-                    </a>
-                    <button
-                      class="flex-1 bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition font-medium"
-                      onclick="agregarAlCarrito({{ producto.id }})"
-                    >
-                      Comprar
-                    </button>
-                  </div>
+                {% empty %}
+                <div class="min-w-full text-center py-10">
+                    <p class="text-gray-500">No hay productos de limpieza disponibles.</p>
                 </div>
-              </div>
-              {% empty %}
-              <div class="min-w-full text-center py-10">
-                <p class="text-gray-500">No hay productos de limpieza disponibles.</p>
-              </div>
-              {% endfor %}
+                {% endfor %}
             </div>
 
-            <button
-              id="scroll-right-limpieza"
-              class="absolute right-0 top-1/2 -translate-y-1/2 bg-yellow-500 text-white p-3 rounded-full shadow-md hover:bg-yellow-600 transition z-10 hidden md:block"
-            >
-              ▶
+            <button id="scroll-right-limpieza" class="absolute right-0 top-1/2 -translate-y-1/2 bg-yellow-500 text-white p-3 rounded-full shadow-md hover:bg-yellow-600 transition z-10 hidden md:block">
+                ▶
             </button>
-          </div>
         </div>
-      </section>
+    </div>
+</section>
 
-      <!-- CATEGORÍA: COCINA -->
-      <section
-        id="cocina"
-        class="py-20 bg-gradient-to-b from-white via-gray-50 to-gray-100"
-      >
-        <div class="container mx-auto px-4">
-          <div class="mb-10">
+<!-- ============================================
+     CARRUSEL DE COCINA - REEMPLAZAR
+     ============================================ -->
+<section id="cocina" class="py-20 bg-gradient-to-b from-white via-gray-50 to-gray-100">
+    <div class="container mx-auto px-4">
+        <div class="mb-10">
             <h2 class="text-4xl font-bold text-blue-500 mb-2">Cocina</h2>
-          </div>
+        </div>
 
-          <div class="relative">
-            <button
-              id="scroll-left-cocina"
-              class="absolute left-0 top-1/2 -translate-y-1/2 bg-yellow-500 text-white p-3 rounded-full shadow-md hover:bg-yellow-600 transition z-10 hidden md:block"
-            >
-              ◀
+        <div class="relative">
+            <button id="scroll-left-cocina" class="absolute left-0 top-1/2 -translate-y-1/2 bg-yellow-500 text-white p-3 rounded-full shadow-md hover:bg-yellow-600 transition z-10 hidden md:block">
+                ◀
             </button>
 
-            <div
-              id="carousel-cocina"
-              class="flex overflow-x-auto space-x-6 scrollbar-hide scroll-smooth snap-x snap-mandatory pb-4 px-2"
-            >
-              {% for producto in productos_cocina %}
-              <div
-                class="min-w-[280px] sm:min-w-[320px] bg-white rounded-2xl shadow-md hover:shadow-xl transition-transform transform hover:-translate-y-2 snap-start border border-blue-100"
-              >
-                <div class="relative h-56 overflow-hidden rounded-t-2xl">
-                   {% if producto.imagen_principal %}
-                  <img
-                    src="{{ producto.imagen_principal.url }}"
-                    alt="{{ producto.nombre }}"
-                    class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-                  />
-                  {% else %}
-                  <img
-                    src="{% static 'img/productos/producto-ejemplo.jpg' %}"
-                    alt="{{ producto.nombre }}"
-                    class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-                  />
-                  {% endif %}
-                  {% if producto.descuento and producto.descuento > 0 %}
-                  <span
-                    class="absolute top-3 right-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold"
-                    >-{{ producto.descuento }}%</span
-                  >
-                  {% endif %}
+            <div id="carousel-cocina" class="flex overflow-x-auto space-x-6 scrollbar-hide scroll-smooth snap-x snap-mandatory pb-4 px-2">
+                {% for producto in productos_cocina %}
+                <div class="carousel-card snap-start">
+                    <div class="carousel-image-container">
+                        {% if producto.imagen_principal %}
+                        <img src="{{ producto.imagen_principal.url }}" alt="{{ producto.nombre }}">
+                        {% else %}
+                        <img src="{% static 'img/productos/producto-ejemplo.jpg' %}" alt="{{ producto.nombre }}">
+                        {% endif %}
+                        {% if producto.descuento and producto.descuento > 0 %}
+                        <span class="discount-badge">-{{ producto.descuento }}%</span>
+                        {% endif %}
+                    </div>
+                    <div class="carousel-content">
+                        <h3 class="carousel-title">{{ producto.nombre }}</h3>
+                        <p class="carousel-description">{{ producto.descripcion|truncatewords:8 }}</p>
+                        <div class="carousel-rating">
+                            <div class="product-stars">⭐⭐⭐⭐⭐</div>
+                            <span class="product-reviews">(0)</span>
+                        </div>
+                        <div class="carousel-pricing">
+                            {% if producto.descuento and producto.descuento > 0 %}
+                            <span class="product-price-original">${{ producto.precio|formato_precio }}</span>
+                            <span class="product-price-current">${{ producto.precio_descuento|formato_precio }}</span>
+                            {% else %}
+                            <span class="product-price-current">${{ producto.precio|formato_precio }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="carousel-actions">
+                            <a href="{% url 'product:product_detail' producto.id %}" class="btn-details">Detalles</a>
+                            <button class="btn-buy" onclick="agregarAlCarrito({{ producto.id }})">Comprar</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="p-5">
-                  <h3 class="text-blue-700 font-bold text-xl mb-1">
-                    {{ producto.nombre }}
-                  </h3>
-                  <p class="text-gray-600 text-sm mb-2">
-                    {{ producto.descripcion|truncatewords:8 }}
-                  </p>
-                  <div class="flex items-center mb-2">
-                    <div class="text-yellow-400">⭐⭐⭐⭐⭐</div>
-                    <span class="text-gray-500 text-xs ml-2">(0)</span>
-                  </div>
-                  <div class="flex items-baseline mb-4">
-                    {% if producto.descuento and producto.descuento > 0 %}
-                    <span class="text-gray-400 line-through text-sm"
-                      >${{ producto.precio|formato_precio }}</span
-                    >
-                    <span class="text-2xl font-bold text-blue-600 ml-2"
-                      >${{ producto.precio_descuento|formato_precio }}</span
-                    >
-                    {% else %}
-                    <span class="text-2xl font-bold text-blue-600"
-                      >${{ producto.precio|formato_precio }}</span
-                    >
-                    {% endif %}
-                  </div>
-                  <div class="flex space-x-3">
-                    <a
-                      href="{% url 'product:product_detail' producto.id %}"
-                      class="flex-1 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition font-medium text-center"
-                    >
-                      Detalles
-                    </a>
-                    <button
-                      class="flex-1 bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition font-medium"
-                      onclick="agregarAlCarrito({{ producto.id }})"
-                    >
-                      Comprar
-                    </button>
-                  </div>
+                {% empty %}
+                <div class="min-w-full text-center py-10">
+                    <p class="text-gray-500">No hay productos de cocina disponibles.</p>
                 </div>
-              </div>
-              {% empty %}
-              <div class="min-w-full text-center py-10">
-                <p class="text-gray-500">No hay productos de cocina disponibles.</p>
-              </div>
-              {% endfor %}
+                {% endfor %}
             </div>
 
-            <button
-              id="scroll-right-cocina"
-              class="absolute right-0 top-1/2 -translate-y-1/2 bg-yellow-500 text-white p-3 rounded-full shadow-md hover:bg-yellow-600 transition z-10 hidden md:block"
-            >
-              ▶
+            <button id="scroll-right-cocina" class="absolute right-0 top-1/2 -translate-y-1/2 bg-yellow-500 text-white p-3 rounded-full shadow-md hover:bg-yellow-600 transition z-10 hidden md:block">
+                ▶
             </button>
-          </div>
         </div>
-      </section>
-    </main>
+    </div>
+</section>
 
     <!-- Newsletter Section -->
     <!--<section class="py-16 bg-gradient-to-r from-blue-600 to-indigo-600">
@@ -967,6 +1094,35 @@ function mostrarNotificacion(mensaje, tipo) {
           });
         }
       });
+      // ============================================
+    // ✅ PREVENIR CACHÉ DESPUÉS DE LOGOUT
+    // ============================================
+
+    window.addEventListener('pageshow', function(event) {
+        // Si la página viene del caché del navegador (botón atrás)
+        if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
+            // Recargar la página para verificar la sesión
+            window.location.reload();
+        }
+    });
+
+    // Limpiar storage al cerrar sesión
+    document.addEventListener('DOMContentLoaded', function() {
+        const logoutLinks = document.querySelectorAll('a[href*="logout"]');
+        
+        logoutLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Limpiar storage del navegador
+                sessionStorage.clear();
+                localStorage.clear();
+                
+                // Redirigir con replace (no permite volver atrás)
+                window.location.replace(this.href);
+            });
+        });
+    });
     </script>
   </body>
 </html>

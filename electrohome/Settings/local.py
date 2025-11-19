@@ -166,7 +166,29 @@ DEBUG_TOOLBAR_CONFIG = {
 }
 """
 
+
+
 # Configuración de allauth para Google
 SOCIALACCOUNT_QUERY_EMAIL = True
 SOCIALACCOUNT_EMAIL_REQUIRED = True
 SOCIALACCOUNT_STORE_TOKENS = True
+
+# ✅ ESTO ES LO QUE NECESITAS AGREGAR - ELIMINA LA PÁGINA INTERMEDIA
+SOCIALACCOUNT_LOGIN_ON_GET = True
+
+# Configuración adicional de Google OAuth
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
+# Configuración de login/signup automático
+SOCIALACCOUNT_AUTO_SIGNUP = True
+ACCOUNT_EMAIL_VERIFICATION = 'none'  # No requiere verificación para Google
+SOCIALACCOUNT_EMAIL_VERIFICATION = 'none'

@@ -40,7 +40,51 @@
       }
       
     </style>
-  </head>
+  <style>
+   .wishlist-btn {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    font-size: 2.5rem;
+    z-index: 20;
+    padding: 0;
+    font-weight: bold;
+    line-height: 1;
+    color: #9ca3af;
+}
+
+.wishlist-btn:hover {
+    transform: scale(1.15);
+    color: #ef4444;
+}
+
+.wishlist-btn.active {
+    color: #ef4444;
+}
+
+@keyframes heartbeat {
+    0%, 100% { 
+        transform: scale(1);
+    }
+    25% { 
+        transform: scale(1.2);
+    }
+    50% { 
+        transform: scale(1.15);
+    }
+}
+
+.wishlist-btn.active {
+    animation: heartbeat 0.5s ease;
+} 
+  </style>
 
   <body class="bg-gray-50 font-sans">
     <!-- HEADER / NAVEGACIÓN -->
@@ -80,19 +124,33 @@
       <!-- Desktop Navigation -->
       <div class="hidden lg:flex space-x-6">
         <a href="{% url 'product:home' %}" class="text-yellow-400">Inicio</a>
-        <a href="{% url 'product:products_list' %}" class="text-gray-50 hover:text-yellow-300 ">productos</a>
+        <a href="{% url 'product:products_list' %}" class="text-gray-50 hover:text-yellow-300 ">Productos</a>
         <a href="{% url 'product:contact' %}" class="text-gray-50 hover:text-yellow-300">Contacto</a>
       </div>
 
       <!-- User Menu & Cart -->
       <div class="flex items-center space-x-4">
-        <!-- Carrito -->
-<a href="{% url 'product:cart' %}" class="relative text-white hover:text-yellow-300 transition">
-  <i class="fas fa-shopping-cart text-2xl"></i>
-  <span id="cart-counter" class="absolute -top-1 -right-2 bg-red-500 text-white text-xs font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">
-    {{ cart_items_count|default:0 }}
-  </span>
-</a>
+  <!-- User Menu & Cart -->
+<div class="flex items-center space-x-4">
+  <!-- ✅ Wishlist (Lista de Deseos) -->
+  {% if user.is_authenticated %}
+    <a href="{% url 'product:wishlist' %}" class="relative text-white hover:text-red-400 transition group">
+      <i class="fas fa-heart text-2xl group-hover:scale-110 transition-transform"></i>
+      {% if user.wishlist.total_items > 0 %}
+        <span class="absolute -top-1 -right-2 bg-red-500 text-white text-xs font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">
+          {{ user.wishlist.total_items }}
+        </span>
+      {% endif %}
+    </a>
+  {% endif %}
+
+  <!-- Carrito -->
+  <a href="{% url 'product:cart' %}" class="relative text-white hover:text-yellow-300 transition">
+    <i class="fas fa-shopping-cart text-2xl"></i>
+    <span id="cart-counter" class="absolute -top-1 -right-2 bg-red-500 text-white text-xs font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">
+      {{ cart_items_count|default:0 }}
+    </span>
+  </a>
         {% if user.is_authenticated %}
           <!-- Menú de Usuario con Dropdown -->
           <div class="relative">
@@ -186,41 +244,53 @@
       </form>
     </div>
 
-    <!-- Mobile Menu -->
-    <div class="lg:hidden mt-4 pb-4 hidden" id="mobile-menu">
-      <div class="flex flex-col space-y-3">
-        <a href="{% url 'product:home' %}" class="text-gray-50 hover:text-yellow-300 py-2">
-          <i class="fas fa-home mr-2"></i>Inicio
-        </a>
-        <a href="{% url 'product:products_list' %}" class="text-gray-50 hover:text-yellow-300 py-2">
-          <i class="fas fa-tag mr-2"></i>Productos
-        </a>
-        <a href="#categorias" class="text-gray-50 hover:text-yellow-300 py-2">
-          <i class="fas fa-th-large mr-2"></i>Categorías
-        </a>
-        <a href="#contacto" class="text-gray-50 hover:text-yellow-300 py-2">
-          <i class="fas fa-envelope mr-2"></i>Contacto
-        </a>
-        
-        <hr class="border-blue-600">
+   <!-- Mobile Menu -->
+<div class="lg:hidden mt-4 pb-4 hidden" id="mobile-menu">
+  <div class="flex flex-col space-y-3">
+    <a href="{% url 'product:home' %}" class="text-gray-50 hover:text-yellow-300 py-2">
+      <i class="fas fa-home mr-2"></i>Inicio
+    </a>
+    <a href="{% url 'product:products_list' %}" class="text-gray-50 hover:text-yellow-300 py-2">
+      <i class="fas fa-tag mr-2"></i>Productos
+    </a>
+    <a href="#categorias" class="text-gray-50 hover:text-yellow-300 py-2">
+      <i class="fas fa-th-large mr-2"></i>Categorías
+    </a>
+    <a href="#contacto" class="text-gray-50 hover:text-yellow-300 py-2">
+      <i class="fas fa-envelope mr-2"></i>Contacto
+    </a>
+    
+    <hr class="border-blue-600">
 
-        {% if user.is_authenticated %}
-          <a href="{% url 'user:profile' %}" class="flex items-center text-white hover:text-yellow-300 py-2">
-            <i class="fas fa-user mr-3"></i>Mi Perfil
-          </a>
-          <a href="{% url 'order:order_list' %}" class="flex items-center text-white hover:text-yellow-300 py-2">
-            <i class="fas fa-shopping-bag mr-3"></i>Mis Pedidos
-          </a>
-          <a href="{% url 'user:logout' %}" class="flex items-center text-red-300 hover:text-red-100 py-2">
-            <i class="fas fa-sign-out-alt mr-3"></i>Cerrar Sesión
-          </a>
-        {% else %}
-          <a href="{% url 'user:login' %}" class="flex items-center text-white hover:text-yellow-300 py-2">
-            <i class="fas fa-sign-in-alt mr-3"></i>Ingresar
-          </a>
+    {% if user.is_authenticated %}
+      <a href="{% url 'user:profile' %}" class="flex items-center text-white hover:text-yellow-300 py-2">
+        <i class="fas fa-user mr-3"></i>Mi Perfil
+      </a>
+      
+      <!-- ✅ Wishlist en menú móvil -->
+      <a href="{% url 'product:wishlist' %}" class="flex items-center text-white hover:text-red-300 py-2">
+        <i class="fas fa-heart mr-3"></i>Mi Lista de Deseos
+        {% if user.wishlist.total_items > 0 %}
+          <span class="ml-2 bg-red-500 text-white text-xs font-bold rounded-full px-2 py-0.5">
+            {{ user.wishlist.total_items }}
+          </span>
         {% endif %}
-      </div>
-    </div>
+      </a>
+      
+      <a href="{% url 'order:order_list' %}" class="flex items-center text-white hover:text-yellow-300 py-2">
+        <i class="fas fa-shopping-bag mr-3"></i>Mis Pedidos
+      </a>
+      
+      <a href="{% url 'user:logout' %}" class="flex items-center text-red-300 hover:text-red-100 py-2">
+        <i class="fas fa-sign-out-alt mr-3"></i>Cerrar Sesión
+      </a>
+    {% else %}
+      <a href="{% url 'user:login' %}" class="flex items-center text-white hover:text-yellow-300 py-2">
+        <i class="fas fa-sign-in-alt mr-3"></i>Ingresar
+      </a>
+    {% endif %}
+  </div>
+</div>
   </nav>
 </header>
 
@@ -498,6 +568,9 @@
             <div class="product-card">
                 <!-- Imagen del producto -->
                 <div class="product-image-container">
+                  <button class="wishlist-btn" data-product-id="{{ producto.id }}" onclick="toggleWishlist(event, {{ producto.id }})">
+                       ♡
+                  </button>
                     {% if producto.imagen_principal %}
                     <img src="{{ producto.imagen_principal.url }}" alt="{{ producto.nombre }}">
                     {% else %}
@@ -664,8 +737,7 @@
 </style>
 
 <!-- ============================================
-     CÓDIGO PARA CARRUSEL DE RECOMENDACIONES
-     REEMPLAZAR la sección completa
+     CARRUSEL DE RECOMENDACIONES
      ============================================ -->
 <section id="recomendaciones" class="py-20 bg-gradient-to-b from-white via-gray-50 to-gray-100">
     <div class="container mx-auto px-4">
@@ -687,6 +759,11 @@
                 {% for producto in productos|slice:":15" %}
                 <div class="carousel-card snap-start">
                     <div class="carousel-image-container">
+                        <!-- CORAZÓN WISHLIST -->
+                        <button class="wishlist-btn" data-product-id="{{ producto.id }}" onclick="toggleWishlist(event, {{ producto.id }})">
+                            ♡
+                        </button>
+                        
                         {% if producto.imagen_principal %}
                         <img src="{{ producto.imagen_principal.url }}" alt="{{ producto.nombre }}">
                         {% else %}
@@ -733,7 +810,7 @@
 </section>
 
 <!-- ============================================
-     CARRUSEL DE LIMPIEZA - REEMPLAZAR
+     CARRUSEL DE LIMPIEZA
      ============================================ -->
 <section id="limpieza" class="py-20 bg-gradient-to-b from-white via-gray-50 to-gray-100">
     <div class="container mx-auto px-4">
@@ -750,6 +827,11 @@
                 {% for producto in productos_limpieza %}
                 <div class="carousel-card snap-start">
                     <div class="carousel-image-container">
+                        <!-- CORAZÓN WISHLIST -->
+                        <button class="wishlist-btn" data-product-id="{{ producto.id }}" onclick="toggleWishlist(event, {{ producto.id }})">
+                            ♡
+                        </button>
+                        
                         {% if producto.imagen_principal %}
                         <img src="{{ producto.imagen_principal.url }}" alt="{{ producto.nombre }}">
                         {% else %}
@@ -795,7 +877,7 @@
 </section>
 
 <!-- ============================================
-     CARRUSEL DE COCINA - REEMPLAZAR
+     CARRUSEL DE COCINA
      ============================================ -->
 <section id="cocina" class="py-20 bg-gradient-to-b from-white via-gray-50 to-gray-100">
     <div class="container mx-auto px-4">
@@ -812,6 +894,11 @@
                 {% for producto in productos_cocina %}
                 <div class="carousel-card snap-start">
                     <div class="carousel-image-container">
+                        <!-- CORAZÓN WISHLIST -->
+                        <button class="wishlist-btn" data-product-id="{{ producto.id }}" onclick="toggleWishlist(event, {{ producto.id }})">
+                            ♡
+                        </button>
+                        
                         {% if producto.imagen_principal %}
                         <img src="{{ producto.imagen_principal.url }}" alt="{{ producto.nombre }}">
                         {% else %}
@@ -912,10 +999,7 @@
     </div>
   </div>
 </footer>
-
-
-    <!-- JAVASCRIPT -->
-    <script>
+   <script>
       // ====================================
       // FUNCIONES DEL CARRITO
       // ====================================
@@ -940,84 +1024,61 @@
 
       // Función principal para agregar al carrito
       function agregarAlCarrito(productId, quantity = 1) {
-    console.log('Agregando al carrito:', productId);
-    
-    fetch(`/carrito/agregar/${productId}/`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'X-CSRFToken': csrftoken
-        },
-        body: `quantity=${quantity}`
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            // ✅ Actualizar contador
-            actualizarContadorCarrito(data.cart_total_items);
-            
-            // ✅ Mostrar mensaje de éxito
-            mostrarNotificacion('✅ ' + data.message, 'success');
-            
-        } else {
-            mostrarNotificacion('❌ ' + data.message, 'error');
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        mostrarNotificacion('❌ Error al agregar al carrito', 'error');
-    });
-}
-
-// Función para actualizar el contador
-function actualizarContadorCarrito(cantidad) {
-    const cartCounter = document.getElementById('cart-counter');
-    if (cartCounter) {
-        cartCounter.textContent = cantidad;
+        console.log('Agregando al carrito:', productId);
         
-        // Animación de pulso
-        cartCounter.classList.add('animate-pulse');
-        setTimeout(() => {
-            cartCounter.classList.remove('animate-pulse');
-        }, 1000);
-    }
-}
+        fetch(`/carrito/agregar/${productId}/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-CSRFToken': csrftoken
+            },
+            body: `quantity=${quantity}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                actualizarContadorCarrito(data.cart_total_items);
+                mostrarNotificacion('✅ ' + data.message, 'success');
+            } else {
+                mostrarNotificacion('❌ ' + data.message, 'error');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            mostrarNotificacion('❌ Error al agregar al carrito', 'error');
+        });
+      }
 
-// Función para mostrar notificaciones
-function mostrarNotificacion(mensaje, tipo) {
-    const notif = document.createElement('div');
-    notif.className = `fixed top-24 right-4 z-50 px-6 py-4 rounded-lg shadow-lg transition-all duration-300 ${
-        tipo === 'success' ? 'bg-green-500' : 'bg-red-500'
-    } text-white font-bold`;
-    notif.textContent = mensaje;
-    document.body.appendChild(notif);
-    
-    setTimeout(() => {
-        notif.style.opacity = '0';
-        setTimeout(() => notif.remove(), 300);
-    }, 3000);
-}
-
-      // Actualizar contador del carrito
+      // Función para actualizar el contador del carrito
       function actualizarContadorCarrito(cantidad) {
         const cartCounter = document.getElementById('cart-counter');
         if (cartCounter) {
-          console.log('Actualizando contador a:', cantidad);
-          cartCounter.textContent = cantidad;
-          
-          // Mostrar el contador si hay items
-          if (cantidad > 0) {
-            cartCounter.style.display = 'block';
-          }
-          
-          // Animar el contador
-          cartCounter.classList.add('animate-pulse');
-          setTimeout(() => {
-            cartCounter.classList.remove('animate-pulse');
-          }, 1000);
-        } else {
-          console.error('No se encontró el elemento cart-counter');
+            cartCounter.textContent = cantidad;
+            
+            if (cantidad > 0) {
+                cartCounter.style.display = 'block';
+            }
+            
+            cartCounter.classList.add('animate-pulse');
+            setTimeout(() => {
+                cartCounter.classList.remove('animate-pulse');
+            }, 1000);
         }
+      }
+
+      // Función para mostrar notificaciones
+      function mostrarNotificacion(mensaje, tipo) {
+        const notif = document.createElement('div');
+        notif.className = `fixed top-24 right-4 z-50 px-6 py-4 rounded-lg shadow-lg transition-all duration-300 ${
+            tipo === 'success' ? 'bg-green-500' : 'bg-red-500'
+        } text-white font-bold`;
+        notif.textContent = mensaje;
+        document.body.appendChild(notif);
+        
+        setTimeout(() => {
+            notif.style.opacity = '0';
+            setTimeout(() => notif.remove(), 300);
+        }, 3000);
       }
 
       // Cargar contador del carrito al iniciar
@@ -1094,35 +1155,182 @@ function mostrarNotificacion(mensaje, tipo) {
           });
         }
       });
+
       // ============================================
-    // ✅ PREVENIR CACHÉ DESPUÉS DE LOGOUT
-    // ============================================
-
-    window.addEventListener('pageshow', function(event) {
-        // Si la página viene del caché del navegador (botón atrás)
+      // PREVENIR CACHÉ DESPUÉS DE LOGOUT
+      // ============================================
+      window.addEventListener('pageshow', function(event) {
         if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
-            // Recargar la página para verificar la sesión
-            window.location.reload();
+          window.location.reload();
         }
-    });
+      });
 
-    // Limpiar storage al cerrar sesión
-    document.addEventListener('DOMContentLoaded', function() {
+      document.addEventListener('DOMContentLoaded', function() {
         const logoutLinks = document.querySelectorAll('a[href*="logout"]');
         
         logoutLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                // Limpiar storage del navegador
-                sessionStorage.clear();
-                localStorage.clear();
-                
-                // Redirigir con replace (no permite volver atrás)
-                window.location.replace(this.href);
-            });
+          link.addEventListener('click', function(e) {
+            e.preventDefault();
+            sessionStorage.clear();
+            localStorage.clear();
+            window.location.replace(this.href);
+          });
         });
+      });
+
+       // ====================================
+// WISHLIST
+// ====================================
+
+function actualizarContadorWishlistEnHeader(totalItems) {
+    console.log('Actualizando contador wishlist a:', totalItems);
+    
+    const wishlistIcon = document.querySelector('a[href*="wishlist"] i.fa-heart');
+    
+    if (wishlistIcon) {
+        const wishlistLink = wishlistIcon.parentElement;
+        let badge = wishlistLink.querySelector('span.absolute');
+        
+        if (totalItems > 0) {
+            if (!badge) {
+                badge = document.createElement('span');
+                badge.className = 'absolute -top-1 -right-2 bg-red-500 text-white text-xs font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1';
+                wishlistLink.appendChild(badge);
+            }
+            badge.textContent = totalItems;
+            badge.style.display = 'flex';
+        } else {
+            if (badge) {
+                badge.remove();
+            }
+        }
+    }
+    
+    const mobileWishlistLinks = document.querySelectorAll('#mobile-menu a[href*="wishlist"]');
+    mobileWishlistLinks.forEach(link => {
+        let mobileBadge = link.querySelector('span.bg-red-500');
+        
+        if (totalItems > 0) {
+            if (!mobileBadge) {
+                mobileBadge = document.createElement('span');
+                mobileBadge.className = 'ml-2 bg-red-500 text-white text-xs font-bold rounded-full px-2 py-0.5';
+                link.appendChild(mobileBadge);
+            }
+            mobileBadge.textContent = totalItems;
+        } else {
+            if (mobileBadge) {
+                mobileBadge.remove();
+            }
+        }
     });
+}
+
+function toggleWishlist(event, productId) {
+    event.preventDefault();
+    event.stopPropagation();
+    
+    const btn = event.currentTarget;
+    const isActive = btn.classList.contains('active');
+    
+    if (isActive) {
+        removeFromWishlist(btn, productId);
+    } else {
+        addToWishlist(btn, productId);
+    }
+}
+
+function addToWishlist(btn, productId) {
+    console.log('Agregando a wishlist:', productId);
+    
+    fetch(`/wishlist/add/${productId}/`, {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': csrftoken,
+            'Content-Type': 'application/json',
+        },
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Respuesta:', data);
+        
+        if (data.success) {
+            btn.classList.add('active');
+            btn.textContent = '♥';
+            mostrarNotificacion('❤️ ' + data.message, 'success');
+            
+            if (data.total_items !== undefined) {
+                actualizarContadorWishlistEnHeader(data.total_items);
+            }
+        } else {
+            mostrarNotificacion('ℹ️ ' + data.message, 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        mostrarNotificacion('❌ Error al agregar a wishlist', 'error');
+    });
+}
+
+function removeFromWishlist(btn, productId) {
+    console.log('Eliminando de wishlist:', productId);
+    
+    fetch(`/wishlist/remove/${productId}/`, {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': csrftoken,
+            'Content-Type': 'application/json',
+        },
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Respuesta:', data);
+        
+        if (data.success) {
+            btn.classList.remove('active');
+            btn.textContent = '♡';
+            mostrarNotificacion('❤️ ' + data.message, 'success');
+            
+            if (data.total_items !== undefined) {
+                actualizarContadorWishlistEnHeader(data.total_items);
+            }
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        mostrarNotificacion('❌ Error al eliminar de wishlist', 'error');
+    });
+}
+
+function checkWishlistStatus(btn, productId) {
+    fetch(`/wishlist/check/${productId}/`, {
+        method: 'GET',
+        headers: {
+            'X-CSRFToken': csrftoken,
+        },
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.in_wishlist) {
+            btn.classList.add('active');
+            btn.textContent = '♥';
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+// ✅ CARGAR ESTADO INICIAL DEL WISHLIST EN HOME
+document.addEventListener('DOMContentLoaded', function() {
+    // Buscar TODOS los botones con clase .wishlist-btn
+    const wishlistButtons = document.querySelectorAll('.wishlist-btn');
+    console.log('Botones wishlist encontrados:', wishlistButtons.length);
+    
+    wishlistButtons.forEach(btn => {
+        const productId = btn.dataset.productId;
+        if (productId) {
+            checkWishlistStatus(btn, productId);
+        }
+    });
+});
     </script>
   </body>
 </html>

@@ -192,3 +192,16 @@ SOCIALACCOUNT_PROVIDERS = {
 SOCIALACCOUNT_AUTO_SIGNUP = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'  # No requiere verificación para Google
 SOCIALACCOUNT_EMAIL_VERIFICATION = 'none'
+
+# ===== CONFIGURACIÓN DE WOMPI =====
+WOMPI_PUBLIC_KEY = config('WOMPI_PUBLIC_KEY')
+WOMPI_PRIVATE_KEY = config('WOMPI_PRIVATE_KEY')
+WOMPI_ENVIRONMENT = config('WOMPI_ENVIRONMENT', default='test')
+
+if WOMPI_ENVIRONMENT == 'prod':
+    WOMPI_API_URL = 'https://production.wompi.co/v1'
+else:
+    WOMPI_API_URL = 'https://sandbox.wompi.co/v1'
+
+# URL base de tu sitio (para redirect después del pago)
+SITE_URL = 'http://127.0.0.1:8000'

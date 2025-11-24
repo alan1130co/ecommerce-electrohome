@@ -99,8 +99,32 @@ def logout_view(request):
 @login_required
 @never_cache
 def profile_view(request):
-    """Vista del perfil del usuario"""
-    return render(request, 'user/profile.html', {'user': request.user})
+    """Vista del perfil del usuario con estadísticas"""
+    
+    # Si es POST, actualizar datos del perfil
+    if request.method == 'POST':
+        user = request.user
+        user.first_name = request.POST.get('first_name', '').strip()
+        user.last_name = request.POST.get('last_name', '').strip()
+        user.telefono = request.POST.get('telefono', '').strip()
+        user.ciudad = request.POST.get('ciudad', '').strip()
+        
+        try:
+            user.save()
+            messages.success(request, '¡Perfil actualizado correctamente! ✅')
+        except Exception as e:
+            messages.error(request, f'Error al actualizar perfil: {str(e)}')
+        
+        return redirect('user:profile')
+    
+    # ✅ CALCULAR ESTADÍSTICAS DEL USUARIO
+    context = {
+        'user': request.user,
+        'total_orders': request.user.get_total_orders(),
+        'total_spent': request.user.get_total_spent(),
+    }
+    
+    return render(request, 'user/profile.html', context)
 
 
 @login_required

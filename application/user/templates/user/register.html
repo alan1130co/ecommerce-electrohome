@@ -55,7 +55,8 @@
                     </div>
                     {% endif %}
 
-                    <form method="POST" action="{% url 'user:register' %}">
+                    <!-- Formulario ✅ AGREGADO autocomplete="off" -->
+                    <form method="POST" action="{% url 'user:register' %}" autocomplete="off">
                         {% csrf_token %}
                         
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
@@ -169,7 +170,7 @@
                                     <p class="font-semibold mb-1">Requisitos de contraseña:</p>
                                     <ul class="list-disc list-inside space-y-1">
                                         <li>Mínimo 8 caracteres</li>
-                                        <li>Debe contener letras,numeros y simobolos especiales </li>
+                                        <li>Debe contener letras, números y símbolos especiales</li>
                                         <li>No puede ser muy común</li>
                                     </ul>
                                 </div>
@@ -205,11 +206,18 @@
     </footer>
 
     <script>
-        // Asegurar clases a los inputs
-        document.addEventListener('DOMContentLoaded', function() {
+        // ✅ LIMPIAR CAMPOS AL CARGAR LA PÁGINA
+        window.addEventListener('load', function() {
             const inputs = document.querySelectorAll('input[type="text"], input[type="email"], input[type="password"]');
             
             inputs.forEach(input => {
+                // Limpiar valor
+                input.value = '';
+                
+                // Asegurar autocomplete off
+                input.setAttribute('autocomplete', 'off');
+                
+                // Aplicar estilos
                 if (input.type === 'password') {
                     input.className = 'w-full px-4 py-3 pr-12 border-2 border-gray-300 rounded-xl text-gray-700 focus:border-blue-500 focus:outline-none transition';
                 } else {
@@ -223,16 +231,28 @@
             const passwordInput = document.querySelector(`input[name="${fieldName}"]`);
             const eyeIcon = document.getElementById(`eye-icon-${fieldName === 'password1' ? '1' : '2'}`);
             
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                eyeIcon.classList.remove('fa-eye');
-                eyeIcon.classList.add('fa-eye-slash');
-            } else {
-                passwordInput.type = 'password';
-                eyeIcon.classList.remove('fa-eye-slash');
-                eyeIcon.classList.add('fa-eye');
+            if (passwordInput && eyeIcon) {
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    eyeIcon.classList.remove('fa-eye');
+                    eyeIcon.classList.add('fa-eye-slash');
+                } else {
+                    passwordInput.type = 'password';
+                    eyeIcon.classList.remove('fa-eye-slash');
+                    eyeIcon.classList.add('fa-eye');
+                }
             }
         }
+
+        // ✅ LIMPIAR DESPUÉS DE ENVIAR FORMULARIO
+        document.querySelector('form[method="POST"]').addEventListener('submit', function(e) {
+            setTimeout(() => {
+                const inputs = document.querySelectorAll('input[type="text"], input[type="email"], input[type="password"]');
+                inputs.forEach(input => {
+                    input.value = '';
+                });
+            }, 100);
+        });
     </script>
 </body>
 </html>

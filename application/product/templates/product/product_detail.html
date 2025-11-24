@@ -25,10 +25,68 @@
             border-width: 3px;
         }
     </style>
+    <style>
+    .image-gallery img {
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    .image-gallery img:hover {
+        transform: scale(1.05);
+        border-color: #3b82f6;
+    }
+    .image-gallery img.active {
+        border-color: #f59e0b;
+        border-width: 3px;
+    }
+    
+    /* ✅ ESTILOS PARA BOTÓN WISHLIST EN DETALLE */
+    .wishlist-btn-detail {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        background: white;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        font-size: 2.5rem;
+        z-index: 20;
+        padding: 8px;
+        font-weight: bold;
+        line-height: 1;
+        color: #9ca3af;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .wishlist-btn-detail:hover {
+        transform: scale(1.1);
+        color: #ef4444;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .wishlist-btn-detail.active {
+        color: #ef4444;
+    }
+
+    @keyframes heartbeat {
+        0%, 100% { transform: scale(1); }
+        25% { transform: scale(1.2); }
+        50% { transform: scale(1.15); }
+    }
+
+    .wishlist-btn-detail.active {
+        animation: heartbeat 0.5s ease;
+    }
+</style>
+
 </head>
 <body class="bg-gray-50">
-    <!-- HEADER (igual que checkout) -->
-     <header class="bg-blue-800 shadow-2xl border-b-4 border-blue-500 sticky top-0 z-50">
+    <header class="bg-blue-800 shadow-2xl border-b-4 border-blue-500 sticky top-0 z-50">
   <nav class="container mx-auto px-4 py-4">
     <div class="flex justify-between items-center gap-4">
       <!-- Logo -->
@@ -63,20 +121,34 @@
 
       <!-- Desktop Navigation -->
       <div class="hidden lg:flex space-x-6">
-        <a href="{% url 'product:home' %}" class="text-gray-50 hover:text-yellow-300">Inicio</a>
+        <a href="{% url 'product:home' %}" class="text-yellow-400">Inicio</a>
         <a href="{% url 'product:products_list' %}" class="text-gray-50 hover:text-yellow-300 ">productos</a>
-        <a href="#contacto" class="text-gray-50 hover:text-yellow-300">Contacto</a>
+        <a href="{% url 'product:contact' %}" class="text-gray-50 hover:text-yellow-300">Contacto</a>
       </div>
 
       <!-- User Menu & Cart -->
       <div class="flex items-center space-x-4">
-        <!-- Carrito -->
-<a href="{% url 'product:cart' %}" class="relative text-white hover:text-yellow-300 transition">
-  <i class="fas fa-shopping-cart text-2xl"></i>
-  <span id="cart-counter" class="absolute -top-1 -right-2 bg-red-500 text-white text-xs font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">
-    {{ cart_items_count|default:0 }}
-  </span>
-</a>
+  <!-- User Menu & Cart -->
+<div class="flex items-center space-x-4">
+  <!-- ✅ Wishlist (Lista de Deseos) -->
+  {% if user.is_authenticated %}
+    <a href="{% url 'product:wishlist' %}" class="relative text-white hover:text-red-400 transition group">
+      <i class="fas fa-heart text-2xl group-hover:scale-110 transition-transform"></i>
+      {% if user.wishlist.total_items > 0 %}
+        <span class="absolute -top-1 -right-2 bg-red-500 text-white text-xs font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">
+          {{ user.wishlist.total_items }}
+        </span>
+      {% endif %}
+    </a>
+  {% endif %}
+
+  <!-- Carrito -->
+  <a href="{% url 'product:cart' %}" class="relative text-white hover:text-yellow-300 transition">
+    <i class="fas fa-shopping-cart text-2xl"></i>
+    <span id="cart-counter" class="absolute -top-1 -right-2 bg-red-500 text-white text-xs font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">
+      {{ cart_items_count|default:0 }}
+    </span>
+  </a>
         {% if user.is_authenticated %}
           <!-- Menú de Usuario con Dropdown -->
           <div class="relative">
@@ -170,40 +242,85 @@
       </form>
     </div>
 
-    <!-- Mobile Menu -->
-    <div class="lg:hidden mt-4 pb-4 hidden" id="mobile-menu">
-      <div class="flex flex-col space-y-3">
-        <a href="{% url 'product:home' %}" class="text-gray-50 hover:text-yellow-300 py-2">
-          <i class="fas fa-home mr-2"></i>Inicio
-        </a>
-        <a href="{% url 'product:products_list' %}" class="text-gray-50 hover:text-yellow-300 py-2">
-          <i class="fas fa-tag mr-2"></i>Productos
-        </a>
-        <a href="#contacto" class="text-gray-50 hover:text-yellow-300 py-2">
-          <i class="fas fa-envelope mr-2"></i>Contacto
-        </a>
-        
-        <hr class="border-blue-600">
+   <!-- Mobile Menu -->
+<div class="lg:hidden mt-4 pb-4 hidden" id="mobile-menu">
+  <div class="flex flex-col space-y-3">
+    <a href="{% url 'product:home' %}" class="text-gray-50 hover:text-yellow-300 py-2">
+      <i class="fas fa-home mr-2"></i>Inicio
+    </a>
+    <a href="{% url 'product:products_list' %}" class="text-gray-50 hover:text-yellow-300 py-2">
+      <i class="fas fa-tag mr-2"></i>Productos
+    </a>
+    <a href="#categorias" class="text-gray-50 hover:text-yellow-300 py-2">
+      <i class="fas fa-th-large mr-2"></i>Categorías
+    </a>
+    <a href="#contacto" class="text-gray-50 hover:text-yellow-300 py-2">
+      <i class="fas fa-envelope mr-2"></i>Contacto
+    </a>
+    
+    <hr class="border-blue-600">
 
-        {% if user.is_authenticated %}
-          <a href="{% url 'user:profile' %}" class="flex items-center text-white hover:text-yellow-300 py-2">
-            <i class="fas fa-user mr-3"></i>Mi Perfil
-          </a>
-          <a href="{% url 'order:order_list' %}" class="flex items-center text-white hover:text-yellow-300 py-2">
-            <i class="fas fa-shopping-bag mr-3"></i>Mis Pedidos
-          </a>
-          <a href="{% url 'user:logout' %}" class="flex items-center text-red-300 hover:text-red-100 py-2">
-            <i class="fas fa-sign-out-alt mr-3"></i>Cerrar Sesión
-          </a>
-        {% else %}
-          <a href="{% url 'user:login' %}" class="flex items-center text-white hover:text-yellow-300 py-2">
-            <i class="fas fa-sign-in-alt mr-3"></i>Ingresar
-          </a>
+    {% if user.is_authenticated %}
+      <a href="{% url 'user:profile' %}" class="flex items-center text-white hover:text-yellow-300 py-2">
+        <i class="fas fa-user mr-3"></i>Mi Perfil
+      </a>
+      
+      <!-- ✅ Wishlist en menú móvil -->
+      <a href="{% url 'product:wishlist' %}" class="flex items-center text-white hover:text-red-300 py-2">
+        <i class="fas fa-heart mr-3"></i>Mi Lista de Deseos
+        {% if user.wishlist.total_items > 0 %}
+          <span class="ml-2 bg-red-500 text-white text-xs font-bold rounded-full px-2 py-0.5">
+            {{ user.wishlist.total_items }}
+          </span>
         {% endif %}
-      </div>
-    </div>
+      </a>
+      
+      <a href="{% url 'order:order_list' %}" class="flex items-center text-white hover:text-yellow-300 py-2">
+        <i class="fas fa-shopping-bag mr-3"></i>Mis Pedidos
+      </a>
+      
+      <a href="{% url 'user:logout' %}" class="flex items-center text-red-300 hover:text-red-100 py-2">
+        <i class="fas fa-sign-out-alt mr-3"></i>Cerrar Sesión
+      </a>
+    {% else %}
+      <a href="{% url 'user:login' %}" class="flex items-center text-white hover:text-yellow-300 py-2">
+        <i class="fas fa-sign-in-alt mr-3"></i>Ingresar
+      </a>
+    {% endif %}
+  </div>
+</div>
   </nav>
 </header>
+
+<script>
+  // Toggle dropdown del usuario
+  const userMenuBtn = document.getElementById('user-menu-btn');
+  const userDropdown = document.getElementById('user-dropdown');
+
+  if (userMenuBtn && userDropdown) {
+    userMenuBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      userDropdown.classList.toggle('hidden');
+    });
+
+    // Cerrar dropdown al hacer click fuera
+    document.addEventListener('click', function(e) {
+      if (!userMenuBtn.contains(e.target) && !userDropdown.contains(e.target)) {
+        userDropdown.classList.add('hidden');
+      }
+    });
+  }
+
+  // Toggle menú mobile
+  const mobileMenuBtn = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  if (mobileMenuBtn && mobileMenu) {
+    mobileMenuBtn.addEventListener('click', function() {
+      mobileMenu.classList.toggle('hidden');
+    });
+  }
+</script>
 
     <!-- MAIN CONTENT -->
     <main class="container mx-auto px-4 py-8">
@@ -216,32 +333,40 @@
             <span class="text-blue-600 font-semibold">{{ producto.nombre|truncatewords:5 }}</span>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-            <!-- GALERÍA DE IMÁGENES -->
-            <div>
-                <!-- Imagen principal -->
-                <div class="bg-white rounded-lg shadow-lg p-6 mb-4">
-                    {% if producto.imagen_principal %}
-                    <img id="main-image" src="{{ producto.imagen_principal.url }}" alt="{{ producto.nombre }}" class="w-full h-96 object-contain rounded-lg" />
-                    {% else %}
-                    <div class="w-full h-96 bg-gray-200 rounded-lg flex items-center justify-center">
-                        <i class="fas fa-image text-gray-400 text-6xl"></i>
-                    </div>
-                    {% endif %}
-                </div>
+        <!-- GALERÍA DE IMÁGENES -->
+<div>
+    <!-- Imagen principal -->
+    <div class="bg-white rounded-lg shadow-lg p-6 mb-4 relative">
+        <!-- ✅ BOTÓN CORAZÓN WISHLIST -->
+        {% if user.is_authenticated %}
+        <button class="wishlist-btn-detail" 
+                data-product-id="{{ producto.id }}" 
+                onclick="toggleWishlistDetail(event, {{ producto.id }})">
+            ♡
+        </button>
+        {% endif %}
 
-                <!-- Miniaturas -->
-                {% if producto.galeria.all %}
-<div class="grid grid-cols-4 gap-3 image-gallery">
-    {% if producto.imagen_principal %}
-    <img src="{{ producto.imagen_principal.url }}" alt="Imagen 1" class="w-full h-20 object-cover rounded-lg border-2 border-gray-300 active" onclick="changeImage(this.src)" />
+        {% if producto.imagen_principal %}
+        <img id="main-image" src="{{ producto.imagen_principal.url }}" alt="{{ producto.nombre }}" class="w-full h-96 object-contain rounded-lg" />
+        {% else %}
+        <div class="w-full h-96 bg-gray-200 rounded-lg flex items-center justify-center">
+            <i class="fas fa-image text-gray-400 text-6xl"></i>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Miniaturas -->
+    {% if producto.galeria.all %}
+    <div class="grid grid-cols-4 gap-3 image-gallery">
+        {% if producto.imagen_principal %}
+        <img src="{{ producto.imagen_principal.url }}" alt="Imagen 1" class="w-full h-20 object-cover rounded-lg border-2 border-gray-300 active" onclick="changeImage(this.src)" />
+        {% endif %}
+        {% for imagen in producto.galeria.all %}
+        <img src="{{ imagen.imagen.url }}" alt="Imagen {{ forloop.counter }}" class="w-full h-20 object-cover rounded-lg border-2 border-gray-300" onclick="changeImage(this.src)" />
+        {% endfor %}
+    </div>
     {% endif %}
-    {% for imagen in producto.galeria.all %}
-    <img src="{{ imagen.imagen.url }}" alt="Imagen {{ forloop.counter }}" class="w-full h-20 object-cover rounded-lg border-2 border-gray-300" onclick="changeImage(this.src)" />
-    {% endfor %}
 </div>
-{% endif %}
-            </div>
 
             <!-- INFORMACIÓN DEL PRODUCTO -->
             <div class="bg-white rounded-lg shadow-lg p-8">
@@ -726,6 +851,152 @@ function buyNow(productId) {
             });
         });
     });
+    // ====================================
+// WISHLIST EN DETALLE DE PRODUCTO
+// ====================================
+
+function actualizarContadorWishlistEnHeader(totalItems) {
+    console.log('Actualizando contador wishlist a:', totalItems);
+    
+    const wishlistIcon = document.querySelector('a[href*="wishlist"] i.fa-heart');
+    
+    if (wishlistIcon) {
+        const wishlistLink = wishlistIcon.parentElement;
+        let badge = wishlistLink.querySelector('span.absolute');
+        
+        if (totalItems > 0) {
+            if (!badge) {
+                badge = document.createElement('span');
+                badge.className = 'absolute -top-1 -right-2 bg-red-500 text-white text-xs font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1';
+                wishlistLink.appendChild(badge);
+            }
+            badge.textContent = totalItems;
+            badge.style.display = 'flex';
+        } else {
+            if (badge) {
+                badge.remove();
+            }
+        }
+    }
+    
+    const mobileWishlistLinks = document.querySelectorAll('#mobile-menu a[href*="wishlist"]');
+    mobileWishlistLinks.forEach(link => {
+        let mobileBadge = link.querySelector('span.bg-red-500');
+        
+        if (totalItems > 0) {
+            if (!mobileBadge) {
+                mobileBadge = document.createElement('span');
+                mobileBadge.className = 'ml-2 bg-red-500 text-white text-xs font-bold rounded-full px-2 py-0.5';
+                link.appendChild(mobileBadge);
+            }
+            mobileBadge.textContent = totalItems;
+        } else {
+            if (mobileBadge) {
+                mobileBadge.remove();
+            }
+        }
+    });
+}
+
+function toggleWishlistDetail(event, productId) {
+    event.preventDefault();
+    event.stopPropagation();
+    
+    const btn = event.currentTarget;
+    const isActive = btn.classList.contains('active');
+    
+    if (isActive) {
+        removeFromWishlistDetail(btn, productId);
+    } else {
+        addToWishlistDetail(btn, productId);
+    }
+}
+
+function addToWishlistDetail(btn, productId) {
+    const csrftoken = getCookie('csrftoken');
+    
+    fetch(`/wishlist/add/${productId}/`, {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': csrftoken,
+            'Content-Type': 'application/json',
+        },
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            btn.classList.add('active');
+            btn.textContent = '♥';
+            alert('❤️ ' + data.message);
+            
+            if (data.total_items !== undefined) {
+                actualizarContadorWishlistEnHeader(data.total_items);
+            }
+        } else {
+            alert('ℹ️ ' + data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('❌ Error al agregar a wishlist');
+    });
+}
+
+function removeFromWishlistDetail(btn, productId) {
+    const csrftoken = getCookie('csrftoken');
+    
+    fetch(`/wishlist/remove/${productId}/`, {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': csrftoken,
+            'Content-Type': 'application/json',
+        },
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            btn.classList.remove('active');
+            btn.textContent = '♡';
+            alert('❤️ ' + data.message);
+            
+            if (data.total_items !== undefined) {
+                actualizarContadorWishlistEnHeader(data.total_items);
+            }
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('❌ Error al eliminar de wishlist');
+    });
+}
+
+function checkWishlistStatusDetail(btn, productId) {
+    const csrftoken = getCookie('csrftoken');
+    
+    fetch(`/wishlist/check/${productId}/`, {
+        method: 'GET',
+        headers: {
+            'X-CSRFToken': csrftoken,
+        },
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.in_wishlist) {
+            btn.classList.add('active');
+            btn.textContent = '♥';
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+// Cargar estado inicial del wishlist al cargar la página
+document.addEventListener('DOMContentLoaded', function() {
+    const wishlistBtn = document.querySelector('.wishlist-btn-detail');
+    if (wishlistBtn) {
+        const productId = wishlistBtn.dataset.productId;
+        checkWishlistStatusDetail(wishlistBtn, productId);
+    }
+});
 </script>
 </body>
 </html>

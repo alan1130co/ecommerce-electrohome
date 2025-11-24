@@ -13,8 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body class="bg-gray-50">
-    <!-- HEADER -->
-<header class="bg-blue-800 shadow-2xl border-b-4 border-blue-500 sticky top-0 z-50">
+   <header class="bg-blue-800 shadow-2xl border-b-4 border-blue-500 sticky top-0 z-50">
   <nav class="container mx-auto px-4 py-4">
     <div class="flex justify-between items-center gap-4">
       <!-- Logo -->
@@ -49,21 +48,34 @@
 
       <!-- Desktop Navigation -->
       <div class="hidden lg:flex space-x-6">
-        <a href="{% url 'product:home' %}" class="text-gray-50 hover:text-yellow-300">Inicio</a>
-        <a href="{% url 'product:products_list' %}" class="text-gray-50 hover:text-yellow-300">Productos</a>
+        <a href="{% url 'product:home' %}" class="text-yellow-400">Inicio</a>
+        <a href="{% url 'product:products_list' %}" class="text-gray-50 hover:text-yellow-300 ">productos</a>
         <a href="{% url 'product:contact' %}" class="text-gray-50 hover:text-yellow-300">Contacto</a>
       </div>
 
       <!-- User Menu & Cart -->
       <div class="flex items-center space-x-4">
-        <!-- Carrito -->
-        <a href="{% url 'product:cart' %}" class="relative text-white hover:text-yellow-300 transition">
-          <i class="fas fa-shopping-cart text-2xl"></i>
-          <span id="cart-counter" class="absolute -top-1 -right-2 bg-red-500 text-white text-xs font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">
-            {{ total_items|default:0 }}
-          </span>
-        </a>
+  <!-- User Menu & Cart -->
+<div class="flex items-center space-x-4">
+  <!-- ✅ Wishlist (Lista de Deseos) -->
+  {% if user.is_authenticated %}
+    <a href="{% url 'product:wishlist' %}" class="relative text-white hover:text-red-400 transition group">
+      <i class="fas fa-heart text-2xl group-hover:scale-110 transition-transform"></i>
+      {% if user.wishlist.total_items > 0 %}
+        <span class="absolute -top-1 -right-2 bg-red-500 text-white text-xs font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">
+          {{ user.wishlist.total_items }}
+        </span>
+      {% endif %}
+    </a>
+  {% endif %}
 
+  <!-- Carrito -->
+  <a href="{% url 'product:cart' %}" class="relative text-white hover:text-yellow-300 transition">
+    <i class="fas fa-shopping-cart text-2xl"></i>
+    <span id="cart-counter" class="absolute -top-1 -right-2 bg-red-500 text-white text-xs font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">
+      {{ cart_items_count|default:0 }}
+    </span>
+  </a>
         {% if user.is_authenticated %}
           <!-- Menú de Usuario con Dropdown -->
           <div class="relative">
@@ -74,7 +86,7 @@
               {{ user.first_name.0|default:user.username.0|upper }}{{ user.last_name.0|default:""|upper }}
             </button>
 
-            <!-- Dropdown Menu -->
+            <!-- Dropdown Menu (oculto por defecto) -->
             <div 
               id="user-dropdown"
               class="hidden absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-2xl z-50"
@@ -157,41 +169,53 @@
       </form>
     </div>
 
-    <!-- Mobile Menu -->
-    <div class="lg:hidden mt-4 pb-4 hidden" id="mobile-menu">
-      <div class="flex flex-col space-y-3">
-        <a href="{% url 'product:home' %}" class="text-gray-50 hover:text-yellow-300 py-2">
-          <i class="fas fa-home mr-2"></i>Inicio
-        </a>
-        <a href="#productos" class="text-gray-50 hover:text-yellow-300 py-2">
-          <i class="fas fa-tag mr-2"></i>Productos
-        </a>
-        <a href="#categorias" class="text-gray-50 hover:text-yellow-300 py-2">
-          <i class="fas fa-th-large mr-2"></i>Categorías
-        </a>
-        <a href="#contacto" class="text-gray-50 hover:text-yellow-300 py-2">
-          <i class="fas fa-envelope mr-2"></i>Contacto
-        </a>
-        
-        <hr class="border-blue-600">
+   <!-- Mobile Menu -->
+<div class="lg:hidden mt-4 pb-4 hidden" id="mobile-menu">
+  <div class="flex flex-col space-y-3">
+    <a href="{% url 'product:home' %}" class="text-gray-50 hover:text-yellow-300 py-2">
+      <i class="fas fa-home mr-2"></i>Inicio
+    </a>
+    <a href="{% url 'product:products_list' %}" class="text-gray-50 hover:text-yellow-300 py-2">
+      <i class="fas fa-tag mr-2"></i>Productos
+    </a>
+    <a href="#categorias" class="text-gray-50 hover:text-yellow-300 py-2">
+      <i class="fas fa-th-large mr-2"></i>Categorías
+    </a>
+    <a href="#contacto" class="text-gray-50 hover:text-yellow-300 py-2">
+      <i class="fas fa-envelope mr-2"></i>Contacto
+    </a>
+    
+    <hr class="border-blue-600">
 
-        {% if user.is_authenticated %}
-          <a href="{% url 'user:profile' %}" class="flex items-center text-white hover:text-yellow-300 py-2">
-            <i class="fas fa-user mr-3"></i>Mi Perfil
-          </a>
-          <a href="{% url 'order:order_list' %}" class="flex items-center text-white hover:text-yellow-300 py-2">
-            <i class="fas fa-shopping-bag mr-3"></i>Mis Pedidos
-          </a>
-          <a href="{% url 'user:logout' %}" class="flex items-center text-red-300 hover:text-red-100 py-2">
-            <i class="fas fa-sign-out-alt mr-3"></i>Cerrar Sesión
-          </a>
-        {% else %}
-          <a href="{% url 'user:login' %}" class="flex items-center text-white hover:text-yellow-300 py-2">
-            <i class="fas fa-sign-in-alt mr-3"></i>Ingresar
-          </a>
+    {% if user.is_authenticated %}
+      <a href="{% url 'user:profile' %}" class="flex items-center text-white hover:text-yellow-300 py-2">
+        <i class="fas fa-user mr-3"></i>Mi Perfil
+      </a>
+      
+      <!-- ✅ Wishlist en menú móvil -->
+      <a href="{% url 'product:wishlist' %}" class="flex items-center text-white hover:text-red-300 py-2">
+        <i class="fas fa-heart mr-3"></i>Mi Lista de Deseos
+        {% if user.wishlist.total_items > 0 %}
+          <span class="ml-2 bg-red-500 text-white text-xs font-bold rounded-full px-2 py-0.5">
+            {{ user.wishlist.total_items }}
+          </span>
         {% endif %}
-      </div>
-    </div>
+      </a>
+      
+      <a href="{% url 'order:order_list' %}" class="flex items-center text-white hover:text-yellow-300 py-2">
+        <i class="fas fa-shopping-bag mr-3"></i>Mis Pedidos
+      </a>
+      
+      <a href="{% url 'user:logout' %}" class="flex items-center text-red-300 hover:text-red-100 py-2">
+        <i class="fas fa-sign-out-alt mr-3"></i>Cerrar Sesión
+      </a>
+    {% else %}
+      <a href="{% url 'user:login' %}" class="flex items-center text-white hover:text-yellow-300 py-2">
+        <i class="fas fa-sign-in-alt mr-3"></i>Ingresar
+      </a>
+    {% endif %}
+  </div>
+</div>
   </nav>
 </header>
 
@@ -347,34 +371,77 @@
             </div>
         </div>
 
-        <!-- RECOMENDACIONES -->
-        {% if recommendations %}
-        <section class="mt-16">
-            <h2 class="text-3xl font-bold text-blue-800 mb-6">También te puede interesar</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                {% for producto in recommendations %}
-                <div class="bg-white rounded-lg shadow-md hover:shadow-xl transition overflow-hidden">
-                    <div class="relative h-48">
-                        {% if producto.imagen_principal %}
-                        <img src="{{ producto.imagen_principal.url }}" alt="{{ producto.nombre }}" class="w-full h-full object-cover" />
-                        {% else %}
-                        <div class="w-full h-full bg-gray-200 flex items-center justify-center">
-                            <i class="fas fa-image text-gray-400 text-4xl"></i>
-                        </div>
-                        {% endif %}
-                    </div>
-                    <div class="p-4">
-                        <h3 class="font-bold text-blue-700 mb-2">{{ producto.nombre }}</h3>
-                        <p class="text-2xl font-bold text-blue-600 mb-3">${{ producto.precio|formato_precio }}</p>
-                        <button onclick="addToCart({{ producto.id }})" class="w-full bg-yellow-500 text-white py-2 rounded-lg hover:bg-yellow-600 transition">
-                            Agregar al Carrito
-                        </button>
-                    </div>
+       <!-- RECOMENDACIONES -->
+{% if recommendations %}
+<section class="mt-16">
+    <h2 class="text-3xl font-bold text-blue-800 mb-6">También te puede interesar</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {% for producto in recommendations %}
+        <div class="bg-white rounded-lg shadow-md hover:shadow-xl transition overflow-hidden flex flex-col h-full">
+            <!-- Contenedor de imagen con altura fija -->
+            <div class="relative bg-gray-50 flex items-center justify-center" style="height: 280px;">
+                {% if producto.imagen_principal %}
+                <img 
+                    src="{{ producto.imagen_principal.url }}" 
+                    alt="{{ producto.nombre }}" 
+                    class="w-full h-full object-contain p-4" 
+                />
+                {% else %}
+                <div class="w-full h-full flex items-center justify-center">
+                    <i class="fas fa-image text-gray-400 text-6xl"></i>
                 </div>
-                {% endfor %}
+                {% endif %}
             </div>
-        </section>
-        {% endif %}
+            
+            <!-- Contenido con flex-grow para empujar los botones al fondo -->
+            <div class="p-4 flex flex-col flex-grow">
+                <!-- Título del producto -->
+                <h3 class="font-bold text-blue-700 mb-2 line-clamp-2 min-h-[3rem]">
+                    {{ producto.nombre|truncatewords:10 }}
+                </h3>
+                
+                <!-- Precio -->
+                <p class="text-2xl font-bold text-blue-600 mb-4">
+                    ${{ producto.precio|formato_precio }}
+                </p>
+                
+                <!-- Espaciador para empujar el botón al fondo -->
+                <div class="mt-auto">
+                    <button 
+                        onclick="addToCart({{ producto.id }})" 
+                        class="w-full bg-yellow-500 text-white py-2 rounded-lg hover:bg-yellow-600 transition font-semibold"
+                    >
+                        Agregar al Carrito
+                    </button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+
+<style>
+/* Asegurar que las tarjetas tengan la misma altura */
+.line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Asegurar que las imágenes mantengan su aspecto sin recortarse */
+.object-contain {
+    object-fit: contain !important;
+}
+
+/* Mejorar el hover de las tarjetas */
+.hover\:shadow-xl:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    transform: translateY(-2px);
+}
+</style>
 
         {% else %}
         <!-- CARRITO VACÍO -->

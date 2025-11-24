@@ -13,8 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body class="bg-gray-50">
-    <!-- HEADER / NAVEGACIÓN -->
-    <header class="bg-blue-800 shadow-2xl border-b-4 border-blue-500 sticky top-0 z-50">
+     <header class="bg-blue-800 shadow-2xl border-b-4 border-blue-500 sticky top-0 z-50">
   <nav class="container mx-auto px-4 py-4">
     <div class="flex justify-between items-center gap-4">
       <!-- Logo -->
@@ -49,20 +48,34 @@
 
       <!-- Desktop Navigation -->
       <div class="hidden lg:flex space-x-6">
-        <a href="{% url 'product:home' %}" class="text-gray-50 hover:text-yellow-300">Inicio</a>
-        <a href="#productos" class="text-gray-50 hover:text-yellow-300">Productos</a>
-        <a href="#contacto" class="text-gray-50 hover:text-yellow-300">Contacto</a>
+        <a href="{% url 'product:home' %}" class="text-yellow-400">Inicio</a>
+        <a href="{% url 'product:products_list' %}" class="text-gray-50 hover:text-yellow-300 ">productos</a>
+        <a href="{% url 'product:contact' %}" class="text-gray-50 hover:text-yellow-300">Contacto</a>
       </div>
 
       <!-- User Menu & Cart -->
       <div class="flex items-center space-x-4">
-        <!-- Carrito -->
-<a href="{% url 'product:cart' %}" class="relative text-white hover:text-yellow-300 transition">
-  <i class="fas fa-shopping-cart text-2xl"></i>
-  <span id="cart-counter" class="absolute -top-1 -right-2 bg-red-500 text-white text-xs font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">
-    {{ cart_items_count|default:0 }}
-  </span>
-</a>
+  <!-- User Menu & Cart -->
+<div class="flex items-center space-x-4">
+  <!-- ✅ Wishlist (Lista de Deseos) -->
+  {% if user.is_authenticated %}
+    <a href="{% url 'product:wishlist' %}" class="relative text-white hover:text-red-400 transition group">
+      <i class="fas fa-heart text-2xl group-hover:scale-110 transition-transform"></i>
+      {% if user.wishlist.total_items > 0 %}
+        <span class="absolute -top-1 -right-2 bg-red-500 text-white text-xs font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">
+          {{ user.wishlist.total_items }}
+        </span>
+      {% endif %}
+    </a>
+  {% endif %}
+
+  <!-- Carrito -->
+  <a href="{% url 'product:cart' %}" class="relative text-white hover:text-yellow-300 transition">
+    <i class="fas fa-shopping-cart text-2xl"></i>
+    <span id="cart-counter" class="absolute -top-1 -right-2 bg-red-500 text-white text-xs font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">
+      {{ cart_items_count|default:0 }}
+    </span>
+  </a>
         {% if user.is_authenticated %}
           <!-- Menú de Usuario con Dropdown -->
           <div class="relative">
@@ -156,43 +169,85 @@
       </form>
     </div>
 
-    <!-- Mobile Menu -->
-    <div class="lg:hidden mt-4 pb-4 hidden" id="mobile-menu">
-      <div class="flex flex-col space-y-3">
-        <a href="{% url 'product:home' %}" class="text-gray-50 hover:text-yellow-300 py-2">
-          <i class="fas fa-home mr-2"></i>Inicio
-        </a>
-        <a href="#productos" class="text-gray-50 hover:text-yellow-300 py-2">
-          <i class="fas fa-tag mr-2"></i>Productos
-        </a>
-        <a href="#categorias" class="text-gray-50 hover:text-yellow-300 py-2">
-          <i class="fas fa-th-large mr-2"></i>Categorías
-        </a>
-        <a href="#contacto" class="text-gray-50 hover:text-yellow-300 py-2">
-          <i class="fas fa-envelope mr-2"></i>Contacto
-        </a>
-        
-        <hr class="border-blue-600">
+   <!-- Mobile Menu -->
+<div class="lg:hidden mt-4 pb-4 hidden" id="mobile-menu">
+  <div class="flex flex-col space-y-3">
+    <a href="{% url 'product:home' %}" class="text-gray-50 hover:text-yellow-300 py-2">
+      <i class="fas fa-home mr-2"></i>Inicio
+    </a>
+    <a href="{% url 'product:products_list' %}" class="text-gray-50 hover:text-yellow-300 py-2">
+      <i class="fas fa-tag mr-2"></i>Productos
+    </a>
+    <a href="#categorias" class="text-gray-50 hover:text-yellow-300 py-2">
+      <i class="fas fa-th-large mr-2"></i>Categorías
+    </a>
+    <a href="#contacto" class="text-gray-50 hover:text-yellow-300 py-2">
+      <i class="fas fa-envelope mr-2"></i>Contacto
+    </a>
+    
+    <hr class="border-blue-600">
 
-        {% if user.is_authenticated %}
-          <a href="{% url 'user:profile' %}" class="flex items-center text-white hover:text-yellow-300 py-2">
-            <i class="fas fa-user mr-3"></i>Mi Perfil
-          </a>
-          <a href="{% url 'order:order_list' %}" class="flex items-center text-white hover:text-yellow-300 py-2">
-            <i class="fas fa-shopping-bag mr-3"></i>Mis Pedidos
-          </a>
-          <a href="{% url 'user:logout' %}" class="flex items-center text-red-300 hover:text-red-100 py-2">
-            <i class="fas fa-sign-out-alt mr-3"></i>Cerrar Sesión
-          </a>
-        {% else %}
-          <a href="{% url 'user:login' %}" class="flex items-center text-white hover:text-yellow-300 py-2">
-            <i class="fas fa-sign-in-alt mr-3"></i>Ingresar
-          </a>
+    {% if user.is_authenticated %}
+      <a href="{% url 'user:profile' %}" class="flex items-center text-white hover:text-yellow-300 py-2">
+        <i class="fas fa-user mr-3"></i>Mi Perfil
+      </a>
+      
+      <!-- ✅ Wishlist en menú móvil -->
+      <a href="{% url 'product:wishlist' %}" class="flex items-center text-white hover:text-red-300 py-2">
+        <i class="fas fa-heart mr-3"></i>Mi Lista de Deseos
+        {% if user.wishlist.total_items > 0 %}
+          <span class="ml-2 bg-red-500 text-white text-xs font-bold rounded-full px-2 py-0.5">
+            {{ user.wishlist.total_items }}
+          </span>
         {% endif %}
-      </div>
-    </div>
+      </a>
+      
+      <a href="{% url 'order:order_list' %}" class="flex items-center text-white hover:text-yellow-300 py-2">
+        <i class="fas fa-shopping-bag mr-3"></i>Mis Pedidos
+      </a>
+      
+      <a href="{% url 'user:logout' %}" class="flex items-center text-red-300 hover:text-red-100 py-2">
+        <i class="fas fa-sign-out-alt mr-3"></i>Cerrar Sesión
+      </a>
+    {% else %}
+      <a href="{% url 'user:login' %}" class="flex items-center text-white hover:text-yellow-300 py-2">
+        <i class="fas fa-sign-in-alt mr-3"></i>Ingresar
+      </a>
+    {% endif %}
+  </div>
+</div>
   </nav>
 </header>
+
+<script>
+  // Toggle dropdown del usuario
+  const userMenuBtn = document.getElementById('user-menu-btn');
+  const userDropdown = document.getElementById('user-dropdown');
+
+  if (userMenuBtn && userDropdown) {
+    userMenuBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      userDropdown.classList.toggle('hidden');
+    });
+
+    // Cerrar dropdown al hacer click fuera
+    document.addEventListener('click', function(e) {
+      if (!userMenuBtn.contains(e.target) && !userDropdown.contains(e.target)) {
+        userDropdown.classList.add('hidden');
+      }
+    });
+  }
+
+  // Toggle menú mobile
+  const mobileMenuBtn = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  if (mobileMenuBtn && mobileMenu) {
+    mobileMenuBtn.addEventListener('click', function() {
+      mobileMenu.classList.toggle('hidden');
+    });
+  }
+</script>
     <!-- MAIN CONTENT -->
     <main class="container mx-auto px-4 py-12">
         <div class="max-w-6xl mx-auto">
@@ -216,150 +271,268 @@
                         {% csrf_token %}
                         
                         <!-- Información de Contacto -->
-                        <div class="bg-white rounded-lg shadow-md p-6">
-                            <h2 class="text-2xl font-bold text-blue-800 mb-4">
-                                <i class="fas fa-user"></i> Información de Contacto
-                            </h2>
-                            
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-gray-700 font-semibold mb-2">
-                                        Email <span class="text-red-500">*</span>
-                                    </label>
-                                    <input 
-                                        type="email" 
-                                        name="email" 
-                                        value="{{ user.email }}"
-                                        required
-                                        class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none"
-                                        placeholder="tu@email.com"
-                                    />
-                                </div>
-                                
-                                <div>
-                                    <label class="block text-gray-700 font-semibold mb-2">
-                                        Teléfono <span class="text-red-500">*</span>
-                                    </label>
-                                    <input 
-                                        type="tel" 
-                                        name="phone" 
-                                        required
-                                        class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none"
-                                        placeholder="3001234567"
-                                    />
-                                </div>
-                            </div>
-                        </div>
+<div class="bg-white rounded-lg shadow-md p-6">
+    <h2 class="text-2xl font-bold text-blue-800 mb-4">
+        <i class="fas fa-user"></i> Información de Contacto
+    </h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+            <label class="block text-gray-700 font-semibold mb-2">
+                Email <span class="text-red-500">*</span>
+            </label>
+            <input 
+                type="email" 
+                name="email" 
+                value="{{ user.email }}"
+                required
+                autocomplete="off"
+                autocorrect="off"
+                autocapitalize="off"
+                spellcheck="false"
+                class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none"
+                placeholder="tu@email.com"
+            />
+        </div>
+        
+        <div>
+            <label class="block text-gray-700 font-semibold mb-2">
+                Teléfono <span class="text-red-500">*</span>
+            </label>
+            <input 
+                type="tel" 
+                name="phone" 
+                value="{{ user.telefono|default:'' }}"
+                required
+                autocomplete="off"
+                autocorrect="off"
+                autocapitalize="off"
+                spellcheck="false"
+                class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none"
+                placeholder="3001234567"
+            />
+        </div>
+    </div>
+</div>
 
-                        <!-- Dirección de Envío -->
-                        <div class="bg-white rounded-lg shadow-md p-6">
-                            <h2 class="text-2xl font-bold text-blue-800 mb-4">
-                                <i class="fas fa-map-marker-alt"></i> Dirección de Envío
-                            </h2>
-                            
-                            <div class="space-y-4">
-                                <div>
-                                    <label class="block text-gray-700 font-semibold mb-2">
-                                        Dirección Completa <span class="text-red-500">*</span>
-                                    </label>
-                                    <input 
-                                        type="text" 
-                                        name="shipping_address" 
-                                        required
-                                        class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none"
-                                        placeholder="Calle 123 #45-67, Apto 890"
-                                    />
-                                </div>
-                                
-                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                    <div>
-                                        <label class="block text-gray-700 font-semibold mb-2">
-                                            Ciudad <span class="text-red-500">*</span>
-                                        </label>
-                                        <input 
-                                            type="text" 
-                                            name="shipping_city" 
-                                            required
-                                            class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none"
-                                            placeholder="Bogotá"
-                                        />
-                                    </div>
-                                    
-                                    <div>
-                                        <label class="block text-gray-700 font-semibold mb-2">
-                                            Departamento <span class="text-red-500">*</span>
-                                        </label>
-                                        <input 
-                                            type="text" 
-                                            name="shipping_department" 
-                                            required
-                                            class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none"
-                                            placeholder="Cundinamarca"
-                                        />
-                                    </div>
-                                    
-                                    <div>
-                                        <label class="block text-gray-700 font-semibold mb-2">
-                                            Código Postal
-                                        </label>
-                                        <input 
-                                            type="text" 
-                                            name="shipping_postal_code" 
-                                            class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none"
-                                            placeholder="110111"
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+<!-- Dirección de Envío -->
+<div class="bg-white rounded-lg shadow-md p-6">
+    <h2 class="text-2xl font-bold text-blue-800 mb-4">
+        <i class="fas fa-map-marker-alt"></i> Dirección de Envío
+    </h2>
+    
+    <div class="space-y-4">
+        <div>
+            <label class="block text-gray-700 font-semibold mb-2">
+                Dirección Completa <span class="text-red-500">*</span>
+            </label>
+            <input 
+                type="text" 
+                name="shipping_address" 
+                value="{{ user.direccion|default:'' }}"
+                required
+                autocomplete="off"
+                autocorrect="off"
+                autocapitalize="off"
+                spellcheck="false"
+                class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none"
+                placeholder="Calle 123 #45-67, Apto 890"
+            />
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+                <label class="block text-gray-700 font-semibold mb-2">
+                    Departamento <span class="text-red-500">*</span>
+                </label>
+                <select 
+                    name="shipping_department" 
+                    id="department-select"
+                    required
+                    autocomplete="off"
+                    class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none bg-white"
+                >
+                    <option value="">Seleccione un departamento</option>
+                </select>
+            </div>
+            
+            <div>
+                <label class="block text-gray-700 font-semibold mb-2">
+                    Ciudad/Municipio <span class="text-red-500">*</span>
+                </label>
+                <select 
+                    name="shipping_city" 
+                    id="city-select"
+                    required
+                    disabled
+                    autocomplete="off"
+                    class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none bg-white disabled:bg-gray-100 disabled:cursor-not-allowed"
+                >
+                    <option value="">Primero seleccione un departamento</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// ========== DATOS DE DEPARTAMENTOS Y MUNICIPIOS DE COLOMBIA ==========
+const colombiaData = {
+    "Amazonas": ["Leticia", "Puerto Nariño"],
+    "Antioquia": ["Medellín", "Bello", "Itagüí", "Envigado", "Apartadó", "Turbo", "Rionegro", "Caucasia", "Sabaneta", "La Estrella", "Caldas", "Copacabana"],
+    "Arauca": ["Arauca", "Arauquita", "Saravena", "Tame", "Fortul"],
+    "Atlántico": ["Barranquilla", "Soledad", "Malambo", "Sabanalarga", "Puerto Colombia", "Galapa", "Baranoa"],
+    "Bolívar": ["Cartagena", "Magangué", "Turbaco", "Arjona", "El Carmen de Bolívar", "Mompós", "Simití"],
+    "Boyacá": ["Tunja", "Duitama", "Sogamoso", "Chiquinquirá", "Paipa", "Villa de Leyva", "Moniquirá"],
+    "Caldas": ["Manizales", "Villamaría", "Chinchiná", "La Dorada", "Riosucio", "Aguadas", "Anserma"],
+    "Caquetá": ["Florencia", "San Vicente del Caguán", "Puerto Rico", "El Doncello", "El Paujil"],
+    "Casanare": ["Yopal", "Aguazul", "Villanueva", "Monterrey", "Tauramena", "Maní"],
+    "Cauca": ["Popayán", "Santander de Quilichao", "Puerto Tejada", "Patía", "Guachené", "Corinto"],
+    "Cesar": ["Valledupar", "Aguachica", "Bosconia", "Chiriguaná", "La Jagua de Ibirico", "Codazzi"],
+    "Chocó": ["Quibdó", "Istmina", "Condoto", "Tadó", "Acandí", "Bahía Solano"],
+    "Córdoba": ["Montería", "Cereté", "Lorica", "Sahagún", "Planeta Rica", "Montelíbano"],
+    "Cundinamarca": ["Bogotá", "Soacha", "Facatativá", "Zipaquirá", "Chía", "Fusagasugá", "Madrid", "Mosquera", "Cajicá", "Funza", "Girardot"],
+    "Guainía": ["Inírida"],
+    "Guaviare": ["San José del Guaviare"],
+    "Huila": ["Neiva", "Pitalito", "Garzón", "La Plata", "Campoalegre", "Algeciras"],
+    "La Guajira": ["Riohacha", "Maicao", "Uribia", "Manaure", "Albania", "Fonseca"],
+    "Magdalena": ["Santa Marta", "Ciénaga", "Fundación", "Zona Bananera", "Plato", "El Banco"],
+    "Meta": ["Villavicencio", "Acacías", "Granada", "Puerto López", "San Martín", "Cumaral"],
+    "Nariño": ["Pasto", "Tumaco", "Ipiales", "Túquerres", "Barbacoas", "La Unión"],
+    "Norte de Santander": ["Cúcuta", "Ocaña", "Pamplona", "Villa del Rosario", "Los Patios", "Tibú"],
+    "Putumayo": ["Mocoa", "Puerto Asís", "Orito", "Valle del Guamuez", "Villagarzón"],
+    "Quindío": ["Armenia", "Calarcá", "Montenegro", "La Tebaida", "Quimbaya", "Circasia"],
+    "Risaralda": ["Pereira", "Dosquebradas", "Santa Rosa de Cabal", "La Virginia", "Belén de Umbría"],
+    "San Andrés y Providencia": ["San Andrés", "Providencia"],
+    "Santander": ["Bucaramanga", "Floridablanca", "Girón", "Piedecuesta", "Barrancabermeja", "San Gil"],
+    "Sucre": ["Sincelejo", "Corozal", "Sampués", "San Marcos", "Tolú", "Coveñas"],
+    "Tolima": ["Ibagué", "Espinal", "Melgar", "Honda", "Chaparral", "Líbano"],
+    "Valle del Cauca": ["Cali", "Palmira", "Buenaventura", "Tuluá", "Cartago", "Buga", "Jamundí", "Yumbo"],
+    "Vaupés": ["Mitú"],
+    "Vichada": ["Puerto Carreño"]
+};
+
+// ========== POBLAR SELECT DE DEPARTAMENTOS ==========
+document.addEventListener('DOMContentLoaded', function() {
+    const departmentSelect = document.getElementById('department-select');
+    const citySelect = document.getElementById('city-select');
+    
+    // Ordenar departamentos alfabéticamente
+    const sortedDepartments = Object.keys(colombiaData).sort();
+    
+    // Llenar el select de departamentos
+    sortedDepartments.forEach(department => {
+        const option = document.createElement('option');
+        option.value = department;
+        option.textContent = department;
+        departmentSelect.appendChild(option);
+    });
+    
+    // ========== EVENTO CHANGE DEPARTAMENTO ==========
+    departmentSelect.addEventListener('change', function() {
+        const selectedDepartment = this.value;
+        
+        // Limpiar ciudades anteriores
+        citySelect.innerHTML = '<option value="">Seleccione una ciudad</option>';
+        
+        if (selectedDepartment && colombiaData[selectedDepartment]) {
+            // Habilitar select de ciudades
+            citySelect.disabled = false;
+            
+            // Ordenar ciudades alfabéticamente
+            const cities = colombiaData[selectedDepartment].sort();
+            
+            // Agregar las ciudades del departamento seleccionado
+            cities.forEach(city => {
+                const option = document.createElement('option');
+                option.value = city;
+                option.textContent = city;
+                citySelect.appendChild(option);
+            });
+        } else {
+            // Deshabilitar select de ciudades si no hay departamento
+            citySelect.disabled = true;
+            citySelect.innerHTML = '<option value="">Primero seleccione un departamento</option>';
+        }
+    });
+});
+</script>
 
                         <!-- Método de Pago -->
-                        <div class="bg-white rounded-lg shadow-md p-6">
-                            <h2 class="text-2xl font-bold text-blue-800 mb-4">
-                                <i class="fas fa-wallet"></i> Método de Pago
-                            </h2>
-                            
-                            <div class="space-y-3">
-                                <label class="flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:bg-blue-50 transition">
-                                    <input type="radio" name="payment_method" value="credit_card" checked class="mr-3 w-5 h-5" />
-                                    <i class="fas fa-credit-card text-blue-600 mr-3 text-xl"></i>
-                                    <span class="font-semibold">Tarjeta de Crédito</span>
-                                </label>
-                                
-                                <label class="flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:bg-blue-50 transition">
-                                    <input type="radio" name="payment_method" value="debit_card" class="mr-3 w-5 h-5" />
-                                    <i class="fas fa-credit-card text-green-600 mr-3 text-xl"></i>
-                                    <span class="font-semibold">Tarjeta de Débito</span>
-                                </label>
-                                
-                                <label class="flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:bg-blue-50 transition">
-                                    <input type="radio" name="payment_method" value="pse" class="mr-3 w-5 h-5" />
-                                    <i class="fas fa-university text-purple-600 mr-3 text-xl"></i>
-                                    <span class="font-semibold">PSE</span>
-                                </label>
-                                
-                                <label class="flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:bg-blue-50 transition">
-                                    <input type="radio" name="payment_method" value="cash" class="mr-3 w-5 h-5" />
-                                    <i class="fas fa-money-bill-wave text-green-600 mr-3 text-xl"></i>
-                                    <span class="font-semibold">Efectivo Contraentrega</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <!-- Notas Adicionales -->
-                        <div class="bg-white rounded-lg shadow-md p-6">
-                            <h2 class="text-2xl font-bold text-blue-800 mb-4">
-                                <i class="fas fa-comment"></i> Notas Adicionales (Opcional)
-                            </h2>
-                            <textarea 
-                                name="notes" 
-                                rows="3"
-                                class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none"
-                                placeholder="Información adicional sobre tu pedido..."
-                            ></textarea>
-                        </div>
-                    </form>
+<div class="bg-white rounded-lg shadow-md p-6">
+    <h2 class="text-2xl font-bold text-blue-800 mb-4">
+        <i class="fas fa-wallet"></i> Método de Pago
+    </h2>
+    
+    <!-- Mensaje informativo -->
+    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-4">
+        <div class="flex">
+            <div class="flex-shrink-0">
+                <i class="fas fa-info-circle text-blue-500 text-xl"></i>
+            </div>
+            <div class="ml-3">
+                <p class="text-sm text-blue-700">
+                    <strong>Por el momento solo aceptamos:</strong>
+                </p>
+                <p class="text-sm text-blue-600 mt-1">
+                    💵 Pago en efectivo al momento de la entrega
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Solo opción de efectivo -->
+    <div class="space-y-3">
+        <label class="flex items-center p-4 border-2 border-green-500 bg-green-50 rounded-lg cursor-pointer">
+            <input type="radio" name="payment_method" value="cash" checked required class="mr-3 w-5 h-5" />
+            <i class="fas fa-money-bill-wave text-green-600 mr-3 text-xl"></i>
+            <div class="flex-grow">
+                <span class="font-semibold text-gray-800">Efectivo Contraentrega</span>
+                <p class="text-sm text-gray-600 mt-1">Paga en efectivo cuando recibas tu pedido</p>
+            </div>
+        </label>
+        
+        <!-- Opciones deshabilitadas temporalmente -->
+        <div class="opacity-50">
+            <label class="flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-not-allowed bg-gray-50">
+                <input type="radio" name="payment_method_disabled" disabled class="mr-3 w-5 h-5" />
+                <i class="fas fa-credit-card text-gray-400 mr-3 text-xl"></i>
+                <div class="flex-grow">
+                    <span class="font-semibold text-gray-500">Tarjeta de Crédito/Débito</span>
+                    <p class="text-sm text-gray-500 mt-1">
+                        <i class="fas fa-clock mr-1"></i>Próximamente disponible
+                    </p>
                 </div>
+            </label>
+        </div>
+        
+        <div class="opacity-50">
+            <label class="flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-not-allowed bg-gray-50">
+                <input type="radio" name="payment_method_disabled" disabled class="mr-3 w-5 h-5" />
+                <i class="fas fa-university text-gray-400 mr-3 text-xl"></i>
+                <div class="flex-grow">
+                    <span class="font-semibold text-gray-500">PSE</span>
+                    <p class="text-sm text-gray-500 mt-1">
+                        <i class="fas fa-clock mr-1"></i>Próximamente disponible
+                    </p>
+                </div>
+            </label>
+        </div>
+    </div>
+    
+    <!-- Información adicional -->
+    <div class="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+        <h4 class="font-semibold text-yellow-800 mb-2">
+            <i class="fas fa-hand-holding-usd mr-2"></i>Instrucciones de pago:
+        </h4>
+        <ul class="text-sm text-yellow-700 space-y-1 ml-6">
+            <li>• Prepara el monto exacto en efectivo</li>
+            <li>• El pago se realiza al recibir tu pedido</li>
+            <li>• Recibirás un comprobante de entrega</li>
+            <li>• Revisa tu pedido antes de pagar</li>
+        </ul>
+    </div>
+</div>
 
                 <!-- RESUMEN DEL PEDIDO -->
                 <div class="lg:col-span-1">

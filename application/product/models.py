@@ -199,17 +199,7 @@ class ProductRating(models.Model):
         return f"{self.user.username} - {self.product.nombre} - {self.rating}★"
 
 
-class Wishlist(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    product = models.ForeignKey(Producto, on_delete=models.CASCADE)
-    added_at = models.DateTimeField(auto_now_add=True)
-    
-    class Meta:
-        unique_together = ('user', 'product')
-        ordering = ['-added_at']
-    
-    def __str__(self):
-        return f"{self.user.username} - {self.product.nombre}"
+
 
 
 class UserRecommendation(models.Model):
@@ -307,5 +297,50 @@ class CartItem(models.Model):
         if self.quantity > self.product.stock:
             raise ValueError(f"Stock insuficiente. Solo hay {self.product.stock} disponibles")
         super().save(*args, **kwargs)
+        
+# ===== LISTA DE DESEOS =====
+class Wishlist(models.Model):
+    """Lista de deseos del usuario"""
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='wishlist'
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        verbose_name = 'Lista de Deseos'
+        verbose_name_plural = 'Listas de Deseos'
+    
+    def __str__(self):
+        return f"Wishlist de {self.user.email}"
+    
+    @property
+    def total_items(self):
+        return self.items.count()
+
+
+class WishlistItem(models.Model):
+    """Items en la lista de deseos"""
+    wishlist = models.ForeignKey(
+        Wishlist,
+        on_delete=models.CASCADE,
+        related_name='items'
+    )
+    product = models.ForeignKey(
+        Producto,
+        on_delete=models.CASCADE
+    )
+    added_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        verbose_name = 'Item de Lista de Deseos'
+        verbose_name_plural = 'Items de Lista de Deseos'
+        unique_together = ('wishlist', 'product')  # Evitar duplicados
+        ordering = ['-added_at']
+    
+    def __str__(self):
+        return f"{self.product.nombre} - {self.wishlist.user.email}"
 
 

@@ -90,6 +90,12 @@ def process_checkout(request):
         # Crear la orden
         order = OrderService.create_order_from_cart(request.user, cart, order_data)
         
+        if order.payment_status == 'approved':
+            order.status = 'processing'
+            order.save()
+        
+        
+        
         # ===== ENVIAR EMAIL DE CONFIRMACIÓN =====
         try:
             subject = f'Confirmación de Pedido #{order.order_number} - ElectroHome'

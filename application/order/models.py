@@ -23,7 +23,16 @@ class Order(models.Model):
         ('credit_card', 'Tarjeta de Crédito'),
         ('debit_card', 'Tarjeta de Débito'),
         ('pse', 'PSE'),
+        ('nequi', 'Nequi'),
+        ('bancolombia', 'Bancolombia Transfer'),
         ('cash', 'Efectivo Contraentrega'),
+    ]
+    
+    PAYMENT_STATUS_CHOICES = [
+        ('pending', 'Pendiente'),
+        ('approved', 'Aprobado'),
+        ('declined', 'Rechazado'),
+        ('error', 'Error'),
     ]
     
     # Validador para el teléfono
@@ -60,6 +69,32 @@ class Order(models.Model):
         choices=PAYMENT_METHOD_CHOICES,
         default='credit_card'
     )
+    payment_status = models.CharField(
+        max_length=20,
+        choices=PAYMENT_STATUS_CHOICES,
+        default='pending',
+        verbose_name='Estado del pago'
+    )
+    
+    # ===== CAMPOS DE WOMPI =====
+    wompi_transaction_id = models.CharField(
+        max_length=100, 
+        blank=True, 
+        null=True,
+        verbose_name='ID de transacción Wompi'
+    )
+    wompi_reference = models.CharField(
+        max_length=100,
+        blank=True,
+        null=True,
+        verbose_name='Referencia de pago Wompi'
+    )
+    wompi_payment_link = models.URLField(
+        blank=True,
+        null=True,
+        verbose_name='Link de pago Wompi'
+    )
+    # ===== FIN CAMPOS WOMPI =====
     
     # Montos
     subtotal = models.DecimalField(max_digits=10, decimal_places=2)

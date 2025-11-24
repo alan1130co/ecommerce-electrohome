@@ -4,7 +4,7 @@ from django.db.models import Count, Avg
 from .models import (
     Categoria, Producto, ImagenProducto, 
     ProductView, SearchQuery, CartInteraction, 
-    Purchase, ProductRating, Wishlist, UserRecommendation
+    Purchase, ProductRating, Wishlist, WishlistItem, UserRecommendation
 )
 
 
@@ -201,18 +201,47 @@ class ProductRatingAdmin(admin.ModelAdmin):
     tiene_resena.short_description = 'Reseña'
 
 
-# ========== WISHLIST Y RECOMENDACIONES ==========
+# ========== WISHLIST ==========
+
+class WishlistItemInline(admin.TabularInline):
+    """Inline para items de wishlist"""
+    model = WishlistItem
+    extra = 0
+    readonly_fields = ('added_at',)
+    raw_id_fields = ('product',)
+    can_delete = True
+
 
 @admin.register(Wishlist)
 class WishlistAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user', 'product', 'added_at', 'precio_producto', 'disponibilidad')
+    """Admin para Wishlist"""
+    list_display = ('id', 'user', 'get_total_items', 'created_at', 'updated_at')
+    search_fields = ('user__email', 'user__first_name', 'user__last_name')
+    list_filter = ('created_at', 'updated_at')
+    readonly_fields = ('created_at', 'updated_at')
+    inlines = [WishlistItemInline]
+    
+    def get_total_items(self, obj):
+        return obj.total_items
+    get_total_items.short_description = 'Total Items'
+
+
+@admin.register(WishlistItem)
+class WishlistItemAdmin(admin.ModelAdmin):
+    """Admin para items de wishlist"""
+    list_display = ('id', 'get_user', 'product', 'precio_producto', 'disponibilidad', 'added_at')
+    search_fields = ('wishlist__user__email', 'product__nombre')
     list_filter = ('added_at', 'product__categoria', 'product__activo')
-    search_fields = ('user__username', 'user__email', 'product__nombre')
-    date_hierarchy = 'added_at'
     readonly_fields = ('added_at',)
+    raw_id_fields = ('wishlist', 'product')
+    date_hierarchy = 'added_at'
+    
+    def get_user(self, obj):
+        return format_html('<strong>{}</strong>', obj.wishlist.user.email)
+    get_user.short_description = 'Usuario'
     
     def precio_producto(self, obj):
-        return format_html('<strong>${:,.2f}</strong>', obj.product.precio)
+        return format_html('<strong>${:,.0f}</strong>', obj.product.precio)
     precio_producto.short_description = 'Precio'
     
     def disponibilidad(self, obj):
@@ -222,6 +251,7 @@ class WishlistAdmin(admin.ModelAdmin):
             return format_html('<span style="color: red;">❌ Producto inactivo</span>')
         return format_html('<span style="color: red;">❌ Agotado</span>')
     disponibilidad.short_description = 'Disponibilidad'
+
 
 
 @admin.register(UserRecommendation)

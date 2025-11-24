@@ -56,7 +56,7 @@
                     </div>
                     {% endif %}
 
-                    <!-- Botón de Google - SOLUCIÓN -->
+                    <!-- Botón de Google -->
                     <div class="mb-6">
                         <form method="post" action="{% provider_login_url 'google' process='login' %}">
                             {% csrf_token %}
@@ -83,8 +83,8 @@
                         </div>
                     </div>
 
-                    <!-- Formulario -->
-                    <form method="POST" action="{% url 'user:login' %}">
+                    <!-- Formulario ✅ AGREGADO autocomplete="off" -->
+                    <form method="POST" action="{% url 'user:login' %}" autocomplete="off" id="loginForm">
                         {% csrf_token %}
                         
                         <div class="mb-5">
@@ -161,16 +161,21 @@
     </footer>
 
     <script>
-        // Asegurar clases a los inputs
-        document.addEventListener('DOMContentLoaded', function() {
+        // ✅ LIMPIAR CAMPOS AL CARGAR LA PÁGINA
+        window.addEventListener('load', function() {
             const emailInput = document.querySelector('input[name="email"]');
             const passwordInput = document.querySelector('input[name="password"]');
             
+            // Limpiar valores
             if (emailInput) {
+                emailInput.value = '';
                 emailInput.className = 'w-full px-4 py-3 border-2 border-gray-300 rounded-xl text-gray-700 focus:border-blue-500 focus:outline-none transition';
+                emailInput.setAttribute('autocomplete', 'off');
             }
             if (passwordInput) {
+                passwordInput.value = '';
                 passwordInput.className = 'w-full px-4 py-3 pr-12 border-2 border-gray-300 rounded-xl text-gray-700 focus:border-blue-500 focus:outline-none transition';
+                passwordInput.setAttribute('autocomplete', 'off');
             }
         });
 
@@ -179,15 +184,30 @@
             const passwordInput = document.querySelector('input[name="password"]');
             const eyeIcon = document.getElementById('eye-icon');
             
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                eyeIcon.classList.remove('fa-eye');
-                eyeIcon.classList.add('fa-eye-slash');
-            } else {
-                passwordInput.type = 'password';
-                eyeIcon.classList.remove('fa-eye-slash');
-                eyeIcon.classList.add('fa-eye');
+            if (passwordInput && eyeIcon) {
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    eyeIcon.classList.remove('fa-eye');
+                    eyeIcon.classList.add('fa-eye-slash');
+                } else {
+                    passwordInput.type = 'password';
+                    eyeIcon.classList.remove('fa-eye-slash');
+                    eyeIcon.classList.add('fa-eye');
+                }
             }
+        }
+
+        // ✅ LIMPIAR DESPUÉS DE ENVIAR FORMULARIO
+        const loginForm = document.getElementById('loginForm');
+        if (loginForm) {
+            loginForm.addEventListener('submit', function(e) {
+                setTimeout(() => {
+                    const emailInput = document.querySelector('input[name="email"]');
+                    const passwordInput = document.querySelector('input[name="password"]');
+                    if (emailInput) emailInput.value = '';
+                    if (passwordInput) passwordInput.value = '';
+                }, 100);
+            });
         }
     </script>
 </body>

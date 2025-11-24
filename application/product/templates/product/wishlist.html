@@ -1,0 +1,639 @@
+{% load static %}
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mi Lista de Deseos - ElectroHome</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    
+    <style>
+        /* Tarjetas de wishlist parejas como en home */
+        .wishlist-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            border-radius: 1rem;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            transition: all 0.3s ease;
+            border: 1px solid #BFDBFE;
+        }
+
+        .wishlist-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .wishlist-image-container {
+            position: relative;
+            height: 280px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e3e8ef 100%);
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .wishlist-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 1rem;
+            transition: transform 0.5s ease;
+        }
+
+        .wishlist-card:hover .wishlist-image-container img {
+            transform: scale(1.08);
+        }
+
+        .wishlist-content {
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .wishlist-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: #1e40af;
+            margin-bottom: 0.5rem;
+            min-height: 3.5rem;
+            overflow: hidden;
+        }
+
+        .wishlist-description {
+            color: #6b7280;
+            font-size: 0.875rem;
+            margin-bottom: 0.75rem;
+            min-height: 2.5rem;
+            overflow: hidden;
+        }
+
+        .wishlist-price {
+            font-size: 1.875rem;
+            font-weight: 800;
+            color: #1e40af;
+            margin-bottom: 1rem;
+        }
+
+        .wishlist-status {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .wishlist-status.in-stock {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .wishlist-status.out-stock {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .wishlist-actions {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: auto;
+        }
+
+        .btn-wishlist {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-add-cart {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            color: white;
+        }
+
+        .btn-add-cart:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(251, 191, 36, 0.4);
+        }
+
+        .btn-details {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+        }
+
+        .btn-details:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-disabled {
+            background: #d1d5db;
+            color: #6b7280;
+            cursor: not-allowed;
+        }
+
+        .btn-remove {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 40px;
+            height: 40px;
+            background: #ef4444;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .btn-remove:hover {
+            background: #dc2626;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+<!-- HEADER / NAVEGACIÓN -->
+    <header class="bg-blue-800 shadow-2xl border-b-4 border-blue-500 sticky top-0 z-50">
+  <nav class="container mx-auto px-4 py-4">
+    <div class="flex justify-between items-center gap-4">
+      <!-- Logo -->
+      <div class="flex items-center space-x-2 flex-shrink-0">
+        <a href="{% url 'product:home' %}">
+          <img
+            src="{% static 'img/logo_de_electrohome.png' %}"
+            alt="ElectroHome"
+            class="w-20 h-auto hover:scale-105 transition-transform duration-500"
+          />
+        </a>
+      </div>
+
+      <!-- Buscador (Desktop) -->
+      <div class="hidden md:flex flex-grow max-w-xl mx-4">
+        <form action="{% url 'product:search' %}" method="GET" class="relative w-full">
+          <input 
+            type="text" 
+            name="q" 
+            placeholder="Buscar productos..." 
+            class="w-full px-4 py-2 pr-12 rounded-lg border-2 border-blue-300 focus:border-yellow-400 focus:outline-none text-gray-800"
+            value="{{ request.GET.q }}"
+          />
+          <button 
+            type="submit" 
+            class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-yellow-500 text-white px-4 py-1 rounded-lg hover:bg-yellow-600 transition"
+          >
+            <i class="fas fa-search"></i>
+          </button>
+        </form>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden lg:flex space-x-6">
+        <a href="{% url 'product:home' %}" class="text-gray-50 hover:text-yellow-400">Inicio</a>
+        <a href="{% url 'product:products_list' %}" class="text-gray-50 hover:text-yellow-300 ">roductos</a>
+        <a href="{% url 'product:contact' %}" class="text-gray-50 hover:text-yellow-300">Contacto</a>
+      </div>
+
+      <!-- User Menu & Cart -->
+      <div class="flex items-center space-x-4">
+  <!-- User Menu & Cart -->
+<div class="flex items-center space-x-4">
+  <!-- ✅ Wishlist (Lista de Deseos) -->
+  {% if user.is_authenticated %}
+    <a href="{% url 'product:wishlist' %}" class="relative text-white hover:text-red-400 transition group">
+      <i class="fas fa-heart text-2xl group-hover:scale-110 transition-transform"></i>
+      {% if user.wishlist.total_items > 0 %}
+        <span class="absolute -top-1 -right-2 bg-red-500 text-white text-xs font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">
+          {{ user.wishlist.total_items }}
+        </span>
+      {% endif %}
+    </a>
+  {% endif %}
+
+  <!-- Carrito -->
+  <a href="{% url 'product:cart' %}" class="relative text-white hover:text-yellow-300 transition">
+    <i class="fas fa-shopping-cart text-2xl"></i>
+    <span id="cart-counter" class="absolute -top-1 -right-2 bg-red-500 text-white text-xs font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">
+      {{ cart_items_count|default:0 }}
+    </span>
+  </a>
+        {% if user.is_authenticated %}
+          <!-- Menú de Usuario con Dropdown -->
+          <div class="relative">
+            <button 
+              id="user-menu-btn"
+              class="w-10 h-10 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg hover:scale-110 transition-transform focus:outline-none focus:ring-2 focus:ring-yellow-300"
+            >
+              {{ user.first_name.0|default:user.username.0|upper }}{{ user.last_name.0|default:""|upper }}
+            </button>
+
+            <!-- Dropdown Menu (oculto por defecto) -->
+            <div 
+              id="user-dropdown"
+              class="hidden absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-2xl z-50"
+            >
+              <!-- Header del dropdown -->
+              <div class="p-4 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-blue-100">
+                <div class="flex items-center space-x-3">
+                  <div class="w-12 h-12 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">
+                    {{ user.first_name.0|default:user.username.0|upper }}{{ user.last_name.0|default:""|upper }}
+                  </div>
+                  <div>
+                    <p class="font-bold text-gray-800">
+                      {% if user.first_name %}
+                        {{ user.first_name }} {{ user.last_name }}
+                      {% else %}
+                        {{ user.username }}
+                      {% endif %}
+                    </p>
+                    <span class="inline-block px-2 py-1 bg-blue-500 text-white text-xs font-semibold rounded-full">
+                      Cliente
+                    </span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Opciones del menú -->
+              <div class="py-2">
+                <a href="{% url 'user:profile' %}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 transition group">
+                  <i class="fas fa-user text-blue-600 w-6 group-hover:scale-110 transition-transform"></i>
+                  <span class="ml-3 font-semibold">Mi Perfil</span>
+                </a>
+                
+                <a href="{% url 'order:order_list' %}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 transition group">
+                  <i class="fas fa-shopping-bag text-blue-600 w-6 group-hover:scale-110 transition-transform"></i>
+                  <span class="ml-3 font-semibold">Mis Pedidos</span>
+                </a>
+                
+                <hr class="my-2 border-gray-200">
+                
+                <a href="{% url 'user:logout' %}" class="flex items-center px-4 py-3 text-red-600 hover:bg-red-50 transition group">
+                  <i class="fas fa-sign-out-alt w-6 group-hover:scale-110 transition-transform"></i>
+                  <span class="ml-3 font-semibold">Cerrar Sesión</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        {% else %}
+          <!-- Botones Login/Register -->
+          <a href="{% url 'user:login' %}" class="hidden md:inline-block text-white hover:text-yellow-300 font-semibold">
+            <i class="fas fa-sign-in-alt"></i> Ingresar
+          </a>
+          <a href="{% url 'user:register' %}" class="bg-yellow-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-yellow-600 transition">
+            Registrarse
+          </a>
+        {% endif %}
+
+        <!-- Mobile Menu Button -->
+        <button class="lg:hidden text-gray-50 hover:text-yellow-300" id="mobile-menu-button">
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Buscador Mobile -->
+    <div class="md:hidden mt-4">
+      <form action="{% url 'product:search' %}" method="GET" class="relative">
+        <input 
+          type="text" 
+          name="q" 
+          placeholder="Buscar productos..." 
+          class="w-full px-4 py-2 pr-12 rounded-lg border-2 border-blue-300 focus:border-yellow-400 focus:outline-none text-gray-800"
+          value="{{ request.GET.q }}"
+        />
+        <button 
+          type="submit" 
+          class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-yellow-500 text-white px-4 py-1 rounded-lg hover:bg-yellow-600 transition"
+        >
+          <i class="fas fa-search"></i>
+        </button>
+      </form>
+    </div>
+
+   <!-- Mobile Menu -->
+<div class="lg:hidden mt-4 pb-4 hidden" id="mobile-menu">
+  <div class="flex flex-col space-y-3">
+    <a href="{% url 'product:home' %}" class="text-gray-50 hover:text-yellow-300 py-2">
+      <i class="fas fa-home mr-2"></i>Inicio
+    </a>
+    <a href="{% url 'product:products_list' %}" class="text-gray-50 hover:text-yellow-300 py-2">
+      <i class="fas fa-tag mr-2"></i>Productos
+    </a>
+    <a href="#categorias" class="text-gray-50 hover:text-yellow-300 py-2">
+      <i class="fas fa-th-large mr-2"></i>Categorías
+    </a>
+    <a href="#contacto" class="text-gray-50 hover:text-yellow-300 py-2">
+      <i class="fas fa-envelope mr-2"></i>Contacto
+    </a>
+    
+    <hr class="border-blue-600">
+
+    {% if user.is_authenticated %}
+      <a href="{% url 'user:profile' %}" class="flex items-center text-white hover:text-yellow-300 py-2">
+        <i class="fas fa-user mr-3"></i>Mi Perfil
+      </a>
+      
+      <!-- ✅ Wishlist en menú móvil -->
+      <a href="{% url 'product:wishlist' %}" class="flex items-center text-white hover:text-red-300 py-2">
+        <i class="fas fa-heart mr-3"></i>Mi Lista de Deseos
+        {% if user.wishlist.total_items > 0 %}
+          <span class="ml-2 bg-red-500 text-white text-xs font-bold rounded-full px-2 py-0.5">
+            {{ user.wishlist.total_items }}
+          </span>
+        {% endif %}
+      </a>
+      
+      <a href="{% url 'order:order_list' %}" class="flex items-center text-white hover:text-yellow-300 py-2">
+        <i class="fas fa-shopping-bag mr-3"></i>Mis Pedidos
+      </a>
+      
+      <a href="{% url 'user:logout' %}" class="flex items-center text-red-300 hover:text-red-100 py-2">
+        <i class="fas fa-sign-out-alt mr-3"></i>Cerrar Sesión
+      </a>
+    {% else %}
+      <a href="{% url 'user:login' %}" class="flex items-center text-white hover:text-yellow-300 py-2">
+        <i class="fas fa-sign-in-alt mr-3"></i>Ingresar
+      </a>
+    {% endif %}
+  </div>
+</div>
+  </nav>
+</header>
+<script>
+  // Toggle dropdown del usuario
+  const userMenuBtn = document.getElementById('user-menu-btn');
+  const userDropdown = document.getElementById('user-dropdown');
+
+  if (userMenuBtn && userDropdown) {
+    userMenuBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      userDropdown.classList.toggle('hidden');
+    });
+
+    // Cerrar dropdown al hacer click fuera
+    document.addEventListener('click', function(e) {
+      if (!userMenuBtn.contains(e.target) && !userDropdown.contains(e.target)) {
+        userDropdown.classList.add('hidden');
+      }
+    });
+  }
+
+  // Toggle menú mobile
+  const mobileMenuBtn = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  if (mobileMenuBtn && mobileMenu) {
+    mobileMenuBtn.addEventListener('click', function() {
+      mobileMenu.classList.toggle('hidden');
+    });
+  }
+</script>
+
+<div class="container mx-auto px-4 py-8">
+    <div class="max-w-6xl mx-auto">
+        
+        <!-- Header con botón Vaciar -->
+        <div class="flex items-center justify-between mb-8">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-800">
+                    <i class="fas fa-heart text-red-500 mr-3"></i>Mi Lista de Deseos
+                </h1>
+                <p class="text-gray-600 mt-2">{{ items|length }} producto{{ items|length|pluralize }}</p>
+            </div>
+            <div class="flex gap-3">
+                {% if items %}
+                <button onclick="vaciarWishlist()" class="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition font-semibold">
+                    <i class="fas fa-trash mr-2"></i>Vaciar Lista
+                </button>
+                {% endif %}
+                <a href="{% url 'product:products_list' %}" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition font-semibold">
+                    <i class="fas fa-shopping-bag mr-2"></i>Seguir Comprando
+                </a>
+            </div>
+        </div>
+
+        {% if items %}
+            <!-- Grid de productos -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {% for item in items %}
+                <div class="wishlist-card" id="wishlist-item-{{ item.product.id }}">
+                    
+                    <!-- Imagen -->
+                    <div class="wishlist-image-container">
+                        <!-- Botón eliminar -->
+                        <button 
+                            onclick="removeFromWishlist({{ item.product.id }})"
+                            class="btn-remove"
+                        >
+                            <i class="fas fa-times"></i>
+                        </button>
+
+                        {% if item.product.imagen_principal %}
+                            <img src="{{ item.product.imagen_principal.url }}" alt="{{ item.product.nombre }}">
+                        {% else %}
+                            <div class="flex items-center justify-center h-full">
+                                <i class="fas fa-image text-gray-400 text-5xl"></i>
+                            </div>
+                        {% endif %}
+                        
+                        <!-- Stock badge -->
+                        {% if item.product.stock > 0 %}
+                            <span class="wishlist-status in-stock">En Stock</span>
+                        {% else %}
+                            <span class="wishlist-status out-stock">Agotado</span>
+                        {% endif %}
+                    </div>
+
+                    <!-- Contenido -->
+                    <div class="wishlist-content">
+                        <h3 class="wishlist-title">{{ item.product.nombre }}</h3>
+                        <p class="wishlist-description">{{ item.product.descripcion|truncatewords:12 }}</p>
+
+                        <!-- Precio -->
+                        <p class="wishlist-price">${{ item.product.precio|floatformat:0 }}</p>
+
+                        <!-- Botones -->
+                        <div class="wishlist-actions">
+                            {% if item.product.stock > 0 %}
+                                <button 
+                                    onclick="addToCartFromWishlist({{ item.product.id }})"
+                                    class="btn-wishlist btn-add-cart"
+                                >
+                                    <i class="fas fa-shopping-cart mr-2"></i>Carrito
+                                </button>
+                            {% else %}
+                                <button disabled class="btn-wishlist btn-disabled">
+                                    <i class="fas fa-times-circle mr-2"></i>No Disponible
+                                </button>
+                            {% endif %}
+                            
+                            <a href="{% url 'product:product_detail' item.product.id %}" class="btn-wishlist btn-details">
+                                <i class="fas fa-eye mr-2"></i>Ver
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <!-- Lista vacía -->
+            <div class="text-center py-16 bg-white rounded-xl shadow-lg">
+                <i class="fas fa-heart-broken text-gray-300 text-8xl mb-6"></i>
+                <h2 class="text-2xl font-bold text-gray-700 mb-4">Tu lista de deseos está vacía</h2>
+                <p class="text-gray-600 mb-8">¡Agrega productos que te gusten para no olvidarlos!</p>
+                <a href="{% url 'product:products_list' %}" class="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition font-semibold">
+                    <i class="fas fa-search mr-2"></i>Explorar Productos
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+    <!-FOOTER -->
+<footer class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-gray-200 py-12 mt-10">
+  <div class="container mx-auto px-6">
+    <!-- Sección principal -->
+    <div class="text-center mb-8">
+      <h2 class="text-3xl font-bold text-white mb-3 tracking-wide">ElectroHome</h2>
+      <p class="text-gray-400 max-w-md mx-auto text-sm">
+        La mejor tecnología para tu hogar. Compra fácil, rápido y con total seguridad.
+      </p>
+    </div>
+
+    <!-- Redes sociales -->
+    <div class="flex justify-center space-x-8 mb-10">
+      <a href="https://facebook.com" target="_blank" class="transition transform hover:scale-110">
+        <i class="fab fa-facebook-f text-2xl text-blue-500 hover:text-blue-400"></i>
+      </a>
+      <a href="https://instagram.com" target="_blank" class="transition transform hover:scale-110">
+        <i class="fab fa-instagram text-2xl text-pink-500 hover:text-pink-400"></i>
+      </a>
+      <a href="https://tiktok.com" target="_blank" class="transition transform hover:scale-110">
+        <i class="fab fa-tiktok text-2xl text-white hover:text-gray-300"></i>
+      </a>
+      <a href="https://twitter.com" target="_blank" class="transition transform hover:scale-110">
+        <i class="fab fa-x-twitter text-2xl text-gray-200 hover:text-white"></i>
+      </a>
+    </div>
+
+    <!-- Enlaces rápidos -->
+    <div class="flex flex-wrap justify-center space-x-6 text-sm mb-8">
+      <a href="#" class="hover:text-white transition">Inicio</a>
+      <a href="#" class="hover:text-white transition">Productos</a>
+      <a href="#" class="hover:text-white transition">Ofertas</a>
+      <a href="#" class="hover:text-white transition">Nosotros</a>
+      <a href="#" class="hover:text-white transition">Contacto</a>
+    </div>
+
+    <!-- Información de contacto -->
+    <div class="text-center text-gray-400 text-sm mb-8">
+      <p>📍 Calle 1 #2-40, Cartagena de Indias, Colombia</p>
+      <p>📞 +57 300 760 7645</p>
+      <p>
+        ✉️ <a href="mailto:info@electrohome.com" class="underline hover:text-blue-400">info@electrohome.com</a>
+      </p>
+    </div>
+
+    <!-- Línea divisoria -->
+    <div class="border-t border-gray-700 pt-6 text-center text-xs text-gray-500">
+      &copy; 2025 <span class="text-white font-semibold">ElectroHome</span>. Todos los derechos reservados.
+    </div>
+  </div>
+</footer>
+
+<script>
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+const csrftoken = getCookie('csrftoken');
+
+function removeFromWishlist(productId) {
+    fetch(`/wishlist/remove/${productId}/`, {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': csrftoken,
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            location.reload();
+        }
+    });
+}
+
+function vaciarWishlist() {
+    if (!confirm('¿Estás seguro de que deseas vaciar tu lista de deseos?')) return;
+    
+    // Obtener todos los producto IDs
+    const items = document.querySelectorAll('[id^="wishlist-item-"]');
+    const productIds = Array.from(items).map(item => 
+        item.id.replace('wishlist-item-', '')
+    );
+    
+    // Eliminar cada producto
+    Promise.all(productIds.map(id => 
+        fetch(`/wishlist/remove/${id}/`, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': csrftoken,
+                'Content-Type': 'application/json'
+            }
+        })
+    )).then(() => {
+        location.reload();
+    });
+}
+
+function addToCartFromWishlist(productId) {
+    fetch(`/carrito/agregar/${productId}/`, {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': csrftoken,
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: `quantity=1`
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('✅ Producto agregado al carrito');
+            const cartCounter = document.getElementById('cart-counter');
+            if (cartCounter) {
+                cartCounter.textContent = data.cart_total_items;
+            }
+        }
+    });
+}
+</script>
+
+</body>
+</html>

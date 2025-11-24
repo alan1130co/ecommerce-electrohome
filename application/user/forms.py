@@ -7,7 +7,11 @@ class RegisterForm(forms.ModelForm):
         label="Contraseña",
         widget=forms.PasswordInput(attrs={
             'class': 'form-control', 
-            'placeholder': 'Contraseña (mín. 8 caracteres)'
+            'placeholder': 'Contraseña (mín. 8 caracteres)',
+            'autocomplete': 'new-password',  # ✅ Evita autocompletado
+            'autocorrect': 'off',
+            'autocapitalize': 'off',
+            'spellcheck': 'false'
         }),
         help_text="Debe contener: mínimo 8 caracteres, 1 mayúscula, 1 número y 1 carácter especial"
     )
@@ -15,7 +19,11 @@ class RegisterForm(forms.ModelForm):
         label="Confirmar contraseña",
         widget=forms.PasswordInput(attrs={
             'class': 'form-control', 
-            'placeholder': 'Confirmar contraseña'
+            'placeholder': 'Confirmar contraseña',
+            'autocomplete': 'new-password',  # ✅ Evita autocompletado
+            'autocorrect': 'off',
+            'autocapitalize': 'off',
+            'spellcheck': 'false'
         })
     )
 
@@ -23,10 +31,38 @@ class RegisterForm(forms.ModelForm):
         model = Usuario
         fields = ['email', 'first_name', 'last_name', 'telefono']
         widgets = {
-            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Correo electrónico'}),
-            'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre'}),
-            'last_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Apellido'}),
-            'telefono': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '3001234567'}),
+            'email': forms.EmailInput(attrs={
+                'class': 'form-control', 
+                'placeholder': 'Correo electrónico',
+                'autocomplete': 'off',  # ✅ Evita autocompletado
+                'autocorrect': 'off',
+                'autocapitalize': 'off',
+                'spellcheck': 'false'
+            }),
+            'first_name': forms.TextInput(attrs={
+                'class': 'form-control', 
+                'placeholder': 'Nombre',
+                'autocomplete': 'off',  # ✅ Evita autocompletado
+                'autocorrect': 'off',
+                'autocapitalize': 'off',
+                'spellcheck': 'false'
+            }),
+            'last_name': forms.TextInput(attrs={
+                'class': 'form-control', 
+                'placeholder': 'Apellido',
+                'autocomplete': 'off',  # ✅ Evita autocompletado
+                'autocorrect': 'off',
+                'autocapitalize': 'off',
+                'spellcheck': 'false'
+            }),
+            'telefono': forms.TextInput(attrs={
+                'class': 'form-control', 
+                'placeholder': '3001234567',
+                'autocomplete': 'off',  # ✅ Evita autocompletado
+                'autocorrect': 'off',
+                'autocapitalize': 'off',
+                'spellcheck': 'false'
+            }),
         }
 
     def clean_email(self):
@@ -131,9 +167,23 @@ class RegisterForm(forms.ModelForm):
 class LoginForm(forms.Form):
     email = forms.EmailField(
         label="Correo electrónico",
-        widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Correo electrónico'})
+        widget=forms.EmailInput(attrs={
+            'class': 'form-control', 
+            'placeholder': 'Correo electrónico',
+            'autocomplete': 'off',  # ✅ Evita autocompletado
+            'autocorrect': 'off',
+            'autocapitalize': 'off',
+            'spellcheck': 'false'
+        })
     )
     password = forms.CharField(
         label="Contraseña",
-        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Contraseña'})
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control', 
+            'placeholder': 'Contraseña',
+            'autocomplete': 'off',  # ✅ Evita autocompletado
+            'autocorrect': 'off',
+            'autocapitalize': 'off',
+            'spellcheck': 'false'
+        })
     )

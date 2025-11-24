@@ -1,123 +1,570 @@
+{% load static %}
+{% load humanize %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mi Perfil - Electrohome</title>
-<style>
-* { margin:0; padding:0; box-sizing:border-box; }
-body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-    background: linear-gradient(135deg,#1e3a8a 0%,#3b82f6 100%);
-    min-height:100vh;
-    padding:40px 20px;
-}
-.profile-container {
-    max-width:600px;
-    margin:0 auto;
-    background:white;
-    border-radius:20px;
-    box-shadow:0 20px 60px rgba(0,0,0,0.3);
-    overflow:hidden;
-}
-.profile-header {
-    background: linear-gradient(135deg,#1e3a8a 0%,#3b82f6 100%);
-    color:white;
-    padding:40px 30px;
-    text-align:center;
-}
-.profile-icon {
-    width:100px;
-    height:100px;
-    background:white;
-    color:#1e3a8a;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:3rem;
-    margin:0 auto 20px;
-}
-.profile-header h1 { font-size:2rem; margin-bottom:10px; }
-.profile-header p { opacity:0.9; font-size:1rem; }
-.profile-content { padding:40px 30px; }
-.info-group { margin-bottom:25px; padding-bottom:25px; border-bottom:1px solid #e5e7eb; }
-.info-group:last-child { border-bottom:none; margin-bottom:0; padding-bottom:0; }
-.info-label { font-weight:600; color:#4b5563; font-size:0.85rem; text-transform:uppercase; margin-bottom:8px; letter-spacing:0.5px; }
-.info-value { font-size:1.1rem; color:#1f2937; }
-.alert { padding:15px; border-radius:10px; margin-bottom:25px; font-size:0.95rem; }
-.alert-success { background:#d1fae5; color:#065f46; border:1px solid #a7f3d0; }
-.alert-info { background:#dbeafe; color:#1e40af; border:1px solid #93c5fd; }
-.btn-logout {
-    width:100%;
-    background:#ef4444;
-    color:white;
-    border:none;
-    padding:15px;
-    border-radius:10px;
-    font-size:1rem;
-    font-weight:600;
-    cursor:pointer;
-    transition:background 0.3s;
-    margin-top:20px;
-}
-.btn-logout:hover { background:#dc2626; }
-@media (max-width:640px) {
-    .profile-header { padding:30px 20px; }
-    .profile-header h1 { font-size:1.5rem; }
-    .profile-content { padding:30px 20px; }
-}
-</style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mi Perfil - ElectroHome</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        .profile-gradient {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+        }
+        .edit-mode-disabled {
+            background-color: #f3f4f6;
+            cursor: not-allowed;
+        }
+    </style>
 </head>
-<body>
-<div class="profile-container">
-    <div class="profile-header">
-        <div class="profile-icon">👤</div>
-        <h1>{{ user.first_name }} {{ user.last_name }}</h1>
-        <p>Miembro desde {{ user.date_joined|date:"d/m/Y" }}</p>
-    </div>
+<body class="bg-gray-50">
+    
+      <!-- HEADER / NAVEGACIÓN -->
+    <header class="bg-blue-800 shadow-2xl border-b-4 border-blue-500 sticky top-0 z-50">
+  <nav class="container mx-auto px-4 py-4">
+    <div class="flex justify-between items-center gap-4">
+      <!-- Logo -->
+      <div class="flex items-center space-x-2 flex-shrink-0">
+        <a href="{% url 'product:home' %}">
+          <img
+            src="{% static 'img/logo_de_electrohome.png' %}"
+            alt="ElectroHome"
+            class="w-20 h-auto hover:scale-105 transition-transform duration-500"
+          />
+        </a>
+      </div>
 
-    <div class="profile-content">
-        {% if messages %}
-            {% for message in messages %}
-                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-            {% endfor %}
-        {% endif %}
-
-        <div class="info-group">
-            <div class="info-label">Nombre Completo</div>
-            <div class="info-value">{{ user.first_name }} {{ user.last_name }}</div>
-        </div>
-
-        <div class="info-group">
-            <div class="info-label">Correo Electrónico</div>
-            <div class="info-value">{{ user.email }}</div>
-        </div>
-
-        {% if user.telefono %}
-        <div class="info-group">
-            <div class="info-label">Teléfono</div>
-            <div class="info-value">{{ user.telefono }}</div>
-        </div>
-        {% endif %}
-
-        {% if user.ciudad %}
-        <div class="info-group">
-            <div class="info-label">Ciudad</div>
-            <div class="info-value">{{ user.ciudad }}</div>
-        </div>
-        {% endif %}
-
-        <div class="info-group">
-            <div class="info-label">Tipo de Usuario</div>
-            <div class="info-value">{{ user.get_tipo_usuario_display }}</div>
-        </div>
-
-        <form method="POST" action="{% url 'user:logout' %}">
-            {% csrf_token %}
-            <button type="submit" class="btn-logout">Cerrar Sesión</button>
+      <!-- Buscador (Desktop) -->
+      <div class="hidden md:flex flex-grow max-w-xl mx-4">
+        <form action="{% url 'product:search' %}" method="GET" class="relative w-full">
+          <input 
+            type="text" 
+            name="q" 
+            placeholder="Buscar productos..." 
+            class="w-full px-4 py-2 pr-12 rounded-lg border-2 border-blue-300 focus:border-yellow-400 focus:outline-none text-gray-800"
+            value="{{ request.GET.q }}"
+          />
+          <button 
+            type="submit" 
+            class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-yellow-500 text-white px-4 py-1 rounded-lg hover:bg-yellow-600 transition"
+          >
+            <i class="fas fa-search"></i>
+          </button>
         </form>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden lg:flex space-x-6">
+        <a href="{% url 'product:home' %}" class="text-yellow-400">Inicio</a>
+        <a href="{% url 'product:products_list' %}" class="text-gray-50 hover:text-yellow-300 ">Productos</a>
+        <a href="{% url 'product:contact' %}" class="text-gray-50 hover:text-yellow-300">Contacto</a>
+      </div>
+
+      <!-- User Menu & Cart -->
+      <div class="flex items-center space-x-4">
+  <!-- User Menu & Cart -->
+<div class="flex items-center space-x-4">
+  <!-- ✅ Wishlist (Lista de Deseos) -->
+  {% if user.is_authenticated %}
+    <a href="{% url 'product:wishlist' %}" class="relative text-white hover:text-red-400 transition group">
+      <i class="fas fa-heart text-2xl group-hover:scale-110 transition-transform"></i>
+      {% if user.wishlist.total_items > 0 %}
+        <span class="absolute -top-1 -right-2 bg-red-500 text-white text-xs font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">
+          {{ user.wishlist.total_items }}
+        </span>
+      {% endif %}
+    </a>
+  {% endif %}
+
+  <!-- Carrito -->
+  <a href="{% url 'product:cart' %}" class="relative text-white hover:text-yellow-300 transition">
+    <i class="fas fa-shopping-cart text-2xl"></i>
+    <span id="cart-counter" class="absolute -top-1 -right-2 bg-red-500 text-white text-xs font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">
+      {{ cart_items_count|default:0 }}
+    </span>
+  </a>
+        {% if user.is_authenticated %}
+          <!-- Menú de Usuario con Dropdown -->
+          <div class="relative">
+            <button 
+              id="user-menu-btn"
+              class="w-10 h-10 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg hover:scale-110 transition-transform focus:outline-none focus:ring-2 focus:ring-yellow-300"
+            >
+              {{ user.first_name.0|default:user.username.0|upper }}{{ user.last_name.0|default:""|upper }}
+            </button>
+
+            <!-- Dropdown Menu (oculto por defecto) -->
+            <div 
+              id="user-dropdown"
+              class="hidden absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-2xl z-50"
+            >
+              <!-- Header del dropdown -->
+              <div class="p-4 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-blue-100">
+                <div class="flex items-center space-x-3">
+                  <div class="w-12 h-12 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">
+                    {{ user.first_name.0|default:user.username.0|upper }}{{ user.last_name.0|default:""|upper }}
+                  </div>
+                  <div>
+                    <p class="font-bold text-gray-800">
+                      {% if user.first_name %}
+                        {{ user.first_name }} {{ user.last_name }}
+                      {% else %}
+                        {{ user.username }}
+                      {% endif %}
+                    </p>
+                    <span class="inline-block px-2 py-1 bg-blue-500 text-white text-xs font-semibold rounded-full">
+                      Cliente
+                    </span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Opciones del menú -->
+              <div class="py-2">
+                <a href="{% url 'user:profile' %}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 transition group">
+                  <i class="fas fa-user text-blue-600 w-6 group-hover:scale-110 transition-transform"></i>
+                  <span class="ml-3 font-semibold">Mi Perfil</span>
+                </a>
+                
+                <a href="{% url 'order:order_list' %}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 transition group">
+                  <i class="fas fa-shopping-bag text-blue-600 w-6 group-hover:scale-110 transition-transform"></i>
+                  <span class="ml-3 font-semibold">Mis Pedidos</span>
+                </a>
+                
+                <hr class="my-2 border-gray-200">
+                
+                <a href="{% url 'user:logout' %}" class="flex items-center px-4 py-3 text-red-600 hover:bg-red-50 transition group">
+                  <i class="fas fa-sign-out-alt w-6 group-hover:scale-110 transition-transform"></i>
+                  <span class="ml-3 font-semibold">Cerrar Sesión</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        {% else %}
+          <!-- Botones Login/Register -->
+          <a href="{% url 'user:login' %}" class="hidden md:inline-block text-white hover:text-yellow-300 font-semibold">
+            <i class="fas fa-sign-in-alt"></i> Ingresar
+          </a>
+          <a href="{% url 'user:register' %}" class="bg-yellow-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-yellow-600 transition">
+            Registrarse
+          </a>
+        {% endif %}
+
+        <!-- Mobile Menu Button -->
+        <button class="lg:hidden text-gray-50 hover:text-yellow-300" id="mobile-menu-button">
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+      </div>
     </div>
+
+    <!-- Buscador Mobile -->
+    <div class="md:hidden mt-4">
+      <form action="{% url 'product:search' %}" method="GET" class="relative">
+        <input 
+          type="text" 
+          name="q" 
+          placeholder="Buscar productos..." 
+          class="w-full px-4 py-2 pr-12 rounded-lg border-2 border-blue-300 focus:border-yellow-400 focus:outline-none text-gray-800"
+          value="{{ request.GET.q }}"
+        />
+        <button 
+          type="submit" 
+          class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-yellow-500 text-white px-4 py-1 rounded-lg hover:bg-yellow-600 transition"
+        >
+          <i class="fas fa-search"></i>
+        </button>
+      </form>
+    </div>
+
+   <!-- Mobile Menu -->
+<div class="lg:hidden mt-4 pb-4 hidden" id="mobile-menu">
+  <div class="flex flex-col space-y-3">
+    <a href="{% url 'product:home' %}" class="text-gray-50 hover:text-yellow-300 py-2">
+      <i class="fas fa-home mr-2"></i>Inicio
+    </a>
+    <a href="{% url 'product:products_list' %}" class="text-gray-50 hover:text-yellow-300 py-2">
+      <i class="fas fa-tag mr-2"></i>Productos
+    </a>
+    <a href="#categorias" class="text-gray-50 hover:text-yellow-300 py-2">
+      <i class="fas fa-th-large mr-2"></i>Categorías
+    </a>
+    <a href="#contacto" class="text-gray-50 hover:text-yellow-300 py-2">
+      <i class="fas fa-envelope mr-2"></i>Contacto
+    </a>
+    
+    <hr class="border-blue-600">
+
+    {% if user.is_authenticated %}
+      <a href="{% url 'user:profile' %}" class="flex items-center text-white hover:text-yellow-300 py-2">
+        <i class="fas fa-user mr-3"></i>Mi Perfil
+      </a>
+      
+      <!-- ✅ Wishlist en menú móvil -->
+      <a href="{% url 'product:wishlist' %}" class="flex items-center text-white hover:text-red-300 py-2">
+        <i class="fas fa-heart mr-3"></i>Mi Lista de Deseos
+        {% if user.wishlist.total_items > 0 %}
+          <span class="ml-2 bg-red-500 text-white text-xs font-bold rounded-full px-2 py-0.5">
+            {{ user.wishlist.total_items }}
+          </span>
+        {% endif %}
+      </a>
+      
+      <a href="{% url 'order:order_list' %}" class="flex items-center text-white hover:text-yellow-300 py-2">
+        <i class="fas fa-shopping-bag mr-3"></i>Mis Pedidos
+      </a>
+      
+      <a href="{% url 'user:logout' %}" class="flex items-center text-red-300 hover:text-red-100 py-2">
+        <i class="fas fa-sign-out-alt mr-3"></i>Cerrar Sesión
+      </a>
+    {% else %}
+      <a href="{% url 'user:login' %}" class="flex items-center text-white hover:text-yellow-300 py-2">
+        <i class="fas fa-sign-in-alt mr-3"></i>Ingresar
+      </a>
+    {% endif %}
+  </div>
 </div>
+  </nav>
+</header>
+
+<script>
+  // Toggle dropdown del usuario
+  const userMenuBtn = document.getElementById('user-menu-btn');
+  const userDropdown = document.getElementById('user-dropdown');
+
+  if (userMenuBtn && userDropdown) {
+    userMenuBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      userDropdown.classList.toggle('hidden');
+    });
+
+    // Cerrar dropdown al hacer click fuera
+    document.addEventListener('click', function(e) {
+      if (!userMenuBtn.contains(e.target) && !userDropdown.contains(e.target)) {
+        userDropdown.classList.add('hidden');
+      }
+    });
+  }
+
+  // Toggle menú mobile
+  const mobileMenuBtn = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  if (mobileMenuBtn && mobileMenu) {
+    mobileMenuBtn.addEventListener('click', function() {
+      mobileMenu.classList.toggle('hidden');
+    });
+  }
+</script>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="container mx-auto px-4 py-12">
+        <div class="max-w-4xl mx-auto">
+            
+          
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                
+                <!-- TARJETA DE PERFIL (Sidebar) -->
+                <div class="lg:col-span-1">
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                        <!-- Header con gradiente -->
+                        <div class="profile-gradient p-8 text-center text-white">
+                            <div class="w-24 h-24 bg-white rounded-full mx-auto mb-4 flex items-center justify-center text-blue-700 font-bold text-4xl shadow-xl">
+                                {{ user.first_name.0|default:user.username.0|upper }}{{ user.last_name.0|default:""|upper }}
+                            </div>
+                            <h2 class="text-2xl font-bold mb-1">
+                                {{ user.first_name }} {{ user.last_name }}
+                            </h2>
+                            <p class="text-blue-100 text-sm">{{ user.email }}</p>
+                        </div>
+
+                        <!-- Estadísticas -->
+                        <div class="p-6">
+                            <h3 class="font-bold text-gray-700 mb-4 text-lg">Estadísticas</h3>
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-600 text-sm">Pedidos realizados</span>
+                                    <span class="font-bold text-blue-600">{{ total_orders }}</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-600 text-sm">Total gastado</span>
+                                    <span class="font-bold text-green-600">${{ total_spent|floatformat:0|intcomma }}</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-600 text-sm">Miembro desde</span>
+                                    <span class="font-bold text-purple-600">{{ user.date_joined|date:"M Y" }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- INFORMACIÓN PERSONAL (Main Content) -->
+                <div class="lg:col-span-2">
+                    <div class="bg-white rounded-xl shadow-lg p-8">
+                        
+                        <!-- Header con botón editar -->
+                        <div class="flex justify-between items-center mb-6">
+                            <h2 class="text-2xl font-bold text-blue-800">
+                                <i class="fas fa-user-circle mr-2"></i>Información Personal
+                            </h2>
+                            <button 
+                                type="button"  id="edit-btn"
+                                onclick="toggleEditMode()"
+                                class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition font-semibold"
+                            >
+                                <i class="fas fa-edit mr-2"></i>Editar
+                            </button>
+                        </div>
+
+                        <!-- Mensajes -->
+                        {% if messages %}
+                            {% for message in messages %}
+                            <div class="mb-6 p-4 rounded-lg {% if message.tags == 'success' %}bg-green-50 text-green-700 border border-green-200{% elif message.tags == 'error' %}bg-red-50 text-red-700 border border-red-200{% else %}bg-blue-50 text-blue-700 border border-blue-200{% endif %}">
+                                <i class="fas {% if message.tags == 'success' %}fa-check-circle{% elif message.tags == 'error' %}fa-exclamation-circle{% else %}fa-info-circle{% endif %} mr-2"></i>
+                                {{ message }}
+                            </div>
+                            {% endfor %}
+                        {% endif %}
+
+                        <!-- Formulario -->
+                        <form method="POST" id="profile-form">
+                            {% csrf_token %}
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                <!-- Nombre -->
+                                <div>
+                                    <label class="block text-gray-700 font-semibold mb-2 text-sm uppercase tracking-wide">
+                                        <i class="fas fa-user text-blue-600 mr-2"></i>Nombre
+                                    </label>
+                                    <input 
+                                        type="text" 
+                                        name="first_name" 
+                                        value="{{ user.first_name }}"
+                                        disabled
+                                        id="first_name"
+                                        class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none disabled:bg-gray-100 disabled:cursor-not-allowed transition"
+                                        placeholder="Tu nombre"
+                                    />
+                                </div>
+
+                                <!-- Apellido -->
+                                <div>
+                                    <label class="block text-gray-700 font-semibold mb-2 text-sm uppercase tracking-wide">
+                                        <i class="fas fa-user text-blue-600 mr-2"></i>Apellido
+                                    </label>
+                                    <input 
+                                        type="text" 
+                                        name="last_name" 
+                                        value="{{ user.last_name }}"
+                                        disabled
+                                        id="last_name"
+                                        class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none disabled:bg-gray-100 disabled:cursor-not-allowed transition"
+                                        placeholder="Tu apellido"
+                                    />
+                                </div>
+                            </div>
+
+                            <!-- Email (no editable) -->
+                            <div class="mb-6">
+                                <label class="block text-gray-700 font-semibold mb-2 text-sm uppercase tracking-wide">
+                                    <i class="fas fa-envelope text-blue-600 mr-2"></i>Correo Electrónico
+                                </label>
+                                <input 
+                                    type="email" 
+                                    value="{{ user.email }}"
+                                    disabled
+                                    class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg bg-gray-100 cursor-not-allowed"
+                                />
+                                <p class="text-xs text-gray-500 mt-1">
+                                    <i class="fas fa-info-circle mr-1"></i>El correo electrónico no se puede cambiar
+                                </p>
+                            </div>
+
+                            <!-- Teléfono -->
+                            <div class="mb-6">
+                                <label class="block text-gray-700 font-semibold mb-2 text-sm uppercase tracking-wide">
+                                    <i class="fas fa-phone text-blue-600 mr-2"></i>Teléfono
+                                </label>
+                                <input 
+                                    type="tel" 
+                                    name="telefono" 
+                                    value="{{ user.telefono|default:'' }}"
+                                    disabled
+                                    id="telefono"
+                                    class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none disabled:bg-gray-100 disabled:cursor-not-allowed transition"
+                                    placeholder="3001234567"
+                                    maxlength="10"
+                                />
+                            </div>
+
+                            <!-- Ciudad -->
+                            <div class="mb-6">
+                                <label class="block text-gray-700 font-semibold mb-2 text-sm uppercase tracking-wide">
+                                    <i class="fas fa-map-marker-alt text-blue-600 mr-2"></i>Ciudad
+                                </label>
+                                <input 
+                                    type="text" 
+                                    name="ciudad" 
+                                    value="{{ user.ciudad|default:'' }}"
+                                    disabled
+                                    id="ciudad"
+                                    class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none disabled:bg-gray-100 disabled:cursor-not-allowed transition"
+                                    placeholder="Bogotá"
+                                />
+                            </div>
+
+                            <!-- Rol (solo lectura) -->
+                            <div class="mb-6">
+                                <label class="block text-gray-700 font-semibold mb-2 text-sm uppercase tracking-wide">
+                                    <i class="fas fa-shield-alt text-blue-600 mr-2"></i>Rol
+                                </label>
+                                <div class="px-4 py-3 bg-blue-50 border-2 border-blue-200 rounded-lg">
+                                    <span class="font-semibold text-blue-700">Cliente</span>
+                                </div>
+                            </div>
+
+                            <!-- Botones -->
+                            <div id="action-buttons" class="hidden mt-8 flex gap-4">
+                                <button 
+                                    type="submit"
+                                    class="flex-1 bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition font-bold"
+                                >
+                                    <i class="fas fa-save mr-2"></i>Guardar Cambios
+                                </button>
+                                <button 
+                                    type="button"
+                                    onclick="cancelEdit()"
+                                    class="flex-1 bg-gray-500 text-white py-3 rounded-lg hover:bg-gray-600 transition font-bold"
+                                >
+                                    <i class="fas fa-times mr-2"></i>Cancelar
+                                </button>
+                            </div>
+                        </form>
+
+                        <!-- Botón Cerrar Sesión -->
+                        <div class="mt-8 pt-6 border-t border-gray-200">
+                            <a 
+                                href="{% url 'user:logout' %}"
+                                class="block w-full bg-red-600 text-white text-center py-3 rounded-lg hover:bg-red-700 transition font-bold"
+                            >
+                                <i class="fas fa-sign-out-alt mr-2"></i>Cerrar Sesión
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+ <!-FOOTER -->
+<footer class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-gray-200 py-12 mt-10">
+  <div class="container mx-auto px-6">
+    <!-- Sección principal -->
+    <div class="text-center mb-8">
+      <h2 class="text-3xl font-bold text-white mb-3 tracking-wide">ElectroHome</h2>
+      <p class="text-gray-400 max-w-md mx-auto text-sm">
+        La mejor tecnología para tu hogar. Compra fácil, rápido y con total seguridad.
+      </p>
+    </div>
+
+    <!-- Redes sociales -->
+    <div class="flex justify-center space-x-8 mb-10">
+      <a href="https://facebook.com" target="_blank" class="transition transform hover:scale-110">
+        <i class="fab fa-facebook-f text-2xl text-blue-500 hover:text-blue-400"></i>
+      </a>
+      <a href="https://instagram.com" target="_blank" class="transition transform hover:scale-110">
+        <i class="fab fa-instagram text-2xl text-pink-500 hover:text-pink-400"></i>
+      </a>
+      <a href="https://tiktok.com" target="_blank" class="transition transform hover:scale-110">
+        <i class="fab fa-tiktok text-2xl text-white hover:text-gray-300"></i>
+      </a>
+      <a href="https://twitter.com" target="_blank" class="transition transform hover:scale-110">
+        <i class="fab fa-x-twitter text-2xl text-gray-200 hover:text-white"></i>
+      </a>
+    </div>
+
+    <!-- Enlaces rápidos -->
+    <div class="flex flex-wrap justify-center space-x-6 text-sm mb-8">
+      <a href="#" class="hover:text-white transition">Inicio</a>
+      <a href="#" class="hover:text-white transition">Productos</a>
+      <a href="#" class="hover:text-white transition">Ofertas</a>
+      <a href="#" class="hover:text-white transition">Nosotros</a>
+      <a href="#" class="hover:text-white transition">Contacto</a>
+    </div>
+
+    <!-- Información de contacto -->
+    <div class="text-center text-gray-400 text-sm mb-8">
+      <p>📍 Calle 1 #2-40, Cartagena de Indias, Colombia</p>
+      <p>📞 +57 300 760 7645</p>
+      <p>
+        ✉️ <a href="mailto:info@electrohome.com" class="underline hover:text-blue-400">info@electrohome.com</a>
+      </p>
+    </div>
+
+    <!-- Línea divisoria -->
+    <div class="border-t border-gray-700 pt-6 text-center text-xs text-gray-500">
+      &copy; 2025 <span class="text-white font-semibold">ElectroHome</span>. Todos los derechos reservados.
+    </div>
+  </div>
+</footer>
+<script>
+    // --- LÓGICA DE EDICIÓN DE PERFIL ---
+
+    function toggleEditMode() {
+        console.log('Botón editar clickeado'); // Para verificar en consola
+
+        // 1. Obtener los elementos
+        const fields = ['first_name', 'last_name', 'telefono', 'ciudad'];
+        const editBtn = document.getElementById('edit-btn');
+        const actionButtons = document.getElementById('action-buttons');
+
+        // 2. Habilitar los campos
+        fields.forEach(field => {
+            const input = document.getElementById(field);
+            if (input) {
+                // Quitar atributo disabled real del HTML
+                input.removeAttribute('disabled');
+                
+                // Limpiar estilos visuales de "deshabilitado"
+                input.classList.remove('bg-gray-100', 'cursor-not-allowed');
+                
+                // Agregar estilos de "habilitado"
+                input.classList.add('bg-white', 'border-blue-500', 'text-gray-900');
+            }
+        });
+
+        // 3. Alternar botones
+        if (editBtn) editBtn.classList.add('hidden');
+        if (actionButtons) actionButtons.classList.remove('hidden');
+    }
+
+    function cancelEdit() {
+        window.location.reload();
+    }
+
+    // --- VALIDACIONES Y UTILIDADES ADICIONALES ---
+
+    // Validación de teléfono (solo números)
+    document.addEventListener('DOMContentLoaded', function() {
+        const phoneInput = document.getElementById('telefono');
+        if (phoneInput) {
+            phoneInput.addEventListener('input', function(e) {
+                this.value = this.value.replace(/\D/g, '').slice(0, 10);
+            });
+        }
+    });
+
+    // Manejo seguro del Logout
+    document.addEventListener('DOMContentLoaded', function() {
+        const logoutLinks = document.querySelectorAll('a[href*="logout"]');
+        logoutLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Opcional: limpiar storage si lo usas
+                sessionStorage.clear();
+                localStorage.clear();
+            });
+        });
+    });
+</script>
 </body>
 </html>

@@ -99,6 +99,22 @@ class Usuario(AbstractUser):
     def nombre_completo(self):
         return f"{self.first_name} {self.last_name}".strip() or self.email
     
+    # ✅ MÉTODOS PARA ESTADÍSTICAS DEL PERFIL
+    def get_total_orders(self):
+        """Retorna el número total de pedidos completados del usuario"""
+        return self.orders.filter(
+            status__in=['processing', 'shipped', 'delivered']
+        ).count()
+
+    def get_total_spent(self):
+        """Retorna el total gastado por el usuario en pedidos completados"""
+        from django.db.models import Sum
+        total = self.orders.filter(
+            status__in=['processing', 'shipped', 'delivered'],
+            payment_status='approved'
+        ).aggregate(Sum('total'))['total__sum']
+        return total or 0
+    
     class Meta:
         verbose_name = 'Usuario'
         verbose_name_plural = 'Usuarios'

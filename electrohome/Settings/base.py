@@ -107,7 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-LANGUAGE_CODE = 'es-co'  # Español Colombia
+LANGUAGE_CODE = 'es'  # Español Colombia
 TIME_ZONE = 'America/Bogota'  # Zona horaria Colombia
 
 USE_I18N = True
@@ -134,7 +134,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 # ===== CONFIGURACIÓN DE ALLAUTH =====
-SITE_ID = 2
+SITE_ID = 3
 
 # Configuración moderna de allauth (sin deprecations)
 ACCOUNT_LOGIN_METHODS = {'email'}

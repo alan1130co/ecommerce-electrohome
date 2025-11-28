@@ -528,3 +528,52 @@ def get_recommendations_for_cart(cart_items, limit=6):
         activo=True,
         stock__gt=0
     ).select_related('categoria')
+    
+# ========== OPTIMIZACIÓN PARA POCOS PRODUCTOS ==========
+
+def get_smart_recommendations(user, product=None, limit=10):
+    """
+    Sistema inteligente que combina múltiples estrategias
+    Optimizado para tiendas con 30-100 productos
+    """
+    from .models import Producto
+    
+    engine = RecommendationEngine(user=user)
+    recommendations = []
+    seen_ids = set()
+    
+    # 1. Si hay un producto, buscar similares (30%)
+    if product:
+        similar = engine.get_similar_products(product, limit=int(limit * 0.3))
+        for p in similar:
+            if p.id not in seen_ids:
+                recommendations.append(p)
+                seen_ids.add(p.id)
+    
+    # 2. Productos personalizados si hay usuario (40%)
+    if user and user.is_authenticated:
+        personalized = engine.get_personalized_recommendations(limit=int(limit * 0.4))
+        for p in personalized:
+            if p.id not in seen_ids and len(recommendations) < limit:
+                recommendations.append(p)
+                seen_ids.add(p.id)
+    
+    # 3. Productos populares/trending (30%)
+    popular = engine.get_trending_products(days=30, limit=int(limit * 0.3))
+    for p in popular:
+        if p.id not in seen_ids and len(recommendations) < limit:
+            recommendations.append(p)
+            seen_ids.add(p.id)
+    
+    # 4. Completar con productos nuevos si falta
+    if len(recommendations) < limit:
+        new_products = Producto.objects.filter(
+            activo=True,
+            stock__gt=0
+        ).exclude(
+            id__in=seen_ids
+        ).order_by('-fecha_creacion')[:limit - len(recommendations)]
+        
+        recommendations.extend(list(new_products))
+    
+    return recommendations[:limit]

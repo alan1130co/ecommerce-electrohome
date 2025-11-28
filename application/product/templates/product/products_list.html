@@ -845,5 +845,349 @@
         }
       });
 </script>
+
+
+<!-- Modal de Autenticación -->
+<div id="auth-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full transform transition-all scale-95 opacity-0" id="auth-modal-content">
+        <!-- Header -->
+        <div class="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-6 rounded-t-2xl relative">
+            <button onclick="closeAuthModal()" class="absolute top-4 right-4 text-white hover:text-gray-200 transition">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+            <div class="text-center">
+                <i class="fas fa-heart text-5xl mb-3 animate-pulse"></i>
+                <h3 class="text-2xl font-bold">¡Guarda tus Favoritos!</h3>
+            </div>
+        </div>
+
+        <!-- Body -->
+        <div class="p-8">
+            <p class="text-gray-700 text-center mb-6 text-lg">
+                Para guardar tus productos favoritos, <span class="font-bold text-blue-600">inicia sesión</span> o <span class="font-bold text-blue-600">regístrate</span>
+            </p>
+
+            <!-- Botones -->
+            <div class="space-y-3">
+                <!-- Botón Iniciar Sesión -->
+                <a href="{% url 'user:login' %}?next={{ request.path }}" 
+                   class="block w-full bg-blue-600 text-white py-4 rounded-lg font-bold text-center hover:bg-blue-700 transition-all transform hover:scale-105 shadow-lg">
+                    <i class="fas fa-sign-in-alt mr-2"></i>
+                    Iniciar Sesión
+                </a>
+
+                <!-- Botón Registrarse -->
+                <a href="{% url 'user:register' %}?next={{ request.path }}" 
+                   class="block w-full bg-gradient-to-r from-yellow-500 to-yellow-600 text-white py-4 rounded-lg font-bold text-center hover:from-yellow-600 hover:to-yellow-700 transition-all transform hover:scale-105 shadow-lg">
+                    <i class="fas fa-user-plus mr-2"></i>
+                    Registrarse Gratis
+                </a>
+
+               
+
+            <!-- Beneficios -->
+            <div class="mt-6 pt-6 border-t border-gray-200">
+                <p class="text-sm font-semibold text-gray-800 mb-3">Beneficios de tener una cuenta:</p>
+                <ul class="space-y-2 text-sm text-gray-600">
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mr-2 mt-0.5"></i>
+                        <span>Guarda tus productos favoritos</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mr-2 mt-0.5"></i>
+                        <span>Seguimiento de pedidos en tiempo real</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mr-2 mt-0.5"></i>
+                        <span>Ofertas y descuentos exclusivos</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mr-2 mt-0.5"></i>
+                        <span>Compra más rápida con datos guardados</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================
+     ESTILOS ADICIONALES DEL MODAL
+     Agregar en el <head> o en la sección <style>
+     ============================================ -->
+<style>
+/* Animación de entrada del modal */
+#auth-modal.show #auth-modal-content {
+    animation: modalSlideIn 0.3s ease-out forwards;
+}
+
+@keyframes modalSlideIn {
+    from {
+        transform: scale(0.9) translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Animación de salida del modal */
+#auth-modal.hide #auth-modal-content {
+    animation: modalSlideOut 0.2s ease-in forwards;
+}
+
+@keyframes modalSlideOut {
+    from {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: scale(0.9) translateY(-20px);
+        opacity: 0;
+    }
+}
+</style>
+
+<!-- ============================================
+     JAVASCRIPT ACTUALIZADO PARA WISHLIST
+     Reemplazar las funciones toggleWishlist, addToWishlist, etc.
+     ============================================ -->
+<script>
+// ====================================
+// FUNCIONES DEL MODAL
+// ====================================
+
+function showAuthModal() {
+    const modal = document.getElementById('auth-modal');
+    modal.classList.remove('hidden');
+    setTimeout(() => {
+        modal.classList.add('show');
+    }, 10);
+    
+    // Prevenir scroll del body
+    document.body.style.overflow = 'hidden';
+}
+
+function closeAuthModal() {
+    const modal = document.getElementById('auth-modal');
+    modal.classList.remove('show');
+    modal.classList.add('hide');
+    
+    setTimeout(() => {
+        modal.classList.add('hidden');
+        modal.classList.remove('hide');
+        document.body.style.overflow = '';
+    }, 200);
+}
+
+// Cerrar modal al hacer clic fuera
+document.getElementById('auth-modal')?.addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeAuthModal();
+    }
+});
+
+// Cerrar modal con tecla ESC
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeAuthModal();
+    }
+});
+
+// ====================================
+// WISHLIST ACTUALIZADO CON MODAL
+// ====================================
+
+function toggleWishlist(event, productId) {
+    event.preventDefault();
+    event.stopPropagation();
+    
+    // ✅ VERIFICAR SI EL USUARIO ESTÁ AUTENTICADO
+    const isAuthenticated = {{ user.is_authenticated|yesno:"true,false" }};
+    
+    if (!isAuthenticated) {
+        // Mostrar modal de autenticación
+        showAuthModal();
+        return;
+    }
+    
+    // Usuario autenticado: proceder normalmente
+    const btn = event.currentTarget;
+    const isActive = btn.classList.contains('active');
+    
+    if (isActive) {
+        removeFromWishlist(btn, productId);
+    } else {
+        addToWishlist(btn, productId);
+    }
+}
+
+// Para la página de detalle del producto
+function toggleWishlistDetail(event, productId) {
+    event.preventDefault();
+    event.stopPropagation();
+    
+    // ✅ VERIFICAR SI EL USUARIO ESTÁ AUTENTICADO
+    const isAuthenticated = {{ user.is_authenticated|yesno:"true,false" }};
+    
+    if (!isAuthenticated) {
+        // Mostrar modal de autenticación
+        showAuthModal();
+        return;
+    }
+    
+    // Usuario autenticado: proceder normalmente
+    const btn = event.currentTarget;
+    const isActive = btn.classList.contains('active');
+    
+    if (isActive) {
+        removeFromWishlistDetail(btn, productId);
+    } else {
+        addToWishlistDetail(btn, productId);
+    }
+}
+
+// Resto de funciones permanecen igual...
+function addToWishlist(btn, productId) {
+    const csrftoken = getCookie('csrftoken');
+    
+    fetch(`/wishlist/add/${productId}/`, {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': csrftoken,
+            'Content-Type': 'application/json',
+        },
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            btn.classList.add('active');
+            btn.textContent = '♥';
+            mostrarNotificacion('❤️ ' + data.message, 'success');
+            
+            if (data.total_items !== undefined) {
+                actualizarContadorWishlistEnHeader(data.total_items);
+            }
+        } else {
+            mostrarNotificacion('ℹ️ ' + data.message, 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        mostrarNotificacion('❌ Error al agregar a wishlist', 'error');
+    });
+}
+
+function removeFromWishlist(btn, productId) {
+    const csrftoken = getCookie('csrftoken');
+    
+    fetch(`/wishlist/remove/${productId}/`, {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': csrftoken,
+            'Content-Type': 'application/json',
+        },
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            btn.classList.remove('active');
+            btn.textContent = '♡';
+            mostrarNotificacion('❤️ ' + data.message, 'success');
+            
+            if (data.total_items !== undefined) {
+                actualizarContadorWishlistEnHeader(data.total_items);
+            }
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        mostrarNotificacion('❌ Error al eliminar de wishlist', 'error');
+    });
+}
+
+// Funciones para product_detail.html
+function addToWishlistDetail(btn, productId) {
+    const csrftoken = getCookie('csrftoken');
+    
+    fetch(`/wishlist/add/${productId}/`, {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': csrftoken,
+            'Content-Type': 'application/json',
+        },
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            btn.classList.add('active');
+            btn.textContent = '♥';
+            mostrarNotificacion('❤️ ' + data.message, 'success');
+            
+            if (data.total_items !== undefined) {
+                actualizarContadorWishlistEnHeader(data.total_items);
+            }
+        } else {
+            mostrarNotificacion('ℹ️ ' + data.message, 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        mostrarNotificacion('❌ Error al agregar a wishlist', 'error');
+    });
+}
+
+function removeFromWishlistDetail(btn, productId) {
+    const csrftoken = getCookie('csrftoken');
+    
+    fetch(`/wishlist/remove/${productId}/`, {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': csrftoken,
+            'Content-Type': 'application/json',
+        },
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            btn.classList.remove('active');
+            btn.textContent = '♡';
+            mostrarNotificacion('❤️ ' + data.message, 'success');
+            
+            if (data.total_items !== undefined) {
+                actualizarContadorWishlistEnHeader(data.total_items);
+            }
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        mostrarNotificacion('❌ Error al eliminar de wishlist', 'error');
+    });
+}
+
+function actualizarContadorWishlistEnHeader(totalItems) {
+    const wishlistIcon = document.querySelector('a[href*="wishlist"] i.fa-heart');
+    
+    if (wishlistIcon) {
+        const wishlistLink = wishlistIcon.parentElement;
+        let badge = wishlistLink.querySelector('span.absolute');
+        
+        if (totalItems > 0) {
+            if (!badge) {
+                badge = document.createElement('span');
+                badge.className = 'absolute -top-1 -right-2 bg-red-500 text-white text-xs font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1';
+                wishlistLink.appendChild(badge);
+            }
+            badge.textContent = totalItems;
+            badge.style.display = 'flex';
+        } else {
+            if (badge) {
+                badge.remove();
+            }
+        }
+    }
+}
+</script>
 </body>
 </html>

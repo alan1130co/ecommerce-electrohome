@@ -1,47 +1,111 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.decorators.cache import never_cache 
+from django.views.decorators.http import require_POST
+from django.http import JsonResponse
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Q, Min, Max
+
 from .models import Producto, Categoria
+from .cart_services import CartService
+from .recommendations import (
+    RecommendationEngine, 
+    track_product_view, 
+    get_recommendations_for_cart
+)
 
 
 @never_cache 
 def index(request):
     """
-    Vista principal del home de la tienda.
+    Vista principal del home con recomendaciones personalizadas
     """
-    # Obtener todos los productos activos
-    productos = Producto.objects.filter(activo=True)
+    # Inicializar motor de recomendaciones
+    user = request.user if request.user.is_authenticated else None
+    engine = RecommendationEngine(user=user)
     
-    # Obtener categorías para filtros (opcional)
-    categorias = Categoria.objects.filter(activo=True)
+    # Obtener recomendaciones del homepage
+    recomendaciones = engine.get_homepage_recommendations()
     
-    # Productos por categoría (ajusta los nombres según tus categorías reales)
-    productos_cocina = productos.filter(categoria__nombre__icontains='cocina')[:15]
-    productos_limpieza = productos.filter(categoria__nombre__icontains='limpieza')[:15]
+    # Productos por categoría para carruseles
+    productos_cocina = Producto.objects.filter(
+        categoria__nombre__icontains='cocina',
+        activo=True,
+        stock__gt=0
+    ).select_related('categoria').order_by('-fecha_creacion')[:15]
+    
+    productos_limpieza = Producto.objects.filter(
+        categoria__nombre__icontains='limpieza',
+        activo=True,
+        stock__gt=0
+    ).select_related('categoria').order_by('-fecha_creacion')[:15]
+    
+    # Si no hay suficientes recomendaciones personalizadas, completar
+    productos_destacados = list(recomendaciones.get('personalized', []))
+    if len(productos_destacados) < 6:
+        adicionales = Producto.objects.filter(
+            activo=True,
+            stock__gt=0
+        ).exclude(
+            id__in=[p.id for p in productos_destacados]
+        ).select_related('categoria').order_by('-fecha_creacion')[:6 - len(productos_destacados)]
+        productos_destacados.extend(list(adicionales))
     
     context = {
-        'productos': productos,
-        'categorias': categorias,
+        # Para sección "Promociones Especiales"
+        'productos': productos_destacados[:6],
+        
+        # Para carruseles
         'productos_cocina': productos_cocina,
         'productos_limpieza': productos_limpieza,
+        
+        # Categorías
+        'categorias': Categoria.objects.filter(activo=True),
     }
     
     return render(request, 'product/home.html', context)
 
-from django.contrib.auth.decorators import login_required
-from django.views.decorators.http import require_POST
-from django.http import JsonResponse
-from django.shortcuts import get_object_or_404, redirect
-from django.contrib import messages
-from .cart_services import CartService
-from application.order.order_services import OrderService
-from .recommendations import get_recommendations_for_cart, RecommendationEngine
+
+def product_detail(request, product_id):
+    """Vista de detalle del producto CON TRACKING"""
+    producto = get_object_or_404(
+        Producto.objects.prefetch_related('galeria').select_related('categoria'), 
+        id=product_id
+    )
+    
+    # ✅ REGISTRAR VISTA DEL PRODUCTO (para recomendaciones)
+    track_product_view(request, producto)
+    
+    # Obtener motor de recomendaciones
+    user = request.user if request.user.is_authenticated else None
+    engine = RecommendationEngine(user=user)
+    
+    # Productos similares (misma categoría)
+    productos_similares = engine.get_similar_products(producto, limit=4)
+    
+    # Productos frecuentemente comprados juntos
+    productos_frecuentes = engine.get_frequently_bought_together(producto, limit=4)
+    
+    # Si no hay productos frecuentes, usar productos de la misma categoría
+    if not productos_frecuentes:
+        productos_frecuentes = productos_similares[:4]
+    
+    context = {
+        'producto': producto,
+        'productos_relacionados': productos_similares,
+        'productos_frecuentes': productos_frecuentes,
+    }
+    
+    return render(request, 'product/product_detail.html', context)
+
 
 # ============================================================
-# VIEWS DEL CARRITO (Agregar al final del archivo)
+# VIEWS DEL CARRITO
 # ============================================================
 
 def cart_view(request):
-    """Vista del carrito de compras"""
+    """Vista del carrito de compras CON RECOMENDACIONES"""
     cart_service = CartService(request)
     cart_summary = cart_service.get_cart_summary()
     
@@ -49,6 +113,11 @@ def cart_view(request):
     recommendations = []
     if cart_summary['items']:
         recommendations = get_recommendations_for_cart(cart_summary['items'], limit=4)
+    
+    # Si no hay recomendaciones basadas en carrito, usar productos populares
+    if not recommendations:
+        engine = RecommendationEngine(user=request.user if request.user.is_authenticated else None)
+        recommendations = engine.get_popular_products(limit=4)
     
     context = {
         **cart_summary,
@@ -176,10 +245,15 @@ def clear_cart(request):
             'message': 'Error al vaciar el carrito'
         }, status=500)
 
-from django.db.models import Q
+
+# ============================================================
+# BÚSQUEDA
+# ============================================================
 
 def search_view(request):
-    """Vista de búsqueda de productos"""
+    """Vista de búsqueda de productos CON TRACKING"""
+    from .recommendations import track_search_query
+    
     query = request.GET.get('q', '').strip()
     productos = []
     sugerencias = []
@@ -188,8 +262,12 @@ def search_view(request):
         productos = Producto.objects.filter(
             Q(nombre__icontains=query) |
             Q(descripcion__icontains=query) |
-            Q(categoria__nombre__icontains=query)
+            Q(categoria__nombre__icontains=query) |
+            Q(marca__icontains=query)
         ).filter(stock__gt=0, activo=True).select_related('categoria')
+        
+        # Registrar búsqueda para analytics
+        track_search_query(request, query, productos.count())
         
         # Sugerencias si no hay resultados
         if not productos.exists() and len(query) >= 3:
@@ -207,30 +285,11 @@ def search_view(request):
     }
     
     return render(request, 'product/search_results.html', context)
-def product_detail(request, product_id):
-    """Vista de detalle del producto"""
-    producto = get_object_or_404(Producto.objects.prefetch_related('galeria'), id=product_id)
-    
-    # Registrar la vista del producto para recomendaciones
-    if request.user.is_authenticated:
-        from .models import ProductView
-        ProductView.objects.create(user=request.user, product=producto)
-    
-    # Obtener productos relacionados de la misma categoría
-    productos_relacionados = Producto.objects.filter(
-        categoria=producto.categoria,
-        activo=True
-    ).exclude(id=producto.id)[:4]
-    
-    context = {
-        'producto': producto,
-        'productos_relacionados': productos_relacionados,
-    }
-    
-    return render(request, 'product/product_detail.html', context)
 
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.db.models import Q, Min, Max
+
+# ============================================================
+# LISTADO DE PRODUCTOS
+# ============================================================
 
 def products_list(request):
     """Vista de listado de productos con filtros y paginación"""
@@ -239,20 +298,18 @@ def products_list(request):
     productos = Producto.objects.filter(activo=True).select_related('categoria')
     
     # FILTROS
-    # Filtro por categoría
     categoria_id = request.GET.get('categoria')
     if categoria_id:
         productos = productos.filter(categoria_id=categoria_id)
     
-    # Filtro por búsqueda
     search_query = request.GET.get('q')
     if search_query:
         productos = productos.filter(
             Q(nombre__icontains=search_query) |
-            Q(descripcion__icontains=search_query)
+            Q(descripcion__icontains=search_query) |
+            Q(marca__icontains=search_query)
         )
     
-    # Filtro por rango de precio
     precio_min = request.GET.get('precio_min')
     precio_max = request.GET.get('precio_max')
     if precio_min:
@@ -260,7 +317,6 @@ def products_list(request):
     if precio_max:
         productos = productos.filter(precio__lte=precio_max)
     
-    # Filtro por disponibilidad
     disponible = request.GET.get('disponible')
     if disponible == '1':
         productos = productos.filter(stock__gt=0)
@@ -278,7 +334,7 @@ def products_list(request):
     productos = productos.order_by(orden_opciones.get(orden, '-fecha_creacion'))
     
     # PAGINACIÓN
-    paginator = Paginator(productos, 8)  # 8 productos por página
+    paginator = Paginator(productos, 8)
     page = request.GET.get('page', 1)
     
     try:
@@ -288,13 +344,12 @@ def products_list(request):
     except EmptyPage:
         productos_paginados = paginator.page(paginator.num_pages)
     
-    # Obtener rango de precios para el filtro
+    # Rango de precios
     precio_range = Producto.objects.filter(activo=True).aggregate(
         min_precio=Min('precio'),
         max_precio=Max('precio')
     )
     
-    # Obtener todas las categorías
     categorias = Categoria.objects.filter(activo=True)
     
     context = {
@@ -314,24 +369,16 @@ def products_list(request):
     
     return render(request, 'product/products_list.html', context)
 
+
 def contact(request):
     if request.method == 'POST':
-        # Obtener datos del formulario
         name = request.POST.get('name')
         email = request.POST.get('email')
         phone = request.POST.get('phone', '')
         subject = request.POST.get('subject')
         message = request.POST.get('message')
         
-        # Aquí puedes:
-        # 1. Guardar en la base de datos
-        # 2. Enviar un email
-        # 3. Enviar notificación
-        
-        # Por ahora, solo mostramos un mensaje de éxito
         messages.success(request, '¡Gracias por contactarnos! Te responderemos pronto.')
-        
         return redirect('product:contact')
     
     return render(request, 'product/contact.html')
-

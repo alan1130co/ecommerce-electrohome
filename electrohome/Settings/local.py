@@ -6,16 +6,15 @@ import os
 DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '*']
-
 # ===== CONFIGURACIÓN DE BASE DE DATOS POSTGRESQL =====
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME', default='esenciakr_db'),
-        'USER': config('DB_USER', default='postgres'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_HOST', default='localhost'),
-        'PORT': config('DB_PORT', default='5432'),
+        'NAME': 'electrohome',  
+        'USER': 'postgres',
+        'PASSWORD': 'Alan1130Pass',  
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 

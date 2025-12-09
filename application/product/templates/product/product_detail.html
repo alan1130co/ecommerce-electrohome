@@ -122,7 +122,7 @@
       <!-- Desktop Navigation -->
       <div class="hidden lg:flex space-x-6">
         <a href="{% url 'product:home' %}" class="text-yellow-400">Inicio</a>
-        <a href="{% url 'product:products_list' %}" class="text-gray-50 hover:text-yellow-300 ">productos</a>
+        <a href="{% url 'product:products_list' %}" class="text-gray-50 hover:text-yellow-300 ">Productos</a>
         <a href="{% url 'product:contact' %}" class="text-gray-50 hover:text-yellow-300">Contacto</a>
       </div>
 
@@ -291,37 +291,6 @@
 </div>
   </nav>
 </header>
-
-<script>
-  // Toggle dropdown del usuario
-  const userMenuBtn = document.getElementById('user-menu-btn');
-  const userDropdown = document.getElementById('user-dropdown');
-
-  if (userMenuBtn && userDropdown) {
-    userMenuBtn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      userDropdown.classList.toggle('hidden');
-    });
-
-    // Cerrar dropdown al hacer click fuera
-    document.addEventListener('click', function(e) {
-      if (!userMenuBtn.contains(e.target) && !userDropdown.contains(e.target)) {
-        userDropdown.classList.add('hidden');
-      }
-    });
-  }
-
-  // Toggle menú mobile
-  const mobileMenuBtn = document.getElementById('mobile-menu-button');
-  const mobileMenu = document.getElementById('mobile-menu');
-
-  if (mobileMenuBtn && mobileMenu) {
-    mobileMenuBtn.addEventListener('click', function() {
-      mobileMenu.classList.toggle('hidden');
-    });
-  }
-</script>
-
     <!-- MAIN CONTENT -->
     <main class="container mx-auto px-4 py-8">
         <!-- Breadcrumb -->
@@ -385,14 +354,14 @@
                 <div class="mb-6">
                     {% if producto.precio_oferta %}
                     <div class="flex items-center gap-3">
-                        <span class="text-4xl font-bold text-red-600">${{ producto.precio_oferta|formato_precio }}</span>
-                        <span class="text-2xl text-gray-400 line-through">${{ producto.precio|formato_precio }}</span>
+                        <span class="text-4xl font-bold text-red-600">{{ producto.precio_oferta|formato_precio }}</span>
+                        <span class="text-2xl text-gray-400 line-through">{{ producto.precio|formato_precio }}</span>
                         <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">
                             ¡OFERTA!
                         </span>
                     </div>
                     {% else %}
-                    <span class="text-4xl font-bold text-blue-800">${{ producto.precio|formato_precio }}</span>
+                    <span class="text-4xl font-bold text-blue-800">{{ producto.precio|formato_precio }}</span>
                     {% endif %}
                 </div>
 
@@ -590,7 +559,7 @@
     </div>
   </div>
 </footer>
-========= -->
+
 <script>
 // ====================================
 // ✅ VARIABLE GLOBAL DE AUTENTICACIÓN

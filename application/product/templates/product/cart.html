@@ -313,8 +313,8 @@
     </div>
                         <!-- Precio -->
                         <div class="text-center">
-                            <p class="text-2xl font-bold text-blue-600" id="subtotal-{{ item.id }}">${{ item.subtotal|formato_precio }}</p>
-                            <p class="text-sm text-gray-500">${{ item.product.precio|formato_precio}} c/u</p>
+                            <p class="text-2xl font-bold text-blue-600" id="subtotal-{{ item.id }}">{{ item.subtotal|formato_precio }}</p>
+                            <p class="text-sm text-gray-500">{{ item.product.precio|formato_precio}} c/u</p>
                         </div>
 
                         <!-- Botón eliminar -->
@@ -341,16 +341,16 @@
                     <div class="space-y-4 mb-6">
                         <div class="flex justify-between text-gray-700">
                             <span>Subtotal:</span>
-                            <span id="cart-subtotal" class="font-semibold">${{ subtotal|formato_precio}}</span>
+                            <span id="cart-subtotal" class="font-semibold">{{ subtotal|formato_precio}}</span>
                         </div>
                         <div class="flex justify-between text-gray-700">
                             <span>IVA (19%):</span>
-                            <span id="cart-tax" class="font-semibold">${{ tax|formato_precio}}</span>
+                            <span id="cart-tax" class="font-semibold">{{ tax|formato_precio}}</span>
                         </div>
                         <hr class="border-gray-300" />
                         <div class="flex justify-between text-xl font-bold text-blue-800">
                             <span>Total:</span>
-                            <span id="cart-total">${{ total|formato_precio}}</span>
+                            <span id="cart-total">{{ total|formato_precio}}</span>
                         </div>
                     </div>
 
@@ -374,7 +374,7 @@
        <!-- RECOMENDACIONES -->
 {% if recommendations %}
 <section class="mt-16">
-    <h2 class="text-3xl font-bold text-blue-800 mb-6">También te puede interesar</h2>
+    <h2 class="text-3xl font-bold text-blue-800 mb-6">Recomendaciones te puede interesar</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {% for producto in recommendations %}
         <div class="bg-white rounded-lg shadow-md hover:shadow-xl transition overflow-hidden flex flex-col h-full">
@@ -402,7 +402,7 @@
                 
                 <!-- Precio -->
                 <p class="text-2xl font-bold text-blue-600 mb-4">
-                    ${{ producto.precio|formato_precio }}
+                    {{ producto.precio|formato_precio }}
                 </p>
                 
                 <!-- Espaciador para empujar el botón al fondo -->

@@ -1,0 +1,513 @@
+<!-- ============================================
+     CHATBOT FLOTANTE - VERSIÓN DEFINITIVA
+     Posición: SUPERIOR DERECHA (sin conflictos)
+     ============================================ -->
+
+<style>
+/* ================================================
+   BOTÓN FLOTANTE - SUPERIOR DERECHA
+   ================================================ */
+#eh-chatbot-toggle {
+    /* Posicionamiento */
+    position: fixed !important;
+    top: 100px !important;
+    right: 20px !important;
+    bottom: auto !important;
+    left: auto !important;
+    z-index: 2147483647 !important;
+    
+    /* Dimensiones */
+    width: 60px !important;
+    height: 60px !important;
+    min-width: 60px !important;
+    min-height: 60px !important;
+    max-width: 60px !important;
+    max-height: 60px !important;
+    
+    /* Diseño */
+    border-radius: 50% !important;
+    background: #2563EB !important;
+    background-image: none !important;
+    color: white !important;
+    font-size: 30px !important;
+    line-height: 60px !important;
+    text-align: center !important;
+    border: 3px solid white !important;
+    cursor: pointer !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3) !important;
+    
+    /* Layout */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    
+    /* Visibilidad */
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    transform: scale(1) !important;
+    
+    /* Reset de conflictos */
+    margin: 0 !important;
+    padding: 0 !important;
+    float: none !important;
+    clear: none !important;
+    
+    /* Animación */
+    transition: all 0.3s ease !important;
+    animation: chatbot-pulse 3s infinite !important;
+}
+
+@keyframes chatbot-pulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 6px 20px rgba(37, 99, 235, 0.5);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 8px 30px rgba(37, 99, 235, 0.7), 0 0 0 10px rgba(37, 99, 235, 0.1);
+    }
+}
+
+#eh-chatbot-toggle:hover {
+    background: #1D4ED8 !important;
+    background-image: none !important;
+    transform: scale(1.1) !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Badge de notificación (opcional) */
+#eh-chatbot-badge {
+    position: absolute !important;
+    top: -5px !important;
+    right: -5px !important;
+    background: #EF4444 !important;
+    color: white !important;
+    width: 20px !important;
+    height: 20px !important;
+    border-radius: 50% !important;
+    font-size: 11px !important;
+    font-weight: bold !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border: 2px solid white !important;
+}
+
+/* ================================================
+   CONTENEDOR DEL CHAT - DERECHA
+   ================================================ */
+#eh-chatbot-container {
+    position: fixed !important;
+    top: 170px !important; /* Debajo del botón */
+    right: 20px !important;
+    z-index: 2147483646 !important;
+    
+    width: 360px !important;
+    max-width: calc(100vw - 40px) !important;
+    height: calc(100vh - 200px) !important;
+    max-height: 600px !important;
+    
+    background: white !important;
+    border-radius: 16px !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2) !important;
+    overflow: hidden !important;
+    
+    /* Oculto por defecto */
+    display: none !important;
+    opacity: 0 !important;
+    transform: translateY(-20px) scale(0.95) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+#eh-chatbot-container.open {
+    display: flex !important;
+    flex-direction: column !important;
+    opacity: 1 !important;
+    transform: translateY(0) scale(1) !important;
+}
+
+/* Header del Chat */
+#eh-chatbot-header {
+    background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%) !important;
+    color: white !important;
+    padding: 16px 18px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1) !important;
+    flex-shrink: 0 !important;
+}
+
+#eh-chatbot-header-title {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+}
+
+#eh-chatbot-header-icon {
+    font-size: 22px !important;
+}
+
+#eh-chatbot-close {
+    background: rgba(255, 255, 255, 0.2) !important;
+    border: none !important;
+    color: white !important;
+    width: 30px !important;
+    height: 30px !important;
+    border-radius: 50% !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.3s ease !important;
+    font-size: 16px !important;
+}
+
+#eh-chatbot-close:hover {
+    background: rgba(255, 255, 255, 0.3) !important;
+    transform: rotate(90deg) !important;
+}
+
+/* Body del Chat */
+#eh-chatbot-body {
+    flex: 1 !important;
+    padding: 16px !important;
+    overflow-y: auto !important;
+    background: linear-gradient(to bottom, #F9FAFB 0%, #FFFFFF 100%) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+}
+
+/* Scrollbar */
+#eh-chatbot-body::-webkit-scrollbar {
+    width: 6px !important;
+}
+
+#eh-chatbot-body::-webkit-scrollbar-track {
+    background: transparent !important;
+}
+
+#eh-chatbot-body::-webkit-scrollbar-thumb {
+    background: #D1D5DB !important;
+    border-radius: 10px !important;
+}
+
+#eh-chatbot-body::-webkit-scrollbar-thumb:hover {
+    background: #9CA3AF !important;
+}
+
+/* Mensajes */
+.message {
+    padding: 10px 14px !important;
+    border-radius: 12px !important;
+    max-width: 80% !important;
+    line-height: 1.4 !important;
+    font-size: 14px !important;
+    word-wrap: break-word !important;
+    animation: slideIn 0.3s ease !important;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.user-message {
+    background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%) !important;
+    color: white !important;
+    align-self: flex-end !important;
+    border-bottom-right-radius: 4px !important;
+}
+
+.bot-message {
+    background: #F3F4F6 !important;
+    color: #1F2937 !important;
+    align-self: flex-start !important;
+    border-bottom-left-radius: 4px !important;
+    border: 1px solid #E5E7EB !important;
+}
+
+/* Indicador de escritura */
+.typing-indicator {
+    display: flex !important;
+    gap: 4px !important;
+    padding: 10px 14px !important;
+    background: #F3F4F6 !important;
+    border-radius: 12px !important;
+    border-bottom-left-radius: 4px !important;
+    max-width: 60px !important;
+    align-self: flex-start !important;
+}
+
+.typing-dot {
+    width: 8px !important;
+    height: 8px !important;
+    background: #9CA3AF !important;
+    border-radius: 50% !important;
+    animation: typing 1.4s infinite !important;
+}
+
+.typing-dot:nth-child(2) { animation-delay: 0.2s !important; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s !important; }
+
+@keyframes typing {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.7; }
+    30% { transform: translateY(-8px); opacity: 1; }
+}
+
+/* Input Container */
+#eh-chatbot-input-container {
+    border-top: 1px solid #E5E7EB !important;
+    padding: 12px !important;
+    display: flex !important;
+    gap: 8px !important;
+    background: white !important;
+    flex-shrink: 0 !important;
+}
+
+#eh-chatbot-input {
+    flex: 1 !important;
+    padding: 10px 14px !important;
+    border: 2px solid #E5E7EB !important;
+    border-radius: 10px !important;
+    font-size: 14px !important;
+    transition: border-color 0.3s ease !important;
+    outline: none !important;
+}
+
+#eh-chatbot-input:focus {
+    border-color: #3B82F6 !important;
+}
+
+#eh-chatbot-send {
+    background: linear-gradient(135deg, #10B981 0%, #059669 100%) !important;
+    color: white !important;
+    border: none !important;
+    padding: 10px 16px !important;
+    border-radius: 10px !important;
+    cursor: pointer !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    transition: all 0.3s ease !important;
+    white-space: nowrap !important;
+}
+
+#eh-chatbot-send:hover {
+    background: linear-gradient(135deg, #059669 0%, #047857 100%) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3) !important;
+}
+
+#eh-chatbot-send:disabled {
+    background: #D1D5DB !important;
+    cursor: not-allowed !important;
+    transform: none !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #eh-chatbot-toggle {
+        top: auto !important;
+        bottom: 20px !important;
+        right: 20px !important;
+        width: 55px !important;
+        height: 55px !important;
+    }
+    
+    #eh-chatbot-container {
+        top: auto !important;
+        bottom: 85px !important;
+        right: 10px !important;
+        left: 10px !important;
+        width: auto !important;
+        max-width: none !important;
+        height: 500px !important;
+    }
+}
+</style>
+
+<!-- ============================================
+     HTML DEL CHATBOT
+     ============================================ -->
+
+<!-- Botón Flotante -->
+<button id="eh-chatbot-toggle" title="Abrir asistente virtual">
+    💬
+</button>
+
+<!-- Contenedor del Chat -->
+<div id="eh-chatbot-container">
+    <!-- Header -->
+    <div id="eh-chatbot-header">
+        <div id="eh-chatbot-header-title">
+            <span style="font-size: 22px;">🤖</span>
+            <span>Asistente Virtual</span>
+        </div>
+        <button id="eh-chatbot-close" title="Cerrar">
+            ✕
+        </button>
+    </div>
+    
+    <!-- Body -->
+    <div id="eh-chatbot-body">
+        <div class="message bot-message">
+            ¡Hola! 👋 Soy tu asistente virtual de ElectroHome. ¿En qué puedo ayudarte hoy?
+        </div>
+    </div>
+    
+    <!-- Input -->
+    <div id="eh-chatbot-input-container">
+        <input 
+            type="text" 
+            id="eh-chatbot-input" 
+            placeholder="Escribe tu mensaje..."
+            autocomplete="off"
+        >
+        <button id="eh-chatbot-send">Enviar</button>
+    </div>
+</div>
+
+<!-- ============================================
+     JAVASCRIPT DEL CHATBOT
+     ============================================ -->
+<script>
+(function() {
+    'use strict';
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('🤖 Iniciando chatbot ElectroHome...');
+        
+        const toggle = document.getElementById('eh-chatbot-toggle');
+        const container = document.getElementById('eh-chatbot-container');
+        const close = document.getElementById('eh-chatbot-close');
+        const send = document.getElementById('eh-chatbot-send');
+        const input = document.getElementById('eh-chatbot-input');
+        const body = document.getElementById('eh-chatbot-body');
+        
+        if (!toggle || !container) {
+            console.error('❌ Elementos del chatbot no encontrados');
+            return;
+        }
+        
+        console.log('✅ Chatbot cargado correctamente');
+        
+        // Abrir/Cerrar
+        function openChat() {
+            container.classList.add('open');
+            input.focus();
+        }
+        
+        function closeChat() {
+            container.classList.remove('open');
+        }
+        
+        toggle.addEventListener('click', openChat);
+        close.addEventListener('click', closeChat);
+        
+        // Mensajes
+        function addMessage(text, sender) {
+            const msg = document.createElement('div');
+            msg.className = `message ${sender}-message`;
+            msg.textContent = text;
+            body.appendChild(msg);
+            body.scrollTop = body.scrollHeight;
+        }
+        
+        function showTyping() {
+            const typing = document.createElement('div');
+            typing.className = 'typing-indicator';
+            typing.id = 'typing';
+            typing.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+            body.appendChild(typing);
+            body.scrollTop = body.scrollHeight;
+        }
+        
+        function hideTyping() {
+            const typing = document.getElementById('typing');
+            if (typing) typing.remove();
+        }
+        
+        // Respuestas
+        function getResponse(msg) {
+            const m = msg.toLowerCase();
+            
+            if (m.match(/hola|hey|buenos|buenas/)) 
+                return "¡Hola! 😊 ¿Buscas productos, información de pedidos o ayuda con pagos?";
+            
+            if (m.match(/producto|comprar|precio|electrodoméstico/)) 
+                return "Tenemos neveras, lavadoras, cocinas y más. ¿Qué te interesa?";
+            
+            if (m.match(/pedido|envío|orden|rastreo/)) 
+                return "Puedes consultar tu pedido en 'Mis Pedidos' o dime tu número de orden.";
+            
+            if (m.match(/devol|cambio|garantía/)) 
+                return "Tienes 30 días para devoluciones. Escribe a soporte@electrohome.com";
+            
+            if (m.match(/pago|pagar|tarjeta/)) 
+                return "Aceptamos tarjetas, PSE y transferencias. ¡100% seguro! 🔒";
+            
+            if (m.match(/ayuda|necesito/)) 
+                return "Claro, ¿qué necesitas? Puedo ayudarte con productos, pedidos o pagos.";
+            
+            return "No entendí bien. Pregúntame sobre productos, pedidos o pagos. 🤔";
+        }
+        
+        // Enviar
+        function sendMessage() {
+            const text = input.value.trim();
+            if (!text) return;
+            
+            send.disabled = true;
+            input.disabled = true;
+            
+            addMessage(text, 'user');
+            input.value = '';
+            
+            showTyping();
+            
+            setTimeout(() => {
+                hideTyping();
+                addMessage(getResponse(text), 'bot');
+                send.disabled = false;
+                input.disabled = false;
+                input.focus();
+            }, 600 + Math.random() * 800);
+        }
+        
+        send.addEventListener('click', sendMessage);
+        input.addEventListener('keypress', e => {
+            if (e.key === 'Enter') sendMessage();
+        });
+        
+        console.log('✅ Chatbot listo para usar');
+        
+        // FORZAR estilos del botón cada 100ms durante 2 segundos
+        let forceCount = 0;
+        const forceStyles = setInterval(() => {
+            if (toggle && forceCount < 20) {
+                toggle.style.setProperty('display', 'flex', 'important');
+                toggle.style.setProperty('visibility', 'visible', 'important');
+                toggle.style.setProperty('opacity', '1', 'important');
+                toggle.style.setProperty('position', 'fixed', 'important');
+                toggle.style.setProperty('top', '100px', 'important');
+                toggle.style.setProperty('right', '20px', 'important');
+                toggle.style.setProperty('z-index', '2147483647', 'important');
+                forceCount++;
+            } else {
+                clearInterval(forceStyles);
+                console.log('✅ Estilos del botón forzados correctamente');
+            }
+        }, 100);
+    });
+})();
+</script>

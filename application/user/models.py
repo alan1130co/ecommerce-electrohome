@@ -1,3 +1,4 @@
+# application/user/models.py
 from django.contrib.auth.models import AbstractUser, UserManager as BaseUserManager
 from django.db import models
 
@@ -99,21 +100,42 @@ class Usuario(AbstractUser):
     def nombre_completo(self):
         return f"{self.first_name} {self.last_name}".strip() or self.email
     
-    # ✅ MÉTODOS PARA ESTADÍSTICAS DEL PERFIL
+    # ✅ MÉTODOS CORREGIDOS PARA ESTADÍSTICAS DEL PERFIL
     def get_total_orders(self):
-        """Retorna el número total de pedidos completados del usuario"""
-        return self.orders.filter(
-            status__in=['processing', 'shipped', 'delivered']
-        ).count()
+        """
+        Retorna el número total de pedidos realizados
+        ⭐ Se actualiza INMEDIATAMENTE al hacer una compra
+        Cuenta TODAS las órdenes (pending, processing, shipped, delivered)
+        """
+        return self.orders.count()
 
     def get_total_spent(self):
-        """Retorna el total gastado por el usuario en pedidos completados"""
+        """
+        Retorna el total gastado por el usuario
+        ⭐ Se actualiza SOLO cuando el pedido es ENTREGADO
+        Solo cuenta órdenes con status='delivered' y payment_status='approved'
+        """
         from django.db.models import Sum
-        total = self.orders.filter(
-            status__in=['processing', 'shipped', 'delivered'],
+        
+        result = self.orders.filter(
+            status='delivered',
             payment_status='approved'
-        ).aggregate(Sum('total'))['total__sum']
-        return total or 0
+        ).aggregate(total_sum=Sum('total'))
+        
+        return result['total_sum'] if result['total_sum'] else 0
+    
+    # Métodos adicionales útiles
+    def get_pending_orders(self):
+        """Retorna el número de órdenes pendientes"""
+        return self.orders.filter(status='pending').count()
+    
+    def get_completed_orders(self):
+        """Retorna el número de órdenes entregadas"""
+        return self.orders.filter(status='delivered').count()
+    
+    def get_processing_orders(self):
+        """Retorna el número de órdenes en proceso o enviadas"""
+        return self.orders.filter(status__in=['processing', 'shipped']).count()
     
     class Meta:
         verbose_name = 'Usuario'
@@ -127,7 +149,7 @@ class Administrador(Usuario):
         proxy = True
         verbose_name = 'Administrador'
         verbose_name_plural = 'Administradores'
-        app_label = 'auth'  # Esto lo pondrá en AUTHENTICATION AND AUTHORIZATION
+        app_label = 'auth'
 
 
 # Proxy Model para Clientes

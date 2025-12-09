@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'application.user.apps.UserConfig',  # ← ASÍ
     'application.product',
     'application.order',
+    'application.chatbot'
 ]
 
 

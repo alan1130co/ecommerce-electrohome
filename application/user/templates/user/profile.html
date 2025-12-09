@@ -12,15 +12,23 @@
         .profile-gradient {
             background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
         }
-        .edit-mode-disabled {
-            background-color: #f3f4f6;
-            cursor: not-allowed;
+        .error-border {
+            border-color: #ef4444 !important;
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+        }
+        .error-message {
+            animation: shake 0.3s;
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
         }
     </style>
 </head>
 <body class="bg-gray-50">
     
-      <!-- HEADER / NAVEGACIÓN -->
+    <!-- HEADER / NAVEGACIÓN -->
     <header class="bg-blue-800 shadow-2xl border-b-4 border-blue-500 sticky top-0 z-50">
   <nav class="container mx-auto px-4 py-4">
     <div class="flex justify-between items-center gap-4">
@@ -226,7 +234,6 @@
 </div>
   </nav>
 </header>
-
 <script>
   // Toggle dropdown del usuario
   const userMenuBtn = document.getElementById('user-menu-btn');
@@ -256,12 +263,11 @@
     });
   }
 </script>
-
+    
     <!-- CONTENIDO PRINCIPAL -->
     <main class="container mx-auto px-4 py-12">
         <div class="max-w-4xl mx-auto">
             
-          
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 
                 <!-- TARJETA DE PERFIL (Sidebar) -->
@@ -309,9 +315,9 @@
                                 <i class="fas fa-user-circle mr-2"></i>Información Personal
                             </h2>
                             <button 
-                                type="button"  id="edit-btn"
+                                type="button" id="edit-btn"
                                 onclick="toggleEditMode()"
-                                class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition font-semibold"
+                                class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition font-semibold"
                             >
                                 <i class="fas fa-edit mr-2"></i>Editar
                             </button>
@@ -320,7 +326,7 @@
                         <!-- Mensajes -->
                         {% if messages %}
                             {% for message in messages %}
-                            <div class="mb-6 p-4 rounded-lg {% if message.tags == 'success' %}bg-green-50 text-green-700 border border-green-200{% elif message.tags == 'error' %}bg-red-50 text-red-700 border border-red-200{% else %}bg-blue-50 text-blue-700 border border-blue-200{% endif %}">
+                            <div class="mb-6 p-4 rounded-lg error-message {% if message.tags == 'success' %}bg-green-50 text-green-700 border border-green-200{% elif message.tags == 'error' %}bg-red-50 text-red-700 border border-red-200{% else %}bg-blue-50 text-blue-700 border border-blue-200{% endif %}">
                                 <i class="fas {% if message.tags == 'success' %}fa-check-circle{% elif message.tags == 'error' %}fa-exclamation-circle{% else %}fa-info-circle{% endif %} mr-2"></i>
                                 {{ message }}
                             </div>
@@ -328,14 +334,14 @@
                         {% endif %}
 
                         <!-- Formulario -->
-                        <form method="POST" id="profile-form">
+                        <form method="POST" id="profile-form" onsubmit="return validateForm()">
                             {% csrf_token %}
                             
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                                 <!-- Nombre -->
                                 <div>
                                     <label class="block text-gray-700 font-semibold mb-2 text-sm uppercase tracking-wide">
-                                        <i class="fas fa-user text-blue-600 mr-2"></i>Nombre
+                                        <i class="fas fa-user text-blue-600 mr-2"></i>Nombre *
                                     </label>
                                     <input 
                                         type="text" 
@@ -344,14 +350,15 @@
                                         disabled
                                         id="first_name"
                                         class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none disabled:bg-gray-100 disabled:cursor-not-allowed transition"
-                                        placeholder="Tu nombre"
+                                        placeholder="Ej: Juan"
                                     />
+                                    <p id="error-first_name" class="text-red-600 text-xs mt-1 hidden"></p>
                                 </div>
 
                                 <!-- Apellido -->
                                 <div>
                                     <label class="block text-gray-700 font-semibold mb-2 text-sm uppercase tracking-wide">
-                                        <i class="fas fa-user text-blue-600 mr-2"></i>Apellido
+                                        <i class="fas fa-user text-blue-600 mr-2"></i>Apellido *
                                     </label>
                                     <input 
                                         type="text" 
@@ -360,8 +367,9 @@
                                         disabled
                                         id="last_name"
                                         class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none disabled:bg-gray-100 disabled:cursor-not-allowed transition"
-                                        placeholder="Tu apellido"
+                                        placeholder="Ej: Pérez"
                                     />
+                                    <p id="error-last_name" class="text-red-600 text-xs mt-1 hidden"></p>
                                 </div>
                             </div>
 
@@ -384,7 +392,7 @@
                             <!-- Teléfono -->
                             <div class="mb-6">
                                 <label class="block text-gray-700 font-semibold mb-2 text-sm uppercase tracking-wide">
-                                    <i class="fas fa-phone text-blue-600 mr-2"></i>Teléfono
+                                    <i class="fas fa-phone text-blue-600 mr-2"></i>Teléfono *
                                 </label>
                                 <input 
                                     type="tel" 
@@ -396,22 +404,27 @@
                                     placeholder="3001234567"
                                     maxlength="10"
                                 />
+                                <p id="error-telefono" class="text-red-600 text-xs mt-1 hidden"></p>
+                                <p class="text-xs text-gray-500 mt-1">
+                                    <i class="fas fa-info-circle mr-1"></i>Ingresa 10 dígitos sin espacios ni guiones
+                                </p>
                             </div>
 
                             <!-- Ciudad -->
                             <div class="mb-6">
                                 <label class="block text-gray-700 font-semibold mb-2 text-sm uppercase tracking-wide">
-                                    <i class="fas fa-map-marker-alt text-blue-600 mr-2"></i>Ciudad
+                                    <i class="fas fa-map-marker-alt text-blue-600 mr-2"></i>Ciudad *
                                 </label>
-                                <input 
-                                    type="text" 
+                                <select 
                                     name="ciudad" 
-                                    value="{{ user.ciudad|default:'' }}"
                                     disabled
                                     id="ciudad"
                                     class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none disabled:bg-gray-100 disabled:cursor-not-allowed transition"
-                                    placeholder="Bogotá"
-                                />
+                                >
+                                    <option value="">Selecciona tu ciudad</option>
+                                    <!-- Las opciones se llenarán con JavaScript -->
+                                </select>
+                                <p id="error-ciudad" class="text-red-600 text-xs mt-1 hidden"></p>
                             </div>
 
                             <!-- Rol (solo lectura) -->
@@ -456,7 +469,8 @@
             </div>
         </div>
     </main>
- <!-FOOTER -->
+
+    <!--FOOTER -->
 <footer class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-gray-200 py-12 mt-10">
   <div class="container mx-auto px-6">
     <!-- Sección principal -->
@@ -507,64 +521,225 @@
     </div>
   </div>
 </footer>
-<script>
-    // --- LÓGICA DE EDICIÓN DE PERFIL ---
+    <script>
+        // ========================================
+        // LISTA DE CIUDADES DE COLOMBIA
+        // ========================================
+        const ciudadesColombia = [
+            "Leticia", "Medellín", "Bello", "Itagüí", "Envigado", "Apartadó", "Turbo", 
+            "Rionegro", "Sabaneta", "Arauca", "Barranquilla", "Soledad", "Malambo", 
+            "Cartagena", "Magangué", "Turbaco", "Tunja", "Duitama", "Sogamoso", 
+            "Manizales", "Florencia", "Yopal", "Popayán", "Valledupar", "Aguachica", 
+            "Quibdó", "Montería", "Lorica", "Bogotá", "Soacha", "Facatativá", 
+            "Zipaquirá", "Chía", "Mosquera", "Fusagasugá", "Madrid", "Funza", 
+            "Cajicá", "Sibaté", "Tocancipá", "Girardot", "Inírida", 
+            "San José del Guaviare", "Neiva", "Pitalito", "Garzón", "Riohacha", 
+            "Maicao", "Santa Marta", "Ciénaga", "Villavicencio", "Acacías", 
+            "Pasto", "Tumaco", "Ipiales", "Cúcuta", "Ocaña", "Pamplona", 
+            "Mocoa", "Armenia", "Calarcá", "Montenegro", "Pereira", "Dosquebradas", 
+            "Santa Rosa de Cabal", "San Andrés", "Bucaramanga", "Floridablanca", 
+            "Girón", "Piedecuesta", "Barrancabermeja", "Sincelejo", "Ibagué", 
+            "Espinal", "Melgar", "Cali", "Palmira", "Buenaventura", "Tuluá", 
+            "Cartago", "Buga", "Jamundí", "Yumbo", "Mitú", "Puerto Carreño"
+        ].sort();
 
-    function toggleEditMode() {
-        console.log('Botón editar clickeado'); // Para verificar en consola
-
-        // 1. Obtener los elementos
-        const fields = ['first_name', 'last_name', 'telefono', 'ciudad'];
-        const editBtn = document.getElementById('edit-btn');
-        const actionButtons = document.getElementById('action-buttons');
-
-        // 2. Habilitar los campos
-        fields.forEach(field => {
-            const input = document.getElementById(field);
-            if (input) {
-                // Quitar atributo disabled real del HTML
-                input.removeAttribute('disabled');
+        // ========================================
+        // CARGAR CIUDADES EN EL SELECT
+        // ========================================
+        function cargarCiudades() {
+            const selectCiudad = document.getElementById('ciudad');
+            const ciudadActual = "{{ user.ciudad|default:'' }}";
+            
+            // Limpiar opciones existentes excepto la primera
+            selectCiudad.innerHTML = '<option value="">Selecciona tu ciudad</option>';
+            
+            // Agregar todas las ciudades
+            ciudadesColombia.forEach(ciudad => {
+                const option = document.createElement('option');
+                option.value = ciudad;
+                option.textContent = ciudad;
                 
-                // Limpiar estilos visuales de "deshabilitado"
-                input.classList.remove('bg-gray-100', 'cursor-not-allowed');
+                // Seleccionar la ciudad actual del usuario
+                if (ciudad === ciudadActual) {
+                    option.selected = true;
+                }
                 
-                // Agregar estilos de "habilitado"
-                input.classList.add('bg-white', 'border-blue-500', 'text-gray-900');
-            }
-        });
-
-        // 3. Alternar botones
-        if (editBtn) editBtn.classList.add('hidden');
-        if (actionButtons) actionButtons.classList.remove('hidden');
-    }
-
-    function cancelEdit() {
-        window.location.reload();
-    }
-
-    // --- VALIDACIONES Y UTILIDADES ADICIONALES ---
-
-    // Validación de teléfono (solo números)
-    document.addEventListener('DOMContentLoaded', function() {
-        const phoneInput = document.getElementById('telefono');
-        if (phoneInput) {
-            phoneInput.addEventListener('input', function(e) {
-                this.value = this.value.replace(/\D/g, '').slice(0, 10);
+                selectCiudad.appendChild(option);
             });
         }
-    });
 
-    // Manejo seguro del Logout
-    document.addEventListener('DOMContentLoaded', function() {
-        const logoutLinks = document.querySelectorAll('a[href*="logout"]');
-        logoutLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                // Opcional: limpiar storage si lo usas
-                sessionStorage.clear();
-                localStorage.clear();
+        // ========================================
+        // VALIDACIONES EN TIEMPO REAL
+        // ========================================
+        function setupRealTimeValidation() {
+            // Validar nombre en tiempo real
+            const firstNameInput = document.getElementById('first_name');
+            firstNameInput.addEventListener('input', function() {
+                const value = this.value.trim();
+                const errorDiv = document.getElementById('error-first_name');
+                
+                // Eliminar números y caracteres especiales
+                this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
+                
+                if (value.length > 0 && value.length < 3) {
+                    errorDiv.textContent = 'Mínimo 3 letras';
+                    errorDiv.classList.remove('hidden');
+                    this.classList.add('error-border');
+                } else {
+                    errorDiv.classList.add('hidden');
+                    this.classList.remove('error-border');
+                }
             });
+
+            // Validar apellido en tiempo real
+            const lastNameInput = document.getElementById('last_name');
+            lastNameInput.addEventListener('input', function() {
+                const value = this.value.trim();
+                const errorDiv = document.getElementById('error-last_name');
+                
+                // Eliminar números y caracteres especiales
+                this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
+                
+                if (value.length > 0 && value.length < 4) {
+                    errorDiv.textContent = 'Mínimo 4 letras';
+                    errorDiv.classList.remove('hidden');
+                    this.classList.add('error-border');
+                } else {
+                    errorDiv.classList.add('hidden');
+                    this.classList.remove('error-border');
+                }
+            });
+
+            // Validar teléfono en tiempo real
+            const telefonoInput = document.getElementById('telefono');
+            telefonoInput.addEventListener('input', function() {
+                const errorDiv = document.getElementById('error-telefono');
+                
+                // Solo números, máximo 10
+                this.value = this.value.replace(/\D/g, '').slice(0, 10);
+                
+                if (this.value.length > 0 && this.value.length < 10) {
+                    errorDiv.textContent = `Faltan ${10 - this.value.length} dígitos`;
+                    errorDiv.classList.remove('hidden');
+                    this.classList.add('error-border');
+                } else {
+                    errorDiv.classList.add('hidden');
+                    this.classList.remove('error-border');
+                }
+            });
+        }
+
+        // ========================================
+        // VALIDACIÓN COMPLETA DEL FORMULARIO
+        // ========================================
+        function validateForm() {
+            let isValid = true;
+            const fields = {
+                first_name: {
+                    value: document.getElementById('first_name').value.trim(),
+                    minLength: 3,
+                    pattern: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
+                    errorMsg: 'El nombre debe tener al menos 3 letras y solo puede contener letras'
+                },
+                last_name: {
+                    value: document.getElementById('last_name').value.trim(),
+                    minLength: 4,
+                    pattern: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
+                    errorMsg: 'El apellido debe tener al menos 4 letras y solo puede contener letras'
+                },
+                telefono: {
+                    value: document.getElementById('telefono').value.trim(),
+                    pattern: /^\d{10}$/,
+                    errorMsg: 'El teléfono debe tener exactamente 10 números'
+                },
+                ciudad: {
+                    value: document.getElementById('ciudad').value,
+                    required: true,
+                    errorMsg: 'Debes seleccionar una ciudad'
+                }
+            };
+
+            // Validar cada campo
+            for (const [fieldName, rules] of Object.entries(fields)) {
+                const input = document.getElementById(fieldName);
+                const errorDiv = document.getElementById(`error-${fieldName}`);
+                
+                // Validar longitud mínima
+                if (rules.minLength && rules.value.length < rules.minLength) {
+                    errorDiv.textContent = rules.errorMsg;
+                    errorDiv.classList.remove('hidden');
+                    input.classList.add('error-border');
+                    isValid = false;
+                    continue;
+                }
+                
+                // Validar patrón
+                if (rules.pattern && !rules.pattern.test(rules.value)) {
+                    errorDiv.textContent = rules.errorMsg;
+                    errorDiv.classList.remove('hidden');
+                    input.classList.add('error-border');
+                    isValid = false;
+                    continue;
+                }
+                
+                // Validar campo requerido
+                if (rules.required && !rules.value) {
+                    errorDiv.textContent = rules.errorMsg;
+                    errorDiv.classList.remove('hidden');
+                    input.classList.add('error-border');
+                    isValid = false;
+                    continue;
+                }
+                
+                // Si pasa todas las validaciones
+                errorDiv.classList.add('hidden');
+                input.classList.remove('error-border');
+            }
+
+            if (!isValid) {
+                // Scroll al primer error
+                const firstError = document.querySelector('.error-border');
+                if (firstError) {
+                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    firstError.focus();
+                }
+            }
+
+            return isValid;
+        }
+
+        // ========================================
+        // MODO EDICIÓN
+        // ========================================
+        function toggleEditMode() {
+            const fields = ['first_name', 'last_name', 'telefono', 'ciudad'];
+            const editBtn = document.getElementById('edit-btn');
+            const actionButtons = document.getElementById('action-buttons');
+
+            fields.forEach(field => {
+                const input = document.getElementById(field);
+                if (input) {
+                    input.removeAttribute('disabled');
+                    input.classList.remove('bg-gray-100', 'cursor-not-allowed');
+                    input.classList.add('bg-white');
+                }
+            });
+
+            if (editBtn) editBtn.classList.add('hidden');
+            if (actionButtons) actionButtons.classList.remove('hidden');
+        }
+
+        function cancelEdit() {
+            window.location.reload();
+        }
+
+        // ========================================
+        // INICIALIZACIÓN
+        // ========================================
+        document.addEventListener('DOMContentLoaded', function() {
+            cargarCiudades();
+            setupRealTimeValidation();
         });
-    });
-</script>
+    </script>
 </body>
 </html>

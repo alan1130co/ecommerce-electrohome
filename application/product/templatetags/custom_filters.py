@@ -35,6 +35,6 @@ def formato_numero(valor):
             valor = float(valor.replace(',', ''))
         
         valor = int(float(valor))
-        return f"{valor:,}".replace(',', '.')
+        return f"{valor:,}".replace(',', 'z')
     except (ValueError, TypeError):
         return valor

@@ -466,7 +466,9 @@
                         <p class="wishlist-description">{{ item.product.descripcion|truncatewords:12 }}</p>
 
                         <!-- Precio -->
-                        <p class="wishlist-price">${{ item.product.precio|floatformat:0 }}</p>
+                        {% load custom_filters %}
+
+                        <p class="wishlist-price">{{ item.product.precio|formato_precio }}</p>
 
                         <!-- Botones -->
                         <div class="wishlist-actions">

@@ -8,10 +8,12 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('order/', include('application.order.urls')),
     path('user/', include('application.user.urls')),
-    path('', include('application.product.urls')),  # ← CAMBIADO: sin tupla
+    path('chatbot/', include('application.chatbot.urls')),  # ← NUEVO: URLs del chatbot
+    path('', include('application.product.urls')),
 ]
 
 # Archivos multimedia
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[0])
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

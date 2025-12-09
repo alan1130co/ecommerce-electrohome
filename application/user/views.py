@@ -11,6 +11,7 @@ from django.views.decorators.csrf import csrf_protect, ensure_csrf_cookie
 from django.views.decorators.cache import never_cache
 from django.views.decorators.http import require_http_methods
 from .forms import RegisterForm, LoginForm
+import re 
 
 @ensure_csrf_cookie
 @csrf_protect
@@ -99,17 +100,57 @@ def logout_view(request):
 @login_required
 @never_cache
 def profile_view(request):
-    """Vista del perfil del usuario con estadísticas"""
+    """Vista del perfil del usuario con estadísticas y validaciones"""
     
-    # Si es POST, actualizar datos del perfil
     if request.method == 'POST':
         user = request.user
-        user.first_name = request.POST.get('first_name', '').strip()
-        user.last_name = request.POST.get('last_name', '').strip()
-        user.telefono = request.POST.get('telefono', '').strip()
-        user.ciudad = request.POST.get('ciudad', '').strip()
         
+        # Obtener datos del formulario
+        first_name = request.POST.get('first_name', '').strip()
+        last_name = request.POST.get('last_name', '').strip()
+        telefono = request.POST.get('telefono', '').strip()
+        ciudad = request.POST.get('ciudad', '').strip()
+        
+        # ✅ VALIDACIONES
+        errores = []
+        
+        # Validar Nombre
+        if not first_name:
+            errores.append('El nombre es obligatorio')
+        elif len(first_name) < 3:
+            errores.append('El nombre debe tener al menos 3 letras')
+        elif not re.match(r'^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$', first_name):
+            errores.append('El nombre solo puede contener letras')
+        
+        # Validar Apellido
+        if not last_name:
+            errores.append('El apellido es obligatorio')
+        elif len(last_name) < 4:
+            errores.append('El apellido debe tener al menos 4 letras')
+        elif not re.match(r'^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$', last_name):
+            errores.append('El apellido solo puede contener letras')
+        
+        # Validar Teléfono
+        if telefono:
+            if not re.match(r'^\d{10}$', telefono):
+                errores.append('El teléfono debe tener exactamente 10 números')
+        
+        # Validar Ciudad
+        if not ciudad:
+            errores.append('Debes seleccionar una ciudad')
+        
+        # Si hay errores, mostrarlos y no guardar
+        if errores:
+            for error in errores:
+                messages.error(request, error)
+            return redirect('user:profile')
+        
+        # Si todo está bien, guardar
         try:
+            user.first_name = first_name
+            user.last_name = last_name
+            user.telefono = telefono
+            user.ciudad = ciudad
             user.save()
             messages.success(request, '¡Perfil actualizado correctamente! ✅')
         except Exception as e:

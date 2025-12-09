@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'application.order',
     'application.product',
     'application.user',
+    'application.chatbot',
     
     # Allauth
     'allauth',

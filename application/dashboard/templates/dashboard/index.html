@@ -1,0 +1,309 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+
+{% block title %}Dashboard - Electrohome{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Panel de Control</h1>
+
+<!-- Botones de Reportes -->
+<div class="d-flex gap-2 mb-4">
+    <a href="{% url 'dashboard:reporte_pdf' %}?tipo=diario" class="btn btn-outline-danger">
+        <i class="fas fa-file-pdf"></i> Reporte Diario
+    </a>
+    <a href="{% url 'dashboard:reporte_pdf' %}?tipo=semanal" class="btn btn-outline-danger">
+        <i class="fas fa-file-pdf"></i> Reporte Semanal
+    </a>
+    <a href="{% url 'dashboard:reporte_pdf' %}?tipo=mensual" class="btn btn-outline-danger">
+        <i class="fas fa-file-pdf"></i> Reporte Mensual
+    </a>
+</div>
+
+
+<!-- Acceso Rápido -->
+<div class="row mb-4">
+    <div class="col-md-3">
+        <a href="{% url 'dashboard:productos' %}" class="text-decoration-none d-block">
+            <div class="card admin-access-card text-center h-100 shadow-sm">
+                <div class="card-body">
+                    <div style="font-size: 3rem">📦</div>
+                    <h5 class="card-title">Ir a Productos</h5>
+                    <p class="card-text text-muted small">Administrar productos</p>
+                    <p class="card-text text-muted"><span class="badge bg-primary">{{ total_productos }}</span></p>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-md-3">
+        <a href="{% url 'dashboard:categorias' %}" class="text-decoration-none d-block">
+            <div class="card admin-access-card text-center h-100 shadow-sm">
+                <div class="card-body">
+                    <div style="font-size: 3rem">📋</div>
+                    <h5 class="card-title">Ir a Categorías</h5>
+                    <p class="card-text text-muted small">Administrar categorías de productos</p>
+                    <p class="card-text text-muted"><span class="badge bg-secondary">{{ total_categorias }}</span></p>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-md-3">
+        <a href="{% url 'dashboard:pedidos' %}" class="text-decoration-none d-block">
+            <div class="card admin-access-card text-center h-100 shadow-sm">
+                <div class="card-body">
+                    <div style="font-size: 3rem">🛒</div>
+                    <h5 class="card-title">Ir a Pedidos</h5>
+                    <p class="card-text text-muted small">Revisar y procesar órdenes</p>
+                    <p class="card-text text-muted"><span class="badge bg-success">{{ total_pedidos }}</span></p>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-md-3">
+        <a href="{% url 'dashboard:usuarios' %}" class="text-decoration-none d-block">
+            <div class="card admin-access-card text-center h-100 shadow-sm">
+                <div class="card-body">
+                    <div style="font-size: 3rem">👥</div>
+                    <h5 class="card-title">Ir a Usuarios</h5>
+                    <p class="card-text text-muted small">Administrar usuarios</p>
+                    <p class="card-text text-muted"><span class="badge bg-danger">{{ total_clientes }}</span></p>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+<!-- Métricas Principales -->
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card text-bg-primary mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Total de Ventas</h5>
+                <p class="card-text display-6">{{ total_ventas }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-bg-success mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Ingresos</h5>
+                <p class="card-text display-6">${{ ingresos_totales|floatformat:2 }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-bg-warning mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Visitas Convertidas en Venta</h5>
+                <p class="card-text display-6">{{ conversion }}%</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-bg-info mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Vistas de Productos</h5>
+                <p class="card-text display-6">{{ total_vistas }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Top Productos -->
+<div class="row">
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header bg-dark text-white">
+                <h5 class="card-title mb-0">🏆 Productos Más Vendidos</h5>
+            </div>
+            <div class="card-body">
+                {% if top_productos %}
+                <table class="table table-striped table-sm">
+                    <thead><tr><th>Producto</th><th class="text-end">Ventas</th></tr></thead>
+                    <tbody>
+                        {% for item in top_productos %}
+                        <tr>
+                            <td>{{ item.product__nombre }}</td>
+                            <td class="text-end"><span class="badge bg-success">{{ item.total }}</span></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <div class="alert alert-info">No hay ventas registradas aún</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header bg-dark text-white">
+                <h5 class="card-title mb-0">👁️ Productos Más Vistos</h5>
+            </div>
+            <div class="card-body">
+                {% if top_vistos %}
+                <table class="table table-striped table-sm">
+                    <thead><tr><th>Producto</th><th class="text-end">Vistas</th></tr></thead>
+                    <tbody>
+                        {% for item in top_vistos %}
+                        <tr>
+                            <td>{{ item.product__nombre }}</td>
+                            <td class="text-end"><span class="badge bg-info">{{ item.total }}</span></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <div class="alert alert-info">No hay vistas registradas aún</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Gráfica lineal mensual -->
+<div class="row">
+    <div class="col-md-12 mb-4">
+        <div class="card">
+            <div class="card-header bg-dark text-white">
+                <h5 class="card-title mb-0">📈 Ingresos del Mes Actual</h5>
+            </div>
+            <div class="card-body" style="height: 400px; position: relative;">
+                <canvas id="ventasChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Ventas de hoy + Gráfica semana actual -->
+<div class="row">
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <div class="card-header bg-dark text-white">
+                <h5 class="card-title mb-0">🕐 Ventas de Hoy</h5>
+            </div>
+            <div class="card-body p-0">
+                <div style="max-height: 220px; overflow-y: auto;">
+                    <table class="table table-striped table-sm mb-0">
+                        <thead class="table-light sticky-top">
+                            <tr>
+                                <th>Hora</th>
+                                <th class="text-end">Pedidos</th>
+                                <th class="text-end">Ingresos</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for v in ventas_hoy %}
+                            <tr>
+                                <td>{{ v.hora }}</td>
+                                <td class="text-end"><span class="badge bg-primary">{{ v.count }}</span></td>
+                                <td class="text-end">${{ v.total|floatformat:2 }}</td>
+                            </tr>
+                            {% empty %}
+                            <tr><td colspan="3" class="text-center text-muted p-3">Sin ventas hoy</td></tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8 mb-4">
+        <div class="card">
+            <div class="card-header bg-dark text-white">
+                <h5 class="card-title mb-0">📊 Ventas de la Semana Actual</h5>
+            </div>
+            <div class="card-body" style="height: 280px; position: relative;">
+                <canvas id="semanalChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+<script>
+    // ===== Gráfica lineal mes actual =====
+    const labelsDiarios = [{% for v in ventas_por_dia %}"{{ v.dia }}",{% endfor %}];
+    const totalesDiarios = [{% for v in ventas_por_dia %}{{ v.total }},{% endfor %}];
+
+    new Chart(document.getElementById('ventasChart').getContext('2d'), {
+        type: 'line',
+        data: {
+            labels: labelsDiarios,
+            datasets: [{
+                label: 'Ingresos ($)',
+                data: totalesDiarios,
+                borderColor: '#0066cc',
+                backgroundColor: 'rgba(0, 102, 204, 0.1)',
+                borderWidth: 2,
+                fill: true,
+                tension: 0.3,
+                pointRadius: 3,
+                pointBackgroundColor: '#0066cc',
+                pointBorderColor: '#fff',
+                pointBorderWidth: 1,
+                pointHoverRadius: 6,
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: true, position: 'top' },
+                tooltip: { callbacks: { label: ctx => ` $${ctx.parsed.y.toLocaleString()}` } }
+            },
+            scales: {
+                x: { ticks: { maxTicksLimit: 15, maxRotation: 45 } },
+                y: { beginAtZero: true, ticks: { callback: v => '$' + v.toLocaleString() } }
+            }
+        }
+    });
+
+    // ===== Gráfica de barras semana actual =====
+    const diasSemana = [{% for d in dias_semana_actual %}"{{ d.dia }}",{% endfor %}];
+    const totalesSemana = [{% for d in dias_semana_actual %}{{ d.total }},{% endfor %}];
+
+    new Chart(document.getElementById('semanalChart').getContext('2d'), {
+        type: 'bar',
+        data: {
+            labels: diasSemana,
+            datasets: [{
+                label: 'Ingresos ($)',
+                data: totalesSemana,
+                backgroundColor: [
+                    'rgba(0,102,204,0.7)', 'rgba(40,167,69,0.7)', 'rgba(255,193,7,0.7)',
+                    'rgba(220,53,69,0.7)', 'rgba(23,162,184,0.7)', 'rgba(111,66,193,0.7)',
+                    'rgba(253,126,20,0.7)'
+                ],
+                borderRadius: 6,
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                tooltip: { callbacks: { label: ctx => ` $${ctx.parsed.y.toLocaleString()}` } }
+            },
+            scales: {
+                y: { beginAtZero: true, ticks: { callback: v => '$' + v.toLocaleString() } }
+            }
+        }
+    });
+</script>
+
+<style>
+    .card { box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075); border: none; }
+    .card-header { border-bottom: 2px solid #dee2e6; }
+    .display-6 { font-size: 2rem; font-weight: bold; }
+    .badge { padding: 0.5rem 0.75rem; font-size: 0.85rem; }
+    .admin-access-card { border: 2px solid #e9ecef; transition: all 0.3s ease; }
+    .admin-access-card:hover {
+        border-color: #0066cc;
+        transform: translateY(-5px);
+        box-shadow: 0 0.5rem 1rem rgba(0,102,204,0.2) !important;
+    }
+</style>
+
+{% endblock %}

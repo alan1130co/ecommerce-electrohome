@@ -1,0 +1,180 @@
+{% extends "dashboard/base.html" %}
+{% block title %}Envío Masivo - Dashboard{% endblock %}
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>📧 Envío Masivo de Correos</h1>
+</div>
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{% if message.tags == 'error' %}danger{% else %}success{% endif %} alert-dismissible fade show">
+    {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+</div>
+{% endfor %}
+{% endif %}
+
+<!-- UN SOLO FORM que envuelve todo -->
+<form method="post" enctype="multipart/form-data" id="emailForm">
+    {% csrf_token %}
+    <div class="row">
+
+        <!-- Columna izquierda: redactar -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    <h5 class="mb-0">✉️ Redactar Correo</h5>
+                </div>
+                <div class="card-body">
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Asunto</label>
+                        <input type="text" name="asunto" class="form-control"
+                               placeholder="Ej: ¡Oferta exclusiva para ti!" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Mensaje</label>
+                        <textarea name="mensaje" class="form-control" rows="4"
+                                  placeholder="Escribe el mensaje principal..." required></textarea>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Código de Cupón</label>
+                            <input type="text" name="codigo_cupon" class="form-control"
+                                   placeholder="Ej: SAVE20">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Descuento</label>
+                            <input type="text" name="descuento" class="form-control"
+                                   placeholder="Ej: 20%OFF">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Imagen del correo</label>
+                        <input type="file" name="imagen" class="form-control"
+                               accept="image/*" id="imgInput">
+                        <small class="text-muted">Aparecerá como banner en el correo (JPG, PNG)</small>
+                        <div class="mt-2">
+                            <img id="imgPreview" src="#" alt="Preview"
+                                 style="max-height:150px;display:none;border-radius:8px;width:100%;object-fit:cover;">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="fas fa-paper-plane"></i> Enviar a Seleccionados
+                    </button>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Columna derecha: usuarios -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">👥 Usuarios Registrados</h5>
+                    <div>
+                        <button type="button" class="btn btn-sm btn-outline-light" onclick="selectAll()">Todos</button>
+                        <button type="button" class="btn btn-sm btn-outline-light ms-1" onclick="deselectAll()">Ninguno</button>
+                    </div>
+                </div>
+                <div class="card-body p-0">
+                    <div style="max-height: 490px; overflow-y: auto;">
+                        <table class="table table-hover table-sm mb-0">
+                            <thead class="table-light sticky-top">
+                                <tr>
+                                    <th style="width:40px;">
+                                        <input type="checkbox" id="checkAll" onchange="toggleAll(this)">
+                                    </th>
+                                    <th>Nombre</th>
+                                    <th>Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for usuario in usuarios %}
+                                <tr>
+                                    <td>
+                                        <!-- Ahora dentro del mismo form, sin necesidad de form="emailForm" -->
+                                        <input type="checkbox" name="destinatarios"
+                                               value="{{ usuario.id }}" class="user-check">
+                                    </td>
+                                    <td>{{ usuario.get_full_name|default:usuario.email }}</td>
+                                    <td><small class="text-muted">{{ usuario.email }}</small></td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="3" class="text-center text-muted p-3">
+                                        No hay usuarios registrados
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- Contador de seleccionados -->
+                <div class="card-footer text-muted small">
+                    <span id="contador">0</span> usuario(s) seleccionado(s)
+                </div>
+            </div>
+        </div>
+
+    </div>
+</form>
+
+<script>
+    function toggleAll(master) {
+        document.querySelectorAll('.user-check').forEach(cb => cb.checked = master.checked);
+        actualizarContador();
+    }
+
+    function selectAll() {
+        document.querySelectorAll('.user-check').forEach(cb => cb.checked = true);
+        document.getElementById('checkAll').checked = true;
+        actualizarContador();
+    }
+
+    function deselectAll() {
+        document.querySelectorAll('.user-check').forEach(cb => cb.checked = false);
+        document.getElementById('checkAll').checked = false;
+        actualizarContador();
+    }
+
+    function actualizarContador() {
+        const total = document.querySelectorAll('.user-check:checked').length;
+        document.getElementById('contador').textContent = total;
+    }
+
+    // Actualizar contador al marcar individualmente
+    document.querySelectorAll('.user-check').forEach(cb => {
+        cb.addEventListener('change', actualizarContador);
+    });
+
+    // Validar que haya al menos un usuario seleccionado antes de enviar
+    document.getElementById('emailForm').addEventListener('submit', function(e) {
+        const checked = document.querySelectorAll('.user-check:checked');
+        if (checked.length === 0) {
+            e.preventDefault();
+            alert('⚠️ Debes seleccionar al menos un usuario.');
+        }
+    });
+
+    // Preview de imagen
+    document.getElementById('imgInput').addEventListener('change', function() {
+        const preview = document.getElementById('imgPreview');
+        if (this.files && this.files[0]) {
+            const reader = new FileReader();
+            reader.onload = e => {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            };
+            reader.readAsDataURL(this.files[0]);
+        }
+    });
+</script>
+
+{% endblock %}

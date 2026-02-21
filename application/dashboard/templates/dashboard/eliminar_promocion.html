@@ -1,0 +1,44 @@
+{% extends "dashboard/base.html" %}
+{% block title %}Eliminar Promoción - Dashboard{% endblock %}
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>🗑️ Eliminar Promoción</h1>
+    <a href="{% url 'dashboard:promociones' %}" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i> Volver
+    </a>
+</div>
+
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <div class="card border-danger">
+            <div class="card-header bg-danger text-white">
+                <h5 class="mb-0">¿Confirmar eliminación?</h5>
+            </div>
+            <div class="card-body">
+                <p class="mb-1">Vas a eliminar la promoción:</p>
+                <ul class="mb-3">
+                    <li><strong>Producto:</strong> {{ promo.producto.nombre }}</li>
+                    <li><strong>Etiqueta:</strong> {{ promo.etiqueta }}</li>
+                    <li><strong>Descuento:</strong> {{ promo.descuento_porcentaje }}%</li>
+                    <li><strong>Vigencia:</strong> {{ promo.fecha_inicio|date:"d/m/Y" }} al {{ promo.fecha_fin|date:"d/m/Y" }}</li>
+                </ul>
+                <p class="text-danger fw-bold">Esta acción no se puede deshacer.</p>
+
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fas fa-trash"></i> Sí, eliminar
+                        </button>
+                        <a href="{% url 'dashboard:promociones' %}" class="btn btn-secondary">
+                            Cancelar
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

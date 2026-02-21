@@ -1,0 +1,165 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+
+{% block title %}Pedidos - Dashboard{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Pedidos</h1>
+    <a href="{% url 'dashboard:index' %}" class="btn btn-secondary">Volver al Dashboard</a>
+</div>
+
+<!-- Filtro por estado -->
+<form method="get" class="mb-4">
+    <div class="d-flex gap-2 flex-wrap">
+        <a href="{% url 'dashboard:pedidos' %}" class="btn btn-sm {% if not estado_filtro %}btn-dark{% else %}btn-outline-dark{% endif %}">
+            Todos
+        </a>
+        <a href="?status=pending" class="btn btn-sm {% if estado_filtro == 'pending' %}btn-warning{% else %}btn-outline-warning{% endif %}">
+            Pendiente
+        </a>
+        <a href="?status=processing" class="btn btn-sm {% if estado_filtro == 'processing' %}btn-info{% else %}btn-outline-info{% endif %}">
+            Procesando
+        </a>
+        <a href="?status=shipped" class="btn btn-sm {% if estado_filtro == 'shipped' %}btn-primary{% else %}btn-outline-primary{% endif %}">
+            Enviado
+        </a>
+        <a href="?status=delivered" class="btn btn-sm {% if estado_filtro == 'delivered' %}btn-success{% else %}btn-outline-success{% endif %}">
+            Entregado
+        </a>
+        <a href="?status=cancelled" class="btn btn-sm {% if estado_filtro == 'cancelled' %}btn-danger{% else %}btn-outline-danger{% endif %}">
+            Cancelado
+        </a>
+    </div>
+</form>
+
+<div class="table-responsive">
+    <table class="table table-hover table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Pedido</th>
+                <th>Cliente</th>
+                <th>Email</th>
+                <th>Estado</th>
+                <th>Total</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for orden in page_obj %}
+            <tr>
+                <td><strong>#{{ orden.order_number }}</strong></td>
+                <td>
+                    {% if orden.user %}{{ orden.user.get_full_name }}
+                    {% else %}<span class="text-muted">Anónimo</span>
+                    {% endif %}
+                </td>
+                <td><a href="mailto:{{ orden.email }}">{{ orden.email }}</a></td>
+                <td>
+                    {% if orden.status == 'pending' %}<span class="badge bg-warning">Pendiente</span>
+                    {% elif orden.status == 'processing' %}<span class="badge bg-info">Procesando</span>
+                    {% elif orden.status == 'shipped' %}<span class="badge bg-primary">Enviado</span>
+                    {% elif orden.status == 'delivered' %}<span class="badge bg-success">Entregado</span>
+                    {% elif orden.status == 'cancelled' %}<span class="badge bg-danger">Cancelado</span>
+                    {% else %}<span class="badge bg-secondary">{{ orden.get_status_display }}</span>
+                    {% endif %}
+                </td>
+                <td><strong style="color: #28a745;">${{ orden.total }}</strong></td>
+                <td>{{ orden.created_at|date:"d/m/Y H:i" }}</td>
+                <td>
+                    <button class="btn btn-sm btn-outline-secondary" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#modalEstado"
+                            data-id="{{ orden.id }}"
+                            data-numero="{{ orden.order_number }}"
+                            data-estado="{{ orden.status }}">
+                        <i class="fas fa-edit"></i> Estado
+                    </button>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="7" class="text-center text-muted py-4">No hay pedidos registrados</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Paginación -->
+{% if page_obj.has_other_pages %}
+<nav aria-label="Page navigation" class="mt-4">
+    <ul class="pagination justify-content-center">
+        {% if page_obj.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page=1{% if estado_filtro %}&status={{ estado_filtro }}{% endif %}">Primera</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if estado_filtro %}&status={{ estado_filtro }}{% endif %}">Anterior</a>
+        </li>
+        {% endif %}
+        <li class="page-item active">
+            <span class="page-link">Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
+        </li>
+        {% if page_obj.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if estado_filtro %}&status={{ estado_filtro }}{% endif %}">Siguiente</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}{% if estado_filtro %}&status={{ estado_filtro }}{% endif %}">Última</a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
+
+<div class="mt-3 text-muted">
+    <small>Total de pedidos: <strong>{{ total_count }}</strong>
+        {% if estado_filtro %} — filtrando por <strong>{{ estado_filtro }}</strong>{% endif %}
+    </small>
+</div>
+
+<!-- Modal cambiar estado -->
+<div class="modal fade" id="modalEstado" tabindex="-1">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Cambiar Estado</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form method="post" id="form-estado" action="">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <p class="text-muted mb-3">Pedido <strong id="modal-numero"></strong></p>
+                    <select name="status" class="form-select">
+                        <option value="pending">Pendiente</option>
+                        <option value="processing">Procesando</option>
+                        <option value="shipped">Enviado</option>
+                        <option value="delivered">Entregado</option>
+                        <option value="cancelled">Cancelado</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary btn-sm">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    const modalEstado = document.getElementById('modalEstado');
+    modalEstado.addEventListener('show.bs.modal', function(e) {
+        const btn = e.relatedTarget;
+        const id = btn.getAttribute('data-id');
+        const numero = btn.getAttribute('data-numero');
+        const estado = btn.getAttribute('data-estado');
+
+        document.getElementById('modal-numero').textContent = '#' + numero;
+        document.getElementById('form-estado').action = `/dashboard/pedidos/${id}/estado/`;
+        modalEstado.querySelector('select[name="status"]').value = estado;
+    });
+</script>
+{% endblock %}

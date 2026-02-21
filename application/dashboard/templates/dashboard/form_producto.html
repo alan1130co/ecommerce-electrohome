@@ -1,0 +1,263 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+
+{% block title %}{{ titulo }} - Dashboard{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>{{ titulo }}</h1>
+    <a href="{% url 'dashboard:productos' %}" class="btn btn-secondary">Volver a Productos</a>
+</div>
+
+{% if messages %}
+<div>
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <div class="card">
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    
+                    <!-- Información Básica -->
+                    <fieldset class="mb-4">
+                        <legend class="form-label fw-bold">Información Básica</legend>
+                        <div class="mb-3">
+                            <label for="{{ form.nombre.id_for_label }}" class="form-label">{{ form.nombre.label }}</label>
+                            {{ form.nombre }}
+                            {% if form.nombre.errors %}
+                            <div class="invalid-feedback d-block">{{ form.nombre.errors }}</div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="{{ form.descripcion.id_for_label }}" class="form-label">{{ form.descripcion.label }}</label>
+                            {{ form.descripcion }}
+                            {% if form.descripcion.errors %}
+                            <div class="invalid-feedback d-block">{{ form.descripcion.errors }}</div>
+                            {% endif %}
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="{{ form.categoria.id_for_label }}" class="form-label">{{ form.categoria.label }}</label>
+                                    {{ form.categoria }}
+                                    {% if form.categoria.errors %}
+                                    <div class="invalid-feedback d-block">{{ form.categoria.errors }}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="{{ form.marca.id_for_label }}" class="form-label">{{ form.marca.label }}</label>
+                                    {{ form.marca }}
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- Precio y Stock -->
+                    <fieldset class="mb-4">
+                        <legend class="form-label fw-bold">Precio y Stock</legend>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="{{ form.precio.id_for_label }}" class="form-label">{{ form.precio.label }}</label>
+                                    {{ form.precio }}
+                                    {% if form.precio.errors %}
+                                    <div class="invalid-feedback d-block">{{ form.precio.errors }}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="{{ form.stock.id_for_label }}" class="form-label">{{ form.stock.label }}</label>
+                                    {{ form.stock }}
+                                    {% if form.stock.errors %}
+                                    <div class="invalid-feedback d-block">{{ form.stock.errors }}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- Especificaciones Técnicas -->
+                    <fieldset class="mb-4">
+                        <legend class="form-label fw-bold">Especificaciones Técnicas</legend>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="{{ form.capacidad.id_for_label }}" class="form-label">{{ form.capacidad.label }}</label>
+                                    {{ form.capacidad }}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="{{ form.potencia.id_for_label }}" class="form-label">{{ form.potencia.label }}</label>
+                                    {{ form.potencia }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="{{ form.color.id_for_label }}" class="form-label">{{ form.color.label }}</label>
+                                    {{ form.color }}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="{{ form.garantia_meses.id_for_label }}" class="form-label">{{ form.garantia_meses.label }}</label>
+                                    {{ form.garantia_meses }}
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- Características y Imagen -->
+                    <fieldset class="mb-4">
+                        <legend class="form-label fw-bold">Características e Imagen</legend>
+                        <div class="mb-3">
+                            <label for="{{ form.caracteristicas_destacadas.id_for_label }}" class="form-label">{{ form.caracteristicas_destacadas.label }}</label>
+                            {{ form.caracteristicas_destacadas }}
+                            <small class="form-text text-muted d-block mt-1">Separa con comas. Ej: No Frost, Inverter, Digital</small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="{{ form.imagen_principal.id_for_label }}" class="form-label">{{ form.imagen_principal.label }}</label>
+                            {{ form.imagen_principal }}
+                        </div>
+
+                        <!-- sección para imágenes adicionales -->
+                        {% if formset %}
+                        <div class="mb-3">
+                            <label class="form-label">Imágenes adicionales</label>
+                            {{ formset.management_form }}
+                            <div id="formset-container">
+                                {% for f in formset.forms %}
+                                <div class="border p-2 mb-2 position-relative">
+                                    <div class="mb-2">
+                                        <label class="form-label">{{ f.imagen.label }}</label>
+                                        {% if f.instance.pk and f.instance.imagen %}
+                                            <div class="mb-1">
+                                                <img src="{{ f.instance.imagen.url }}" width="80" height="80" style="object-fit:cover;" />
+                                            </div>
+                                        {% endif %}
+                                        {{ f.imagen }}
+                                        {% if f.imagen.errors %}
+                                        <div class="invalid-feedback d-block">{{ f.imagen.errors }}</div>
+                                        {% endif %}
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">{{ f.descripcion.label }}</label>
+                                        {{ f.descripcion }}
+                                    </div>
+                                        {% if f.instance.pk %}
+                                    <button type="button" class="btn btn-sm btn-danger remove-image">Eliminar imagen</button>
+                                    <div class="d-none">
+                                        {{ f.DELETE }}
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <button type="button" id="add-image" class="btn btn-sm btn-outline-primary">Agregar otra imagen</button>
+                        </div>
+                        {% endif %}
+                    </fieldset>
+
+                    <!-- Estado -->
+                    <fieldset class="mb-4">
+                        <legend class="form-label fw-bold">Estado</legend>
+                        <div class="form-check">
+                            {{ form.activo }}
+                            <label class="form-check-label" for="{{ form.activo.id_for_label }}">
+                                {{ form.activo.label }}
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <!-- contenedor de formulario vacío para clonar con estructura similar al real -->
+                    <div id="empty-form" class="d-none">
+                        <div class="border p-2 mb-2 position-relative">
+                            <div class="mb-2">
+                                <label class="form-label">Archivo de imagen</label>
+                                <input type="file" name="{{ formset.prefix }}-__prefix__-imagen" class="form-control" accept="image/*" />
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label">Descripción</label>
+                                <input type="text" name="{{ formset.prefix }}-__prefix__-descripcion" class="form-control" placeholder="Descripción (opcional)" maxlength="255" />
+                            </div>
+                            <input type="hidden" name="{{ formset.prefix }}-__prefix__-DELETE" class="delete-flag" />
+                            <button type="button" class="btn btn-sm btn-danger remove-image">Eliminar imagen</button>
+                            <input type="hidden" name="{{ formset.prefix }}-__prefix__-id" />
+                            <input type="hidden" name="{{ formset.prefix }}-__prefix__-producto" />
+                        </div>
+                    </div>
+
+                    <!-- Botones -->
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fas fa-save"></i> {{ boton }}
+                        </button>
+                        <a href="{% url 'dashboard:productos' %}" class="btn btn-secondary btn-lg">
+                            <i class="fas fa-times"></i> Cancelar
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .form-label { font-weight: 600; color: #333; }
+    .form-control, .form-select {
+        border-radius: 4px;
+        border: 1px solid #ddd;
+    }
+    .form-control:focus, .form-select:focus {
+        border-color: #0066cc;
+        box-shadow: 0 0 0 0.2rem rgba(0, 102, 204, 0.25);
+    }
+    fieldset { border: 1px solid #e9ecef; padding: 15px; border-radius: 4px; }
+    fieldset legend { padding: 0 10px; margin-left: -5px; }
+</style>
+
+<script>
+    // script para añadir formularios dinámicamente al formset
+    document.addEventListener('DOMContentLoaded', function() {
+        const prefix = "{{ formset.prefix }}";
+        const addBtn = document.getElementById('add-image');
+        if (!addBtn) return;
+
+        addBtn.addEventListener('click', function() {
+            const totalForms = document.getElementById('id_' + prefix + '-TOTAL_FORMS');
+            if (!totalForms) return;
+            const currentCount = parseInt(totalForms.value, 10);
+            const container = document.getElementById('formset-container');
+            const emptyTemplate = document.getElementById('empty-form').innerHTML;
+            const newFormHtml = emptyTemplate.replace(/__prefix__/g, currentCount);
+            container.insertAdjacentHTML('beforeend', newFormHtml);
+            totalForms.value = currentCount + 1;
+        });        // manejar eliminación con botón
+        document.getElementById('formset-container').addEventListener('click', function(e) {
+            if (e.target.classList.contains('remove-image')) {
+                const wrapper = e.target.closest('.border');
+                if (!wrapper) return;
+                const deleteInput = wrapper.querySelector('.delete-flag');
+                if (deleteInput) deleteInput.value = 'on';
+                wrapper.style.display = 'none';
+            }
+        });    });
+</script>
+{% endblock %}

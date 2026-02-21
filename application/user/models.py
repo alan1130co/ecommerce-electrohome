@@ -7,13 +7,11 @@ class UsuarioManager(BaseUserManager):
     """Manager personalizado para el modelo Usuario"""
     
     def create_user(self, email, password=None, **extra_fields):
-        """Crea y guarda un usuario regular"""
         if not email:
             raise ValueError('El email es obligatorio')
         
         email = self.normalize_email(email)
         
-        # Generar username automáticamente si no se proporciona
         if 'username' not in extra_fields or not extra_fields.get('username'):
             import uuid
             base_username = email.split('@')[0]
@@ -25,7 +23,6 @@ class UsuarioManager(BaseUserManager):
         return user
     
     def create_superuser(self, email, password=None, **extra_fields):
-        """Crea y guarda un superusuario"""
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
         extra_fields.setdefault('tipo_usuario', 'admin')
@@ -39,12 +36,8 @@ class UsuarioManager(BaseUserManager):
 
 
 class Usuario(AbstractUser):
-    # Email como campo único y obligatorio
     email = models.EmailField(unique=True, blank=False)
-    
-    # Username opcional (se genera automáticamente)
     username = models.CharField(max_length=150, unique=True, blank=True, null=True)
-    
     telefono = models.CharField(max_length=20, blank=True)
     direccion = models.TextField(blank=True)
     ciudad = models.CharField(max_length=100, blank=True)
@@ -54,19 +47,17 @@ class Usuario(AbstractUser):
         choices=[
             ('cliente', 'Cliente'),
             ('admin', 'Administrador'),
+            ('supervisor', 'Supervisor'),  # ← AGREGADO
         ],
         default='cliente'
     )
     fecha_registro = models.DateTimeField(auto_now_add=True)
     
-    # Configurar email como campo de login principal
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
     
-    # Usar el manager personalizado
     objects = UsuarioManager()
     
-    # Sobrescribir los campos para evitar conflictos
     groups = models.ManyToManyField(
         'auth.Group',
         verbose_name='grupos',
@@ -86,7 +77,6 @@ class Usuario(AbstractUser):
     )
     
     def save(self, *args, **kwargs):
-        # Generar username automáticamente si no existe
         if not self.username:
             import uuid
             base_username = self.email.split('@')[0]
@@ -100,41 +90,24 @@ class Usuario(AbstractUser):
     def nombre_completo(self):
         return f"{self.first_name} {self.last_name}".strip() or self.email
     
-    # ✅ MÉTODOS CORREGIDOS PARA ESTADÍSTICAS DEL PERFIL
     def get_total_orders(self):
-        """
-        Retorna el número total de pedidos realizados
-        ⭐ Se actualiza INMEDIATAMENTE al hacer una compra
-        Cuenta TODAS las órdenes (pending, processing, shipped, delivered)
-        """
         return self.orders.count()
 
     def get_total_spent(self):
-        """
-        Retorna el total gastado por el usuario
-        ⭐ Se actualiza SOLO cuando el pedido es ENTREGADO
-        Solo cuenta órdenes con status='delivered' y payment_status='approved'
-        """
         from django.db.models import Sum
-        
         result = self.orders.filter(
             status='delivered',
             payment_status='approved'
         ).aggregate(total_sum=Sum('total'))
-        
         return result['total_sum'] if result['total_sum'] else 0
     
-    # Métodos adicionales útiles
     def get_pending_orders(self):
-        """Retorna el número de órdenes pendientes"""
         return self.orders.filter(status='pending').count()
     
     def get_completed_orders(self):
-        """Retorna el número de órdenes entregadas"""
         return self.orders.filter(status='delivered').count()
     
     def get_processing_orders(self):
-        """Retorna el número de órdenes en proceso o enviadas"""
         return self.orders.filter(status__in=['processing', 'shipped']).count()
     
     class Meta:
@@ -158,3 +131,12 @@ class Cliente(Usuario):
         proxy = True
         verbose_name = 'Cliente'
         verbose_name_plural = 'Clientes'
+
+
+# Proxy Model para Supervisores
+class Supervisor(Usuario):
+    class Meta:
+        proxy = True
+        verbose_name = 'Supervisor'
+        verbose_name_plural = 'Supervisores'
+        app_label = 'user'

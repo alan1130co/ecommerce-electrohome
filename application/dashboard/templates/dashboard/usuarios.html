@@ -1,0 +1,168 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+
+{% block title %}Usuarios - Dashboard{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Usuarios</h1>
+    <a href="{% url 'dashboard:index' %}" class="btn btn-secondary">Volver al Dashboard</a>
+</div>
+
+<!-- Tabs para Clientes y Administradores -->
+<ul class="nav nav-tabs mb-4" role="tablist">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="clientes-tab" data-bs-toggle="tab" data-bs-target="#clientes" type="button" role="tab">
+            👥 Clientes ({{ total_clientes }})
+        </button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="admins-tab" data-bs-toggle="tab" data-bs-target="#admins" type="button" role="tab">
+            🔐 Administradores ({{ total_admins }})
+        </button>
+    </li>
+</ul>
+
+<div class="tab-content">
+    <!-- CLIENTES -->
+    <div class="tab-pane fade show active" id="clientes" role="tabpanel">
+        <div class="table-responsive">
+            <table class="table table-hover table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Email</th>
+                        <th>Nombre</th>
+                        <th>Teléfono</th>
+                        <th>Ciudad</th>
+                        <th>Estado</th>
+                        <th>Órdenes</th>
+                        <th>Miembro Desde</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cliente in clientes_page %}
+                    <tr>
+                        <td>
+                            <a href="mailto:{{ cliente.email }}" style="color: #0066cc;">{{ cliente.email }}</a>
+                        </td>
+                        <td>{{ cliente.get_full_name }}</td>
+                        <td>
+                            {% if cliente.telefono %}
+                            <a href="tel:{{ cliente.telefono }}">{{ cliente.telefono }}</a>
+                            {% else %}
+                            <span class="text-muted">—</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if cliente.ciudad %}
+                            <span class="badge bg-info">{{ cliente.ciudad }}</span>
+                            {% else %}
+                            <span class="text-muted">—</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if cliente.is_active %}
+                            <span class="badge bg-success">Activo</span>
+                            {% else %}
+                            <span class="badge bg-danger">Inactivo</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <span class="badge bg-primary">{{ cliente.orders.count }}</span>
+                        </td>
+                        <td>{{ cliente.fecha_registro|date:"d/m/Y" }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="7" class="text-center text-muted py-4">No hay clientes registrados</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Paginación Clientes -->
+        {% if clientes_page.has_other_pages %}
+        <nav aria-label="Page navigation" class="mt-4">
+            <ul class="pagination justify-content-center">
+                {% if clientes_page.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page=1">Primera</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ clientes_page.previous_page_number }}">Anterior</a>
+                </li>
+                {% endif %}
+
+                <li class="page-item active">
+                    <span class="page-link">Página {{ clientes_page.number }} de {{ clientes_page.paginator.num_pages }}</span>
+                </li>
+
+                {% if clientes_page.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ clientes_page.next_page_number }}">Siguiente</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ clientes_page.paginator.num_pages }}">Última</a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+    </div>
+
+    <!-- ADMINISTRADORES -->
+    <div class="tab-pane fade" id="admins" role="tabpanel">
+        <div class="table-responsive">
+            <table class="table table-hover table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Email</th>
+                        <th>Nombre</th>
+                        <th>Rol</th>
+                        <th>Estado</th>
+                        <th>Último Acceso</th>
+                        <th>Registrado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for admin in admins %}
+                    <tr>
+                        <td>
+                            <a href="mailto:{{ admin.email }}" style="color: #0066cc;">{{ admin.email }}</a>
+                        </td>
+                        <td>{{ admin.get_full_name }}</td>
+                        <td>
+                            {% if admin.is_superuser %}
+                            <span class="badge bg-danger">SuperAdmin</span>
+                            {% else %}
+                            <span class="badge bg-warning">Admin</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if admin.is_active %}
+                            <span class="badge bg-success">Activo</span>
+                            {% else %}
+                            <span class="badge bg-secondary">Inactivo</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if admin.last_login %}
+                            {{ admin.last_login|date:"d/m/Y H:i" }}
+                            {% else %}
+                            <span class="text-muted">Nunca</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ admin.fecha_registro|date:"d/m/Y" }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="text-center text-muted py-4">No hay administradores registrados</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

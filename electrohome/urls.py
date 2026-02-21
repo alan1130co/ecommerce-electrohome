@@ -8,7 +8,8 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('order/', include('application.order.urls')),
     path('user/', include('application.user.urls')),
-    path('chatbot/', include('application.chatbot.urls')),  # ← NUEVO: URLs del chatbot
+    path('chatbot/', include('application.chatbot.urls')),
+    path('dashboard/', include('application.dashboard.urls')),  # ← AGREGAR
     path('', include('application.product.urls')),
 ]
 
@@ -16,4 +17,3 @@ urlpatterns = [
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[0])
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-

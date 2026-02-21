@@ -1,16 +1,26 @@
+# application/user/urls.py
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from django.views.decorators.csrf import csrf_exempt
 from . import views
 
 app_name = 'user'
 
 urlpatterns = [
+    # ===== REGISTRO Y LOGIN =====
     path('register/', views.register_view, name='register'),
     path('login/', views.login_view, name='login'),
     path('logout/', views.logout_view, name='logout'),
+    
+    # ===== VERIFICACIÓN DE CORREO =====
+    path('verification-sent/', views.verification_sent, name='verification_sent'),
+    path('verify-email/<uidb64>/<token>/', views.verify_email, name='verify_email'),
+    path('verification-success/', views.verification_success, name='verification_success'),
+    path('verification-failed/', views.verification_failed, name='verification_failed'),
+    path('resend-verification/', views.resend_verification, name='resend_verification'),
+    
+    # ===== PERFIL =====
     path('profile/', views.profile_view, name='profile'),
-    path('profile/edit/', views.edit_profile, name='edit_profile'),  # ← NUEVA
+    path('profile/edit/', views.edit_profile, name='edit_profile'),
     
     # ===== RECUPERACIÓN DE CONTRASEÑA =====
     path('password-reset/', 

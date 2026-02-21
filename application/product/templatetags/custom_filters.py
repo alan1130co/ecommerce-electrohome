@@ -38,3 +38,7 @@ def formato_numero(valor):
         return f"{valor:,}".replace(',', 'z')
     except (ValueError, TypeError):
         return valor
+    
+@register.filter
+def get_item(dictionary, key):
+    return dictionary.get(key)

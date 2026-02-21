@@ -343,4 +343,31 @@ class WishlistItem(models.Model):
     def __str__(self):
         return f"{self.product.nombre} - {self.wishlist.user.email}"
 
+class Promocion(models.Model):
+    producto = models.ForeignKey(Producto, on_delete=models.CASCADE, related_name='promociones')
+    descuento_porcentaje = models.DecimalField(max_digits=5, decimal_places=2)
+    precio_promocional = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    etiqueta = models.CharField(max_length=50, default='OFERTA')
+    activo = models.BooleanField(default=True)
+    fecha_inicio = models.DateField()
+    fecha_fin = models.DateField()
+    created_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        ordering = ['-created_at']
+        verbose_name = 'Promoción'
+        verbose_name_plural = 'Promociones'
+
+    def __str__(self):
+        return f"{self.etiqueta} - {self.producto.nombre}"
+
+    def save(self, *args, **kwargs):
+        if self.descuento_porcentaje and self.producto.precio:
+            from decimal import Decimal
+            self.precio_promocional = self.producto.precio * (1 - self.descuento_porcentaje / 100)
+        super().save(*args, **kwargs)
+
+    @property
+    def vigente(self):
+        hoy = timezone.now().date()
+        return self.activo and self.fecha_inicio <= hoy <= self.fecha_fin

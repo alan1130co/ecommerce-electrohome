@@ -138,15 +138,15 @@ LOGGING = {
     'loggers': {
         'django': {
             'handlers': ['console'],
-            'level': 'INFO',
+            'level': 'WARNING',  # ✅ Cambiado de INFO a WARNING
         },
         'application': {
             'handlers': ['console'],
-            'level': 'DEBUG',
+            'level': 'WARNING',  # ✅ Cambiado de DEBUG a WARNING
         },
         'django.db.backends': {
             'handlers': ['console'],
-            'level': 'DEBUG',  # Ver queries SQL (útil para optimizar)
+            'level': 'WARNING',  # ✅ Cambiado de DEBUG a WARNING - esto oculta las queries SQL
         },
     },
 }

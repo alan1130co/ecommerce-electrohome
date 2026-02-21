@@ -3,10 +3,10 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import Group
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django import forms
-from .models import Usuario, Administrador, Cliente
+from .models import Usuario, Administrador, Cliente, Supervisor
 
 
-# Admin para Administradores (aparecerá en AUTHENTICATION AND AUTHORIZATION)
+# Admin para Administradores
 class AdministradorAdmin(BaseUserAdmin):
     list_display = ('email', 'first_name', 'last_name', 'is_staff', 'is_superuser', 'fecha_registro')
     list_filter = ('is_staff', 'is_superuser', 'is_active', 'fecha_registro')
@@ -39,19 +39,17 @@ class AdministradorAdmin(BaseUserAdmin):
     readonly_fields = ('last_login', 'fecha_registro')
     
     def get_queryset(self, request):
-        # Solo mostrar usuarios que son staff o superuser (administradores)
         qs = super().get_queryset(request)
         return qs.filter(is_staff=True) | qs.filter(is_superuser=True)
     
     def save_model(self, request, obj, form, change):
-        # Asegurar que sea administrador
         obj.tipo_usuario = 'admin'
-        if not change:  # Si es nuevo
+        if not change:
             obj.is_staff = True
         super().save_model(request, obj, form, change)
 
 
-# Formularios personalizados para Clientes
+# Formularios para Clientes
 class ClienteCreationForm(UserCreationForm):
     class Meta:
         model = Cliente
@@ -73,7 +71,7 @@ class ClienteChangeForm(UserChangeForm):
         fields = '__all__'
 
 
-# Admin para Clientes (aparecerá en USER)
+# Admin para Clientes
 class ClienteAdmin(BaseUserAdmin):
     form = ClienteChangeForm
     add_form = ClienteCreationForm
@@ -108,14 +106,51 @@ class ClienteAdmin(BaseUserAdmin):
     readonly_fields = ('fecha_registro',)
     
     def get_queryset(self, request):
-        # Solo mostrar usuarios que NO son staff ni superuser (clientes)
         qs = super().get_queryset(request)
         return qs.filter(is_staff=False, is_superuser=False)
     
     def save_model(self, request, obj, form, change):
-        # Asegurar que sea cliente
         obj.tipo_usuario = 'cliente'
         obj.is_staff = False
+        obj.is_superuser = False
+        super().save_model(request, obj, form, change)
+
+
+# Admin para Supervisores
+class SupervisorAdmin(BaseUserAdmin):
+    list_display = ('email', 'first_name', 'last_name', 'is_active', 'fecha_registro')
+    list_filter = ('is_active', 'fecha_registro')
+    search_fields = ('email', 'first_name', 'last_name')
+    ordering = ('-fecha_registro',)
+
+    fieldsets = (
+        ('Información de Cuenta', {
+            'fields': ('email', 'password')
+        }),
+        ('Información Personal', {
+            'fields': ('first_name', 'last_name', 'telefono')
+        }),
+        ('Estado', {
+            'fields': ('is_active', 'fecha_registro'),
+        }),
+    )
+
+    add_fieldsets = (
+        ('Crear Supervisor', {
+            'classes': ('wide',),
+            'fields': ('email', 'first_name', 'last_name', 'password1', 'password2'),
+        }),
+    )
+
+    readonly_fields = ('fecha_registro',)
+
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return qs.filter(tipo_usuario='supervisor')
+
+    def save_model(self, request, obj, form, change):
+        obj.tipo_usuario = 'supervisor'
+        obj.is_staff = True
         obj.is_superuser = False
         super().save_model(request, obj, form, change)
 
@@ -123,11 +158,14 @@ class ClienteAdmin(BaseUserAdmin):
 # Desregistrar Group original
 admin.site.unregister(Group)
 
-# Registrar Administradores en auth (AUTHENTICATION AND AUTHORIZATION)
+# Registrar Administradores
 admin.site.register(Administrador, AdministradorAdmin)
 
-# Re-registrar Group después de Administradores
+# Re-registrar Group
 admin.site.register(Group)
 
-# Registrar Clientes en user (USER)
+# Registrar Clientes
 admin.site.register(Cliente, ClienteAdmin)
+
+# Registrar Supervisores
+admin.site.register(Supervisor, SupervisorAdmin)

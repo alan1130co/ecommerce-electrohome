@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q, Min, Max
 
-from .models import Producto, Categoria
+from .models import Producto, Categoria, Promocion
 from .cart_services import CartService
 from .recommendations import (
     RecommendationEngine, 

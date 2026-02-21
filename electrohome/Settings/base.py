@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-j!&amsgcyeces&3lvzhfy*al7(zowo@227_y*$gt51bws(4lgm
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '*']  # ✅ AGREGADO
 
 # Application definition
 
@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'application.product',
     'application.user',
     'application.chatbot',
+    'application.dashboard',
     
     # Allauth
     'allauth',
@@ -57,7 +58,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',  # ✅ ESTE DEBE ESTAR
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -172,10 +173,24 @@ DATE_FORMAT = 'd/m/Y'
 DATETIME_FORMAT = 'd/m/Y H:i:s'
 SHORT_DATE_FORMAT = 'd/m/Y'
 
-# Configuración de sesión
-SESSION_COOKIE_AGE = 3600  # 1 hora
+# ===== ✅ CONFIGURACIÓN DE SESIÓN (CORREGIDA) =====
+SESSION_COOKIE_AGE = 86400  # 24 horas (antes era 1 hora, podía causar problemas)
 SESSION_SAVE_EVERY_REQUEST = True
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # ✅ Cambiar a False
+SESSION_COOKIE_SECURE = False  # False en desarrollo, True en producción con HTTPS
+SESSION_COOKIE_HTTPONLY = True
+SESSION_COOKIE_SAMESITE = 'Lax'  # ✅ IMPORTANTE para CSRF
+
+# ===== ✅ CONFIGURACIÓN CSRF (NUEVA - MUY IMPORTANTE) =====
+CSRF_COOKIE_SECURE = False  # False en desarrollo, True en producción con HTTPS
+CSRF_COOKIE_HTTPONLY = False  # ✅ Debe ser False para que JS pueda leerlo
+CSRF_COOKIE_SAMESITE = 'Lax'  # ✅ CRÍTICO para evitar errores CSRF
+CSRF_USE_SESSIONS = False  # ✅ Usar cookies, no sesiones
+CSRF_COOKIE_AGE = 31449600  # 1 año
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:8000',
+    'http://127.0.0.1:8000',
+]  # ✅ Orígenes de confianza
 
 # Headers de seguridad
 SECURE_BROWSER_XSS_FILTER = True

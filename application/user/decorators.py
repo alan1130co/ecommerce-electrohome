@@ -7,7 +7,7 @@ def supervisor_required(view_func):
     @wraps(view_func)
     def wrapper(request, *args, **kwargs):
         if not request.user.is_authenticated:
-            return redirect('dashboard:login')
+            return redirect('user:login')
         if not (request.user.is_staff or request.user.tipo_usuario == 'supervisor'):
             return HttpResponseForbidden('No tienes permiso.')
         return view_func(request, *args, **kwargs)
@@ -17,7 +17,7 @@ def staff_or_supervisor_required(view_func):
     @wraps(view_func)
     def wrapper(request, *args, **kwargs):
         if not request.user.is_authenticated:
-            return redirect('dashboard:login')
+            return redirect('user:login')
         if request.user.is_staff or request.user.tipo_usuario == 'supervisor':
             return view_func(request, *args, **kwargs)
         return HttpResponseForbidden('No tienes permiso.')

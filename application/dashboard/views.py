@@ -48,8 +48,7 @@ def supervisor_login(request):
 def supervisor_logout(request):
     logout(request)
     messages.success(request, 'Has cerrado sesión correctamente.')
-    return redirect('dashboard:login')
-
+    return redirect('user:login')
 
 # ========== DASHBOARD PRINCIPAL ==========
 

@@ -106,9 +106,12 @@ input, textarea, select {
 [data-theme="dark"] ::-webkit-scrollbar-thumb:hover { background: #388bfd; }
 
 /* ============================================================
-   HEADER
+   HEADER - IGUAL EN TODAS LAS PÁGINAS
    ============================================================ */
-[data-theme="dark"] header {
+[data-theme="dark"] header,
+[data-theme="dark"] header[class*="bg-blue"],
+[data-theme="dark"] header[class*="bg-gray"],
+[data-theme="dark"] header[class*="bg-white"] {
   background: linear-gradient(180deg, #010409 0%, #0d1117 100%) !important;
   border-bottom: 1px solid #21262d !important;
   box-shadow: 0 1px 0 rgba(240,246,252,0.1), 0 4px 20px rgba(0,0,0,0.5) !important;
@@ -118,9 +121,10 @@ input, textarea, select {
   color: #f0b429 !important;
 }
 
-[data-theme="dark"] #mobile-menu {
+[data-theme="dark"] #mobile-menu,
+[data-theme="dark"] header #mobile-menu {
   background: linear-gradient(180deg, #010409 0%, #0d1117 100%) !important;
-  border-top: 1px solid #21262d;
+  border-top: 1px solid #21262d !important;
 }
 
 /* ============================================================
@@ -617,8 +621,6 @@ input, textarea, select {
 /* ============================================================
    CARRITO - TARJETAS Y TEXTOS
    ============================================================ */
-
-/* Tarjetas del carrito */
 [data-theme="dark"] .container .bg-white,
 [data-theme="dark"] main .rounded-lg.shadow-md,
 [data-theme="dark"] main .rounded-lg.shadow-lg {
@@ -626,12 +628,10 @@ input, textarea, select {
   border: 1px solid #21262d !important;
 }
 
-/* Títulos de productos en carrito - BLANCOS */
 [data-theme="dark"] main h1 { color: #e6edf3 !important; }
 [data-theme="dark"] main h2 { color: #e6edf3 !important; }
 [data-theme="dark"] main h3 { color: #e6edf3 !important; }
 
-/* Textos del carrito */
 [data-theme="dark"] main .text-blue-700,
 [data-theme="dark"] main .text-blue-800 { color: #e6edf3 !important; }
 
@@ -641,15 +641,12 @@ input, textarea, select {
 [data-theme="dark"] #cart-tax,
 [data-theme="dark"] #cart-total { color: #f0b429 !important; }
 
-/* Precio c/u - gris */
 [data-theme="dark"] main .text-gray-500 { color: #6e7681 !important; }
 
-/* Controles cantidad */
 [data-theme="dark"] .border-gray-300.rounded-lg {
   border-color: #30363d !important;
 }
 
-/* Botones del carrito (amarillo/azul) */
 [data-theme="dark"] main .bg-yellow-500 {
   background: linear-gradient(135deg, #f0b429 0%, #d97706 100%) !important;
   color: #0d1117 !important;
@@ -661,11 +658,10 @@ input, textarea, select {
   color: white !important;
 }
 
-/* Resumen del pedido */
 [data-theme="dark"] .sticky .text-blue-800 { color: #e6edf3 !important; }
 
 /* ============================================================
-   RECOMENDACIONES DEL CARRITO - TARJETAS
+   RECOMENDACIONES DEL CARRITO
    ============================================================ */
 [data-theme="dark"] main .rounded-lg.shadow-md .text-blue-700 { color: #e6edf3 !important; }
 [data-theme="dark"] main .rounded-lg.shadow-md .text-blue-600 { color: #f0b429 !important; }
@@ -676,14 +672,11 @@ input, textarea, select {
 [data-theme="dark"] .text-blue-800.font-bold.text-3xl,
 [data-theme="dark"] .text-3xl.font-bold.text-blue-800 { color: #e6edf3 !important; }
 
-/* Precio del detalle - amarillo */
 [data-theme="dark"] span.text-4xl.font-bold.text-blue-800,
 [data-theme="dark"] span.text-4xl.font-bold { color: #f0b429 !important; }
 
-/* Precio oferta - rojo */
 [data-theme="dark"] span.text-4xl.font-bold.text-red-600 { color: #f85149 !important; }
 
-/* Wishlist detalle */
 [data-theme="dark"] .wishlist-btn-detail {
   background: #1c2330 !important;
   color: #6e7681;
@@ -692,13 +685,11 @@ input, textarea, select {
 [data-theme="dark"] .wishlist-btn-detail:hover { color: #f85149; }
 [data-theme="dark"] .wishlist-btn-detail.active { color: #f85149; }
 
-/* Tabs */
 [data-theme="dark"] .tab-button.active {
   color: #58a6ff !important;
   border-color: #58a6ff !important;
 }
 
-/* Especificaciones */
 [data-theme="dark"] .border-b.border-gray-200 { border-color: #21262d !important; }
 [data-theme="dark"] .font-semibold.text-gray-700 { color: #8b949e !important; }
 
@@ -736,7 +727,7 @@ input, textarea, select {
 }
 
 /* ============================================================
-   CONTACTO - ÍCONOS Y TEXTOS
+   CONTACTO
    ============================================================ */
 [data-theme="dark"] .bg-blue-100 {
   background-color: rgba(37, 99, 235, 0.25) !important;
@@ -747,7 +738,6 @@ input, textarea, select {
    ============================================================ */
 [data-theme="dark"] .checkout-section { background: #161b22 !important; }
 
-/* Métodos de pago */
 [data-theme="dark"] .border.rounded-lg { background: #1c2330 !important; }
 
 [data-theme="dark"] .border-blue-500,
@@ -756,7 +746,6 @@ input, textarea, select {
   border-color: #388bfd !important;
 }
 
-/* Alerta PSE */
 [data-theme="dark"] .bg-yellow-50 {
   background: rgba(240, 180, 41, 0.1) !important;
   border-color: rgba(240, 180, 41, 0.3) !important;
@@ -769,7 +758,6 @@ input, textarea, select {
 /* ============================================================
    SEARCH / BÚSQUEDA
    ============================================================ */
-/* Los precios en búsqueda - amarillo */
 [data-theme="dark"] .search-results .text-blue-600,
 [data-theme="dark"] .search-results .text-blue-800 { color: #f0b429 !important; }
 
@@ -837,47 +825,34 @@ input, textarea, select {
 [data-theme="dark"] .bg-yellow-500:not(.btn-buy):not(.btn-comprar) {
   background: linear-gradient(135deg, #f0b429 0%, #d97706 100%) !important;
 }
+
 /* ============================================================
    CHECKOUT - FIXES EXACTOS
    ============================================================ */
-
-/* Precios de productos en resumen - AMARILLO */
 [data-theme="dark"] .sticky p.text-sm.font-bold.text-blue-600,
 [data-theme="dark"] .sticky .text-blue-600 { color: #f0b429 !important; }
 
-/* Nombres de productos en resumen - BLANCOS */
 [data-theme="dark"] .sticky h4.font-semibold,
 [data-theme="dark"] .sticky h4 { color: #e6edf3 !important; }
 
-/* Cantidad - GRIS */
 [data-theme="dark"] .sticky p.text-xs.text-gray-500 { color: #6e7681 !important; }
 
-/* Subtotal / IVA / Envío labels y valores - BLANCOS */
 [data-theme="dark"] .sticky .text-gray-700 { color: #e6edf3 !important; }
 [data-theme="dark"] .sticky .font-semibold  { color: #e6edf3 !important; }
 
-/* Total - AMARILLO */
 [data-theme="dark"] .sticky .text-2xl.font-bold.text-blue-800,
 [data-theme="dark"] .sticky .text-2xl.font-bold { color: #f0b429 !important; }
 
-/* "Subtotal:" label - BLANCO */
 [data-theme="dark"] .sticky span { color: #e6edf3 !important; }
 
-/* ---- MÉTODO DE PAGO SELECCIONADO (verde) ---- */
 [data-theme="dark"] label.border-green-500 {
   background: rgba(63, 185, 80, 0.1) !important;
   border-color: #3fb950 !important;
 }
 
-[data-theme="dark"] label.border-green-500 span.font-semibold {
-  color: #e6edf3 !important;
-}
+[data-theme="dark"] label.border-green-500 span.font-semibold { color: #e6edf3 !important; }
+[data-theme="dark"] label.border-green-500 p.text-sm          { color: #8b949e !important; }
 
-[data-theme="dark"] label.border-green-500 p.text-sm {
-  color: #8b949e !important;
-}
-
-/* ---- MÉTODOS DESHABILITADOS ---- */
 [data-theme="dark"] .opacity-50 label {
   background: #1c2330 !important;
   border-color: #30363d !important;
@@ -886,7 +861,6 @@ input, textarea, select {
 [data-theme="dark"] .opacity-50 span.font-semibold { color: #6e7681 !important; }
 [data-theme="dark"] .opacity-50 p.text-sm          { color: #6e7681 !important; }
 
-/* ---- ALERTA AZUL (info) ---- */
 [data-theme="dark"] .bg-blue-50.border-l-4.border-blue-500 {
   background: rgba(56, 139, 253, 0.1) !important;
   border-color: #388bfd !important;
@@ -895,7 +869,6 @@ input, textarea, select {
 [data-theme="dark"] .bg-blue-50 .text-blue-700 { color: #79c0ff !important; }
 [data-theme="dark"] .bg-blue-50 .text-blue-600 { color: #58a6ff !important; }
 
-/* ---- ALERTA AMARILLA (instrucciones) ---- */
 [data-theme="dark"] .bg-yellow-50 {
   background: rgba(240, 180, 41, 0.08) !important;
   border-color: rgba(240, 180, 41, 0.3) !important;
@@ -907,7 +880,6 @@ input, textarea, select {
 [data-theme="dark"] .bg-yellow-50 li,
 [data-theme="dark"] .text-yellow-700 { color: #d4a017 !important; }
 
-/* ---- BOTÓN VOLVER AL CARRITO ---- */
 [data-theme="dark"] .sticky a.bg-gray-200 {
   background: #1c2330 !important;
   color: #e6edf3 !important;

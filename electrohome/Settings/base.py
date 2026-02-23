@@ -12,21 +12,18 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-j!&amsgcyeces&3lvzhfy*al7(zowo@227_y*$gt51bws(4lgm'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-j!&amsgcyeces&3lvzhfy*al7(zowo@227_y*$gt51bws(4lgm')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '*']  # ✅ AGREGADO
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost 127.0.0.1').split(' ')
 
 # Application definition
 
@@ -56,9 +53,10 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',  # ✅ ESTE DEBE ESTAR
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -89,8 +87,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'electrohome.wsgi.application'
 
 # Password validation
-# https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -107,17 +103,13 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Internationalization
-# https://docs.djangoproject.com/en/5.2/topics/i18n/
-
-LANGUAGE_CODE = 'es'  # Español Colombia
-TIME_ZONE = 'America/Bogota'  # Zona horaria Colombia
+LANGUAGE_CODE = 'es'
+TIME_ZONE = 'America/Bogota'
 
 USE_I18N = True
 USE_TZ = True
 
 # Default primary key field type
-# https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # ===== CONFIGURACIÓN DE USUARIO PERSONALIZADO =====
@@ -138,12 +130,10 @@ AUTHENTICATION_BACKENDS = [
 # ===== CONFIGURACIÓN DE ALLAUTH =====
 SITE_ID = 3
 
-# Configuración moderna de allauth (sin deprecations)
 ACCOUNT_LOGIN_METHODS = {'email'}
 ACCOUNT_SIGNUP_FIELDS = ['email*', 'first_name', 'last_name', 'password1*', 'password2*']
 SOCIALACCOUNT_AUTO_SIGNUP = True
 
-# Adaptadores
 ACCOUNT_ADAPTER = 'allauth.account.adapter.DefaultAccountAdapter'
 SOCIALACCOUNT_ADAPTER = 'allauth.socialaccount.adapter.DefaultSocialAccountAdapter'
 
@@ -152,45 +142,46 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # ===== CONFIGURACIÓN DE ARCHIVOS MEDIA =====
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-# ===== CONFIGURACIÓN DE CACHÉ (SE SOBRESCRIBE EN local.py y production.py) =====
+# ===== CONFIGURACIÓN DE CACHÉ =====
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
     }
 }
 
-# ===== CONFIGURACIÓN DE RECOMENDACIONES (GLOBAL) =====
-RECOMMENDATION_CACHE_TIMEOUT = 3600  # 1 hora por defecto
+# ===== CONFIGURACIÓN DE RECOMENDACIONES =====
+RECOMMENDATION_CACHE_TIMEOUT = 3600
 
 # ===== CONFIGURACIÓN DE FORMATOS DE FECHA =====
 DATE_FORMAT = 'd/m/Y'
 DATETIME_FORMAT = 'd/m/Y H:i:s'
 SHORT_DATE_FORMAT = 'd/m/Y'
 
-# ===== ✅ CONFIGURACIÓN DE SESIÓN (CORREGIDA) =====
-SESSION_COOKIE_AGE = 86400  # 24 horas (antes era 1 hora, podía causar problemas)
+# ===== CONFIGURACIÓN DE SESIÓN =====
+SESSION_COOKIE_AGE = 86400
 SESSION_SAVE_EVERY_REQUEST = True
-SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # ✅ Cambiar a False
-SESSION_COOKIE_SECURE = False  # False en desarrollo, True en producción con HTTPS
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+SESSION_COOKIE_SECURE = False
 SESSION_COOKIE_HTTPONLY = True
-SESSION_COOKIE_SAMESITE = 'Lax'  # ✅ IMPORTANTE para CSRF
+SESSION_COOKIE_SAMESITE = 'Lax'
 
-# ===== ✅ CONFIGURACIÓN CSRF (NUEVA - MUY IMPORTANTE) =====
-CSRF_COOKIE_SECURE = False  # False en desarrollo, True en producción con HTTPS
-CSRF_COOKIE_HTTPONLY = False  # ✅ Debe ser False para que JS pueda leerlo
-CSRF_COOKIE_SAMESITE = 'Lax'  # ✅ CRÍTICO para evitar errores CSRF
-CSRF_USE_SESSIONS = False  # ✅ Usar cookies, no sesiones
-CSRF_COOKIE_AGE = 31449600  # 1 año
-CSRF_TRUSTED_ORIGINS = [
-    'http://localhost:8000',
-    'http://127.0.0.1:8000',
-]  # ✅ Orígenes de confianza
+# ===== CONFIGURACIÓN CSRF =====
+CSRF_COOKIE_SECURE = False
+CSRF_COOKIE_HTTPONLY = False
+CSRF_COOKIE_SAMESITE = 'Lax'
+CSRF_USE_SESSIONS = False
+CSRF_COOKIE_AGE = 31449600
+CSRF_TRUSTED_ORIGINS = os.environ.get(
+    'CSRF_TRUSTED_ORIGINS',
+    'http://localhost:8000 http://127.0.0.1:8000'
+).split(' ')
 
 # Headers de seguridad
 SECURE_BROWSER_XSS_FILTER = True

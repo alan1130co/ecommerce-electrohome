@@ -33,3 +33,5 @@ WOMPI_PUBLIC_KEY = os.environ.get('WOMPI_PUBLIC_KEY', '')
 WOMPI_PRIVATE_KEY = os.environ.get('WOMPI_PRIVATE_KEY', '')
 WOMPI_ENVIRONMENT = os.environ.get('WOMPI_ENVIRONMENT', 'test')
 WOMPI_API_URL = 'https://sandbox.wompi.co/v1'
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'

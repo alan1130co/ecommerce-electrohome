@@ -460,7 +460,7 @@
                         </button>
 
                         {% if item.product.imagen_principal %}
-                            <img src="{{ item.product.imagen_principal.url }}" alt="{{ item.product.nombre }}">
+                            <img src="{{ item.product.imagen_principal }}" alt="{{ item.product.nombre }}">
                         {% else %}
                             <div class="flex items-center justify-center h-full">
                                 <i class="fas fa-image text-gray-400 text-5xl"></i>

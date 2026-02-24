@@ -448,7 +448,7 @@
 
             <a href="{% url 'product:product_detail' producto.id %}" class="block relative overflow-hidden">
                 {% if producto.imagen_principal %}
-                <img src="{{ producto.imagen_principal.url }}" alt="{{ producto.nombre }}" 
+                <img src="{{ producto.imagen_principal }}" alt="{{ producto.nombre }}" 
                      class="w-full h-56 object-contain bg-gray-50 p-4 group-hover:scale-110 transition-transform duration-500" />
                 {% else %}
                 <div class="w-full h-56 bg-gray-200 flex items-center justify-center">

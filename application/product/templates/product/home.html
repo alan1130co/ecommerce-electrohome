@@ -1194,7 +1194,7 @@ body, header, footer, main, section,
               <div class="product-image-container">
                 <button class="wishlist-btn" data-product-id="{{ producto.id }}" onclick="toggleWishlist(event, {{ producto.id }})">♡</button>
                 {% if producto.imagen_principal %}
-                <img src="{{ producto.imagen_principal.url }}" alt="{{ producto.nombre }}">
+                <img src="{{ producto.imagen_principal }}" alt="{{ producto.nombre }}">
                 {% else %}
                 <img src="{% static 'img/productos/producto-ejemplo.jpg' %}" alt="{{ producto.nombre }}">
                 {% endif %}
@@ -1247,7 +1247,7 @@ body, header, footer, main, section,
                 <div class="carousel-image-container">
                   <button class="wishlist-btn" data-product-id="{{ producto.id }}" onclick="toggleWishlist(event, {{ producto.id }})">♡</button>
                   {% if producto.imagen_principal %}
-                  <img src="{{ producto.imagen_principal.url }}" alt="{{ producto.nombre }}">
+                  <img src="{{ producto.imagen_principal }}" alt="{{ producto.nombre }}">
                   {% else %}
                   <img src="{% static 'img/productos/producto-ejemplo.jpg' %}" alt="{{ producto.nombre }}">
                   {% endif %}
@@ -1299,7 +1299,7 @@ body, header, footer, main, section,
                 <div class="carousel-image-container">
                   <button class="wishlist-btn" data-product-id="{{ producto.id }}" onclick="toggleWishlist(event, {{ producto.id }})">♡</button>
                   {% if producto.imagen_principal %}
-                  <img src="{{ producto.imagen_principal.url }}" alt="{{ producto.nombre }}">
+                  <img src="{{ producto.imagen_principal }}" alt="{{ producto.nombre }}">
                   {% else %}
                   <img src="{% static 'img/productos/producto-ejemplo.jpg' %}" alt="{{ producto.nombre }}">
                   {% endif %}
@@ -1351,7 +1351,7 @@ body, header, footer, main, section,
                 <div class="carousel-image-container">
                   <button class="wishlist-btn" data-product-id="{{ producto.id }}" onclick="toggleWishlist(event, {{ producto.id }})">♡</button>
                   {% if producto.imagen_principal %}
-                  <img src="{{ producto.imagen_principal.url }}" alt="{{ producto.nombre }}">
+                  <img src="{{ producto.imagen_principal }}" alt="{{ producto.nombre }}">
                   {% else %}
                   <img src="{% static 'img/productos/producto-ejemplo.jpg' %}" alt="{{ producto.nombre }}">
                   {% endif %}

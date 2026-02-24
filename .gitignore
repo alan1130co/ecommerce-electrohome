@@ -35,8 +35,6 @@ db.sqlite3-journal
 *.db
 
 # Media files (archivos subidos por usuarios)
-media/
-*/media/*
 
 # Static files
 staticfiles/

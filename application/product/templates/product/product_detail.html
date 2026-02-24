@@ -330,7 +330,7 @@
         </button>
 
         {% if producto.imagen_principal %}
-        <img id="main-image" src="{{ producto.imagen_principal.url }}" alt="{{ producto.nombre }}" class="w-full h-96 object-contain rounded-lg" />
+        <img id="main-image" src="{{ producto.imagen_principal }}" alt="{{ producto.nombre }}" class="w-full h-96 object-contain rounded-lg" />
         {% else %}
         <div class="w-full h-96 bg-gray-200 rounded-lg flex items-center justify-center">
             <i class="fas fa-image text-gray-400 text-6xl"></i>
@@ -342,10 +342,10 @@
     {% if producto.galeria.all %}
     <div class="grid grid-cols-4 gap-3 image-gallery">
         {% if producto.imagen_principal %}
-        <img src="{{ producto.imagen_principal.url }}" alt="Imagen 1" class="w-full h-20 object-cover rounded-lg border-2 border-gray-300 active" onclick="changeImage(this.src)" />
+        <img src="{{ producto.imagen_principal }}" alt="Imagen 1" class="w-full h-20 object-cover rounded-lg border-2 border-gray-300 active" onclick="changeImage(this.src)" />
         {% endif %}
         {% for imagen in producto.galeria.all %}
-        <img src="{{ imagen.imagen.url }}" alt="Imagen {{ forloop.counter }}" class="w-full h-20 object-cover rounded-lg border-2 border-gray-300" onclick="changeImage(this.src)" />
+        <img src="{{ imagen.imagen }}" alt="Imagen {{ forloop.counter }}" class="w-full h-20 object-cover rounded-lg border-2 border-gray-300" onclick="changeImage(this.src)" />
         {% endfor %}
     </div>
     {% endif %}

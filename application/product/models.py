@@ -24,7 +24,7 @@ class Producto(models.Model):
     precio = models.DecimalField(max_digits=10, decimal_places=2)
     stock = models.PositiveIntegerField()
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name='productos')
-    imagen_principal = models.ImageField(upload_to='productos/galeria', blank=True, null=True)
+    imagen_principal = models.CharField(max_length=500, blank=True, null=True)
     activo = models.BooleanField(default=True)
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     fecha_actualizacion = models.DateTimeField(auto_now=True)
@@ -97,7 +97,7 @@ class Producto(models.Model):
 
 class ImagenProducto(models.Model):
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE, related_name='galeria')
-    imagen = models.ImageField(upload_to='productos/galeria/')
+    imagen = models.CharField(max_length=500, blank=True, null=True)
     descripcion = models.CharField(max_length=255, blank=True)
     orden = models.PositiveIntegerField(default=0)
 

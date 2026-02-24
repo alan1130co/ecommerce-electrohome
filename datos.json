@@ -1,0 +1,6668 @@
+﻿[
+{
+  "model": "sessions.session",
+  "pk": "0s0vitox647vl6s1bqf4vrdz8tpyr34k",
+  "fields": {
+    "session_data": ".eJwlycEKAiEQANB_mbOEUqzoLQpi69ZhLxGLjFNJ4izqdhH_vaB3fQ0KY3DRIfKa6lyqq1TANth7db6Oh0vk8TRNxxfYW4MlM1L5PUR-hgQCvKsObFpjFLC8kWZkT_OHcngEyv_pQmkt9SCVHDba7IzZmnvvX5VlKXk:1vpvas:9sAs84SZp2rsTEQ_rmmeqgt5kb7XiuHOxRUP37f7Emc",
+    "expire_date": "2026-02-11T21:48:26.795Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "0zmwlao9p5wyysghxmywhl48r47uqmjv",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAQAP-FsyELdEvx6L3fQJZdkKqhSR8n47-bJj3odWYybxVp32rc17zESdRVGasuvzARP3M7jDyo3WfNc9uWKekj0add9ThLft3O9m9Qaa3Ht0cnGHxBHMSDBSAGpOwsG3RQgMhgYuShcAAXBLwU21Hqco8lGPX5AuvtN78:1vs3RK:x0rCPnUCZASur5kx3GaGNqJ0KnZZOR_kuPefTS2oEEM",
+    "expire_date": "2026-02-17T18:35:22.204Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "3m08yikmut6nwlei0kb1q4tobaqndxbz",
+  "fields": {
+    "session_data": ".eJxVj01uhTAMhO_iNUIxIT-w67tGVSEn8XugUlKR0A3i7gVKF-ys8Tfj8Qop-oFG8j4uU-5SpswJ2nUr4F-jJfc85cFTHuLUfXHuY9iZ9xX-ZmjvKbB7M7RotJJNUyksba21MaqA7zn-DIHn3fKK8TXyzi7DkYBY1cpqY2srEZXQqBsB20cBZ4FuSTx3JynhpjnynzwdCxrHQy6vGuXJXOtUvt3eeFyuW1RPqT8OMJsglHBVsF46IZ9NEJqcDyiDUrgr9PRaCVtR7aXyWLNlj5VjY5kCbL__4nEa:1vTQzT:bzeBC8aP5h_3ZeIJxOVxhqBVqbzj_NTn_i2OLo8zYsQ",
+    "expire_date": "2025-12-11T20:40:51.905Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "53v5bpcdziuqvjq09lre7glih5ykgbcf",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlm2N_5R0nMGa9fe4ABypDipEHeHSCmgfTPzXiLhtta0dV7SVMRZaHH63Qjzg9sOyh3bbZZ5busykdwVedAur3Ph5-Vw_w4q9vqtlfcuKEuGIRDFCKNBKM4b0lFbY12xYAiBOfMwUAbOGByGMSrtvFLi_QHKDjds:1vT2UF:bQ7htp6TE3-4u770zfLGIE3qFDPNoaFSQaBz1E0l6Sk",
+    "expire_date": "2025-12-10T18:30:59.219Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "5vehi9hmmiqbzvka9mmij9dyl4x5b9ls",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2hAKnQFcuvcMBGZAqoYmpV0Z765NutDtf-_9lwhxW2vYel7CxOIsBiNOv2OK9MhtJ3yP7TZLmtu6TEnuijxol9eZ8_NyuH8HNfb6rT2qBIBsNJJRFjUxKp-VxrGwV7Zkiw4KuDIy5SEaAGJWJjmvIyGI9wfp8Te1:1vtZ8Z:cJht0pzZkz91sO4g6kLJbfVWW9Ojst9HhQRLmycw1Fk",
+    "expire_date": "2026-02-21T22:38:15.919Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "6jba88bpnq2np8mwzj59aad33enpn6g9",
+  "fields": {
+    "session_data": ".eJxVy8sOwiAQheF3YW0IMOXm0sTnIDMwDcRaG2lXxnfXJl3o9nznf4mE21rT1vmZWhFnocXpdyPMN553wGWZWsa1PWa5kzyoy-sd23Q5jn91xV6_qfLeBWXJMASiGGE0CMV5Qzpqa6wrFgwhMGceBsrAGYPDMEalnVdKvD8gajZy:1vP2Zf:DctW2UFliOuugWahhq0QUkq4c8p0O4VkHS5gd6TGt1s",
+    "expire_date": "2025-11-29T17:48:03.716Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "7wgn0qm3mqzd9fztulae3ldg8m8nwv4c",
+  "fields": {
+    "session_data": ".eJxVj81uhDAMhN_FZ4TyH8OtfY2qQibJLqiUVCTsBfHuG3bpAflijWc-jTdI0Y00kXNxnXOXMuWQoN32Cv41WvMQ5jw6ymOcu9-Qh-iL52uD9w7tlQIlm6Hl1nK0xmBTc4NGoK7gb4mP0YelRO4x3qdQvOt4EDg3mkthFHItlFANCrSwf1fwKtCtKSzd26ngIvbkfsJ8XGiaDrk-e9Qvz3lO9cflj88zdUENlIbCYVKSIx9UGdlbSUKLRiBjnJy1TEmmdSOk9zfmNKJ3oVHo0Yqbl6ZnCvYnQB1wGw:1vuc4H:dxWpZsw5SaLWuv4uAFjnrqxyHQ0VV6WmzDf4uUf3JUs",
+    "expire_date": "2026-02-24T19:58:09.188Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "87ansl7x91jx03horsqc8nu2p1f39jvu",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlle_xIo6XMGa71e4wCypTipEHeHSCmgfTPzXiLgtpawdV7CnMRFaHH63SLSg-sO0h3rrUlqdV3mKHdFHrTLqSV-Xg_376BgL9-ak3PA2lkAGs4qoSdygAayshYogolGM3hlCHMGYp9dHhXYNDoatBbvD9yxN60:1vO6ZB:PygH1q4et5lKaCis-CMnmRqvjoeSAqt_pFeODMf9Sy4",
+    "expire_date": "2025-11-27T03:51:41.657Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "8d3uu8we1qle1q59hte3xqu42kv3gbgm",
+  "fields": {
+    "session_data": ".eJxVy8sOwiAQheF3YW0IMOXm0sTnIDMwDcRaG2lXxnfXJl3o9nznf4mE21rT1vmZWhFnocXpdyPMN553wGWZWsa1PWa5kzyoy-sd23Q5jn91xV6_qfLeBWXJMASiGGE0CMV5Qzpqa6wrFgwhMGceBsrAGYPDMEalnVdKvD8gajZy:1vOiL2:F2_RzGrPdssVhGFf1u7luXAs1UoX2cNxEudV5YN4f6Y",
+    "expire_date": "2025-11-28T20:11:36.970Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "9v2ad8ymdjrha2vqvmiah6ye2taeaafh",
+  "fields": {
+    "session_data": ".eJxVy8sOwiAQheF3YW0IMOXm0sTnIDMwDcRaG2lXxnfXJl3o9nznf4mE21rT1vmZWhFnocXpdyPMN553wGWZWsa1PWa5kzyoy-sd23Q5jn91xV6_qfLeBWXJMASiGGE0CMV5Qzpqa6wrFgwhMGceBsrAGYPDMEalnVdKvD8gajZy:1vOgBc:uPQs2xKS04lIQbkw8NvgfrrFP0pygIdVPSPmX01zXI4",
+    "expire_date": "2025-11-28T17:53:44.072Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "akam8yvv3x1jtgvmjo7qwbbkmkb8ooc8",
+  "fields": {
+    "session_data": "e30:1vRGmL:Kb0ib1VveYhZz-aPmas_b4am50Ci5XnOo6n3kgFFb2U",
+    "expire_date": "2025-12-05T21:22:21.013Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "atglv08ozzgrm7guv1v06t7wm1b7z5tp",
+  "fields": {
+    "session_data": "e30:1vqIJ9:4MgXkQP7dllTgAHanpqU6n5dbfGGIjdRHo9YZeIOH-w",
+    "expire_date": "2026-02-12T22:03:39.269Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "b2fgjp81l7kxszxep4i78vqk54c1ai1s",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlm2N_5R0nMGa9fe4ABypDipEHeHSCmgfTPzXiLhtta0dV7SVMRZaHH63Qjzg9sOyh3bbZZ5busykdwVedAur3Ph5-Vw_w4q9vqtlfcuKEuGIRDFCKNBKM4b0lFbY12xYAiBOfMwUAbOGByGMSrtvFLi_QHKDjds:1vnjwu:i_HICdsDTI7VlqN4NfEa-FO-iuUHqflrHrvRKR0FFW8",
+    "expire_date": "2026-02-05T20:58:08.383Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "d18k9i5gr6vfv8qg7zml2984qymorc5w",
+  "fields": {
+    "session_data": "e30:1vo7bc:Ged69Q_-G7KpywFPaOfvu57SkFwUYhoi0_YJU7KnuZs",
+    "expire_date": "2026-02-06T22:13:44.477Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "et21gvgn6u9of2dur2ui15hnv39nj15f",
+  "fields": {
+    "session_data": "e30:1vYsYA:VQoXg3Ei6f6l6F-449Z7T08PK4vsY0QlqdnRCdcx9IQ",
+    "expire_date": "2025-12-26T21:07:10.369Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "fa9my2u8obw7twhrbzx0icpzgd64z8fu",
+  "fields": {
+    "session_data": "e30:1vQXKe:-hb4GqmGH-7wpBEOh37bRNm2_g_m7ZNVaEleKU2ORYI",
+    "expire_date": "2025-12-03T20:50:44.683Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "fagtwn6rxko8kwhk3vjh3zqd522a1tj7",
+  "fields": {
+    "session_data": ".eJxVj01uhTAMhO_iNUIOifPzdn3XqCpkQnigUlKR0A3i7gVKF-ysmW9G4xVS9AOP7H1cplynzDkkeKxbAf8aL7kPUx485yFO9VfIfWx35n2Fvxse9xbYsxkewhiBVjlrS0SNgmQB33P8Gdow75FXjK8x7OwyHA1CSKqUQ0QyzlmjXWUq2D4KOAfUSwpzfZIEN61h_xmmw-BxPOTymlGezGWn8u32xvNK3ap6Tv3eUykvGs1KaMOuMUEiWUnEzojOCY_Sc6i8RtN2pImCD9RZEroRKI1SCrZfx1Rvfg:1vrI6u:3frTmuCH9XVDsst-sclMfWBRC3hVnWIGEibKfyIbs6I",
+    "expire_date": "2026-02-15T16:03:08.070Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "ffii6g8g2i24k7hhen8cpjgiwg74ze47",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlle_xIo6XMGa71e4wCypTipEHeHSCmgfTPzXiLgtpawdV7CnMRFaHH63SLSg-sO0h3rrUlqdV3mKHdFHrTLqSV-Xg_376BgL9-ak3PA2lkAGs4qoSdygAayshYogolGM3hlCHMGYp9dHhXYNDoatBbvD9yxN60:1vO12h:Y9QAs_UZ-dXp5Y2wPMANunaCBO-C7PufYTvUFGBj7r0",
+    "expire_date": "2025-11-26T21:57:47.373Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "fvkslhy4cyuqxi23c0gsnso28f3ppsrn",
+  "fields": {
+    "session_data": ".eJxVj0tuhDAQRO_Sa4TctrHbs8tcI4qQ8WdAITjCJhvE3QOELNi1ql6VqlfIyQ12tM6lZSptLraEDI91q-Bfs0vpw1QGZ8uQpvYrlD75nXlf4e-Gx70F9myBB2rNJKImXZNWTHJVwfecfgYf5j3ySuk1hp1dhqMBkcuGlCZJArFhCpVhsH1UcA5olxzm9iQN3LTOus8wHYYdx0Ourxn1yVx2rt9ubzyv1K2qt7k_pnBvqRNGkYlBMRbRMS2IPGdWMG4wuIiNlrojHztBznkdBTVGRt5ox2H7BdCYb_M:1voSyp:3iWhG88aM1l3BaT6XzQsbD0jY-mTqHZuq37hO0Em_CE",
+    "expire_date": "2026-02-07T21:03:07.912Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "gr72ei7y2ots5glh38l0l8g1yo3ucmgk",
+  "fields": {
+    "session_data": "e30:1vnOQW:qRG4WyoQ9Y6iUEte5EmLtn2H5ZkOPcCZy7Pni-mUrOM",
+    "expire_date": "2026-02-04T21:59:16.425Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "gultei1oo57889lhr0z2s7242id0l0ow",
+  "fields": {
+    "session_data": ".eJxVy8sOwiAQheF3YW0IMOXm0sTnIDMwDcRaG2lXxnfXJl3o9nznf4mE21rT1vmZWhFnocXpdyPMN553wGWZWsa1PWa5kzyoy-sd23Q5jn91xV6_qfLeBWXJMASiGGE0CMV5Qzpqa6wrFgwhMGceBsrAGYPDMEalnVdKvD8gajZy:1vRcrT:GhY_iMv63rgzcwG17SulIiLxCucPqi76SdQ3mlB4s54",
+    "expire_date": "2025-12-06T20:57:07.195Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "i9jxy8zl96he47njti7zhah5fvq5qv47",
+  "fields": {
+    "session_data": "e30:1vT5XX:MXSjmvORBOsVMM-InYwYQDmkOnOQIWfcknRH9lAXkXs",
+    "expire_date": "2025-12-10T21:46:35.800Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "ll2y8gdqk1521ogp83lp2qxlbuataqeg",
+  "fields": {
+    "session_data": "e30:1vctow:eNYkontG5EQsGwuqge18btKgRalL2z7jRWz6FJe6vqw",
+    "expire_date": "2026-01-06T23:17:06.438Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "mbego44v7w6msgkgd0wx8fa6dszo7cto",
+  "fields": {
+    "session_data": ".eJxVy8sOwiAQheF3YW0IMOXm0sTnIDMwDcRaG2lXxnfXJl3o9nznf4mE21rT1vmZWhFnocXpdyPMN553wGWZWsa1PWa5kzyoy-sd23Q5jn91xV6_qfLeBWXJMASiGGE0CMV5Qzpqa6wrFgwhMGceBsrAGYPDMEalnVdKvD8gajZy:1vRZdq:sjI0wabSDhgANrYOSjue1CU5AD6RJUV54scZyrURTQ8",
+    "expire_date": "2025-12-06T17:30:50.940Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "nch7iu0ankz75its7pzjjs7wkstu51zh",
+  "fields": {
+    "session_data": "e30:1vmzlN:cRitFMTzLPNyOl70287x3CiUaZKFb1h31D3scvYBWow",
+    "expire_date": "2026-02-03T19:39:09.484Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "ob4prfnrcefgmijrrxoh9chufpy255h7",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2hCwBTou3fcMZAYGqRpISrsy3l1JutDte-__l_C4b9nvjVe_RHERWonTLyQMDy7dxDuWW5Whlm1dSPZEHrbJuUZ-Xo_27yBjy30dNVlCcJEVjBMkms4JwCXDFgiCCZgiOWMcjYlIkdWKvoDZDoHNIN4fNWM5bg:1vpXDz:YV21lC2-3ufXMYBqVnzfN-kTKczF6e1VI-aHxcIe3EU",
+    "expire_date": "2026-02-10T19:47:11.713Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "od6n0gmxbsnobnovm0cd04h9o8eufkji",
+  "fields": {
+    "session_data": ".eJxVy8sOwiAQheF3YW0IMOXm0sTnIDMwDcRaG2lXxnfXJl3o9nznf4mE21rT1vmZWhFnocXpdyPMN553wGWZWsa1PWa5kzyoy-sd23Q5jn91xV6_qfLeBWXJMASiGGE0CMV5Qzpqa6wrFgwhMGceBsrAGYPDMEalnVdKvD8gajZy:1vO1Fx:jUwvqtkc9xv7PLx9DWzhH9tS8ep8JTqFi2z5LofbZEw",
+    "expire_date": "2025-11-26T22:11:29.688Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "okxq4ghnqpqggtb6o5j7d4jkeb4lxzcn",
+  "fields": {
+    "session_data": "e30:1vaNyW:JnR3v9XScnkMC8CJusIShkA7x1ZJ2KymnAmprxOtDSs",
+    "expire_date": "2025-12-31T00:52:36.723Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "p6r29a5hxcujmr8pbtx4ew7wphpl2for",
+  "fields": {
+    "session_data": ".eJxVy8sOwiAQheF3YW0IMOXm0sTnIDMwDcRaG2lXxnfXJl3o9nznf4mE21rT1vmZWhFnocXpdyPMN553wGWZWsa1PWa5kzyoy-sd23Q5jn91xV6_qfLeBWXJMASiGGE0CMV5Qzpqa6wrFgwhMGceBsrAGYPDMEalnVdKvD8gajZy:1voQJu:GeuI4JHcq2PvvfpTJkvQ61JrfRFScGAi1bZmbC-p0Q4",
+    "expire_date": "2026-02-07T18:12:42.382Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "rhcxgakm985biwdtgi3mzwgofm9covpj",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlm2N_5R0nMGa9fe4ABypDipEHeHSCmgfTPzXiLhtta0dV7SVMRZaHH63Qjzg9sOyh3bbZZ5busykdwVedAur3Ph5-Vw_w4q9vqtlfcuKEuGIRDFCKNBKM4b0lFbY12xYAiBOfMwUAbOGByGMSrtvFLi_QHKDjds:1vT2QB:MTT1UH-7YP-Y7gBRI8K3xvzJHVXOOaQhVl8F05hxUuc",
+    "expire_date": "2025-12-10T18:26:47.608Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "spulzgambwv24hjv76lweyl8u4r0o8p1",
+  "fields": {
+    "session_data": "e30:1vONfS:6RVvkB_cmO8NBeZbJeqX92nVs-QTQgEk4DbTbWWxLXs",
+    "expire_date": "2025-11-27T22:07:18.196Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "sy6bfj2mwbf2pcyyef24v97no1v7kkid",
+  "fields": {
+    "session_data": "e30:1vVyWJ:y7o4qqr_Wgr94N0wggLuH3Tfe2RKY5dNNVu8h7aW4ug",
+    "expire_date": "2025-12-18T20:53:15.671Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "uzvbk0jcjmpvd9zk57ykoy0cdb51twhc",
+  "fields": {
+    "session_data": ".eJxVT81uhCAQfpc5GwPyI-utfY2mMSPMrqSsNIJ7Mb570do03ibf_6yQovUY0Nq4TLlPGTMl6Natgj_sRbO_e3I9PdEH6KYlhH8WlzzSlL3F7OPUPymP0ZWEjxV-b-iuHVC8GTreaiVko1tTCykFN7qC7zm-vKO5WB4xPgIV7eL3BM4bqUwRSyM4V0xzfWOwfVZwDOiXRHN_KAVcsAHtF007gSHscH3OqA_NSaf67fLG--m6RI2Yxr2AqHVMsaFxxoqBifvNMY2DdVw4pXhB8G61YqZBaYWyXJIhy5uBWkPoYPsB9FR8cw:1vTCH0:xbCcV7kErLtEMGjNHU-ke5s4ADAz3R9rbUmCoEqM3Pg",
+    "expire_date": "2025-12-11T04:57:58.375Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "vf902bfr3pvy0n9j4tm7g3o7bbtjncej",
+  "fields": {
+    "session_data": "e30:1vP70M:PlKbNR0c4C0dpZwvBGhJOKaaH7TI2-fgI1KddESbXIw",
+    "expire_date": "2025-11-29T22:31:54.500Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "x93g8ay8lj5huol4i92v4608fud1qnxc",
+  "fields": {
+    "session_data": "e30:1vRZhd:q6rxkWXiXHU2CeDirzQVSfdLHHQphMmmEENHa2ewmZs",
+    "expire_date": "2025-12-06T17:34:45.829Z"
+  }
+},
+{
+  "model": "sites.site",
+  "pk": 3,
+  "fields": {
+    "domain": "127.0.0.1:8000",
+    "name": "ElectroHome Local"
+  }
+},
+{
+  "model": "order.order",
+  "pk": 4,
+  "fields": {
+    "user": 1,
+    "email": "alanconeorodriguez1130@gmail.com",
+    "phone": "3118741905",
+    "shipping_address": "calle 1 # 2-40",
+    "shipping_city": "Funza",
+    "shipping_department": "Cundinamarca",
+    "shipping_postal_code": "",
+    "payment_method": "cash",
+    "payment_status": "pending",
+    "wompi_transaction_id": null,
+    "wompi_reference": null,
+    "wompi_payment_link": null,
+    "subtotal": "1370000.00",
+    "tax": "260300.00",
+    "shipping_cost": "15000.00",
+    "total": "1645300.00",
+    "status": "delivered",
+    "notes": "",
+    "created_at": "2025-12-09T18:51:56.086Z",
+    "updated_at": "2025-12-09T18:52:21.677Z",
+    "order_number": "EH202512090SM32Q"
+  }
+},
+{
+  "model": "order.order",
+  "pk": 6,
+  "fields": {
+    "user": 1,
+    "email": "alanconeorodriguez1130@gmail.com",
+    "phone": "3118741905",
+    "shipping_address": "callwer,egtvg",
+    "shipping_city": "Garz≤n",
+    "shipping_department": "Huila",
+    "shipping_postal_code": "",
+    "payment_method": "cash",
+    "payment_status": "pending",
+    "wompi_transaction_id": null,
+    "wompi_reference": null,
+    "wompi_payment_link": null,
+    "subtotal": "3110000.00",
+    "tax": "590900.00",
+    "shipping_cost": "15000.00",
+    "total": "3715900.00",
+    "status": "pending",
+    "notes": "",
+    "created_at": "2026-02-06T18:51:35.618Z",
+    "updated_at": "2026-02-06T18:51:35.618Z",
+    "order_number": "EH2026020633JAUM"
+  }
+},
+{
+  "model": "order.order",
+  "pk": 9,
+  "fields": {
+    "user": 5,
+    "email": "infoelectrohome2025@gmail.com",
+    "phone": "3118741905",
+    "shipping_address": "las termitas calle 1 #2'40",
+    "shipping_city": "Acandφ",
+    "shipping_department": "Choc≤",
+    "shipping_postal_code": "",
+    "payment_method": "cash",
+    "payment_status": "pending",
+    "wompi_transaction_id": null,
+    "wompi_reference": null,
+    "wompi_payment_link": null,
+    "subtotal": "2499900.00",
+    "tax": "474981.00",
+    "shipping_cost": "15000.00",
+    "total": "2989881.00",
+    "status": "pending",
+    "notes": "",
+    "created_at": "2026-02-19T21:56:58.015Z",
+    "updated_at": "2026-02-19T21:56:58.015Z",
+    "order_number": "EH202602193E3EKJ"
+  }
+},
+{
+  "model": "order.order",
+  "pk": 10,
+  "fields": {
+    "user": 1,
+    "email": "alanconeorodriguez1130@gmail.com",
+    "phone": "3118741905",
+    "shipping_address": "fgchcgbjvhbjhvjjgh",
+    "shipping_city": "Montelφbano",
+    "shipping_department": "C≤rdoba",
+    "shipping_postal_code": "",
+    "payment_method": "cash",
+    "payment_status": "pending",
+    "wompi_transaction_id": null,
+    "wompi_reference": null,
+    "wompi_payment_link": null,
+    "subtotal": "11792600.00",
+    "tax": "2240594.00",
+    "shipping_cost": "15000.00",
+    "total": "14048194.00",
+    "status": "delivered",
+    "notes": "",
+    "created_at": "2026-02-20T19:46:57.738Z",
+    "updated_at": "2026-02-23T19:46:50.446Z",
+    "order_number": "EH20260220CCTTEB"
+  }
+},
+{
+  "model": "order.order",
+  "pk": 11,
+  "fields": {
+    "user": 14,
+    "email": "coneorodriguezalandavid@gmail.com",
+    "phone": "3118741905",
+    "shipping_address": "las termitas",
+    "shipping_city": "Puerto Nari±o",
+    "shipping_department": "Amazonas",
+    "shipping_postal_code": "",
+    "payment_method": "cash",
+    "payment_status": "pending",
+    "wompi_transaction_id": null,
+    "wompi_reference": null,
+    "wompi_payment_link": null,
+    "subtotal": "170000.00",
+    "tax": "32300.00",
+    "shipping_cost": "15000.00",
+    "total": "217300.00",
+    "status": "pending",
+    "notes": "",
+    "created_at": "2026-02-23T19:58:50.807Z",
+    "updated_at": "2026-02-23T19:58:50.807Z",
+    "order_number": "EH20260223V95JGZ"
+  }
+},
+{
+  "model": "order.orderitem",
+  "pk": 9,
+  "fields": {
+    "order": 4,
+    "product": 68,
+    "product_name": "Mßquina Cortapelo Combo Cut Wahl con Cable 22 Piezas Gris",
+    "product_price": "170000.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "order.orderitem",
+  "pk": 10,
+  "fields": {
+    "order": 4,
+    "product": 69,
+    "product_name": "Aspiradora Inalßmbrica T-Fal X-FORCE FLEX 9.60, 250 Watts, Baterφa 45min, Accesorio Mascota",
+    "product_price": "1200000.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "order.orderitem",
+  "pk": 13,
+  "fields": {
+    "order": 6,
+    "product": 65,
+    "product_name": "Parlante Recargable Con Trφpode 30W Rms+Microfono",
+    "product_price": "130000.00",
+    "quantity": 2
+  }
+},
+{
+  "model": "order.orderitem",
+  "pk": 14,
+  "fields": {
+    "order": 6,
+    "product": 67,
+    "product_name": "Licuadora Profesional 1000W Ninja Crushing TECH BL610",
+    "product_price": "450000.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "order.orderitem",
+  "pk": 15,
+  "fields": {
+    "order": 6,
+    "product": 66,
+    "product_name": "Freidora De Aire Imusa Easy Fry Mega 7.5L, Digital",
+    "product_price": "800000.00",
+    "quantity": 3
+  }
+},
+{
+  "model": "order.orderitem",
+  "pk": 18,
+  "fields": {
+    "order": 9,
+    "product": 67,
+    "product_name": "Licuadora Profesional 1000W Ninja Crushing TECH BL610",
+    "product_price": "450000.00",
+    "quantity": 2
+  }
+},
+{
+  "model": "order.orderitem",
+  "pk": 19,
+  "fields": {
+    "order": 9,
+    "product": 52,
+    "product_name": "Mabe |  Aire Acondicionado Inverter 115v 12000 Btu Blanco Mmi12cabwccbc1",
+    "product_price": "1599900.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "order.orderitem",
+  "pk": 20,
+  "fields": {
+    "order": 10,
+    "product": 20,
+    "product_name": "Consola PS5 PRO Digital 2TB Blanco | Incluye 1 control inalßmbrico DualSense | Incluye Juego Preinst",
+    "product_price": "4199900.00",
+    "quantity": 2
+  }
+},
+{
+  "model": "order.orderitem",
+  "pk": 21,
+  "fields": {
+    "order": 10,
+    "product": 69,
+    "product_name": "Aspiradora Inalßmbrica T-Fal X-FORCE FLEX 9.60, 250 Watts, Baterφa 45min, Accesorio Mascota",
+    "product_price": "1200000.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "order.orderitem",
+  "pk": 22,
+  "fields": {
+    "order": 10,
+    "product": 49,
+    "product_name": "Wurden Ventilador de Torre 39 Pulgadas",
+    "product_price": "249900.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "order.orderitem",
+  "pk": 23,
+  "fields": {
+    "order": 10,
+    "product": 27,
+    "product_name": "Plancha De Ropa a Vapor T-Fal Ultragliss Anti - Calc Plus, 1800 Watts, Auto OFF",
+    "product_price": "428000.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "order.orderitem",
+  "pk": 24,
+  "fields": {
+    "order": 10,
+    "product": 53,
+    "product_name": "Recco| Aire Acondicionado On/Off 9000 BTU 220 V",
+    "product_price": "1299900.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "order.orderitem",
+  "pk": 25,
+  "fields": {
+    "order": 10,
+    "product": 54,
+    "product_name": "Maquina De Peluquerφa Wahl Deluxe Groom Pro",
+    "product_price": "215000.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "order.orderitem",
+  "pk": 26,
+  "fields": {
+    "order": 11,
+    "product": 68,
+    "product_name": "Mßquina Cortapelo Combo Cut Wahl con Cable 22 Piezas Gris",
+    "product_price": "170000.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "product.categoria",
+  "pk": 1,
+  "fields": {
+    "nombre": "Limpieza",
+    "descripcion": "",
+    "activo": true,
+    "fecha_creacion": "2025-11-26T03:44:30.898Z"
+  }
+},
+{
+  "model": "product.categoria",
+  "pk": 2,
+  "fields": {
+    "nombre": "Cocina",
+    "descripcion": "",
+    "activo": true,
+    "fecha_creacion": "2025-11-26T03:44:37.128Z"
+  }
+},
+{
+  "model": "product.categoria",
+  "pk": 3,
+  "fields": {
+    "nombre": "Entretenimiento",
+    "descripcion": "",
+    "activo": true,
+    "fecha_creacion": "2025-11-26T03:44:47.549Z"
+  }
+},
+{
+  "model": "product.categoria",
+  "pk": 4,
+  "fields": {
+    "nombre": "Climatizaci≤n",
+    "descripcion": "",
+    "activo": true,
+    "fecha_creacion": "2025-11-28T18:04:17.695Z"
+  }
+},
+{
+  "model": "product.categoria",
+  "pk": 5,
+  "fields": {
+    "nombre": "Cuidado persona",
+    "descripcion": "",
+    "activo": true,
+    "fecha_creacion": "2025-11-28T18:04:33.414Z"
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 1,
+  "fields": {
+    "nombre": "Aspiradora 2 En 1 S≤lidos Lφquidos 1 Galon 1HP",
+    "descripcion": "Especificaciones principales\r\n\r\nòTipo : Barril\r\n\r\nòModelo : 20211201\r\n\r\nòAncho : 26 cm\r\n\r\nòAlto : 28 cm\r\n\r\nòLargo : 26 cm",
+    "precio": "250000.00",
+    "stock": 100,
+    "categoria": 1,
+    "imagen_principal": "productos/galeria/Aspiradora_img1.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-27T18:39:03.040Z",
+    "fecha_actualizacion": "2025-11-27T18:39:03.040Z",
+    "marca": "Shop Vac",
+    "capacidad": "3.78 litros",
+    "potencia": "1 HP",
+    "color": "Rojo",
+    "caracteristicas_destacadas": "Potente, compacta y versßtil. Ideal como aspiradora portßtil para lφquidos y s≤lidos en hogar, taller o carro. Su motor de 1 HP ofrece gran potencia en tama±o reducido. Aspiradora compacta de 1 gal≤n, ligera y resistente, perfecta para espacios peque±os. Incluye funci≤n sopladora, accesorios para m·ltiples superficies y fßcil almacenamiento. Ideal para limpieza de vehφculo, casa o taller.",
+    "garantia_meses": 12
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 2,
+  "fields": {
+    "nombre": "Aspiradora Inalambrica BLACK+DECKER con Iones de Litio, HLVA325J10-B3",
+    "descripcion": "Especificaciones principales\r\n\r\nòTipo : Aspiradoras verticales\r\n\r\nòModelo : HLVA325J10-B3\r\n\r\nòAncho : 41 cm\r\n\r\nòAlto : 31 cm\r\n\r\nòLargo : 20 cm",
+    "precio": "310000.00",
+    "stock": 100,
+    "categoria": 1,
+    "imagen_principal": "productos/galeria/Aspiradora_Mano_img1_jWoEES8.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-27T18:44:49.214Z",
+    "fecha_actualizacion": "2025-11-27T18:44:49.214Z",
+    "marca": "BLACK+DECKER",
+    "capacidad": "500 ml",
+    "potencia": "21 kW",
+    "color": "Negro",
+    "caracteristicas_destacadas": "Aspiradora de mano Black and Decker inalßmbrica HLVA325J10-B3, mantiene libre de suciedad a los muebles, sillones, pisos, alfombras y cortinas. Su baterφa de ion-litio ligera proporciona una succi≤n potente. La aspiradora de mano Black and Decker tambiΘn cuenta con mango que estß dise±ado ergon≤micamente para sentirse balanceado en su mano. La aspiradora de mano Black and Decker tiene una boquilla estrecha que ayuda alcanzar los lugares de difφcil acceso y su cepillo plegable le permite desempolvar y limpiar el tapizado, el recipiente de suciedad es translucido para verificar fßcilmente si es necesario vaciarlo y lavarlo para mejores resultados sin necesidad de tocar la suciedad.",
+    "garantia_meses": 24
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 3,
+  "fields": {
+    "nombre": "Aspiradora BLACK+DECKER Power Pro con Succi≤n Continua y Filtro Lavable de 2.5 Litros VCBD8530",
+    "descripcion": "Especificaciones principales\r\n\r\nòTipo : Aspiradoras sin bolsa\r\n\r\nòModelo : VCBD8530\r\n\r\nòAncho : 45\r\n\r\nòAlto : 34\r\n\r\nòLargo : 31",
+    "precio": "460000.00",
+    "stock": 100000,
+    "categoria": 1,
+    "imagen_principal": "productos/galeria/Aspiradora_peque±a_img1_GFL3xWQ.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-27T18:51:20.918Z",
+    "fecha_actualizacion": "2025-11-27T18:51:20.918Z",
+    "marca": "BLACK+DECKER",
+    "capacidad": "2.5 Litros",
+    "potencia": "2.000 Watts",
+    "color": "Verde",
+    "caracteristicas_destacadas": "Aspira en pocas pasadas particulas de polvo peque±as y grandes con la Aspiradora Power Pro de Black + Decker Dep≤sito de 2.5 litros y Filtro removibles de fßcil limpieza, no necesitas comprar bolsas de papel 2000 Watts de potencia para una Succi≤n Continua sin interrupciones Sistema cicl≤nico, produce una potente y constante succion para remover el pelo de las mascotas y la suciedad Cable retrßctil para fßcil almacenamiento Incluye: Cepillo 2 en 1 para pisos y alfombras, 2 Tubos de extension, Manguera giratoria flexible, Cepillo esquinero,Filtro cicl≤nico lavable, Filtros HEPA lavable",
+    "garantia_meses": 24
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 4,
+  "fields": {
+    "nombre": "Aspiradora Rob≤tica 2 En 1 Negra",
+    "descripcion": "Especificaciones principales\r\n\r\nòTipo : Aspiradoras robot\r\n\r\nòModelo : WRB-SMARTKLEAN\r\n\r\nòAncho : 38 cm\r\n\r\nòAlto : 45.5 cm\r\n\r\nòLargo : 50 cm",
+    "precio": "540000.00",
+    "stock": 100,
+    "categoria": 1,
+    "imagen_principal": "productos/galeria/Aspiradora_robot_img1_vegwL7D.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-27T20:19:47.607Z",
+    "fecha_actualizacion": "2025-11-27T20:19:47.607Z",
+    "marca": "Wurden",
+    "capacidad": "600 ml",
+    "potencia": "20 W",
+    "color": "Negro",
+    "caracteristicas_destacadas": "Aspiradora y Trapeadora Robot Wurden 2 en 1 WRB-SMARTKLEAN\r\nOlvφdate del aseo y la limpieza con la espectacular WRB-SMARTKLEAN de Wurden. Este maravilloso robot no solo funciona como aspiradora, sino tambiΘn como mopa. Solo debes programar su funcionamiento, sentarte a descansar, y tu casa estarß reluciente en minutos.\r\n\r\nModo auto limpieza\r\nElige uno de los 4 increφbles modos de limpieza, que se ajustan a tu necesidad. En el Modo Auto Limpieza / Limpieza en ZIGZAG, el robot utiliza un sistema de navegaci≤n con un giroscopio de alta precisi≤n y aceleraci≤n. Adicionalmente, utiliza un sistema de algoritmos para calcular automßticamente la ruta de limpieza ≤ptima y realizarla de manera efectiva.",
+    "garantia_meses": 24
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 5,
+  "fields": {
+    "nombre": "Batidora De Pedestal CusinΘ 6.5 Litros 660W Cobertura 360░",
+    "descripcion": "Especificaciones principales\r\n\r\nòTipo : Batidoras de pedestal\r\n\r\nòReferencia del Producto en el Certificado/Empaque : Batidora De Pedestal Wecan 6.5 Ltrs 660w Cobertura 360░\r\n\r\nòAncho : 36 cm\r\n\r\nòAlto : 39 cm\r\n\r\nòLargo : 16 cm",
+    "precio": "825000.00",
+    "stock": 100,
+    "categoria": 2,
+    "imagen_principal": "productos/galeria/Batidora_img1_qVHfXjt.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-27T20:23:06.396Z",
+    "fecha_actualizacion": "2025-11-27T20:23:06.396Z",
+    "marca": "Cusine",
+    "capacidad": "6.5 litros",
+    "potencia": "660 W",
+    "color": "Plateado",
+    "caracteristicas_destacadas": "Capacidad del taz≤n: 6.5 litros (acero inoxidable) Potencia: 660W (Certificaci≤n ETL) Velocidades: 6 niveles + funci≤n de pulso Cobertura de mezcla: 360░ para una integraci≤n uniforme Materiales: Estructura vertical resistente con engranajes metßlicos íAhorra tiempo y obtΘn resultados profesionales! Ya sea que la utilices en casa o en tu negocio, la Batidora de Pedestal CusinΘ serß tu mejor aliada para crear recetas increφbles con el mφnimo esfuerzo.",
+    "garantia_meses": 12
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 6,
+  "fields": {
+    "nombre": "Televisor 65 Pulgadas Oled 4K UHD Thinq Magic Remote Oled65b4psa",
+    "descripcion": "Especificaciones principales\r\n\r\nòTipo : Televisores oled\r\n\r\nòSintonizador TDT : Si\r\n\r\nòReferencia del Producto en el Certificado/Empaque : OLED65B4PSA\r\n\r\nòModelo : OLED65B4PSA\r\n\r\nòAncho : 144.9 cm",
+    "precio": "11999900.00",
+    "stock": 100,
+    "categoria": 3,
+    "imagen_principal": "productos/galeria/w1036h832fwebpfitcontainq85_3.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-27T20:25:17.112Z",
+    "fecha_actualizacion": "2025-11-27T20:27:55.719Z",
+    "marca": "LG",
+    "capacidad": null,
+    "potencia": null,
+    "color": null,
+    "caracteristicas_destacadas": "Dimensiones\r\n\r\nAncho\r\n144.9 cm\r\nAlto\r\n83.2 cm\r\nProfundidad\r\n4.9 cm\r\nPeso\r\n17.1 kg\r\nEspecificaciones\r\n\r\nTipo\r\nTelevisores oled\r\nSintonizador TDT\r\nSi\r\nReferencia del Producto en el Certificado/Empaque\r\nOLED65B4PSA\r\nTipo de pantalla\r\nOLED\r\nCuenta con Wifi\r\nSi\r\nCuenta con conexi≤n VGA\r\nNo\r\nCuenta con tecnologφa 3D\r\nNo\r\nSmart TV\r\nSi\r\nCantidad de puertos USB\r\n2\r\nCantidad de puertos HDMI\r\n4\r\nConectividad TV\r\nBluetooth\r\nTama±o de la pantalla\r\n65 pulgadas\r\nSistema operativo\r\nWebOS\r\nPotencia parlante\r\n20 W\r\nSistema de sonido\r\n9.1\r\nTipo\r\nTelevisores oled\r\nVoltaje\r\n110 V\r\nFabricante\r\n\r\nModelo\r\nOLED65B4PSA\r\nMßs detalles\r\n\r\nGarantφa\r\n1 a±o\r\nCaracterφsticas\r\nLG Lφder en tΘcnologia OLED por 11 a±os continuos IA para transformar tu entretenimiento Disfruta Colores vibrantes y negros profundos",
+    "garantia_meses": 12
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 7,
+  "fields": {
+    "nombre": "Televisor 50 Pulgadas 4K UHD Webos25 LG 50ua7300psb",
+    "descripcion": "òTipo : Televisores uhd\r\n\r\nòSintonizador TDT : Si\r\n\r\nòReferencia del Producto en el Certificado/Empaque : 50UA7300PSB\r\n\r\nòModelo : 50UA7300PSB\r\n\r\nòAncho : 111 cm",
+    "precio": "3099900.00",
+    "stock": 100,
+    "categoria": 3,
+    "imagen_principal": "productos/galeria/w1036h832fwebpfitcontainq85_4.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-27T20:32:48.322Z",
+    "fecha_actualizacion": "2025-11-27T20:32:48.322Z",
+    "marca": "LG",
+    "capacidad": null,
+    "potencia": null,
+    "color": null,
+    "caracteristicas_destacadas": "Ancho\r\n111 cm\r\nAlto\r\n64.5 cm\r\nProfundidad\r\n5.98 cm\r\nPeso\r\n8.3 kg\r\nEspecificaciones\r\n\r\nTipo\r\nTelevisores uhd\r\nSintonizador TDT\r\nSi\r\nReferencia del Producto en el Certificado/Empaque\r\n50UA7300PSB\r\nTipo de pantalla\r\nLED\r\nCuenta con Wifi\r\nSi\r\nCuenta con tecnologφa 3D\r\nNo\r\nSmart TV\r\nSi\r\nCantidad de puertos USB\r\n2\r\nCantidad de puertos HDMI\r\n3\r\nConectividad TV\r\nThinQ, Bluetooth, WiFi\r\nA±o de lanzamiento\r\n2025\r\nTama±o de la pantalla\r\n1270 mm\r\nSistema operativo\r\nWebOS\r\nPotencia parlante\r\n20 W\r\nTipo\r\nTelevisores uhd\r\nSistema de sonido\r\n2.0 (estereof≤nico)\r\nVoltaje\r\n120 V\r\nFabricante\r\n\r\nModelo\r\n50UA7300PSB",
+    "garantia_meses": 12
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 8,
+  "fields": {
+    "nombre": "Cafetera Digital Programable BLACK+DECKER 12 TAZAS, CM1110B-LA",
+    "descripcion": "Especificaciones principales\r\n\r\nòTipo : Cafeteras por goteo\r\n\r\nòModelo : CM1110B\r\n\r\nòAncho : 40 cm\r\n\r\nòAlto : 32 cm\r\n\r\nòLargo : 25 cm",
+    "precio": "180000.00",
+    "stock": 100,
+    "categoria": 2,
+    "imagen_principal": "productos/galeria/Cafetera_img1_dv1Dych.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-27T20:41:57.166Z",
+    "fecha_actualizacion": "2025-11-27T20:41:57.166Z",
+    "marca": "BLACK+DECKER",
+    "capacidad": "2.4 kg",
+    "potencia": "975 W",
+    "color": "Negro",
+    "caracteristicas_destacadas": "Cafetera programable de 12 tazas., * Flujo de agua con tecnologφa VortexÖ, * Satura uniformemente los granos de cafΘ, * Puedes cambiar la intensidad de la infusi≤n para obtener una taza de cafΘ mßs fuerte., * Tecnologφa Sneak-A-CupÖ permite servir una taza de cafΘ antes de que el resto de la cafetera se haya preparado., * Controles digitales QuickTouchÖ para ajustar fßcilmente el reloj y programar el sistema de preparaci≤n automßtica de cafΘ., * La taza equivale aproximadamente a 5 onzas (varφa seg·n la tΘcnica de preparaci≤n)",
+    "garantia_meses": 24
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 9,
+  "fields": {
+    "nombre": "Televisor 50 Pulgadas QLED + Barra de Sonido HW-B400F Samsung",
+    "descripcion": "òTipo : Televisores qled\r\n\r\nòSintonizador TDT : Si\r\n\r\nòReferencia del Producto en el Certificado/Empaque : F-QN50Q7FAAKXZ\r\n\r\nòModelo : F-QN50Q7FAAKXZ\r\n\r\nòAncho : 112.03 cm",
+    "precio": "3599900.00",
+    "stock": 100,
+    "categoria": 3,
+    "imagen_principal": "productos/galeria/w1036h832fwebpfitcontainq85_8.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-27T20:44:21.574Z",
+    "fecha_actualizacion": "2025-11-27T20:44:21.574Z",
+    "marca": "SAMSUNG",
+    "capacidad": null,
+    "potencia": null,
+    "color": null,
+    "caracteristicas_destacadas": "Dimensiones\r\n\r\nAncho\r\n112.03 cm\r\nAlto\r\n64.7 cm\r\nProfundidad\r\n6 cm\r\nEspecificaciones\r\n\r\nTipo\r\nTelevisores qled\r\nSintonizador TDT\r\nSi\r\nReferencia del Producto en el Certificado/Empaque\r\nF-QN50Q7FAAKXZ\r\nTipo de pantalla\r\nQLED\r\nColor\r\nNegro\r\nCuenta con Wifi\r\nSi\r\nCuenta con tecnologφa 3D\r\nNo\r\nSmart TV\r\nSi\r\nCantidad de puertos USB\r\n1\r\nCantidad de puertos HDMI\r\n3\r\nTama±o de la pantalla\r\n50 pulgadas\r\nTipo\r\nTelevisores qled\r\nSistema de sonido\r\nOtro\r\nVoltaje\r\n240 V\r\nFabricante\r\n\r\nModelo\r\nF-QN50Q7FAAKXZ",
+    "garantia_meses": 12
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 10,
+  "fields": {
+    "nombre": "Estufa de Piso 4 Puestos Gas Natural Plata ROMERO 50-T",
+    "descripcion": "Especificaciones principales\r\n\r\nòTipo : Estufas de piso a gas\r\n\r\nòClase del Gasodomestico : Clase 1\r\n\r\nòCategoria del gasodomestico : Categorφa II2H3B/P\r\n\r\nòAdvertencias de uso : Leer las instrucciones tΘcnicas antes de instalar este calentador.\r\n\r\nòPaφs de Origen : Colombia",
+    "precio": "697000.00",
+    "stock": 99,
+    "categoria": 2,
+    "imagen_principal": "productos/galeria/Estufa_img1_cL8xqi9.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-27T20:45:14.435Z",
+    "fecha_actualizacion": "2026-02-06T21:04:04.578Z",
+    "marca": "Haceb",
+    "capacidad": "56.75 litros",
+    "potencia": "9.4 kW",
+    "color": "Negro",
+    "caracteristicas_destacadas": "Ahorra tiempo cocinando,fog≤n 35% mas potente,Visor del horno 65% mas amplio,Parrillas antideslizantes,seguridad para ti y tu familia,Mesa robusta en acero in≤xidable,Encendido elΘctrico en mesa,Parrillas antideslizantes,Nueva manija mas amplia, Nueva puerta.",
+    "garantia_meses": 36
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 11,
+  "fields": {
+    "nombre": "Televisor 65 Pulgadas UHD Un65u8000fkxzl Samsung",
+    "descripcion": "òTipo : Televisores uhd\r\n\r\nòSintonizador TDT : Si\r\n\r\nòReferencia del Producto en el Certificado/Empaque : Pilas Zinc-carb≤n\r\n\r\nòModelo : UN65U8000FKXZL\r\n\r\nòAncho : 144.41 cm",
+    "precio": "4499900.00",
+    "stock": 100,
+    "categoria": 3,
+    "imagen_principal": "productos/galeria/w1036h832fwebpfitcontainq85_12.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-27T20:49:39.795Z",
+    "fecha_actualizacion": "2025-11-27T20:49:39.795Z",
+    "marca": "SAMSUNG",
+    "capacidad": null,
+    "potencia": null,
+    "color": null,
+    "caracteristicas_destacadas": "Dimensiones\r\n\r\nAncho\r\n144.41 cm\r\nAlto\r\n83.12 cm\r\nProfundidad\r\n7.68 cm\r\nEspecificaciones\r\n\r\nTipo\r\nTelevisores uhd\r\nSintonizador TDT\r\nSi\r\nReferencia del Producto en el Certificado/Empaque\r\nPilas Zinc-carb≤n\r\nTipo de pantalla\r\nLED\r\nColor\r\nNegro\r\nCuenta con Wifi\r\nSi\r\nCuenta con tecnologφa 3D\r\nNo\r\nSmart TV\r\nSi\r\nCantidad de puertos USB\r\n1\r\nCantidad de puertos HDMI\r\n3\r\nTama±o de la pantalla\r\n65 pulgadas\r\nTipo\r\nTelevisores uhd\r\nSistema de sonido\r\nOtro\r\nVoltaje\r\n240 V\r\nFabricante\r\n\r\nModelo\r\nUN65U8000FKXZL",
+    "garantia_meses": 12
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 12,
+  "fields": {
+    "nombre": "Freidora de Aire Digital Oster Recubrimiento DiamondForce, con Ventana y Luz Interna, 6 Litros de Ca",
+    "descripcion": "Especificaciones principales\r\n\r\nòTipo : Freidoras sin aceite\r\n\r\nòReferencia del Producto en el Certificado/Empaque : 2204924\r\n\r\nòModelo : 2204924\r\n\r\nòAncho : 32.8 cm\r\n\r\nòAlto : 33.1 cm",
+    "precio": "478000.00",
+    "stock": 100,
+    "categoria": 2,
+    "imagen_principal": "productos/galeria/freidora_img1_IkvImSL.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-27T20:51:28.153Z",
+    "fecha_actualizacion": "2025-11-27T20:52:08.900Z",
+    "marca": "Oster",
+    "capacidad": "6 litros",
+    "potencia": "1700 W",
+    "color": "Negro",
+    "caracteristicas_destacadas": "Nuestro recubrimiento Oster« DiamondForce, que es hasta 12 veces mßs resistente a rayaduras y hasta 15 veces mßs fßcil de limpiar*, asegurando durabilidad y facilidad de limpieza incomparables, Capacidad de 6L**, con ventana y luz interna para una supervisi≤n precisa, y 10 programas automßticos, desde papas fritas hasta postres, Simplifica tu cocina con solo tocar un bot≤n, Recordatorio automßtico para voltear la comida, *Hasta 12 veces mßs resistente a rayaduras y hasta 15 veces mßs fßcil de limpiar vs recubrimiento GSCB-293V/GSCT-293V **capacidad calculada incluye bandeja removible",
+    "garantia_meses": 12
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 13,
+  "fields": {
+    "nombre": "Horno Digital con Freidora de Aire 42 Litros de Capacidad Oster 10 Funciones pre-determinadas, Recub",
+    "descripcion": "Especificaciones principales\r\n\r\nòTipo : Hornos tostadores\r\n\r\nòModelo : 123\r\n\r\nòAncho : 54.8 cm\r\n\r\nòAlto : 32.7 cm\r\n\r\nòProfundidad : 49 cm",
+    "precio": "172000.00",
+    "stock": 100,
+    "categoria": 2,
+    "imagen_principal": "productos/galeria/horno_img1_keZwv6e.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-27T20:56:38.770Z",
+    "fecha_actualizacion": "2025-11-28T17:53:17.544Z",
+    "marca": "Oster",
+    "capacidad": "42 litros",
+    "potencia": "1700 W",
+    "color": "Negro",
+    "caracteristicas_destacadas": "El Horno con puertas francesas y funci≤n de freidora de aire Oster« ahora es digital. Cocina las comidas preferidas de tu familia mßs rßpido que nunca y sin comprometer sabor o nutrici≤n. Ademßs, cuenta con una capacidad extra grande de 421 y 10 funciones pre-determinadas.",
+    "garantia_meses": 12
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 14,
+  "fields": {
+    "nombre": "Televisor Hisense 55 Pulgadas Qled Uhd4k Smart Tv 55qv Dolby Visi≤n",
+    "descripcion": "òTipo : Televisores uhd\r\n\r\nòSintonizador TDT : Si\r\n\r\nòReferencia del Producto en el Certificado/Empaque : 55Q6QV\r\n\r\nòModelo : 55Q6QV\r\n\r\nòAncho : 123.4 cm",
+    "precio": "3599900.00",
+    "stock": 100,
+    "categoria": 3,
+    "imagen_principal": "productos/galeria/w1036h832fwebpfitcontainq85_16.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-27T20:57:46.096Z",
+    "fecha_actualizacion": "2025-11-27T20:57:46.096Z",
+    "marca": "HISENSE",
+    "capacidad": null,
+    "potencia": null,
+    "color": null,
+    "caracteristicas_destacadas": "Dimensiones\r\n\r\nAncho\r\n123.4 cm\r\nAlto\r\n75.2 cm\r\nProfundidad\r\n7 cm\r\nPeso\r\n9.5 kg\r\nEspecificaciones\r\n\r\nTipo\r\nTelevisores uhd\r\nSintonizador TDT\r\nSi\r\nReferencia del Producto en el Certificado/Empaque\r\n55Q6QV\r\nTipo de pantalla\r\nLED\r\nCuenta con bluetooth\r\nSi\r\nCuenta con Wifi\r\nSi\r\nCuenta con tecnologφa 3D\r\nNo\r\nSmart TV\r\nSi\r\nCantidad de puertos USB\r\n2\r\nCantidad de puertos HDMI\r\n3\r\nTama±o de la pantalla\r\n55 pulgadas\r\nSistema operativo\r\nVIDAA\r\nTipo\r\nTelevisores uhd\r\nSistema de sonido\r\n2.0 (estereof≤nico)\r\nVoltaje\r\n120 V\r\nFabricante\r\n\r\nModelo\r\n55Q6QV",
+    "garantia_meses": 12
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 15,
+  "fields": {
+    "nombre": "Televisor Hisense 65 Pulgadas Qled Uhd 4k Smart Tv 65q6qv",
+    "descripcion": "òTipo : Televisores qled\r\n\r\nòSintonizador TDT : Si\r\n\r\nòReferencia del Producto en el Certificado/Empaque : 65Q6QV\r\n\r\nòModelo : 65Q6QV\r\n\r\nòAncho : 143.4 cm",
+    "precio": "3289900.00",
+    "stock": 100,
+    "categoria": 3,
+    "imagen_principal": "productos/galeria/w1036h832fwebpfitcontainq85_20.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-27T21:00:03.123Z",
+    "fecha_actualizacion": "2025-11-27T21:00:03.123Z",
+    "marca": "HISENSE",
+    "capacidad": null,
+    "potencia": null,
+    "color": null,
+    "caracteristicas_destacadas": "Dimensiones\r\n\r\nAncho\r\n143.4 cm\r\nAlto\r\n84.3 cm\r\nProfundidad\r\n7.4 cm\r\nEspecificaciones\r\n\r\nTipo\r\nTelevisores qled\r\nSintonizador TDT\r\nSi\r\nReferencia del Producto en el Certificado/Empaque\r\n65Q6QV\r\nTipo de pantalla\r\nQLED\r\nCuenta con Wifi\r\nSi\r\nCuenta con tecnologφa 3D\r\nNo\r\nSmart TV\r\nSi\r\nCantidad de puertos USB\r\n1\r\nCantidad de puertos HDMI\r\n1\r\nA±o de lanzamiento\r\n2025\r\nTama±o de la pantalla\r\n65 pulgadas\r\nSistema de sonido\r\n2.0 (estereof≤nico)\r\nTipo\r\nTelevisores qled\r\nVoltaje\r\n110 V\r\nFabricante\r\n\r\nModelo\r\n65Q6QV",
+    "garantia_meses": 12
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 16,
+  "fields": {
+    "nombre": "Televisor Hisense 40 Pulgadas Full Hd Smart Tv",
+    "descripcion": "òTipo : Televisores fhd\r\n\r\nòSintonizador TDT : Si\r\n\r\nòReferencia del Producto en el Certificado/Empaque : 40A4NV\r\n\r\nòModelo : 40A4NV\r\n\r\nòAncho : 89.8 cm",
+    "precio": "1559900.00",
+    "stock": 100,
+    "categoria": 3,
+    "imagen_principal": "productos/galeria/w1036h832fwebpfitcontainq85_24.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-27T21:03:59.409Z",
+    "fecha_actualizacion": "2025-11-27T21:03:59.409Z",
+    "marca": "HISENSE",
+    "capacidad": null,
+    "potencia": null,
+    "color": null,
+    "caracteristicas_destacadas": "Dimensiones\r\n\r\nAncho\r\n89.8 cm\r\nAlto\r\n55.9 cm\r\nProfundidad\r\n7.8 cm\r\nPeso\r\n4.9 kg\r\nEspecificaciones\r\n\r\nTipo\r\nTelevisores fhd\r\nSintonizador TDT\r\nSi\r\nReferencia del Producto en el Certificado/Empaque\r\n40A4NV\r\nTipo de pantalla\r\nLED\r\nCuenta con bluetooth\r\nSi\r\nCuenta con Wifi\r\nSi\r\nCuenta con tecnologφa 3D\r\nNo\r\nSmart TV\r\nSi\r\nCantidad de puertos USB\r\n1\r\nCantidad de puertos HDMI\r\n2\r\nConectividad TV\r\nBluetooth\r\nTama±o de la pantalla\r\n40 pulgadas\r\nSistema operativo\r\nVIDAA\r\nTipo\r\nTelevisores fhd\r\nSistema de sonido\r\n2.0 (estereof≤nico)\r\nVoltaje\r\n120 V\r\nFabricante\r\n\r\nModelo\r\n40A4NV",
+    "garantia_meses": 12
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 17,
+  "fields": {
+    "nombre": "Parlante Portßtil Bose S1 Pro+ Bluetooth",
+    "descripcion": "òTipo : Parlantes\r\n\r\nòReferencia del Producto en el Certificado/Empaque : S1 Pro+\r\n\r\nòModelo : S1 Pro+\r\n\r\nòAncho : 21\r\n\r\nòAlto : 31",
+    "precio": "3299900.00",
+    "stock": 100,
+    "categoria": 3,
+    "imagen_principal": "productos/galeria/w1036h832fwebpfitcontainq85_29.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-27T21:19:12.561Z",
+    "fecha_actualizacion": "2025-11-27T21:19:12.561Z",
+    "marca": "Bose",
+    "capacidad": null,
+    "potencia": "10 w",
+    "color": "negro",
+    "caracteristicas_destacadas": "Dimensiones\r\n\r\nAncho\r\n21\r\nAlto\r\n31\r\nProfundidad\r\n25\r\nEspecificaciones\r\n\r\nTipo\r\nParlantes\r\nReferencia del Producto en el Certificado/Empaque\r\nS1 Pro+\r\nTipo de altavoces\r\nPortßtil\r\nCuenta con control remoto\r\nNo\r\nCuenta con puertos USB\r\nSi\r\nCuenta con bluetooth\r\nSi\r\nRecargable\r\nSi\r\nPotencia\r\n10 W\r\nOpciones de conectividad\r\nBluetooth\r\nFormato de reproducci≤n\r\nMP4\r\nFabricante\r\n\r\nModelo\r\nS1 Pro+",
+    "garantia_meses": 12
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 18,
+  "fields": {
+    "nombre": "Parlante Jbl Boombox 3 Negro",
+    "descripcion": "òTipo : Parlante\r\n\r\nòReferencia del Producto en el Certificado/Empaque : JBL-BOOMBOX3-BK\r\n\r\nòModelo : JBL-BOOMBOX3-BK\r\n\r\nòAncho : 25.6 cm\r\n\r\nòAlto : 32.4 cm",
+    "precio": "2249900.00",
+    "stock": 100,
+    "categoria": 3,
+    "imagen_principal": "productos/galeria/w1036h832fwebpfitcontainq85_33.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-27T21:22:15.864Z",
+    "fecha_actualizacion": "2025-11-27T21:23:57.405Z",
+    "marca": "JBL",
+    "capacidad": null,
+    "potencia": "180 W",
+    "color": "negro",
+    "caracteristicas_destacadas": "Dimensiones\r\n\r\nAncho\r\n25.6 cm\r\nAlto\r\n32.4 cm\r\nProfundidad\r\n56.5 cm\r\nEspecificaciones\r\n\r\nTipo\r\nParlante\r\nReferencia del Producto en el Certificado/Empaque\r\nJBL-BOOMBOX3-BK\r\nTipo de altavoces\r\nPortßtil\r\nMaterial del cuerpo\r\nPlßstico\r\nColor\r\nNegro\r\nCuenta con control remoto\r\nNo\r\nCuenta con puertos USB\r\nSi\r\nCuenta con bluetooth\r\nSi\r\nRecargable\r\nSi\r\nPotencia\r\n180 W\r\nOpciones de conectividad\r\nBluetooth\r\nAlimentaci≤n\r\nBaterφa Recargable\r\nFormato de reproducci≤n\r\nMP3, MP4, wma\r\nDuraci≤n baterφa\r\n10-24 horas\r\nFabricante\r\n\r\nModelo\r\nJBL-BOOMBOX3-BK",
+    "garantia_meses": 12
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 19,
+  "fields": {
+    "nombre": "Minicomponente LG Xboom Rnc9 1800 Watts Negro Torre de Sonido",
+    "descripcion": "òTipo : Torre de sonido\r\n\r\nòModelo : RNC9\r\n\r\nòColor : Negro\r\n\r\nòCuenta con puertos USB : Si\r\n\r\nòPotencia : 1800 W",
+    "precio": "2799900.00",
+    "stock": 100,
+    "categoria": 3,
+    "imagen_principal": "productos/galeria/w1036h832fwebpfitcontainq85_36.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-27T21:26:43.901Z",
+    "fecha_actualizacion": "2025-11-27T21:26:43.901Z",
+    "marca": "LG",
+    "capacidad": null,
+    "potencia": "1800 W",
+    "color": "negro",
+    "caracteristicas_destacadas": "Especificaciones\r\n\r\nTipo\r\nTorre de sonido\r\nColor\r\nNegro\r\nCuenta con puertos USB\r\nSi\r\nPotencia\r\n1800 W\r\nA±o de lanzamiento\r\n2023\r\nFormato de reproducci≤n\r\nMP3, wma\r\nCuenta con control remoto\r\nSi\r\nFabricante\r\n\r\nModelo\r\nRNC9",
+    "garantia_meses": 12
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 20,
+  "fields": {
+    "nombre": "Consola PS5 PRO Digital 2TB Blanco | Incluye 1 control inalßmbrico DualSense | Incluye Juego Preinst",
+    "descripcion": "Registro SIC\t900841977\r\nModelo\tPS5 HW PRO Digital - Latam\r\nPaφs de origen\tChina\r\nTipo de consola\tPlaystation 5\r\nGarantφa\t1 a±o\r\nConectividad/conexi≤n\tWifi\r\nCondici≤n del producto\tNuevo",
+    "precio": "4199900.00",
+    "stock": 98,
+    "categoria": 3,
+    "imagen_principal": "productos/galeria/w1500h1500fitpad.jpg",
+    "activo": true,
+    "fecha_creacion": "2025-11-27T21:32:21.402Z",
+    "fecha_actualizacion": "2026-02-20T19:46:57.750Z",
+    "marca": "SONY",
+    "capacidad": null,
+    "potencia": null,
+    "color": "blanco",
+    "caracteristicas_destacadas": "Capacidad de almacenamiento: 2 TB\r\nProcesador: AMD\r\nEntradas USB: 4\r\nEntradas HDMI: 1\r\nConectividad: WiFi/Ethernet/Bluetooth\r\nTipo de consola: Playstation 5\r\nModelo: PS5 HW PRO Digital - Latam\r\nHecho en: China\r\n┐QuΘ incluye?: Consola PS5 Pro, control inalßmbrico DualSense , SSD de 2 TB, 2 pies de soporte horizontal, cable HDMI , cable de alimentaci≤n CA, materiales impresos, ASTRO s PLAYROOM (juego preinstalado\r\nMarca: PlayStation\r\nGarantφa del proveedor: 1 a±o\r\nCondici≤n del producto: Nuevo\r\nProcesador especφfico: AMD\r\nMarca procesador: AMD",
+    "garantia_meses": 12
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 21,
+  "fields": {
+    "nombre": "Lavavajillas 8 Puestos DW3908.1 Silver",
+    "descripcion": "Especificaciones principales\r\n\r\nòTipo : Lavavajillas elΘctrico\r\n\r\nòModelo : DW 3908\r\n\r\nòAncho : 44.5 cm\r\n\r\nòAlto : 82.5 cm\r\n\r\nòProfundidad : 57 cm",
+    "precio": "2000000.00",
+    "stock": 100,
+    "categoria": 1,
+    "imagen_principal": "productos/galeria/lavabajillas_img1.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-27T21:36:55.326Z",
+    "fecha_actualizacion": "2025-11-27T21:36:55.326Z",
+    "marca": "Challenger",
+    "capacidad": "8 puestos",
+    "potencia": "876 W",
+    "color": "Plateado",
+    "caracteristicas_destacadas": "6 programas de lavado, pesado, normal, eco, cristal, rßpido, enjuague, Indicador de error, 2 entradas, para agua caliente y agua frφa, Bloqueo de funciones, Display, Indicador de tiempo de ciclo, 4 funciones extras como esterilizar, temperatura alta, secador con calor, diferido, 2 canastas una inferior y otra superior",
+    "garantia_meses": 12
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 22,
+  "fields": {
+    "nombre": "Lavadora Carga Superior 12 Kg Eco Fuzzy",
+    "descripcion": "Especificaciones principales\r\n\r\nòTipo : Lavadoras carga superior\r\n\r\nòModelo : EWIW12F6USVS\r\n\r\nòAncho : 59 cm\r\n\r\nòAlto : 96.5 cm\r\n\r\nòProfundidad : 55 cm",
+    "precio": "250000.00",
+    "stock": 100,
+    "categoria": 1,
+    "imagen_principal": "productos/galeria/Lavadora_img1.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-27T21:41:13.023Z",
+    "fecha_actualizacion": "2025-11-27T21:41:13.023Z",
+    "marca": "Electrolux",
+    "capacidad": "12 kg",
+    "potencia": "600 W",
+    "color": "Plateado",
+    "caracteristicas_destacadas": "La Lavadora Electrolux 12kg Premium Care te ofrece alto desempe±o de lavado, menor consumo de agua, de energφa, sabe como cuidar tu ropa y tienes mßs tiempo para ti.",
+    "garantia_meses": 12
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 23,
+  "fields": {
+    "nombre": "Licuadora BLACK+DECKER DuraPro 550 Watts con 4 cuchillas BLBD210GB",
+    "descripcion": "Especificaciones principales\r\n\r\nòTipo : Licuadora de vaso vidrio\r\n\r\nòModelo : BLBD210GB\r\n\r\nòAncho : 10.6 cm\r\n\r\nòAlto : 20.6 cm\r\n\r\nòLargo : 40.4 cm",
+    "precio": "147000.00",
+    "stock": 100,
+    "categoria": 2,
+    "imagen_principal": "productos/galeria/licuadora_img1.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-27T21:44:44.958Z",
+    "fecha_actualizacion": "2025-11-27T21:44:44.958Z",
+    "marca": "BLACK+DECKER",
+    "capacidad": "1.25 litros",
+    "potencia": "550 W",
+    "color": "Negro",
+    "caracteristicas_destacadas": "La Licuadora de DURAPRO de 10 Velocidades de BLACK+DECKER es un clßsico en la cocina. Con mayor funci≤n de pulso y 4 cuchillas de acero inoxidable, 2 veces mßs duraderas ** para eficiencia y funcionamiento. La jarra de 1.25 Lt de vidrio y tapa de doble abertura estß dise±ada para verter fßcilmente y tiene capacidad suficiente para acomodar varias porciones de sus batidos favoritos y ímßs! Ademßs",
+    "garantia_meses": 12
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 24,
+  "fields": {
+    "nombre": "Horno Microondas 0.7PC 120 V WM1807D Silver",
+    "descripcion": "Especificaciones principales\r\n\r\nòTipo : Hornos microondas\r\n\r\nòModelo : WM1807D\r\n\r\nòAncho : 45.5 cm\r\n\r\nòAlto : 26.2 cm\r\n\r\nòProfundidad : 31.5 cm",
+    "precio": "530000.00",
+    "stock": 100,
+    "categoria": 2,
+    "imagen_principal": "productos/galeria/Microondas_img1.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-27T21:47:50.891Z",
+    "fecha_actualizacion": "2025-11-28T20:17:22.890Z",
+    "marca": "Whirlpool",
+    "capacidad": "20 litros",
+    "potencia": "700 W",
+    "color": "Plateado",
+    "caracteristicas_destacadas": "",
+    "garantia_meses": 12
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 26,
+  "fields": {
+    "nombre": "Nevec≤n French Door 625 Litros RF22A4220SG/CO Gris",
+    "descripcion": "Especificaciones principales\r\n\r\nòTipo : Nevecones french door\r\n\r\nòReferencia del Producto en el Certificado/Empaque : RF22A4220SG/CO\r\n\r\nòModelo : RF22A4220SG/CO\r\n\r\nòAncho : 88.6 cm\r\n\r\nòAlto : 169.7 cm",
+    "precio": "7800000.00",
+    "stock": 100,
+    "categoria": 2,
+    "imagen_principal": "productos/galeria/nevera_img1_k7es8jf.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-27T21:54:20.810Z",
+    "fecha_actualizacion": "2025-11-27T21:54:20.810Z",
+    "marca": "Samsung",
+    "capacidad": "625 litros",
+    "potencia": null,
+    "color": "Gris Oscuro",
+    "caracteristicas_destacadas": "Aseg·rate mantener refrigerados tus alimentos. El sistema de enfriamiento envolvente enfrφa cada compartimento de manera uniforme de esquina a esquina, comprueba constantemente la temperatura y circula el aire fresco a travΘs de orificios de ventilaci≤n estratΘgicamente ubicados. De este modo, todos los alimentos se mantienen a una temperatura ≤ptima y se enfrφan uniformemente en el interior.",
+    "garantia_meses": 12
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 27,
+  "fields": {
+    "nombre": "Plancha De Ropa a Vapor T-Fal Ultragliss Anti - Calc Plus, 1800 Watts, Auto OFF",
+    "descripcion": "Especificaciones principales\r\n\r\nòTipo : Planchas de ropa con vapor\r\n\r\nòModelo : Ultragliss\r\n\r\nòAncho : 13.5 cm\r\n\r\nòAlto : 16 cm\r\n\r\nòLargo : 31 cm",
+    "precio": "428000.00",
+    "stock": 99,
+    "categoria": 1,
+    "imagen_principal": "productos/galeria/plancha_img1.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-27T22:01:04.444Z",
+    "fecha_actualizacion": "2026-02-20T19:46:57.777Z",
+    "marca": "T-Fal",
+    "capacidad": null,
+    "potencia": "1800 W",
+    "color": "Azul",
+    "caracteristicas_destacadas": "Gran portencia de 1800 Watts, potente golpe de vapor de hasta 180 g/min, Tecnologφa Durilium Airglide que garantiza un deslizamiento insuperable y resultados impecables, Incluye un sistema que captura partφculas de cal, asegurando un rendimiento duradero y protegiendo tus prendas",
+    "garantia_meses": 24
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 29,
+  "fields": {
+    "nombre": "Procesador de alimentos BLACK+DECKER 8 tazas y 2 velocidades + pulzo FP4342-0BDLA",
+    "descripcion": "Especificaciones principales\r\n\r\nòTipo : Procesadores de alimento\r\n\r\nòColor : Negro\r\n\r\nòCapacidad : 1.8 litros\r\n\r\nòIncluye : disco para rallar y rebanar, cuchilla s de acero inoxidable, disco para cremado\r\n\r\nòInalßmbrico : No",
+    "precio": "280000.00",
+    "stock": 100,
+    "categoria": 2,
+    "imagen_principal": "productos/galeria/Procesadora_de_alimentos_img1_qDxXj7S.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-27T22:14:59.593Z",
+    "fecha_actualizacion": "2025-11-27T22:14:59.593Z",
+    "marca": "BLACK+DECKER",
+    "capacidad": "1.8 litros",
+    "potencia": "800 W",
+    "color": "Negro",
+    "caracteristicas_destacadas": "Prepara deliciosos platillos de una manera muy fßcil y rßpida con el Procesador de Alimentos de Black + Decker, 800 Watts de potencia mßxima, 2 velocidades y Funci≤n de Pulso, Cuenta con cuchillas de acero inoxodable para picar y mezclar, Prepara comidas completas para toda la familia con el recipiente de plßstico con capacidad de 8 tazas, Cuenta con accesorios para rallar, rebanar y desmenuzar",
+    "garantia_meses": 24
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 30,
+  "fields": {
+    "nombre": "Sanduchera Imusa Basic 2 puestos Negra",
+    "descripcion": "Especificaciones principales\r\n\r\nòTipo : Sanducheras\r\n\r\nòModelo : Basic\r\n\r\nòAncho : 33.6 cm\r\n\r\nòAlto : 25.4 cm\r\n\r\nòProfundidad : 51.3 cm",
+    "precio": "125000.00",
+    "stock": 100,
+    "categoria": 2,
+    "imagen_principal": "productos/galeria/sanduchera_img1_6ZoJ2wi.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-27T22:20:25.293Z",
+    "fecha_actualizacion": "2025-11-27T22:20:25.293Z",
+    "marca": "Isma",
+    "capacidad": null,
+    "potencia": "625 w",
+    "color": "Negro",
+    "caracteristicas_destacadas": "Compacta. Luces indicadoras de encendido (Roja) y precalentamiento (Verde). Almacenamiento vertical.",
+    "garantia_meses": 12
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 31,
+  "fields": {
+    "nombre": "Consola Xbox Series S 512 GB",
+    "descripcion": "Registro SIC\t800091549\r\nIncluye\tControl Xbox Series S / Cable de Energφa / Cable HDMI\r\nModelo\tRRS-00004\r\nPaφs de origen\tChina\r\nTipo de consola\tXbox Series S\r\nGarantφa\t1 a±o\r\nConectividad/conexi≤n\tWifi\r\nCondici≤n del producto\tNuevo",
+    "precio": "1949900.00",
+    "stock": 100,
+    "categoria": 3,
+    "imagen_principal": "productos/galeria/w800h800fitpad.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-27T22:23:02.881Z",
+    "fecha_actualizacion": "2025-11-27T22:23:02.881Z",
+    "marca": "XBOX",
+    "capacidad": null,
+    "potencia": null,
+    "color": "blanco",
+    "caracteristicas_destacadas": "",
+    "garantia_meses": 12
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 32,
+  "fields": {
+    "nombre": "Consola Xbox Series X 1TB Almacenamiento",
+    "descripcion": "Contenido:\r\n\r\n- Consola Xbox Series X \r\n- Control Originales Inalßmbrico\r\n- Cable de Corriente\r\n- Instrucciones de Uso",
+    "precio": "3597000.00",
+    "stock": 100,
+    "categoria": 3,
+    "imagen_principal": "productos/galeria/w1500h1500fitpad_4.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-27T22:26:18.684Z",
+    "fecha_actualizacion": "2025-11-27T22:26:18.684Z",
+    "marca": "XBOX",
+    "capacidad": null,
+    "potencia": null,
+    "color": "negro",
+    "caracteristicas_destacadas": "Cßmara posterior\tNo aplica\r\nTipo de consola\tXbox series x\r\nPaφs de origen\tJap≤n\r\nGarantφa\t6 meses\r\nConectividad/conexi≤n\tInalßmbrico,Wifi\r\nDetalle de la garantφa\tda±o de fabrica, no por mal uso, caidas, etc.\r\nColor\tnegro\r\nResoluci≤n de pantalla\t4K UHD\r\nCondici≤n del producto\tNuevo\r\nMemoria RAM\t16GB\r\nPotencia\t315 w\r\nVelocidad de procesamiento (GHz)\t3.8\r\nVelocidad de imagen\t120Hz\r\nProcesador especφfico txt\tAMD Ryzen Zen 2 de 8 n·cleos a 3.8 GHz\r\nProcesador\tAMD Ryzen",
+    "garantia_meses": 12
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 33,
+  "fields": {
+    "nombre": "Trapeador de Vapor Multiusos 5 En 1 Limpiador de Mano Altura Ajustable",
+    "descripcion": "Especificaciones principales\r\n\r\nòTipo : Limpiadores a vapor\r\n\r\nòModelo : MOP H2o X5\r\n\r\nòAncho : 29 cm\r\n\r\nòAlto : 120 cm\r\n\r\nòLargo : 22 cm",
+    "precio": "385000.00",
+    "stock": 100,
+    "categoria": 1,
+    "imagen_principal": "productos/galeria/Trapeador_img1_sIVITYJ.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-28T18:32:58.530Z",
+    "fecha_actualizacion": "2025-11-28T18:32:58.530Z",
+    "marca": "52 Bits",
+    "capacidad": "350 ml",
+    "potencia": null,
+    "color": "Verde",
+    "caracteristicas_destacadas": "El limpiador a vapor Mop Express X9 es la soluci≤n prßctica y efectiva para mantener tu hogar impecable. Gracias a su generador de vapor, elimina bacterias, hongos y suciedad en segundos sin necesidad de productos quφmicos, cuidando tu salud y la de tu familia. Su dise±o triangular y flexible permite llegar a todos los rincones, mientras que su funci≤n 2 en 1 lo hace versßtil: ·salo en pisos de todo tipo o convierte el mango en una herramienta ideal para ba±os, cocinas y mßs. Con accesorios incluidos como microfibras, boquilla ôJetö y limpiador de alfombras, ofrece una limpieza profunda y completa. Ligero y fßcil de manejar, garantiza resultados rßpidos, seguros y saludables en cada uso.",
+    "garantia_meses": 1
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 34,
+  "fields": {
+    "nombre": "Lavadora Secadora Carga Frontal ElΘctrica 11,5 Kg WD11T4046BX/CO Inoxidable",
+    "descripcion": "Especificaciones principales\r\n\r\nòTipo : Lavadora secadora 2 en 1\r\n\r\nòReferencia del Producto en el Certificado/Empaque : WD11T4046BX/CO\r\n\r\nòModelo : WD11T4046BX/CO\r\n\r\nòAncho : 60 cm\r\n\r\nòAlto : 85 cm",
+    "precio": "4100000.00",
+    "stock": 100,
+    "categoria": 1,
+    "imagen_principal": "productos/galeria/secadora_img1_kPdlSwm.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-28T18:36:38.048Z",
+    "fecha_actualizacion": "2025-11-28T18:36:38.048Z",
+    "marca": "Samsung",
+    "capacidad": "11.5 kg",
+    "potencia": null,
+    "color": "Plateado",
+    "caracteristicas_destacadas": "20 a±os de garantφa en el motor Digital Inverter; Desodoriza y desinfecta tu ropa hasta un 99.9% de bacterias; QuickDrive reduce el tiempo de lavado hasta en un 50 %; Drum Clean elimina el 99.9 % de bacterias y olores; Bubble Soak ayuda a eliminar manchas dificiles",
+    "garantia_meses": 12
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 35,
+  "fields": {
+    "nombre": "Consola Nintendo Switch 2 + Juego Mario Kart World Bundle",
+    "descripcion": "Nombre del fabricante o importador\tJUEGOS DE VIDEO COLOMBIA S.A. S\r\nModo de fabricaci≤n\tIndustrial\r\nForma de uso\tNintendo Switch 2\r\nCuidado del producto\tEvitar caφdas o golpes fuertes, Mantener alejado de temperaturas extremas y humedad, Limpiar con un pa±o suave y seco, no usar productos abrasivos",
+    "precio": "3119900.00",
+    "stock": 100,
+    "categoria": 3,
+    "imagen_principal": "productos/galeria/w1500h1500fitpad_7.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-28T18:39:49.833Z",
+    "fecha_actualizacion": "2025-11-28T18:39:49.833Z",
+    "marca": "NINTENDO",
+    "capacidad": null,
+    "potencia": null,
+    "color": "NEGRO",
+    "caracteristicas_destacadas": "Registro SIC\t830503734\r\nIncluye\t1\r\nModelo\tNintendo Switch 2\r\nPaφs de origen\tJap≤n\r\nTipo de consola\tNintendo Switch\r\nGarantφa\t1 a±o\r\nCondici≤n del producto\tNuevo\r\nMaterial de la cubierta\tPlßstico\r\nRestricciones de uso\tNo exponer a lφquidos o humedad. Evitar golpes y caφdas. Usar con cargadores y accesorios originales. Revisar las instrucciones de uso del fabricante.\r\nAncho\t10.70 cm\r\nLargo\t22.00 cm",
+    "garantia_meses": 12
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 36,
+  "fields": {
+    "nombre": "Tostadora Black+Decker de 2 Rebanadas Tr7827-1wdla",
+    "descripcion": "Especificaciones principales\r\n\r\nòTipo : Tostadores\r\n\r\nòModelo : TR7827-1WDLA\r\n\r\nòAncho : 16.4 cm\r\n\r\nòAlto : 17.5 cm\r\n\r\nòProfundidad : 28 cm",
+    "precio": "95000.00",
+    "stock": 100,
+    "categoria": 2,
+    "imagen_principal": "productos/galeria/tostadora_img1_3swIkMp.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-28T18:40:12.752Z",
+    "fecha_actualizacion": "2025-11-28T18:40:12.752Z",
+    "marca": "BLACK+DECKER",
+    "capacidad": "2 Unidades",
+    "potencia": "750 W",
+    "color": "Blanco",
+    "caracteristicas_destacadas": "Eleva tus desayunos con esta tostadora de 2 rebanadas. Ajusta el tostado con sus 7 configuraciones y disfruta de ranuras extra anchas para todo tipo de pan. Funciones intuitivas y una bandeja para migas aseguran comodidad y limpieza en cada uso. íHaz de lo cotidiano algo extraordinario!",
+    "garantia_meses": 24
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 37,
+  "fields": {
+    "nombre": "Ventilador Samurai Tropical Plus Pedestal, 3 Velocidades, Negro",
+    "descripcion": "Especificaciones principales\r\n\r\nòTipo : Ventiladores de pedestal\r\n\r\nòModelo : Tropical Plus\r\n\r\nòAncho : 30\r\n\r\nòAlto : 51\r\n\r\nòProfundidad : 49",
+    "precio": "317000.00",
+    "stock": 100,
+    "categoria": 4,
+    "imagen_principal": "productos/galeria/Ventilador_img1_UBpvGEd.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-28T18:43:45.414Z",
+    "fecha_actualizacion": "2025-11-28T18:43:45.414Z",
+    "marca": "Samurai",
+    "capacidad": null,
+    "potencia": "70 W",
+    "color": "Negro",
+    "caracteristicas_destacadas": "Las mallas del Ventilador Tropical Plus Negro son muy seguras ya que no entran en contacto con sus helices. Ademßs, su malla frontal es removible, facilitanto la limpieza. El Ventilador Tropical Plus Negro cuenta con una oscilaci≤n vertical para una mayor y mejor distibuci≤n del aire. El Ventilador Tropical Plus Negro cuenta con un fßcil y seguro sistema que permite ajustar la inclinaci≤n vertical.",
+    "garantia_meses": 24
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 38,
+  "fields": {
+    "nombre": "Consola Nintendo Switch | Incluye Juego Mario Kart 8 Deluxe + 3 Meses Suscripci≤n Nintendo Online |",
+    "descripcion": "Registro SIC\t830503734\r\nGrupo de edad\tTodas las edades\r\nNombre comercial\tNintendo Switch\r\nNombre del fabricante o importador\tNintendo\r\nReferencia del Producto en el Certificado/Empaque\tHPD-S-",
+    "precio": "1599900.00",
+    "stock": 100,
+    "categoria": 3,
+    "imagen_principal": "productos/galeria/w800h800fitpad_1.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-28T18:45:03.593Z",
+    "fecha_actualizacion": "2025-11-28T18:45:03.593Z",
+    "marca": "NINTENDO",
+    "capacidad": null,
+    "potencia": null,
+    "color": "Neon,Rojo y Azul",
+    "caracteristicas_destacadas": "Incluye\tIncluye Juego Mario Kart 8 Deluxe + 3 Meses Suscripci≤n Nintendo Online | 2 Joy-Con Neon, Rojo y Azul | 32GB de almacenamiento\r\nTama±o de la pantalla\t6.2\r\nModelo\tHPD-S-KABSA\r\nCantidad de controles\t2\r\nCßmara posterior\tNo Aplica\r\nPaφs de origen\tJap≤n\r\nTipo de consola\tNintendo Switch\r\nGarantφa\t1 a±o\r\nConectividad/conexi≤n\tWifi\r\nColor\tNeon, Rojo y Azul\r\nCondici≤n del producto\tNuevo\r\nMaterial de la cubierta\tPlßstico\r\nSistema operativo especφfico\tSin os\r\nSistema operativo\tSin os\r\nEdad recomendada de uso\t12 a mßs\r\nRestricciones de uso\tNo exponer a lφquidos o humedad. Evitar golpes y caφdas. Usar con cargadores y accesorios originales. Revisar las instrucciones de uso del fabricante.\r\nProcesador especφfico txt\tNVIDIA Custom Tegra\r\nProcesador\tNVIDIA Tegra\r\nInformaci≤n adicional\r\nConsola MK8\r\nConsola MK8\r\nCompite a travΘs del mundo de Mario y sus amigos\r\nEste paquete incluye todo lo que necesitas para comenzar tus aventuras de Super Mario┐, incluyendo una consola Nintendo Switch┐ con controles Joy-Con┐ rojo ne≤n y azul ne≤n. Ademßs, disfruta de un valor a±adido* de USD 68.00 gracias a un c≤digo de descarga para el juego Mario Kart┐ 8 Deluxe y una suscripci≤n individual por 3 meses a Nintendo Switch Online.\r\n\r\nConsola MK8\r\nQuema llantas a travΘs de las pistas del Reino Champi±≤n\r\nEn el juego Mario Kart 8 Deluxe podrßs seleccionar entre un elenco de 42 personajes. íCorre bajo el agua, en el cielo, de cabeza y sin gravedad, y llega a la meta en 48 pistas! Compite con jugadores de todo el mundo con Nintendo Switch Online Con la suscripci≤n** a Nintendo Switch Online incluida hasta 12 jugadores podrßn jugar juntos en lφnea en los modos Grand Prix, Carrera vs. y Batalla. Ademßs, podrßs disfrutar del juego en lφnea en tφtulos multijugador como Splatoon┐ 3. La suscripci≤n tambiΘn te brinda acceso a un catßlogo de mßs de 100 juegos clßsicos de Super NES┐, NES┐ y Game Boy┐, ofertas exclusivas y mßs.\r\n\r\nGarantφa del proveedor\r\n1 a±o.\r\nInformaci≤n adicional\r\nIncluye:\r\nConsola Nintendo Switch\r\nBase de Nintendo Switch\r\nJoy-Con izquierdo del color rojo ne≤n\r\nJoy-Con derecho del color azul ne≤n\r\nCorreas de los controles Joy-Con\r\nArmaz≤n para controles Joy-Con\r\nCable HDMI de alta velocidad\r\nAdaptador de corriente de Nintendo Switch\r\nUn c≤digo de descarga gratuita para el juego Mario Kart 8 Deluxe\r\nUn c≤digo de descarga gratuita para canjearse por una suscripci≤n individual por 3 meses a Nintendo Switch Online.\r\nProducto ambientado, solo incluye productos especificados en la descripci≤n. Para cambios o devoluciones te invitamos a leer nuestras polφticas",
+    "garantia_meses": 12
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 39,
+  "fields": {
+    "nombre": "Consola PS5 Slim Digital + 2 Videojuegos | 1TB de Almacenamiento | Edici≤n Digital | PlayStation 5 |",
+    "descripcion": "Incluye\t1\r\nModelo\tCFI-2015\r\nPaφs de origen\tChina\r\nTipo de consola\tPlaystation 5\r\nCondici≤n del producto\tNuevo\r\nMaterial de la cubierta\tPlßstico\r\nRestricciones de uso\tNo lo dejes expuesto al sol, calor extremo ni humedad.\r\nAncho\t13,1cm\r\nLargo\t35,9cm",
+    "precio": "2699900.00",
+    "stock": 98,
+    "categoria": 3,
+    "imagen_principal": "productos/galeria/w800h800fitpad_2.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-28T18:49:34.729Z",
+    "fecha_actualizacion": "2025-12-17T20:10:58.132Z",
+    "marca": "SONY",
+    "capacidad": null,
+    "potencia": null,
+    "color": "blanco",
+    "caracteristicas_destacadas": "Nombre del fabricante o importador\tSolutions 2GO\r\nModo de fabricaci≤n\tIndustrial\r\nForma de uso\tEntretenimiento .Conectar a televisor por HDMI y a la corriente. Encender y seguir configuraci≤n inicial. Descargar juegos. Usar controles inalßmbricos o con cable. Revisar las instrucciones de uso del fabricante.\r\nCuidado del producto\tColoca la consola en un lugar bien ventilado, sobre una superficie plana y estable.No tapes las rejillas ni pongas objetos encima de la consola.No la coloques sobre alfombras o superficies blandas que puedan obstruir las rejillas de ventilaci≤n.Usa siempre el cable de corriente original",
+    "garantia_meses": 12
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 40,
+  "fields": {
+    "nombre": "Secador de cabello Remington Sapphire Luxe D5805",
+    "descripcion": "Especificaciones principales\r\n\r\nòTipo : Secadores de cabello\r\n\r\nòModelo : D5805- 110F\r\n\r\nòAncho : 9.8 cm\r\n\r\nòAlto : 22.5 cm\r\n\r\nòLargo : 29 cm",
+    "precio": "190000.00",
+    "stock": 100,
+    "categoria": 5,
+    "imagen_principal": "productos/galeria/Secadora_pelo_img1.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-28T18:52:53.993Z",
+    "fecha_actualizacion": "2025-11-28T18:52:53.993Z",
+    "marca": "Remington",
+    "capacidad": null,
+    "potencia": "1900 W",
+    "color": "Azul",
+    "caracteristicas_destacadas": "Rejilla revestida de cerßmica avanzada con zafiros reales para obtener resultados suaves. Acondicionamiento i≤nico Potente motor de 1900 W 3 ajustes de temperatura / 2 velocidades Concentrador de secado rßpido Difusor Rßfaga de aire frφo Gancho para colgar Rejilla trasera extraφble y fßcil de limpiar",
+    "garantia_meses": 36
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 41,
+  "fields": {
+    "nombre": "JBL | Parlante Bluetooth Jbl Flip 7 Negro",
+    "descripcion": "Cuidado del producto\tEvitar caφdas desde zonas muy altas\r\nNombre del fabricante o importador\tJBL\r\nModo de fabricaci≤n\tIndustrial\r\nRequiere Serial Number\tSi\r\nDimensiones\t22cm x 11cm x 10cm\r\nModelo\tFLIP 7",
+    "precio": "599900.00",
+    "stock": 100,
+    "categoria": 3,
+    "imagen_principal": "productos/galeria/w800h800fitpad_4.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-28T19:02:45.855Z",
+    "fecha_actualizacion": "2025-11-28T19:02:45.855Z",
+    "marca": "JBL",
+    "capacidad": null,
+    "potencia": "25 w",
+    "color": "negro",
+    "caracteristicas_destacadas": "Caracterφsticas\tCuenta con bluetooth,Resistente al agua\r\nPaφs de origen\tChina\r\nGarantφa\t1 a±o\r\nColor\tNegro\r\nCuenta con bluetooth\tSφ\r\nCondici≤n del producto\tNuevo\r\nCantidad de paquetes\t1\r\nMaterial\tPlßstico\r\nPotencia\t25w\r\nRestricciones de uso\tEvitar caφdas desde zonas muy altas\r\nAlto\t22cm\r\nAncho\t10cm\r\nLargo\t11cm",
+    "garantia_meses": 12
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 42,
+  "fields": {
+    "nombre": "Mini Plancha Cabello Ceramica Inova Rizada Portatil Pelo Morada",
+    "descripcion": "Especificaciones principales\r\n\r\nòTipo : Secadores de cabello\r\n\r\nòModelo : SX8006\r\n\r\nòGarantφa : 1 mes\r\n\r\nòPotencia : 20 W\r\n\r\nòNiveles de temperatura : 2",
+    "precio": "32000.00",
+    "stock": 100,
+    "categoria": 5,
+    "imagen_principal": "productos/galeria/Pelo_img1.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-28T19:45:29.188Z",
+    "fecha_actualizacion": "2025-11-28T19:45:29.188Z",
+    "marca": "Generico",
+    "capacidad": null,
+    "potencia": "20 W",
+    "color": "Morada",
+    "caracteristicas_destacadas": "Mini Plancha Cabello Ceramica Inova Rizada Portatil Pelo",
+    "garantia_meses": 1
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 43,
+  "fields": {
+    "nombre": "Ventilador Samurai Turbo Silence Compact 3 en 1, 3 Velocidades, Negro",
+    "descripcion": "òTipo : Ventiladores 3 en 1\r\n\r\nòModelo : Turbo Silence Compact 3en1\r\n\r\nòAncho : 30 cm\r\n\r\nòAlto : 41 cm\r\n\r\nòProfundidad : 26.5",
+    "precio": "269900.00",
+    "stock": 100,
+    "categoria": 4,
+    "imagen_principal": "productos/galeria/w1036h832fwebpfitcontainq85_39.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-28T19:47:51.358Z",
+    "fecha_actualizacion": "2025-11-28T19:47:51.358Z",
+    "marca": "Samurai",
+    "capacidad": null,
+    "potencia": "60 w",
+    "color": "negro",
+    "caracteristicas_destacadas": "Dimensiones\r\n\r\nAncho\r\n30 cm\r\nAlto\r\n41 cm\r\nProfundidad\r\n26.5\r\nEspecificaciones\r\n\r\nTipo\r\nVentiladores 3 en 1\r\nTipo de panel de control\r\nManual\r\nTipo de ventilador\r\n3 en 1\r\nDißmetro de giro\r\n120 cm\r\nColor\r\nNegro\r\nCuenta con control remoto\r\nNo\r\nCuenta con oscilaci≤n\r\nSi\r\nCuenta con temporizador\r\nNo\r\nCuenta con aspersor de agua\r\nNo\r\nCantidad de aspas\r\n6\r\nN·mero de velocidades\r\n3\r\nVoltaje\r\n120 V, 240 V\r\nUbicaci≤n\r\nComedor, Dormitorios, Exterior espacios peque±os, Interior, Interiores espacios amplios, Interiores espacios peque±os, Oficinas, Salas, Terraza\r\nPotencia\r\n60 W\r\nAlimentaci≤n\r\nElΘctrica\r\nFabricante\r\n\r\nModelo\r\nTurbo Silence Compact 3en1",
+    "garantia_meses": 18
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 44,
+  "fields": {
+    "nombre": "Afeitador Corporal para Hombre Vivitar 3 Cabezales Rojo",
+    "descripcion": "Especificaciones principales\r\n\r\nòTipo : Mßquinas de afeitar\r\n\r\nòModelo : PGV005RED\r\n\r\nòPotencia : 1 W\r\n\r\nòVoltaje : 110 V\r\n\r\nòGarantφa : 3 meses",
+    "precio": "100000.00",
+    "stock": 100,
+    "categoria": 5,
+    "imagen_principal": "productos/galeria/Afeitador_img1.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-28T19:49:29.809Z",
+    "fecha_actualizacion": "2025-11-28T19:49:29.809Z",
+    "marca": "Vivitar",
+    "capacidad": null,
+    "potencia": "1 W",
+    "color": "Rojo",
+    "caracteristicas_destacadas": "Para uso en seco, cuchillas de acero inoxidable de alta calidad que brindan corte de precisi≤n. Tres cabezales intercambiables y dos guφas ajustables le brindan un control preciso. Funciona con una baterφa AA (no incluida). Para pelo barba y vello incluye: Afeitadora de aluminio Peine de barba Peine de rastrojo Recortador para vello de orejas, nariz y cejas Manual de usuario. Las cuchillas de acero inoxidable de alta calidad garantizan un ajuste preciso El agarre ergon≤mico facilita el manejo Requiere 2 pilas AAA (no incluidas) Fßcil de limpiar Compacto y liviano para una fßcil portabilidad.",
+    "garantia_meses": 3
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 45,
+  "fields": {
+    "nombre": "Home Elements | Ventilador Maxiflow Elite Pared Blanco",
+    "descripcion": "òTipo : Ventiladores de pared o muro\r\n\r\nòReferencia del Producto en el Certificado/Empaque : 299900706\r\n\r\nòModelo : HEMFEWRP18B\r\n\r\nòAncho : 37 cm\r\n\r\nòAlto : 56 cm",
+    "precio": "249900.00",
+    "stock": 100,
+    "categoria": 4,
+    "imagen_principal": "productos/galeria/w1036h832fwebpfitcontainq85_42.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-28T19:50:56.182Z",
+    "fecha_actualizacion": "2025-11-28T19:50:56.182Z",
+    "marca": "Home Elements",
+    "capacidad": null,
+    "potencia": "85 w",
+    "color": "blanco",
+    "caracteristicas_destacadas": "Dimensiones\r\n\r\nAncho\r\n37 cm\r\nAlto\r\n56 cm\r\nProfundidad\r\n49 cm\r\nEspecificaciones\r\n\r\nTipo\r\nVentiladores de pared o muro\r\nReferencia del Producto en el Certificado/Empaque\r\n299900706\r\nTipo de panel de control\r\nManual\r\nTipo de ventilador\r\nMural\r\nDißmetro de giro\r\n18 pulgadas\r\nColor\r\nBlanco\r\nIncluye\r\nRejillas, Aspa, Cuerpo, Tapa logo, Tuerca de aspa\r\nCuenta con control remoto\r\nNo\r\nCuenta con oscilaci≤n\r\nSi\r\nCuenta con temporizador\r\nNo\r\nCuenta con aspersor de agua\r\nNo\r\nCantidad de aspas\r\n6\r\nN·mero de velocidades\r\n3\r\nVoltaje\r\n120 V\r\nUbicaci≤n\r\nBa±os, Cocina, Comedor, Dormitorios, Interior, Interiores espacios amplios, Interiores espacios peque±os, Invernadero, Lavanderφa, Living, Otros, Pasillo, Terraza, Salas\r\nPotencia\r\n85 W\r\nAlimentaci≤n\r\nElΘctrica\r\nFabricante\r\n\r\nModelo\r\nHEMFEWRP18B",
+    "garantia_meses": 16
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 46,
+  "fields": {
+    "nombre": "Depiladora ElΘctrica Gemei 4 En 1 Gm-7006",
+    "descripcion": "Especificaciones principales\r\n\r\nòTipo : Mßquinas cortapelo\r\n\r\nòModelo : GM7006\r\n\r\nòAncho : 20 cm\r\n\r\nòAlto : 6 cm\r\n\r\nòLargo : 20 cm",
+    "precio": "100000.00",
+    "stock": 100,
+    "categoria": 5,
+    "imagen_principal": "productos/galeria/Depiladora_img1.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-28T19:53:50.110Z",
+    "fecha_actualizacion": "2025-11-28T19:53:50.110Z",
+    "marca": "Geemy",
+    "capacidad": null,
+    "potencia": "110 V",
+    "color": "Blanco",
+    "caracteristicas_destacadas": "",
+    "garantia_meses": 1
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 47,
+  "fields": {
+    "nombre": "Wurden Ventilador Industrial 2 En 1 Acero 30 Pulgadas",
+    "descripcion": "òTipo : Ventiladores industriales\r\n\r\nòModelo : GIF-30-2B1\r\n\r\nòTipo de panel de control : Manual\r\n\r\nòTipo de ventilador : Pedestal\r\n\r\nòColor : Negro",
+    "precio": "799900.00",
+    "stock": 100,
+    "categoria": 4,
+    "imagen_principal": "productos/galeria/w1036h832fwebpfitcontainq85_46.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-28T19:55:05.094Z",
+    "fecha_actualizacion": "2025-11-28T19:55:05.094Z",
+    "marca": "Wurden",
+    "capacidad": null,
+    "potencia": "260 w",
+    "color": "negro",
+    "caracteristicas_destacadas": "Especificaciones\r\n\r\nTipo\r\nVentiladores industriales\r\nTipo de panel de control\r\nManual\r\nTipo de ventilador\r\nPedestal\r\nColor\r\nNegro\r\nCuenta con control remoto\r\nNo\r\nCuenta con oscilaci≤n\r\nSi\r\nCuenta con temporizador\r\nSi\r\nCuenta con aspersor de agua\r\nNo\r\nN·mero de velocidades\r\n3\r\nVoltaje\r\n220 V, 110 V\r\nUbicaci≤n\r\nInterior, Exterior\r\nAlimentaci≤n\r\nElΘctrica\r\nFabricante\r\n\r\nModelo\r\nGIF-30-2B1",
+    "garantia_meses": 12
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 48,
+  "fields": {
+    "nombre": "Ventilador de Torre Samurai Eole Ultra 3 Velocidades Con Control remoto Negro",
+    "descripcion": "òTipo : Ventiladores de torre\r\n\r\nòModelo : Eole Ultra\r\n\r\nòAncho : 19.9\r\n\r\nòAlto : 114\r\n\r\nòProfundidad : 19.9 cm",
+    "precio": "529900.00",
+    "stock": 100,
+    "categoria": 4,
+    "imagen_principal": "productos/galeria/w1036h832fwebpfitcontainq85_50.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-28T19:57:38.871Z",
+    "fecha_actualizacion": "2025-11-28T19:57:38.871Z",
+    "marca": "Samurai",
+    "capacidad": null,
+    "potencia": "40 w",
+    "color": "negro",
+    "caracteristicas_destacadas": "Dimensiones\r\n\r\nAncho\r\n19.9\r\nAlto\r\n114\r\nProfundidad\r\n19.9 cm\r\nEspecificaciones\r\n\r\nTipo\r\nVentiladores de torre\r\nTipo de panel de control\r\nDigital\r\nTipo de ventilador\r\nDe torre\r\nColor\r\nNegro\r\nIncluye\r\nControl\r\nCuenta con control remoto\r\nSi\r\nCuenta con oscilaci≤n\r\nSi\r\nCuenta con temporizador\r\nSi\r\nCuenta con aspersor de agua\r\nNo\r\nN·mero de velocidades\r\n3\r\nVoltaje\r\n110 V\r\nUbicaci≤n\r\nDormitorios, Interior, Oficinas, Living\r\nPotencia\r\n40 W\r\nNivel de ruido\r\n55 dBA\r\nAlimentaci≤n\r\nElΘctrica\r\nFabricante\r\n\r\nModelo\r\nEole Ultra",
+    "garantia_meses": 14
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 49,
+  "fields": {
+    "nombre": "Wurden Ventilador de Torre 39 Pulgadas",
+    "descripcion": "òTipo : Ventiladores de torre\r\n\r\nòModelo : FZ30-48SR-LA\r\n\r\nòAncho : 30 cm\r\n\r\nòAlto : 98.5 cm\r\n\r\nòProfundidad : 30 cm",
+    "precio": "249900.00",
+    "stock": 99,
+    "categoria": 4,
+    "imagen_principal": "productos/galeria/w1036h832fwebpfitcontainq85_63.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-28T19:59:41.771Z",
+    "fecha_actualizacion": "2026-02-20T19:46:57.774Z",
+    "marca": "Wurden",
+    "capacidad": null,
+    "potencia": "45 w",
+    "color": "negro",
+    "caracteristicas_destacadas": "Dimensiones\r\n\r\nAncho\r\n30 cm\r\nAlto\r\n98.5 cm\r\nProfundidad\r\n30 cm\r\nEspecificaciones\r\n\r\nTipo\r\nVentiladores de torre\r\nTipo de panel de control\r\nDigital\r\nTipo de ventilador\r\nDe torre\r\nColor\r\nNegro\r\nCuenta con control remoto\r\nSi\r\nCuenta con oscilaci≤n\r\nSi\r\nCuenta con temporizador\r\nSi\r\nCuenta con aspersor de agua\r\nNo\r\nCantidad de aspas\r\n0\r\nN·mero de velocidades\r\n3\r\nVoltaje\r\n110 V\r\nPotencia\r\n45 W\r\nFabricante\r\n\r\nModelo\r\nFZ30-48SR-LA",
+    "garantia_meses": 14
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 50,
+  "fields": {
+    "nombre": "Cepillo de aire Remington Wet2style AS15A-110F",
+    "descripcion": "Especificaciones principales\r\n\r\nòTipo : Planchas de cabello\r\n\r\nòModelo : AS15A (110) F\r\n\r\nòAncho : 10\r\n\r\nòAlto : 34\r\n\r\nòProfundidad : 17 cm",
+    "precio": "250000.00",
+    "stock": 100,
+    "categoria": 5,
+    "imagen_principal": "productos/galeria/cepillo_secador_img1.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-28T19:59:50.089Z",
+    "fecha_actualizacion": "2025-11-28T19:59:50.089Z",
+    "marca": "Remington",
+    "capacidad": null,
+    "potencia": "1200 W",
+    "color": "Salmon",
+    "caracteristicas_destacadas": "Barril recubierto de cerßmica con 90% mßs de Iones* para un peinado resistente al frizz, Cepillo con Cerdas Mixtas, 1200 Watts, 3 temperaturas, 2 velocidades, Bot≤n para aire frφo, Cable giratorio con longitud de 1.8 m, Te permite acercarte a la raφz para obtener el mßximo volumen y movimiento",
+    "garantia_meses": 24
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 51,
+  "fields": {
+    "nombre": "Recco Ventilador de Torre 81cm 3 Velocidades 65 Blanco FZ30",
+    "descripcion": "òTipo : Ventiladores de torre\r\n\r\nòModelo : FZ30-48YT\r\n\r\nòAncho : 12 cm\r\n\r\nòAlto : 81.5 cm\r\n\r\nòProfundidad : 17 cm",
+    "precio": "196900.00",
+    "stock": 100,
+    "categoria": 4,
+    "imagen_principal": "productos/galeria/w1036h832fwebpfitcontainq85_55.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-28T20:01:52.999Z",
+    "fecha_actualizacion": "2025-11-28T20:01:52.999Z",
+    "marca": "Recco",
+    "capacidad": null,
+    "potencia": "45 w",
+    "color": "blanco",
+    "caracteristicas_destacadas": "Dimensiones\r\n\r\nAncho\r\n12 cm\r\nAlto\r\n81.5 cm\r\nProfundidad\r\n17 cm\r\nEspecificaciones\r\n\r\nTipo\r\nVentiladores de torre\r\nTipo de panel de control\r\nManual\r\nTipo de ventilador\r\nDe torre\r\nColor\r\nBlanco\r\nCuenta con control remoto\r\nNo\r\nCuenta con oscilaci≤n\r\nSi\r\nCuenta con temporizador\r\nSi\r\nCuenta con aspersor de agua\r\nNo\r\nN·mero de velocidades\r\n3\r\nVoltaje\r\n220 V, 110 V\r\nUbicaci≤n\r\nInterior\r\nPotencia\r\n45 W\r\nAlimentaci≤n\r\nElΘctrica\r\nFabricante\r\n\r\nModelo\r\nFZ30-48YT",
+    "garantia_meses": 16
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 52,
+  "fields": {
+    "nombre": "Mabe |  Aire Acondicionado Inverter 115v 12000 Btu Blanco Mmi12cabwccbc1",
+    "descripcion": "òTipo : Aire acondicionado split inverter\r\n\r\nòReferencia del Producto en el Certificado/Empaque : MMI12CABWCCBC1\r\n\r\nòAncho : 80.50 cm\r\n\r\nòAlto : 20.00 cm\r\n\r\nòTipo de aire acondicionado : Inverter",
+    "precio": "1599900.00",
+    "stock": 99,
+    "categoria": 4,
+    "imagen_principal": "productos/galeria/w1036h832fwebpfitcontainq85_57.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-28T20:05:44.463Z",
+    "fecha_actualizacion": "2026-02-19T21:56:58.038Z",
+    "marca": "mabe",
+    "capacidad": "12000 BTU",
+    "potencia": "115 v",
+    "color": "blanco",
+    "caracteristicas_destacadas": "Dimensiones\r\n\r\nAncho\r\n80.50 cm\r\nAlto\r\n20.00 cm\r\nEspecificaciones\r\n\r\nTipo\r\nAire acondicionado split inverter\r\nReferencia del Producto en el Certificado/Empaque\r\nMMI12CABWCCBC1\r\nTipo de aire acondicionado\r\nInverter\r\nTipo de refrigerante\r\nR410A\r\nTipo de filtro\r\nPolvo\r\nCapacidad de refrigeraci≤n\r\n12000 BTU\r\nColor\r\nBlanco\r\nIncluye\r\nControl remoto y kit de instalacion\r\nCuenta con control remoto\r\nSi\r\nVoltaje\r\n115 V\r\nSistema de enfriamiento\r\nCompresor\r\nUbicaci≤n\r\nExterior, Interior\r\nPotencia\r\n115 V\r\nAlimentaci≤n\r\nElΘctrico\r\nA±o de lanzamiento\r\n2024\r\nGarantφa detalle\r\nGarantia De 10 A±os En El Compresor, 2 A±os En Componentes",
+    "garantia_meses": 16
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 53,
+  "fields": {
+    "nombre": "Recco| Aire Acondicionado On/Off 9000 BTU 220 V",
+    "descripcion": "òTipo : Mini Split On/Off\r\n\r\nòAncho : 25 cm\r\n\r\nòAlto : 20 cm\r\n\r\nòTipo de aire acondicionado : Minisplit\r\n\r\nòTipo de refrigerante : R410A",
+    "precio": "1299900.00",
+    "stock": 99,
+    "categoria": 4,
+    "imagen_principal": "productos/galeria/w1036h832fwebpfitcontainq85_61.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-28T20:08:09.726Z",
+    "fecha_actualizacion": "2026-02-20T19:46:57.781Z",
+    "marca": "Recco",
+    "capacidad": "9000",
+    "potencia": "950",
+    "color": "blanco",
+    "caracteristicas_destacadas": "Dimensiones\r\n\r\nAncho\r\n25 cm\r\nAlto\r\n20 cm\r\nEspecificaciones\r\n\r\nTipo\r\nMini Split On/Off\r\nTipo de aire acondicionado\r\nMinisplit\r\nTipo de refrigerante\r\nR410A\r\nCapacidad de refrigeraci≤n\r\n9000\r\nColor\r\nBlanco\r\nCuenta con Wifi\r\nSi\r\nCuenta con control remoto\r\nNo\r\nSistema de enfriamiento\r\nCompresor\r\nUbicaci≤n\r\nInterior\r\nPotencia\r\n950\r\nAlimentaci≤n\r\nElΘctrica\r\nEficiencia energΘtica\r\nE\r\nConsumo energΘtico\r\n125 kWh/mes",
+    "garantia_meses": 16
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 54,
+  "fields": {
+    "nombre": "Maquina De Peluquerφa Wahl Deluxe Groom Pro",
+    "descripcion": "Especificaciones principales\r\n\r\nòTipo : Mßquinas de afeitar\r\n\r\nòReferencia del Producto en el Certificado/Empaque : 79305-3608\r\n\r\nòModelo : 79305-3608\r\n\r\nòCuenta con resistencia al agua : No\r\n\r\nòIncluye : Maquina de motilar de 5000 revoluciones. Protector de cuchilla.",
+    "precio": "215000.00",
+    "stock": 99,
+    "categoria": 5,
+    "imagen_principal": "productos/galeria/Maquina_De_Peluquerφa_img1.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-28T20:11:26.261Z",
+    "fecha_actualizacion": "2026-02-20T19:46:57.784Z",
+    "marca": "Wahl",
+    "capacidad": null,
+    "potencia": "110 W",
+    "color": "Plateado",
+    "caracteristicas_destacadas": "Disfruta de un kit de barberφa profesional en su hogar, que le permitirß llevar siempre un corte perfecto de cabello, barba y eliminar vellos de orejas y nariz. Las cuchillas de acero al carbono autofilantes estßn precisamente afiladas para que se mantengan de ese modo por mßs tiempo. El control de guφa ajustable con el pulgar permite m·ltiple estilos de corte con el simple giro de la palanca.",
+    "garantia_meses": 12
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 55,
+  "fields": {
+    "nombre": "Mabe Aire Acondicionado Inverter Premium 220 V 12000 BTU Negro Espejo Mmi12cdmccc10",
+    "descripcion": "òTipo : Aire acondicionado split inverter\r\n\r\nòReferencia del Producto en el Certificado/Empaque : MMI12CDMCCC10\r\n\r\nòAncho : 80.50 cm\r\n\r\nòAlto : 20 cm\r\n\r\nòTipo de aire acondicionado : Inverter",
+    "precio": "2999900.00",
+    "stock": 100,
+    "categoria": 4,
+    "imagen_principal": "productos/galeria/w1036h832fwebpfitcontainq85_64.webp",
+    "activo": true,
+    "fecha_creacion": "2025-11-28T20:13:31.788Z",
+    "fecha_actualizacion": "2025-11-28T20:13:31.788Z",
+    "marca": "mabe",
+    "capacidad": "12000 BTU",
+    "potencia": "220 v",
+    "color": "gris",
+    "caracteristicas_destacadas": "Dimensiones\r\n\r\nAncho\r\n80.50 cm\r\nAlto\r\n20 cm\r\nEspecificaciones\r\n\r\nTipo\r\nAire acondicionado split inverter\r\nReferencia del Producto en el Certificado/Empaque\r\nMMI12CDMCCC10\r\nTipo de aire acondicionado\r\nInverter\r\nTipo de refrigerante\r\nR32\r\nTipo de filtro\r\nPolvo, Pelusa\r\nCapacidad de refrigeraci≤n\r\n12.000 BTU\r\nColor\r\nEspejo\r\nIncluye\r\nKit de instalacion\r\nCuenta con control remoto\r\nSi\r\nVoltaje\r\n220 V\r\nSistema de enfriamiento\r\nCompresor\r\nUbicaci≤n\r\nExterior, Interior\r\nPotencia\r\n220 V\r\nAlimentaci≤n\r\nElΘctrico\r\nEficiencia energΘtica\r\nA\r\nA±o de lanzamiento\r\n2024\r\nConsumo energΘtico\r\n132.66 kWh/mes",
+    "garantia_meses": 16
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 56,
+  "fields": {
+    "nombre": "Nevera No frost 448 litros Manija Integrada Panel Digital Dispensador de Agua Negro C≤smico",
+    "descripcion": "Especificaciones principales\r\n\r\nòTipo : Nevera congelador superior o arriba\r\n\r\nòReferencia del Producto en el Certificado/Empaque : NEV ALC 448 SE PD DA MI NC INV\r\n\r\nòModelo : HAV7164NT44\r\n\r\nòAncho : 71 cm\r\n\r\nòAlto : 185.6 cm",
+    "precio": "3400000.00",
+    "stock": 100,
+    "categoria": 2,
+    "imagen_principal": "productos/galeria/nevera2_img1.webp",
+    "activo": true,
+    "fecha_creacion": "2025-12-05T17:49:05.709Z",
+    "fecha_actualizacion": "2025-12-05T18:09:58.538Z",
+    "marca": "Mabe",
+    "capacidad": "422 litros",
+    "potencia": null,
+    "color": "Gris",
+    "caracteristicas_destacadas": "Especificaciones tΘcnicas ò Jaladera tipo Full Grip ò Gas Refrigerante R600a ò Voltaje: 115V / 60Hz En puerta de congelador ò 1 anaquel completo ò\"Ice Twist\" desmoldador de hielos En interior de congelador ò 1 parrilla de alambr≤n En puerta de enfriador ò Despachador de agua 2 L ò 1 anaquel completo ò 1 anaquel para botellas ò 1 anaquel medio En interior de enfriador ò 2 bandejas de cristal templado ò Caj≤n legumbrero con tapa de cristal templado ò Luz interior LED",
+    "garantia_meses": 12
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 57,
+  "fields": {
+    "nombre": "Nevera No frost 448 litros Manija Integrada Panel Digital Dispensador de Agua Negro C≤smico",
+    "descripcion": "Especificaciones principales\r\n\r\nòTipo : Nevera congelador superior o arriba\r\n\r\nòReferencia del Producto en el Certificado/Empaque : NEV ALC 448 SE PD DA MI NC INV\r\n\r\nòModelo : HAV7164NT44\r\n\r\nòAncho : 71 cm\r\n\r\nòAlto : 185.6 cm",
+    "precio": "3400000.00",
+    "stock": 98,
+    "categoria": 2,
+    "imagen_principal": "productos/galeria/nevera3_img1.webp",
+    "activo": true,
+    "fecha_creacion": "2025-12-05T18:28:13.404Z",
+    "fecha_actualizacion": "2025-12-09T18:43:13.173Z",
+    "marca": "Haceb",
+    "capacidad": "428 litros",
+    "potencia": "120 W",
+    "color": "Negro",
+    "caracteristicas_destacadas": "Motor inverter, mas silencioso y duradero, eficiencia energΘtica tipo A. Funci≤n inteligente Smart Pro, sensa la temperatura ambiente y grad·a sus niveles de temperatura para asegurar la conservaci≤n de los alimentos. Sistema de conservaci≤n Haceb Himalaya, alarga la vida de los alimentos y los mantiene frescos por mas tiempo. Iluminaci≤n LED frontal en congelador y conservador, para ver hasta el ·ltimo rinc≤n de tu nevera. Garantφa y confianza para una experiencia sin preocupaciones.",
+    "garantia_meses": 12
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 58,
+  "fields": {
+    "nombre": "Licuadora Profesional 5 Velocidades Procesador de Alimentos 8 Tazas",
+    "descripcion": "Especificaciones principales\r\n\r\nòTipo : Licuadoras de vaso plßstico\r\n\r\nòModelo : BN801\r\n\r\nòAncho : 26.5\r\n\r\nòAlto : 30.22\r\n\r\nòLargo : 43.60",
+    "precio": "1000000.00",
+    "stock": 100,
+    "categoria": 2,
+    "imagen_principal": "productos/galeria/licuadora2_img1.webp",
+    "activo": true,
+    "fecha_creacion": "2025-12-05T18:33:50.180Z",
+    "fecha_actualizacion": "2025-12-05T18:33:50.180Z",
+    "marca": "Ninja",
+    "capacidad": "1.8 litros",
+    "potencia": "1.400 W",
+    "color": "Negro",
+    "caracteristicas_destacadas": "Licuadora mas procesador y accesorios Ninja base de motor de 1400 vatios picos, 72 onzas. Jarra de trituraci≤n total, (2) 24 onzas. Copas de una sola pieza con tapas de boquilla, montaje de cuchillas de extracci≤n profesional, cuenco de procesador de precisi≤n de 8 tazas, ensamblaje de cuchilla apilada, hoja de cortar, hoja de masa, guφa de inspiraci≤n de 30 recetas",
+    "garantia_meses": 12
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 59,
+  "fields": {
+    "nombre": "Olla Multifuncional BLACK+DECKER de 5.7 Litros PR100B",
+    "descripcion": "Especificaciones principales\r\n\r\nòTipo : Ollas multifuncionales\r\n\r\nòReferencia del Producto en el Certificado/Empaque : PR100B\r\n\r\nòModelo : PR100B\r\n\r\nòAncho : 32.5 cm\r\n\r\nòAlto : 35.2 cm",
+    "precio": "600000.00",
+    "stock": 99,
+    "categoria": 2,
+    "imagen_principal": "productos/galeria/Olla_img1.webp",
+    "activo": true,
+    "fecha_creacion": "2025-12-05T18:38:05.438Z",
+    "fecha_actualizacion": "2025-12-09T18:43:13.182Z",
+    "marca": "BLACK+DECKER",
+    "capacidad": "5.7 litros",
+    "potencia": null,
+    "color": "Negro",
+    "caracteristicas_destacadas": "Elaborar diferentes platillos es tan fßcil como colocar los ingredientes y presionar un bot≤n con la Olla Express ElΘctrica de Black + Decker. La Olla de Presi≤n te ayuda a cocinar con gran rapidez al sellar el calor, el vapor y el sabor durante el proceso de cocci≤n. Cuenta con siete funciones de presi≤n para preparar todos sus favoritos: arroz, frijoles, todo tipo de carne, sopas, guisos y mucho mßs. TambiΘn puedes dorar carne a la perfecci≤n con la funci≤n de dorar antes de cocinarla con presi≤n. Cuenta con otras funciones tales como cocci≤n lenta tradicional (temperatura alta y baja) y mantener los alimentos calientes.",
+    "garantia_meses": 24
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 65,
+  "fields": {
+    "nombre": "Parlante Recargable Con Trφpode 30W Rms+Microfono",
+    "descripcion": "Especificaciones principales\r\n\r\nòTipo : Parlante Recargable\r\n\r\nòReferencia del Producto en el Certificado/Empaque : DR-82957\r\n\r\nòModelo : DR-82957\r\n\r\nòAncho : 29.3 cm\r\n\r\nòAlto : 49 cm",
+    "precio": "130000.00",
+    "stock": 98,
+    "categoria": 3,
+    "imagen_principal": "productos/galeria/Parlanta_img1.webp",
+    "activo": true,
+    "fecha_creacion": "2025-12-05T18:42:46.888Z",
+    "fecha_actualizacion": "2026-02-06T18:51:35.631Z",
+    "marca": "Dairu",
+    "capacidad": null,
+    "potencia": "30 W",
+    "color": "Negro",
+    "caracteristicas_destacadas": "Parlante Recargable 30W RMS, Incluye trφpode y micr≤fono alßmbrico, Luces LED Audio rφtmicas, Entrada para micr≤fono 6.3mm, Parlante de 8ô, Reproducci≤n de sonido: Conexi≤n Bluetooth 5.3, Puerto de entrada 3.5 mm, Puerto de lectura USB y Micro SD (32GB mßx.), Radio FM, Baterφa: 1500 mAh, Alcance de conexi≤n: 10 metros",
+    "garantia_meses": 12
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 66,
+  "fields": {
+    "nombre": "Freidora De Aire Imusa Easy Fry Mega 7.5L, Digital",
+    "descripcion": "Especificaciones principales\r\n\r\nòTipo : Freidoras sin aceite\r\n\r\nòModelo : 2024\r\n\r\nòAncho : 35.5\r\n\r\nòAlto : 35.5\r\n\r\nòProfundidad : 44",
+    "precio": "800000.00",
+    "stock": 97,
+    "categoria": 2,
+    "imagen_principal": "productos/galeria/freidora2_img1.webp",
+    "activo": true,
+    "fecha_creacion": "2025-12-05T19:02:44.329Z",
+    "fecha_actualizacion": "2026-02-06T18:51:35.643Z",
+    "marca": "Imusa",
+    "capacidad": "7.5 litros",
+    "potencia": "1520 W",
+    "color": "Negro",
+    "caracteristicas_destacadas": "Extra capacidad 8 porciones, Tecnologφa de aire caliente con 8 programas automßticos, Cocina con poco o nada de aceite, 15 a±os de reparabilidad, temperatura ajustable, Cesta antiadherente, Temporizador ajustable hasta 60 minutos con apagado automßtico",
+    "garantia_meses": 24
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 67,
+  "fields": {
+    "nombre": "Licuadora Profesional 1000W Ninja Crushing TECH BL610",
+    "descripcion": "Especificaciones principales\r\n\r\nòTipo : Licuadoras de vaso plßstico\r\n\r\nòModelo : BL610\r\n\r\nòAncho : 19.5\r\n\r\nòAlto : 30\r\n\r\nòLargo : 24.13 cm",
+    "precio": "450000.00",
+    "stock": 94,
+    "categoria": 2,
+    "imagen_principal": "productos/galeria/licuadora3_img1.webp",
+    "activo": true,
+    "fecha_creacion": "2025-12-05T19:02:53.647Z",
+    "fecha_actualizacion": "2026-02-19T21:56:58.030Z",
+    "marca": "Ninja",
+    "capacidad": "1.4 litros",
+    "potencia": "700 W",
+    "color": "Negro",
+    "caracteristicas_destacadas": "72 oz XL jarra con pico vertedor No-deslizamiento de la base batidora de la Cocina es apta para lavavajillas Super-potente pulveriza hielo en la nieve en los envφa, reduce frutas frescas y jugo de hace batidos en los minutos Cuchillas no centrifuga a menos que la tapa estΘ bien asegurada en su lugar Total de Trituraci≤nÖ Tecnologφa que ofrece un rßpido y eficiente de los resultados 3 diferentes velocidades de fusi≤n Ninja licuadora BL610 es libre de BPA electrodomΘsticos de Cocina con un dise±o elegante, impacto del dise±o de esfuerzo untertop colocaci≤n",
+    "garantia_meses": 12
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 68,
+  "fields": {
+    "nombre": "Mßquina Cortapelo Combo Cut Wahl con Cable 22 Piezas Gris",
+    "descripcion": "Especificaciones principales\r\n\r\nòTipo : Mßquinas cortapelo\r\n\r\nòModelo : 9314-2608\r\n\r\nòColor : Gris-Naranja\r\n\r\nòGarantφa : 1 a±o",
+    "precio": "170000.00",
+    "stock": 96,
+    "categoria": 5,
+    "imagen_principal": "productos/galeria/Corta_Pelo_img1.webp",
+    "activo": true,
+    "fecha_creacion": "2025-12-05T19:09:54.550Z",
+    "fecha_actualizacion": "2026-02-23T19:58:50.816Z",
+    "marca": "Wahl",
+    "capacidad": null,
+    "potencia": null,
+    "color": "Naranja",
+    "caracteristicas_destacadas": "Alta potencia de succi≤n y su ajuste automßtico de la potencia seg·n el tipo de superficie, Elimina con gran facilidad los pelos de tu mascota gracias a que cuenta con animal Kit, Duraci≤n de baterφa hasta 45 min, Cuenta con posibilidad de trapear superficies gracias a que se le puede instalar el accesorio aqua head, Cuenta con 3 niveles de potencia: ECO - AUTO- BOOST",
+    "garantia_meses": 24
+  }
+},
+{
+  "model": "product.producto",
+  "pk": 69,
+  "fields": {
+    "nombre": "Aspiradora Inalßmbrica T-Fal X-FORCE FLEX 9.60, 250 Watts, Baterφa 45min, Accesorio Mascota",
+    "descripcion": "Especificaciones principales\r\n\r\nòTipo : Aspiradoras verticales\r\n\r\nòModelo : X-FORCE\r\n\r\nòAncho : 13.0 cm\r\n\r\nòAlto : 30.4 cm\r\n\r\nòLargo : 78.0 cm",
+    "precio": "1200000.00",
+    "stock": 95,
+    "categoria": 1,
+    "imagen_principal": "productos/galeria/Aspiradora_inalambrica_img1.webp",
+    "activo": true,
+    "fecha_creacion": "2025-12-05T19:54:16.168Z",
+    "fecha_actualizacion": "2026-02-20T19:46:57.771Z",
+    "marca": "T-Fal",
+    "capacidad": "730 mL",
+    "potencia": "250 W",
+    "color": "Negro",
+    "caracteristicas_destacadas": "Alta potencia de succi≤n y su ajuste automßtico de la potencia seg·n el tipo de superficie, Elimina con gran facilidad los pelos de tu mascota gracias a que cuenta con animal Kit, Duraci≤n de baterφa hasta 45 min, Cuenta con posibilidad de trapear superficies gracias a que se le puede instalar el accesorio aqua head, Cuenta con 3 niveles de potencia: ECO - AUTO- BOOST",
+    "garantia_meses": 24
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 1,
+  "fields": {
+    "producto": 1,
+    "imagen": "productos/galeria/Aspiradora_img2_tgzhGUR.webp",
+    "descripcion": "Aspiradora img2",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 2,
+  "fields": {
+    "producto": 1,
+    "imagen": "productos/galeria/Aspiradora_img3_LPatSdM.webp",
+    "descripcion": "Aspiradora img3",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 3,
+  "fields": {
+    "producto": 1,
+    "imagen": "productos/galeria/Aspiradora_img4_s3R7b6g.webp",
+    "descripcion": "Aspiradora img4",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 4,
+  "fields": {
+    "producto": 2,
+    "imagen": "productos/galeria/Aspiradora_Mano_img2_eqdFALB.webp",
+    "descripcion": "Aspiradora Mano img2",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 5,
+  "fields": {
+    "producto": 2,
+    "imagen": "productos/galeria/Aspiradora_Mano_img3_KlMg1WL.webp",
+    "descripcion": "Aspiradora Mano img3",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 6,
+  "fields": {
+    "producto": 2,
+    "imagen": "productos/galeria/Aspiradora_Mano_img4_yiZLDOw.webp",
+    "descripcion": "Aspiradora Mano img4",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 7,
+  "fields": {
+    "producto": 3,
+    "imagen": "productos/galeria/Aspiradora_peque±a_img2_Ars7AuZ.webp",
+    "descripcion": "Aspiradora peque±a img2",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 8,
+  "fields": {
+    "producto": 3,
+    "imagen": "productos/galeria/Aspiradora_peque±a_img3_z0Fhr7C.webp",
+    "descripcion": "Aspiradora peque±a img3",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 9,
+  "fields": {
+    "producto": 3,
+    "imagen": "productos/galeria/Aspiradora_peque±a_img4_EyleywO.webp",
+    "descripcion": "Aspiradora peque±a img4",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 10,
+  "fields": {
+    "producto": 4,
+    "imagen": "productos/galeria/Aspiradora_robot_img2.webp",
+    "descripcion": "Aspiradora robot img2",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 11,
+  "fields": {
+    "producto": 4,
+    "imagen": "productos/galeria/Aspiradora_robot_img3_Uzsp98P.webp",
+    "descripcion": "Aspiradora robot img3",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 12,
+  "fields": {
+    "producto": 4,
+    "imagen": "productos/galeria/Aspiradora_robot_img4.webp",
+    "descripcion": "Aspiradora robot img4",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 13,
+  "fields": {
+    "producto": 5,
+    "imagen": "productos/galeria/Batidora_img2_mTmuOpg.webp",
+    "descripcion": "Batidora img2",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 14,
+  "fields": {
+    "producto": 5,
+    "imagen": "productos/galeria/Batidora_img3_wtgNFBv.webp",
+    "descripcion": "Batidora img3",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 15,
+  "fields": {
+    "producto": 5,
+    "imagen": "productos/galeria/Batidora_img4_gTL0xNH.webp",
+    "descripcion": "Batidora img4",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 16,
+  "fields": {
+    "producto": 6,
+    "imagen": "productos/galeria/w1036h832fwebpfitcontainq85.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 17,
+  "fields": {
+    "producto": 6,
+    "imagen": "productos/galeria/w1036h832fwebpfitcontainq85_1.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 18,
+  "fields": {
+    "producto": 6,
+    "imagen": "productos/galeria/w1036h832fwebpfitcontainq85_2.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 19,
+  "fields": {
+    "producto": 7,
+    "imagen": "productos/galeria/w1036h832fwebpfitcontainq85_5.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 20,
+  "fields": {
+    "producto": 7,
+    "imagen": "productos/galeria/w1036h832fwebpfitcontainq85_6.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 21,
+  "fields": {
+    "producto": 7,
+    "imagen": "productos/galeria/w1036h832fwebpfitcontainq85_7.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 22,
+  "fields": {
+    "producto": 8,
+    "imagen": "productos/galeria/Cafetera_img2_cYwgh3E.webp",
+    "descripcion": "Cafetera img2",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 23,
+  "fields": {
+    "producto": 8,
+    "imagen": "productos/galeria/Cafetera_img3_iIJYzYC.webp",
+    "descripcion": "Cafetera img3",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 24,
+  "fields": {
+    "producto": 8,
+    "imagen": "productos/galeria/Cafetera_img4_301MQI3.webp",
+    "descripcion": "Cafetera img4",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 25,
+  "fields": {
+    "producto": 9,
+    "imagen": "productos/galeria/w1036h832fwebpfitcontainq85_9.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 26,
+  "fields": {
+    "producto": 9,
+    "imagen": "productos/galeria/w1036h832fwebpfitcontainq85_10.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 27,
+  "fields": {
+    "producto": 9,
+    "imagen": "productos/galeria/w1036h832fwebpfitcontainq85_11.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 28,
+  "fields": {
+    "producto": 10,
+    "imagen": "productos/galeria/Estufa_img2_tFPIHkY.webp",
+    "descripcion": "Estufa img2",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 29,
+  "fields": {
+    "producto": 10,
+    "imagen": "productos/galeria/Estufa_img3_QsxiHmf.webp",
+    "descripcion": "Estufa img3",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 30,
+  "fields": {
+    "producto": 10,
+    "imagen": "productos/galeria/Estufa_img4_ySriKXd.webp",
+    "descripcion": "Estufa img4",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 31,
+  "fields": {
+    "producto": 11,
+    "imagen": "productos/galeria/w1036h832fwebpfitcontainq85_13.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 32,
+  "fields": {
+    "producto": 11,
+    "imagen": "productos/galeria/w1036h832fwebpfitcontainq85_14.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 33,
+  "fields": {
+    "producto": 11,
+    "imagen": "productos/galeria/w1036h832fwebpfitcontainq85_15.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 34,
+  "fields": {
+    "producto": 12,
+    "imagen": "productos/galeria/freidora_img2_rXAha3i.webp",
+    "descripcion": "freidora img2",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 35,
+  "fields": {
+    "producto": 12,
+    "imagen": "productos/galeria/freidora_img3_rEgR0MJ.webp",
+    "descripcion": "freidora img3",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 36,
+  "fields": {
+    "producto": 12,
+    "imagen": "productos/galeria/freidora_img4_WPKoV1n.webp",
+    "descripcion": "freidora img4",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 37,
+  "fields": {
+    "producto": 13,
+    "imagen": "productos/galeria/horno_img2.webp",
+    "descripcion": "horno img2",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 38,
+  "fields": {
+    "producto": 13,
+    "imagen": "productos/galeria/horno_img3.webp",
+    "descripcion": "horno img3",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 39,
+  "fields": {
+    "producto": 13,
+    "imagen": "productos/galeria/horno_img4.webp",
+    "descripcion": "horno img4",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 40,
+  "fields": {
+    "producto": 14,
+    "imagen": "productos/galeria/w1036h832fwebpfitcontainq85_17.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 41,
+  "fields": {
+    "producto": 14,
+    "imagen": "productos/galeria/w1036h832fwebpfitcontainq85_18.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 42,
+  "fields": {
+    "producto": 14,
+    "imagen": "productos/galeria/w1036h832fwebpfitcontainq85_19.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 43,
+  "fields": {
+    "producto": 15,
+    "imagen": "productos/galeria/w1036h832fwebpfitcontainq85_21.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 44,
+  "fields": {
+    "producto": 15,
+    "imagen": "productos/galeria/w1036h832fwebpfitcontainq85_22.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 45,
+  "fields": {
+    "producto": 15,
+    "imagen": "productos/galeria/w1036h832fwebpfitcontainq85_23.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 46,
+  "fields": {
+    "producto": 16,
+    "imagen": "productos/galeria/w1036h832fwebpfitcontainq85_25.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 47,
+  "fields": {
+    "producto": 16,
+    "imagen": "productos/galeria/w1036h832fwebpfitcontainq85_26.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 48,
+  "fields": {
+    "producto": 16,
+    "imagen": "productos/galeria/w1036h832fwebpfitcontainq85_27.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 49,
+  "fields": {
+    "producto": 17,
+    "imagen": "productos/galeria/w1036h832fwebpfitcontainq85_30.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 50,
+  "fields": {
+    "producto": 17,
+    "imagen": "productos/galeria/w1036h832fwebpfitcontainq85_31.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 51,
+  "fields": {
+    "producto": 17,
+    "imagen": "productos/galeria/w1036h832fwebpfitcontainq85_32.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 52,
+  "fields": {
+    "producto": 18,
+    "imagen": "productos/galeria/w1036h832fwebpfitcontainq85_34.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 53,
+  "fields": {
+    "producto": 18,
+    "imagen": "productos/galeria/w1036h832fwebpfitcontainq85_35.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 54,
+  "fields": {
+    "producto": 19,
+    "imagen": "productos/galeria/w1036h832fwebpfitcontainq85_37.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 55,
+  "fields": {
+    "producto": 19,
+    "imagen": "productos/galeria/w1036h832fwebpfitcontainq85_38.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 56,
+  "fields": {
+    "producto": 20,
+    "imagen": "productos/galeria/w200h200fitpad.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 57,
+  "fields": {
+    "producto": 21,
+    "imagen": "productos/galeria/lavabajillas_img2_mfjlBRV.webp",
+    "descripcion": "lavabajillas img2",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 58,
+  "fields": {
+    "producto": 21,
+    "imagen": "productos/galeria/lavabajillas_img3_2ExIWkd.webp",
+    "descripcion": "lavabajillas img3",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 59,
+  "fields": {
+    "producto": 21,
+    "imagen": "productos/galeria/lavabajillas_img4_sFlIUQK.webp",
+    "descripcion": "lavabajillas img4",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 60,
+  "fields": {
+    "producto": 22,
+    "imagen": "productos/galeria/Lavadora_img2_Ajasn7p.webp",
+    "descripcion": "Lavadora img2",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 61,
+  "fields": {
+    "producto": 22,
+    "imagen": "productos/galeria/Lavadora_img3_WhfkVQ0.webp",
+    "descripcion": "Lavadora img3",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 62,
+  "fields": {
+    "producto": 22,
+    "imagen": "productos/galeria/Lavadora_img4_bPrrc9p.webp",
+    "descripcion": "Lavadora img4",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 63,
+  "fields": {
+    "producto": 23,
+    "imagen": "productos/galeria/licuadora_img2.webp",
+    "descripcion": "licuadora img2",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 64,
+  "fields": {
+    "producto": 23,
+    "imagen": "productos/galeria/licuadora_img3.webp",
+    "descripcion": "licuadora img3",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 65,
+  "fields": {
+    "producto": 23,
+    "imagen": "productos/galeria/licuadora_img4.webp",
+    "descripcion": "licuadora img4",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 66,
+  "fields": {
+    "producto": 24,
+    "imagen": "productos/galeria/Microondas_img2_ECivrUr.webp",
+    "descripcion": "Microondas img2",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 67,
+  "fields": {
+    "producto": 24,
+    "imagen": "productos/galeria/Microondas_img3_cy5Oscq.webp",
+    "descripcion": "Microondas img3",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 68,
+  "fields": {
+    "producto": 24,
+    "imagen": "productos/galeria/Microondas_img4_75Mm1rt.webp",
+    "descripcion": "Microondas img4",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 72,
+  "fields": {
+    "producto": 26,
+    "imagen": "productos/galeria/nevera_img2_qlsESxk.webp",
+    "descripcion": "nevera img2",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 73,
+  "fields": {
+    "producto": 26,
+    "imagen": "productos/galeria/nevera_img3_wD7LlcY.webp",
+    "descripcion": "nevera img3",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 74,
+  "fields": {
+    "producto": 26,
+    "imagen": "productos/galeria/nevera_img4_9gSjdft.webp",
+    "descripcion": "nevera img4",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 75,
+  "fields": {
+    "producto": 27,
+    "imagen": "productos/galeria/plancha_img2_NyGMo8P.webp",
+    "descripcion": "plancha img2",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 76,
+  "fields": {
+    "producto": 27,
+    "imagen": "productos/galeria/plancha_img3_ZdGVluS.webp",
+    "descripcion": "plancha img3",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 77,
+  "fields": {
+    "producto": 27,
+    "imagen": "productos/galeria/plancha_img4_b156JCv.webp",
+    "descripcion": "plancha img4",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 81,
+  "fields": {
+    "producto": 29,
+    "imagen": "productos/galeria/Procesadora_de_alimentos_img2_BwLkgNE.webp",
+    "descripcion": "Procesadora de alimentos img2",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 82,
+  "fields": {
+    "producto": 29,
+    "imagen": "productos/galeria/Procesadora_de_alimentos_img3_gAIYI3d.webp",
+    "descripcion": "Procesadora de alimentos img3",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 83,
+  "fields": {
+    "producto": 29,
+    "imagen": "productos/galeria/Procesadora_de_alimentos_img4_Rn9jqvN.webp",
+    "descripcion": "Procesadora de alimentos img4",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 84,
+  "fields": {
+    "producto": 30,
+    "imagen": "productos/galeria/sanduchera_img2_LVVelcG.webp",
+    "descripcion": "sanduchera img2",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 85,
+  "fields": {
+    "producto": 30,
+    "imagen": "productos/galeria/sanduchera_img3_MIXYBru.webp",
+    "descripcion": "sanduchera img3",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 86,
+  "fields": {
+    "producto": 31,
+    "imagen": "productos/galeria/w1500h1500fitpad_1.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 87,
+  "fields": {
+    "producto": 31,
+    "imagen": "productos/galeria/w1500h1500fitpad_2.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 88,
+  "fields": {
+    "producto": 31,
+    "imagen": "productos/galeria/w1500h1500fitpad_3.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 89,
+  "fields": {
+    "producto": 32,
+    "imagen": "productos/galeria/w1500h1500fitpad_5.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 90,
+  "fields": {
+    "producto": 32,
+    "imagen": "productos/galeria/w1500h1500fitpad_6.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 125,
+  "fields": {
+    "producto": 33,
+    "imagen": "productos/galeria/Trapeador_img2_1Neojan.webp",
+    "descripcion": "Trapeador img2",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 126,
+  "fields": {
+    "producto": 33,
+    "imagen": "productos/galeria/Trapeador_img3_aIkvQjl.webp",
+    "descripcion": "Trapeador img3",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 127,
+  "fields": {
+    "producto": 33,
+    "imagen": "productos/galeria/Trapeador_img4_LoMG5E8.webp",
+    "descripcion": "Trapeador img4",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 128,
+  "fields": {
+    "producto": 34,
+    "imagen": "productos/galeria/secadora_img2_iUwgGDp.webp",
+    "descripcion": "secadora img2",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 129,
+  "fields": {
+    "producto": 34,
+    "imagen": "productos/galeria/secadora_img3_8CGn4Fp.webp",
+    "descripcion": "secadora img3",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 130,
+  "fields": {
+    "producto": 34,
+    "imagen": "productos/galeria/secadora_img4_7dkMv4x.webp",
+    "descripcion": "secadora img4",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 131,
+  "fields": {
+    "producto": 35,
+    "imagen": "productos/galeria/w1500h1500fitpad_8.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 132,
+  "fields": {
+    "producto": 35,
+    "imagen": "productos/galeria/w1500h1500fitpad_9.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 133,
+  "fields": {
+    "producto": 35,
+    "imagen": "productos/galeria/w1500h1500fitpad_10.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 134,
+  "fields": {
+    "producto": 36,
+    "imagen": "productos/galeria/tostadora_img2_brcgRgM.webp",
+    "descripcion": "tostadora img2",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 135,
+  "fields": {
+    "producto": 36,
+    "imagen": "productos/galeria/tostadora_img3_MBUZurO.webp",
+    "descripcion": "tostadora img3",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 136,
+  "fields": {
+    "producto": 36,
+    "imagen": "productos/galeria/tostadora_img4_iA1fEcK.webp",
+    "descripcion": "tostadora img4",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 137,
+  "fields": {
+    "producto": 37,
+    "imagen": "productos/galeria/Ventilador_img2_3HFJgDY.webp",
+    "descripcion": "Ventilador img2",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 138,
+  "fields": {
+    "producto": 37,
+    "imagen": "productos/galeria/Ventilador_img3_J3Zfhy9.webp",
+    "descripcion": "Ventilador img3",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 139,
+  "fields": {
+    "producto": 37,
+    "imagen": "productos/galeria/Ventilador_img4_t4Yfj9J.webp",
+    "descripcion": "Ventilador img4",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 140,
+  "fields": {
+    "producto": 38,
+    "imagen": "productos/galeria/w1500h1500fitpad_11.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 141,
+  "fields": {
+    "producto": 38,
+    "imagen": "productos/galeria/w1500h1500fitpad_12.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 142,
+  "fields": {
+    "producto": 38,
+    "imagen": "productos/galeria/w1500h1500fitpad_13.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 143,
+  "fields": {
+    "producto": 39,
+    "imagen": "productos/galeria/w800h800fitpad_3.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 144,
+  "fields": {
+    "producto": 40,
+    "imagen": "productos/galeria/Secadora_pelo_img2.webp",
+    "descripcion": "Secadora pelo img2",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 145,
+  "fields": {
+    "producto": 40,
+    "imagen": "productos/galeria/Secadora_pelo_img3.webp",
+    "descripcion": "Secadora pelo img3",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 146,
+  "fields": {
+    "producto": 40,
+    "imagen": "productos/galeria/Secadora_pelo_img4.webp",
+    "descripcion": "Secadora pelo img4",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 147,
+  "fields": {
+    "producto": 41,
+    "imagen": "productos/galeria/w800h800fitpad_5.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 148,
+  "fields": {
+    "producto": 41,
+    "imagen": "productos/galeria/w800h800fitpad_6.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 149,
+  "fields": {
+    "producto": 42,
+    "imagen": "productos/galeria/Pelo_img2.webp",
+    "descripcion": "Pelo img2",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 150,
+  "fields": {
+    "producto": 42,
+    "imagen": "productos/galeria/Pelo_img3.webp",
+    "descripcion": "Pelo img3",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 151,
+  "fields": {
+    "producto": 42,
+    "imagen": "productos/galeria/Pelo_img4.webp",
+    "descripcion": "Pelo img4",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 152,
+  "fields": {
+    "producto": 43,
+    "imagen": "productos/galeria/w1036h832fwebpfitcontainq85_40.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 153,
+  "fields": {
+    "producto": 43,
+    "imagen": "productos/galeria/w1036h832fwebpfitcontainq85_41.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 154,
+  "fields": {
+    "producto": 43,
+    "imagen": "productos/galeria/w76h76fwebpfitcontainq85_qEEg3UQ.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 155,
+  "fields": {
+    "producto": 44,
+    "imagen": "productos/galeria/Afeitador_img2.webp",
+    "descripcion": "Afeitador img2",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 156,
+  "fields": {
+    "producto": 44,
+    "imagen": "productos/galeria/Afeitador_img3.webp",
+    "descripcion": "Afeitador img3",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 157,
+  "fields": {
+    "producto": 44,
+    "imagen": "productos/galeria/Afeitador_img4.webp",
+    "descripcion": "Afeitador img4",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 158,
+  "fields": {
+    "producto": 45,
+    "imagen": "productos/galeria/w1036h832fwebpfitcontainq85_43.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 159,
+  "fields": {
+    "producto": 45,
+    "imagen": "productos/galeria/w1036h832fwebpfitcontainq85_44.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 160,
+  "fields": {
+    "producto": 45,
+    "imagen": "productos/galeria/w1036h832fwebpfitcontainq85_45.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 161,
+  "fields": {
+    "producto": 46,
+    "imagen": "productos/galeria/Depiladora_img2.webp",
+    "descripcion": "Depiladora img2",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 162,
+  "fields": {
+    "producto": 46,
+    "imagen": "productos/galeria/Depiladora_img3.webp",
+    "descripcion": "Depiladora img3",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 163,
+  "fields": {
+    "producto": 46,
+    "imagen": "productos/galeria/Depiladora_img4.webp",
+    "descripcion": "Depiladora img4",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 164,
+  "fields": {
+    "producto": 47,
+    "imagen": "productos/galeria/w1036h832fwebpfitcontainq85_47.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 165,
+  "fields": {
+    "producto": 47,
+    "imagen": "productos/galeria/w1036h832fwebpfitcontainq85_48.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 166,
+  "fields": {
+    "producto": 47,
+    "imagen": "productos/galeria/w555h832fwebpfitcontainq85.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 167,
+  "fields": {
+    "producto": 49,
+    "imagen": "productos/galeria/w1036h832fwebpfitcontainq85_52.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 168,
+  "fields": {
+    "producto": 49,
+    "imagen": "productos/galeria/w1036h832fwebpfitcontainq85_53.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 169,
+  "fields": {
+    "producto": 49,
+    "imagen": "productos/galeria/w1036h832fwebpfitcontainq85_54.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 170,
+  "fields": {
+    "producto": 50,
+    "imagen": "productos/galeria/cepillo_secador_img2.webp",
+    "descripcion": "cepillo secador img2",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 171,
+  "fields": {
+    "producto": 50,
+    "imagen": "productos/galeria/cepillo_secador_img3.webp",
+    "descripcion": "cepillo secador img3",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 172,
+  "fields": {
+    "producto": 50,
+    "imagen": "productos/galeria/cepillo_secador_img4.webp",
+    "descripcion": "cepillo secador img4",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 173,
+  "fields": {
+    "producto": 51,
+    "imagen": "productos/galeria/w1036h832fwebpfitcontainq85_56.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 174,
+  "fields": {
+    "producto": 51,
+    "imagen": "productos/galeria/w555h832fwebpfitcontainq85_1.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 175,
+  "fields": {
+    "producto": 51,
+    "imagen": "productos/galeria/w555h832fwebpfitcontainq85_2.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 176,
+  "fields": {
+    "producto": 52,
+    "imagen": "productos/galeria/w1036h832fwebpfitcontainq85_58.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 177,
+  "fields": {
+    "producto": 52,
+    "imagen": "productos/galeria/w1036h832fwebpfitcontainq85_59.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 178,
+  "fields": {
+    "producto": 52,
+    "imagen": "productos/galeria/w1036h832fwebpfitcontainq85_60.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 179,
+  "fields": {
+    "producto": 53,
+    "imagen": "productos/galeria/w1036h832fwebpfitcontainq85_62.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 180,
+  "fields": {
+    "producto": 53,
+    "imagen": "productos/galeria/w555h832fwebpfitcontainq85_3.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 181,
+  "fields": {
+    "producto": 53,
+    "imagen": "productos/galeria/w555h832fwebpfitcontainq85_4.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 182,
+  "fields": {
+    "producto": 54,
+    "imagen": "productos/galeria/Maquina_De_Peluquerφa_img2.webp",
+    "descripcion": "Maquina De Peluquerφa img2",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 183,
+  "fields": {
+    "producto": 54,
+    "imagen": "productos/galeria/Maquina_De_Peluquerφa_img3.webp",
+    "descripcion": "Maquina De Peluquerφa img3",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 184,
+  "fields": {
+    "producto": 54,
+    "imagen": "productos/galeria/Maquina_De_Peluquerφa_img4.jpg",
+    "descripcion": "Maquina De Peluquerφa img4",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 185,
+  "fields": {
+    "producto": 55,
+    "imagen": "productos/galeria/w1036h832fwebpfitcontainq85_65.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 186,
+  "fields": {
+    "producto": 55,
+    "imagen": "productos/galeria/w1036h832fwebpfitcontainq85_66.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 187,
+  "fields": {
+    "producto": 55,
+    "imagen": "productos/galeria/w555h832fwebpfitcontainq85_5.webp",
+    "descripcion": "",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 188,
+  "fields": {
+    "producto": 56,
+    "imagen": "productos/galeria/nevera2_img2.webp",
+    "descripcion": "nevera2 img2",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 189,
+  "fields": {
+    "producto": 56,
+    "imagen": "productos/galeria/nevera2_img3.webp",
+    "descripcion": "nevera2 img3",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 190,
+  "fields": {
+    "producto": 56,
+    "imagen": "productos/galeria/nevera2_img4.webp",
+    "descripcion": "nevera2 img4",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 191,
+  "fields": {
+    "producto": 57,
+    "imagen": "productos/galeria/nevera3_img2.webp",
+    "descripcion": "nevera3 img2",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 192,
+  "fields": {
+    "producto": 57,
+    "imagen": "productos/galeria/nevera3_img3.webp",
+    "descripcion": "nevera3 img3",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 193,
+  "fields": {
+    "producto": 57,
+    "imagen": "productos/galeria/nevera3_img4.webp",
+    "descripcion": "nevera3 img4",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 194,
+  "fields": {
+    "producto": 58,
+    "imagen": "productos/galeria/licuadora2_img3.webp",
+    "descripcion": "licuadora2 img2",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 195,
+  "fields": {
+    "producto": 58,
+    "imagen": "productos/galeria/licuadora2_img3_7D5UYRm.webp",
+    "descripcion": "licuadora2 img3",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 196,
+  "fields": {
+    "producto": 58,
+    "imagen": "productos/galeria/licuadora2_img4.webp",
+    "descripcion": "licuadora2 img4",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 197,
+  "fields": {
+    "producto": 59,
+    "imagen": "productos/galeria/Olla_img2.webp",
+    "descripcion": "Olla img2",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 198,
+  "fields": {
+    "producto": 59,
+    "imagen": "productos/galeria/Olla_img3.webp",
+    "descripcion": "Olla img3",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 199,
+  "fields": {
+    "producto": 59,
+    "imagen": "productos/galeria/Olla_img4.webp",
+    "descripcion": "Olla img4",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 215,
+  "fields": {
+    "producto": 65,
+    "imagen": "productos/galeria/Parlanta_img2.webp",
+    "descripcion": "Parlanta img2",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 216,
+  "fields": {
+    "producto": 65,
+    "imagen": "productos/galeria/Parlanta_img2_KMv9C86.webp",
+    "descripcion": "Parlanta img3",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 217,
+  "fields": {
+    "producto": 65,
+    "imagen": "productos/galeria/Parlanta_img4.webp",
+    "descripcion": "Parlanta img4",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 218,
+  "fields": {
+    "producto": 66,
+    "imagen": "productos/galeria/freidora2_img2.webp",
+    "descripcion": "freidora2 img2",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 219,
+  "fields": {
+    "producto": 66,
+    "imagen": "productos/galeria/freidora2_img3.webp",
+    "descripcion": "freidora2 img3",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 220,
+  "fields": {
+    "producto": 66,
+    "imagen": "productos/galeria/freidora2_img4.webp",
+    "descripcion": "freidora2 img4",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 221,
+  "fields": {
+    "producto": 67,
+    "imagen": "productos/galeria/licuadora3_img2.webp",
+    "descripcion": "licuadora3 img2",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 222,
+  "fields": {
+    "producto": 67,
+    "imagen": "productos/galeria/licuadora3_img3.webp",
+    "descripcion": "licuadora3 img3",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 223,
+  "fields": {
+    "producto": 67,
+    "imagen": "productos/galeria/licuadora3_img4.webp",
+    "descripcion": "licuadora3 img4",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 224,
+  "fields": {
+    "producto": 68,
+    "imagen": "productos/galeria/Corta_Pelo_img2.webp",
+    "descripcion": "Corta Pelo img2",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 225,
+  "fields": {
+    "producto": 68,
+    "imagen": "productos/galeria/Corta_Pelo_img3.webp",
+    "descripcion": "Corta Pelo img3",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 226,
+  "fields": {
+    "producto": 68,
+    "imagen": "productos/galeria/Corta_Pelo_img4.webp",
+    "descripcion": "Corta Pelo img4",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 227,
+  "fields": {
+    "producto": 69,
+    "imagen": "productos/galeria/Aspiradora_inalambrica_img2.webp",
+    "descripcion": "Aspiradora inalambrica img2",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 228,
+  "fields": {
+    "producto": 69,
+    "imagen": "productos/galeria/Aspiradora_inalambrica_img3.webp",
+    "descripcion": "Aspiradora inalambrica img3",
+    "orden": 0
+  }
+},
+{
+  "model": "product.imagenproducto",
+  "pk": 229,
+  "fields": {
+    "producto": 69,
+    "imagen": "productos/galeria/Aspiradora_inalambrica_img4.webp",
+    "descripcion": "Aspiradora inalambrica img4",
+    "orden": 0
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "product": 6,
+    "session_key": null,
+    "viewed_at": "2025-11-27T20:26:21.513Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 2,
+  "fields": {
+    "user": 1,
+    "product": 6,
+    "session_key": null,
+    "viewed_at": "2025-11-27T20:28:00.440Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 3,
+  "fields": {
+    "user": 1,
+    "product": 7,
+    "session_key": null,
+    "viewed_at": "2025-11-27T20:33:07.739Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 4,
+  "fields": {
+    "user": 1,
+    "product": 9,
+    "session_key": null,
+    "viewed_at": "2025-11-27T20:44:35.761Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 5,
+  "fields": {
+    "user": 1,
+    "product": 19,
+    "session_key": null,
+    "viewed_at": "2025-11-27T21:26:52.882Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 6,
+  "fields": {
+    "user": 1,
+    "product": 19,
+    "session_key": null,
+    "viewed_at": "2025-11-27T21:34:09.163Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 7,
+  "fields": {
+    "user": 1,
+    "product": 24,
+    "session_key": null,
+    "viewed_at": "2025-11-28T17:50:31.206Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 8,
+  "fields": {
+    "user": 1,
+    "product": 24,
+    "session_key": null,
+    "viewed_at": "2025-11-28T17:53:37.626Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 9,
+  "fields": {
+    "user": 1,
+    "product": 24,
+    "session_key": null,
+    "viewed_at": "2025-11-28T18:02:13.334Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 10,
+  "fields": {
+    "user": 1,
+    "product": 41,
+    "session_key": null,
+    "viewed_at": "2025-11-28T19:41:26.749Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 11,
+  "fields": {
+    "user": 1,
+    "product": 24,
+    "session_key": null,
+    "viewed_at": "2025-11-28T20:16:48.817Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 12,
+  "fields": {
+    "user": 1,
+    "product": 24,
+    "session_key": null,
+    "viewed_at": "2025-11-28T20:17:27.862Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 13,
+  "fields": {
+    "user": 1,
+    "product": 11,
+    "session_key": null,
+    "viewed_at": "2025-11-28T20:33:36.890Z",
+    "ip_address": "127.0.0.1"
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 14,
+  "fields": {
+    "user": 1,
+    "product": 7,
+    "session_key": null,
+    "viewed_at": "2025-11-28T20:34:01.490Z",
+    "ip_address": "127.0.0.1"
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 15,
+  "fields": {
+    "user": 1,
+    "product": 6,
+    "session_key": null,
+    "viewed_at": "2025-11-28T20:34:14.646Z",
+    "ip_address": "127.0.0.1"
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 16,
+  "fields": {
+    "user": 1,
+    "product": 20,
+    "session_key": null,
+    "viewed_at": "2025-11-28T20:34:30.040Z",
+    "ip_address": "127.0.0.1"
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 17,
+  "fields": {
+    "user": 1,
+    "product": 14,
+    "session_key": null,
+    "viewed_at": "2025-11-28T20:34:45.377Z",
+    "ip_address": "127.0.0.1"
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 18,
+  "fields": {
+    "user": 1,
+    "product": 55,
+    "session_key": null,
+    "viewed_at": "2025-11-28T20:41:57.665Z",
+    "ip_address": "127.0.0.1"
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 19,
+  "fields": {
+    "user": 1,
+    "product": 53,
+    "session_key": null,
+    "viewed_at": "2025-11-28T20:54:31.744Z",
+    "ip_address": "127.0.0.1"
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 20,
+  "fields": {
+    "user": 1,
+    "product": 55,
+    "session_key": null,
+    "viewed_at": "2025-11-28T20:54:50.925Z",
+    "ip_address": "127.0.0.1"
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 21,
+  "fields": {
+    "user": 1,
+    "product": 55,
+    "session_key": null,
+    "viewed_at": "2025-11-28T21:01:34.543Z",
+    "ip_address": "127.0.0.1"
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 22,
+  "fields": {
+    "user": 1,
+    "product": 55,
+    "session_key": null,
+    "viewed_at": "2025-11-28T21:08:11.349Z",
+    "ip_address": "127.0.0.1"
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 23,
+  "fields": {
+    "user": 1,
+    "product": 53,
+    "session_key": null,
+    "viewed_at": "2025-11-28T21:11:15.547Z",
+    "ip_address": "127.0.0.1"
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 24,
+  "fields": {
+    "user": 1,
+    "product": 55,
+    "session_key": null,
+    "viewed_at": "2025-11-28T21:21:20.308Z",
+    "ip_address": "127.0.0.1"
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 25,
+  "fields": {
+    "user": 1,
+    "product": 55,
+    "session_key": null,
+    "viewed_at": "2025-11-28T22:19:27.042Z",
+    "ip_address": "127.0.0.1"
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 26,
+  "fields": {
+    "user": 1,
+    "product": 53,
+    "session_key": null,
+    "viewed_at": "2025-11-28T22:26:53.917Z",
+    "ip_address": "127.0.0.1"
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 30,
+  "fields": {
+    "user": 1,
+    "product": 50,
+    "session_key": null,
+    "viewed_at": "2025-12-04T18:41:06.637Z",
+    "ip_address": "127.0.0.1"
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 31,
+  "fields": {
+    "user": 1,
+    "product": 55,
+    "session_key": null,
+    "viewed_at": "2025-12-04T20:01:17.230Z",
+    "ip_address": "127.0.0.1"
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 32,
+  "fields": {
+    "user": 1,
+    "product": 55,
+    "session_key": null,
+    "viewed_at": "2025-12-04T20:09:37.141Z",
+    "ip_address": "127.0.0.1"
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 33,
+  "fields": {
+    "user": 1,
+    "product": 55,
+    "session_key": null,
+    "viewed_at": "2025-12-04T20:23:20.468Z",
+    "ip_address": "127.0.0.1"
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 34,
+  "fields": {
+    "user": 1,
+    "product": 33,
+    "session_key": null,
+    "viewed_at": "2025-12-09T18:10:32.934Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 35,
+  "fields": {
+    "user": 1,
+    "product": 33,
+    "session_key": null,
+    "viewed_at": "2025-12-09T18:12:18.440Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 36,
+  "fields": {
+    "user": 1,
+    "product": 69,
+    "session_key": null,
+    "viewed_at": "2025-12-09T18:12:26.813Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 37,
+  "fields": {
+    "user": 1,
+    "product": 65,
+    "session_key": null,
+    "viewed_at": "2025-12-09T18:12:35.428Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 38,
+  "fields": {
+    "user": null,
+    "product": 50,
+    "session_key": "w612q2zf4kuqvkt2keracry3a9io0uuy",
+    "viewed_at": "2025-12-09T18:14:53.796Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 39,
+  "fields": {
+    "user": null,
+    "product": 69,
+    "session_key": "w612q2zf4kuqvkt2keracry3a9io0uuy",
+    "viewed_at": "2025-12-09T18:15:03.638Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 40,
+  "fields": {
+    "user": null,
+    "product": 68,
+    "session_key": "w612q2zf4kuqvkt2keracry3a9io0uuy",
+    "viewed_at": "2025-12-09T18:15:07.150Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 41,
+  "fields": {
+    "user": null,
+    "product": 67,
+    "session_key": "w612q2zf4kuqvkt2keracry3a9io0uuy",
+    "viewed_at": "2025-12-09T18:15:10.077Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 42,
+  "fields": {
+    "user": null,
+    "product": 66,
+    "session_key": "w612q2zf4kuqvkt2keracry3a9io0uuy",
+    "viewed_at": "2025-12-09T18:15:12.585Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 43,
+  "fields": {
+    "user": 1,
+    "product": 65,
+    "session_key": null,
+    "viewed_at": "2025-12-09T18:18:28.027Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 44,
+  "fields": {
+    "user": null,
+    "product": 69,
+    "session_key": "w612q2zf4kuqvkt2keracry3a9io0uuy",
+    "viewed_at": "2025-12-09T18:18:31.522Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 45,
+  "fields": {
+    "user": null,
+    "product": 69,
+    "session_key": "w612q2zf4kuqvkt2keracry3a9io0uuy",
+    "viewed_at": "2025-12-09T18:18:42.484Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 46,
+  "fields": {
+    "user": null,
+    "product": 68,
+    "session_key": "w612q2zf4kuqvkt2keracry3a9io0uuy",
+    "viewed_at": "2025-12-09T18:18:46.149Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 47,
+  "fields": {
+    "user": 1,
+    "product": 54,
+    "session_key": null,
+    "viewed_at": "2025-12-09T18:23:35.056Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 48,
+  "fields": {
+    "user": 1,
+    "product": 67,
+    "session_key": null,
+    "viewed_at": "2025-12-09T18:27:05.479Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 49,
+  "fields": {
+    "user": 1,
+    "product": 57,
+    "session_key": null,
+    "viewed_at": "2025-12-09T18:42:37.608Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 50,
+  "fields": {
+    "user": 1,
+    "product": 66,
+    "session_key": null,
+    "viewed_at": "2025-12-10T04:49:31.492Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 51,
+  "fields": {
+    "user": null,
+    "product": 69,
+    "session_key": "sdup5shu4okflclw7kt5mkzjh55o2tdl",
+    "viewed_at": "2025-12-10T20:36:02.623Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 55,
+  "fields": {
+    "user": null,
+    "product": 33,
+    "session_key": "et21gvgn6u9of2dur2ui15hnv39nj15f",
+    "viewed_at": "2025-12-25T21:12:34.527Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 56,
+  "fields": {
+    "user": null,
+    "product": 69,
+    "session_key": "ul87tejivetmftfn6ksug6jgtzohokni",
+    "viewed_at": "2026-02-04T20:56:50.581Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 57,
+  "fields": {
+    "user": 1,
+    "product": 69,
+    "session_key": null,
+    "viewed_at": "2026-02-04T21:39:18.833Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 58,
+  "fields": {
+    "user": 1,
+    "product": 67,
+    "session_key": null,
+    "viewed_at": "2026-02-04T22:04:07.696Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 59,
+  "fields": {
+    "user": 1,
+    "product": 69,
+    "session_key": null,
+    "viewed_at": "2026-02-04T22:14:11.960Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 60,
+  "fields": {
+    "user": null,
+    "product": 67,
+    "session_key": "4ghe3fbfasrrcyuns08b0gh5xaeeyera",
+    "viewed_at": "2026-02-06T18:04:30.878Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 61,
+  "fields": {
+    "user": null,
+    "product": 67,
+    "session_key": "4ghe3fbfasrrcyuns08b0gh5xaeeyera",
+    "viewed_at": "2026-02-06T18:04:38.960Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 62,
+  "fields": {
+    "user": 1,
+    "product": 65,
+    "session_key": null,
+    "viewed_at": "2026-02-06T18:30:14.298Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 63,
+  "fields": {
+    "user": 1,
+    "product": 27,
+    "session_key": null,
+    "viewed_at": "2026-02-06T18:52:18.098Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 64,
+  "fields": {
+    "user": null,
+    "product": 65,
+    "session_key": "mp95cpcueev1lz01zyujw23fq2ofnadl",
+    "viewed_at": "2026-02-14T16:02:31.786Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 65,
+  "fields": {
+    "user": 5,
+    "product": 69,
+    "session_key": null,
+    "viewed_at": "2026-02-19T19:11:35.536Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 66,
+  "fields": {
+    "user": 5,
+    "product": 68,
+    "session_key": null,
+    "viewed_at": "2026-02-19T19:12:06.036Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 67,
+  "fields": {
+    "user": 5,
+    "product": 69,
+    "session_key": null,
+    "viewed_at": "2026-02-19T19:16:59.409Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 68,
+  "fields": {
+    "user": 5,
+    "product": 69,
+    "session_key": null,
+    "viewed_at": "2026-02-19T19:19:34.507Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 69,
+  "fields": {
+    "user": 5,
+    "product": 69,
+    "session_key": null,
+    "viewed_at": "2026-02-19T19:19:35.697Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 70,
+  "fields": {
+    "user": 5,
+    "product": 69,
+    "session_key": null,
+    "viewed_at": "2026-02-19T19:19:35.994Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 71,
+  "fields": {
+    "user": 5,
+    "product": 69,
+    "session_key": null,
+    "viewed_at": "2026-02-19T19:19:36.306Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 72,
+  "fields": {
+    "user": 5,
+    "product": 69,
+    "session_key": null,
+    "viewed_at": "2026-02-19T19:19:36.695Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 73,
+  "fields": {
+    "user": 5,
+    "product": 69,
+    "session_key": null,
+    "viewed_at": "2026-02-19T19:19:37.382Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 74,
+  "fields": {
+    "user": 5,
+    "product": 69,
+    "session_key": null,
+    "viewed_at": "2026-02-19T19:19:38.002Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 75,
+  "fields": {
+    "user": 5,
+    "product": 69,
+    "session_key": null,
+    "viewed_at": "2026-02-19T19:19:38.610Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 76,
+  "fields": {
+    "user": 5,
+    "product": 69,
+    "session_key": null,
+    "viewed_at": "2026-02-19T19:19:50.418Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 77,
+  "fields": {
+    "user": 5,
+    "product": 69,
+    "session_key": null,
+    "viewed_at": "2026-02-19T19:20:25.093Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 78,
+  "fields": {
+    "user": 5,
+    "product": 69,
+    "session_key": null,
+    "viewed_at": "2026-02-19T19:25:09.291Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 79,
+  "fields": {
+    "user": 5,
+    "product": 20,
+    "session_key": null,
+    "viewed_at": "2026-02-19T19:28:43.915Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 80,
+  "fields": {
+    "user": 5,
+    "product": 68,
+    "session_key": null,
+    "viewed_at": "2026-02-19T19:29:36.803Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 81,
+  "fields": {
+    "user": 5,
+    "product": 67,
+    "session_key": null,
+    "viewed_at": "2026-02-19T21:56:08.022Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 82,
+  "fields": {
+    "user": 1,
+    "product": 69,
+    "session_key": null,
+    "viewed_at": "2026-02-19T22:17:16.082Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 83,
+  "fields": {
+    "user": 1,
+    "product": 69,
+    "session_key": null,
+    "viewed_at": "2026-02-19T22:18:34.782Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.productview",
+  "pk": 84,
+  "fields": {
+    "user": 1,
+    "product": 20,
+    "session_key": null,
+    "viewed_at": "2026-02-20T19:46:39.512Z",
+    "ip_address": null
+  }
+},
+{
+  "model": "product.searchquery",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "session_key": null,
+    "query": "ventilador",
+    "results_count": 7,
+    "searched_at": "2025-11-28T20:40:40.969Z"
+  }
+},
+{
+  "model": "product.searchquery",
+  "pk": 2,
+  "fields": {
+    "user": null,
+    "session_key": "the23lbea0pf92fj162vsfrg0cmjifa8",
+    "query": "nev",
+    "results_count": 1,
+    "searched_at": "2025-12-04T18:28:53.961Z"
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 1,
+  "fields": {
+    "user": null,
+    "product": 2,
+    "session_key": "5yos3c6td3ft7r8wzgrth7o1p2a114ub",
+    "quantity": 1,
+    "added_at": "2025-11-27T18:50:36.809Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 2,
+  "fields": {
+    "user": null,
+    "product": 32,
+    "session_key": "v9tcpxbpyvfagq3zor718ssedo9wnvjt",
+    "quantity": 1,
+    "added_at": "2025-11-28T18:00:30.015Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 3,
+  "fields": {
+    "user": 1,
+    "product": 41,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2025-11-28T20:25:10.904Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 4,
+  "fields": {
+    "user": 1,
+    "product": 39,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2025-11-28T20:25:12.639Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 5,
+  "fields": {
+    "user": 1,
+    "product": 38,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2025-11-28T20:25:13.830Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 6,
+  "fields": {
+    "user": 1,
+    "product": 55,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2025-11-28T20:41:55.482Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 7,
+  "fields": {
+    "user": 1,
+    "product": 55,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2025-11-28T21:02:08.956Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 8,
+  "fields": {
+    "user": 1,
+    "product": 55,
+    "session_key": null,
+    "quantity": 2,
+    "added_at": "2025-11-28T21:02:15.288Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 9,
+  "fields": {
+    "user": 1,
+    "product": 55,
+    "session_key": null,
+    "quantity": 2,
+    "added_at": "2025-11-28T21:02:17.796Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 10,
+  "fields": {
+    "user": 1,
+    "product": 55,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2025-11-28T22:22:18.777Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 11,
+  "fields": {
+    "user": 1,
+    "product": 53,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2025-11-28T22:30:49.598Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 13,
+  "fields": {
+    "user": 1,
+    "product": 55,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2025-12-04T20:23:23.340Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 14,
+  "fields": {
+    "user": 1,
+    "product": 36,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2025-12-04T20:36:01.897Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 15,
+  "fields": {
+    "user": 1,
+    "product": 30,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2025-12-04T20:36:02.854Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 16,
+  "fields": {
+    "user": 1,
+    "product": 33,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2025-12-04T20:36:06.549Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 17,
+  "fields": {
+    "user": 1,
+    "product": 59,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2025-12-09T17:58:44.754Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 18,
+  "fields": {
+    "user": 1,
+    "product": 59,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2025-12-09T17:58:44.890Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 19,
+  "fields": {
+    "user": 1,
+    "product": 59,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2025-12-09T17:58:45.122Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 20,
+  "fields": {
+    "user": 1,
+    "product": 33,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2025-12-09T18:10:27.431Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 21,
+  "fields": {
+    "user": 1,
+    "product": 65,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2025-12-09T18:18:47.300Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 22,
+  "fields": {
+    "user": 1,
+    "product": 69,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2025-12-09T18:24:13.266Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 23,
+  "fields": {
+    "user": 1,
+    "product": 68,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2025-12-09T18:24:14.384Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 24,
+  "fields": {
+    "user": 1,
+    "product": 69,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2025-12-09T18:27:03.645Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 25,
+  "fields": {
+    "user": 1,
+    "product": 68,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2025-12-09T18:27:04.570Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 26,
+  "fields": {
+    "user": 1,
+    "product": 67,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2025-12-09T18:27:07.245Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 27,
+  "fields": {
+    "user": 1,
+    "product": 59,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2025-12-09T18:42:37.124Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 28,
+  "fields": {
+    "user": 1,
+    "product": 69,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2025-12-09T18:42:37.125Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 29,
+  "fields": {
+    "user": 1,
+    "product": 57,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2025-12-09T18:42:39.961Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 30,
+  "fields": {
+    "user": 1,
+    "product": 57,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2025-12-09T18:42:41.608Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 31,
+  "fields": {
+    "user": 1,
+    "product": 69,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2025-12-09T18:51:34.862Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 32,
+  "fields": {
+    "user": 1,
+    "product": 68,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2025-12-09T18:51:35.570Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 33,
+  "fields": {
+    "user": 1,
+    "product": 66,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2025-12-10T04:49:35.333Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 34,
+  "fields": {
+    "user": 1,
+    "product": 66,
+    "session_key": null,
+    "quantity": 2,
+    "added_at": "2025-12-10T04:49:38.384Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 35,
+  "fields": {
+    "user": null,
+    "product": 68,
+    "session_key": "kwv7rdpvgttnewl73f3sh6i7q50qdlks",
+    "quantity": 1,
+    "added_at": "2025-12-17T20:04:03.680Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 36,
+  "fields": {
+    "user": null,
+    "product": 69,
+    "session_key": "kwv7rdpvgttnewl73f3sh6i7q50qdlks",
+    "quantity": 1,
+    "added_at": "2025-12-17T20:04:06.095Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 41,
+  "fields": {
+    "user": 1,
+    "product": 67,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2026-02-04T22:04:11.663Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 42,
+  "fields": {
+    "user": null,
+    "product": 67,
+    "session_key": "4ghe3fbfasrrcyuns08b0gh5xaeeyera",
+    "quantity": 1,
+    "added_at": "2026-02-06T18:04:35.209Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 43,
+  "fields": {
+    "user": 1,
+    "product": 65,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2026-02-06T18:30:17.294Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 44,
+  "fields": {
+    "user": 1,
+    "product": 65,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2026-02-06T18:30:18.559Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 45,
+  "fields": {
+    "user": 1,
+    "product": 54,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2026-02-06T18:52:08.275Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 46,
+  "fields": {
+    "user": 1,
+    "product": 53,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2026-02-06T18:52:11.136Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 47,
+  "fields": {
+    "user": 1,
+    "product": 27,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2026-02-06T18:52:16.964Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 48,
+  "fields": {
+    "user": 1,
+    "product": 27,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2026-02-06T18:52:22.311Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 49,
+  "fields": {
+    "user": 1,
+    "product": 27,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2026-02-06T18:52:28.708Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 50,
+  "fields": {
+    "user": 1,
+    "product": 27,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2026-02-06T18:52:31.873Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 51,
+  "fields": {
+    "user": 1,
+    "product": 27,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2026-02-06T18:52:32.719Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 54,
+  "fields": {
+    "user": 5,
+    "product": 52,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2026-02-14T16:06:49.523Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 55,
+  "fields": {
+    "user": 5,
+    "product": 67,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2026-02-19T21:12:28.267Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 56,
+  "fields": {
+    "user": 5,
+    "product": 67,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2026-02-19T21:56:04.961Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 57,
+  "fields": {
+    "user": 5,
+    "product": 68,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2026-02-19T21:57:12.610Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 58,
+  "fields": {
+    "user": 1,
+    "product": 49,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2026-02-19T22:28:35.868Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 59,
+  "fields": {
+    "user": 1,
+    "product": 69,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2026-02-20T17:33:57.200Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 60,
+  "fields": {
+    "user": 1,
+    "product": 20,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2026-02-20T19:46:42.674Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 61,
+  "fields": {
+    "user": 1,
+    "product": 20,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2026-02-20T19:46:43.493Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 62,
+  "fields": {
+    "user": 1,
+    "product": 69,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2026-02-20T19:57:45.709Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 63,
+  "fields": {
+    "user": 1,
+    "product": 68,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2026-02-20T19:57:59.040Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 64,
+  "fields": {
+    "user": 1,
+    "product": 66,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2026-02-20T19:58:00.445Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 65,
+  "fields": {
+    "user": 1,
+    "product": 57,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2026-02-20T19:58:01.760Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 66,
+  "fields": {
+    "user": 1,
+    "product": 68,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2026-02-20T19:58:42.946Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 67,
+  "fields": {
+    "user": null,
+    "product": 67,
+    "session_key": "kyv05tq5ve4si1m8tnye0aapag87uvcp",
+    "quantity": 1,
+    "added_at": "2026-02-23T18:57:33.260Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 68,
+  "fields": {
+    "user": null,
+    "product": 68,
+    "session_key": "j9qcs97qaainybjearsrk69vnmldo30i",
+    "quantity": 1,
+    "added_at": "2026-02-23T19:57:55.754Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.cartinteraction",
+  "pk": 69,
+  "fields": {
+    "user": 14,
+    "product": 68,
+    "session_key": null,
+    "quantity": 1,
+    "added_at": "2026-02-23T19:58:14.928Z",
+    "removed_at": null
+  }
+},
+{
+  "model": "product.purchase",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "product": 68,
+    "quantity": 1,
+    "price": "170000.00",
+    "purchased_at": "2025-12-09T18:25:28.223Z"
+  }
+},
+{
+  "model": "product.purchase",
+  "pk": 2,
+  "fields": {
+    "user": 1,
+    "product": 69,
+    "quantity": 1,
+    "price": "1200000.00",
+    "purchased_at": "2025-12-09T18:25:28.240Z"
+  }
+},
+{
+  "model": "product.purchase",
+  "pk": 3,
+  "fields": {
+    "user": 1,
+    "product": 67,
+    "quantity": 1,
+    "price": "450000.00",
+    "purchased_at": "2025-12-09T18:27:40.446Z"
+  }
+},
+{
+  "model": "product.purchase",
+  "pk": 4,
+  "fields": {
+    "user": 1,
+    "product": 68,
+    "quantity": 1,
+    "price": "170000.00",
+    "purchased_at": "2025-12-09T18:27:40.454Z"
+  }
+},
+{
+  "model": "product.purchase",
+  "pk": 5,
+  "fields": {
+    "user": 1,
+    "product": 69,
+    "quantity": 1,
+    "price": "1200000.00",
+    "purchased_at": "2025-12-09T18:27:40.460Z"
+  }
+},
+{
+  "model": "product.purchase",
+  "pk": 6,
+  "fields": {
+    "user": 1,
+    "product": 57,
+    "quantity": 2,
+    "price": "3400000.00",
+    "purchased_at": "2025-12-09T18:43:13.176Z"
+  }
+},
+{
+  "model": "product.purchase",
+  "pk": 7,
+  "fields": {
+    "user": 1,
+    "product": 59,
+    "quantity": 1,
+    "price": "600000.00",
+    "purchased_at": "2025-12-09T18:43:13.184Z"
+  }
+},
+{
+  "model": "product.purchase",
+  "pk": 8,
+  "fields": {
+    "user": 1,
+    "product": 69,
+    "quantity": 1,
+    "price": "1200000.00",
+    "purchased_at": "2025-12-09T18:43:13.189Z"
+  }
+},
+{
+  "model": "product.purchase",
+  "pk": 9,
+  "fields": {
+    "user": 1,
+    "product": 68,
+    "quantity": 1,
+    "price": "170000.00",
+    "purchased_at": "2025-12-09T18:51:56.101Z"
+  }
+},
+{
+  "model": "product.purchase",
+  "pk": 10,
+  "fields": {
+    "user": 1,
+    "product": 69,
+    "quantity": 1,
+    "price": "1200000.00",
+    "purchased_at": "2025-12-09T18:51:56.111Z"
+  }
+},
+{
+  "model": "product.purchase",
+  "pk": 13,
+  "fields": {
+    "user": 1,
+    "product": 65,
+    "quantity": 2,
+    "price": "130000.00",
+    "purchased_at": "2026-02-06T18:51:35.633Z"
+  }
+},
+{
+  "model": "product.purchase",
+  "pk": 14,
+  "fields": {
+    "user": 1,
+    "product": 67,
+    "quantity": 1,
+    "price": "450000.00",
+    "purchased_at": "2026-02-06T18:51:35.641Z"
+  }
+},
+{
+  "model": "product.purchase",
+  "pk": 15,
+  "fields": {
+    "user": 1,
+    "product": 66,
+    "quantity": 3,
+    "price": "800000.00",
+    "purchased_at": "2026-02-06T18:51:35.644Z"
+  }
+},
+{
+  "model": "product.purchase",
+  "pk": 18,
+  "fields": {
+    "user": 5,
+    "product": 67,
+    "quantity": 2,
+    "price": "450000.00",
+    "purchased_at": "2026-02-19T21:56:58.031Z"
+  }
+},
+{
+  "model": "product.purchase",
+  "pk": 19,
+  "fields": {
+    "user": 5,
+    "product": 52,
+    "quantity": 1,
+    "price": "1599900.00",
+    "purchased_at": "2026-02-19T21:56:58.039Z"
+  }
+},
+{
+  "model": "product.purchase",
+  "pk": 20,
+  "fields": {
+    "user": 1,
+    "product": 20,
+    "quantity": 2,
+    "price": "4199900.00",
+    "purchased_at": "2026-02-20T19:46:57.767Z"
+  }
+},
+{
+  "model": "product.purchase",
+  "pk": 21,
+  "fields": {
+    "user": 1,
+    "product": 69,
+    "quantity": 1,
+    "price": "1200000.00",
+    "purchased_at": "2026-02-20T19:46:57.772Z"
+  }
+},
+{
+  "model": "product.purchase",
+  "pk": 22,
+  "fields": {
+    "user": 1,
+    "product": 49,
+    "quantity": 1,
+    "price": "249900.00",
+    "purchased_at": "2026-02-20T19:46:57.775Z"
+  }
+},
+{
+  "model": "product.purchase",
+  "pk": 23,
+  "fields": {
+    "user": 1,
+    "product": 27,
+    "quantity": 1,
+    "price": "428000.00",
+    "purchased_at": "2026-02-20T19:46:57.778Z"
+  }
+},
+{
+  "model": "product.purchase",
+  "pk": 24,
+  "fields": {
+    "user": 1,
+    "product": 53,
+    "quantity": 1,
+    "price": "1299900.00",
+    "purchased_at": "2026-02-20T19:46:57.782Z"
+  }
+},
+{
+  "model": "product.purchase",
+  "pk": 25,
+  "fields": {
+    "user": 1,
+    "product": 54,
+    "quantity": 1,
+    "price": "215000.00",
+    "purchased_at": "2026-02-20T19:46:57.785Z"
+  }
+},
+{
+  "model": "product.purchase",
+  "pk": 26,
+  "fields": {
+    "user": 14,
+    "product": 68,
+    "quantity": 1,
+    "price": "170000.00",
+    "purchased_at": "2026-02-23T19:58:50.819Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 1,
+  "fields": {
+    "user": null,
+    "session_key": "ur0g4f677ez7iu638g74ox566kysognu",
+    "created_at": "2025-11-25T18:46:13.935Z",
+    "updated_at": "2025-11-25T18:46:13.935Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 2,
+  "fields": {
+    "user": 1,
+    "session_key": null,
+    "created_at": "2025-11-25T19:02:56.380Z",
+    "updated_at": "2025-11-25T19:02:56.380Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 3,
+  "fields": {
+    "user": null,
+    "session_key": "558xqmpv6jv84neikimwejfim16i6p5m",
+    "created_at": "2025-11-25T19:03:48.548Z",
+    "updated_at": "2025-11-25T19:03:48.548Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 4,
+  "fields": {
+    "user": null,
+    "session_key": "htqggu68ebgpw19eof4mduso0furqe48",
+    "created_at": "2025-11-25T21:51:46.514Z",
+    "updated_at": "2025-11-25T21:51:46.514Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 6,
+  "fields": {
+    "user": null,
+    "session_key": "bkurd8mld8to26be2sau9vk1m5u5ww0f",
+    "created_at": "2025-11-25T22:10:54.400Z",
+    "updated_at": "2025-11-25T22:10:54.400Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 7,
+  "fields": {
+    "user": null,
+    "session_key": "zw0f2aznbck2aqxgcz4yrqv602bd80yo",
+    "created_at": "2025-11-26T03:32:08.329Z",
+    "updated_at": "2025-11-26T03:32:08.329Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 8,
+  "fields": {
+    "user": null,
+    "session_key": "oe1uraof14pswo150ogonqs6dcumg0q5",
+    "created_at": "2025-11-26T03:50:51.554Z",
+    "updated_at": "2025-11-26T03:50:51.554Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 9,
+  "fields": {
+    "user": null,
+    "session_key": "spulzgambwv24hjv76lweyl8u4r0o8p1",
+    "created_at": "2025-11-26T22:07:18.147Z",
+    "updated_at": "2025-11-26T22:07:18.147Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 10,
+  "fields": {
+    "user": null,
+    "session_key": "a8xyzk30c7tpsmq70yawz96zetduedoz",
+    "created_at": "2025-11-27T17:52:50.400Z",
+    "updated_at": "2025-11-27T17:52:50.400Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 11,
+  "fields": {
+    "user": null,
+    "session_key": "5yos3c6td3ft7r8wzgrth7o1p2a114ub",
+    "created_at": "2025-11-27T17:53:16.797Z",
+    "updated_at": "2025-11-27T17:53:16.797Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 12,
+  "fields": {
+    "user": null,
+    "session_key": "v9tcpxbpyvfagq3zor718ssedo9wnvjt",
+    "created_at": "2025-11-28T00:45:20.972Z",
+    "updated_at": "2025-11-28T00:45:20.972Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 13,
+  "fields": {
+    "user": null,
+    "session_key": "25fe72zv1zqevkxuracjod8eyg7b0vcp",
+    "created_at": "2025-11-28T17:47:28.186Z",
+    "updated_at": "2025-11-28T17:47:28.186Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 14,
+  "fields": {
+    "user": null,
+    "session_key": "vf902bfr3pvy0n9j4tm7g3o7bbtjncej",
+    "created_at": "2025-11-28T22:31:54.479Z",
+    "updated_at": "2025-11-28T22:31:54.479Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 15,
+  "fields": {
+    "user": null,
+    "session_key": "fa9my2u8obw7twhrbzx0icpzgd64z8fu",
+    "created_at": "2025-12-02T20:50:44.577Z",
+    "updated_at": "2025-12-02T20:50:44.577Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 16,
+  "fields": {
+    "user": null,
+    "session_key": "the23lbea0pf92fj162vsfrg0cmjifa8",
+    "created_at": "2025-12-04T18:26:14.938Z",
+    "updated_at": "2025-12-04T18:26:14.938Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 17,
+  "fields": {
+    "user": null,
+    "session_key": "akam8yvv3x1jtgvmjo7qwbbkmkb8ooc8",
+    "created_at": "2025-12-04T21:22:20.991Z",
+    "updated_at": "2025-12-04T21:22:20.991Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 18,
+  "fields": {
+    "user": null,
+    "session_key": "kbyc1amcrwck9gvna4xo32ef2ahfvl68",
+    "created_at": "2025-12-05T17:29:27.117Z",
+    "updated_at": "2025-12-05T17:29:27.117Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 19,
+  "fields": {
+    "user": null,
+    "session_key": "x93g8ay8lj5huol4i92v4608fud1qnxc",
+    "created_at": "2025-12-05T17:34:45.784Z",
+    "updated_at": "2025-12-05T17:34:45.784Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 20,
+  "fields": {
+    "user": null,
+    "session_key": "ivj28zeuko1poi09hhzfnj24ciawns66",
+    "created_at": "2025-12-05T17:37:20.001Z",
+    "updated_at": "2025-12-05T17:37:20.001Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 21,
+  "fields": {
+    "user": null,
+    "session_key": "w612q2zf4kuqvkt2keracry3a9io0uuy",
+    "created_at": "2025-12-09T17:33:14.189Z",
+    "updated_at": "2025-12-09T17:33:14.190Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 22,
+  "fields": {
+    "user": null,
+    "session_key": "9d2fzigb693txghfp91wq7lxr5nsesqi",
+    "created_at": "2025-12-09T17:37:01.262Z",
+    "updated_at": "2025-12-09T17:37:01.262Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 23,
+  "fields": {
+    "user": null,
+    "session_key": "hilpf0cp57sjz37hvs9ec1pfo4t6okia",
+    "created_at": "2025-12-09T18:26:07.359Z",
+    "updated_at": "2025-12-09T18:26:07.359Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 24,
+  "fields": {
+    "user": null,
+    "session_key": "i9jxy8zl96he47njti7zhah5fvq5qv47",
+    "created_at": "2025-12-09T21:46:35.738Z",
+    "updated_at": "2025-12-09T21:46:35.738Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 25,
+  "fields": {
+    "user": null,
+    "session_key": "lryte6eyij7c7l5jb1sndgoo667np7id",
+    "created_at": "2025-12-10T01:16:58.924Z",
+    "updated_at": "2025-12-10T01:16:58.924Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 26,
+  "fields": {
+    "user": null,
+    "session_key": "33ovrj56f9xi5y4rexh0h3e0sd4doeup",
+    "created_at": "2025-12-10T04:52:03.280Z",
+    "updated_at": "2025-12-10T04:52:03.280Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 28,
+  "fields": {
+    "user": null,
+    "session_key": "sdup5shu4okflclw7kt5mkzjh55o2tdl",
+    "created_at": "2025-12-10T20:34:24.358Z",
+    "updated_at": "2025-12-10T20:34:24.358Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 29,
+  "fields": {
+    "user": null,
+    "session_key": "kwv7rdpvgttnewl73f3sh6i7q50qdlks",
+    "created_at": "2025-12-17T19:57:41.453Z",
+    "updated_at": "2025-12-17T19:57:41.453Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 31,
+  "fields": {
+    "user": null,
+    "session_key": "rr3wwoqidgfxqxn3nyr75wk10xqcbkek",
+    "created_at": "2025-12-17T20:18:36.755Z",
+    "updated_at": "2025-12-17T20:18:36.755Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 32,
+  "fields": {
+    "user": 5,
+    "session_key": null,
+    "created_at": "2025-12-17T20:18:48.471Z",
+    "updated_at": "2025-12-17T20:18:48.471Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 33,
+  "fields": {
+    "user": null,
+    "session_key": "sy6bfj2mwbf2pcyyef24v97no1v7kkid",
+    "created_at": "2025-12-17T20:53:15.647Z",
+    "updated_at": "2025-12-17T20:53:15.647Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 34,
+  "fields": {
+    "user": null,
+    "session_key": "et21gvgn6u9of2dur2ui15hnv39nj15f",
+    "created_at": "2025-12-25T21:07:10.280Z",
+    "updated_at": "2025-12-25T21:07:10.280Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 35,
+  "fields": {
+    "user": null,
+    "session_key": "okxq4ghnqpqggtb6o5j7d4jkeb4lxzcn",
+    "created_at": "2025-12-30T00:52:36.629Z",
+    "updated_at": "2025-12-30T00:52:36.629Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 36,
+  "fields": {
+    "user": null,
+    "session_key": "ll2y8gdqk1521ogp83lp2qxlbuataqeg",
+    "created_at": "2026-01-05T23:17:06.341Z",
+    "updated_at": "2026-01-05T23:17:06.342Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 37,
+  "fields": {
+    "user": null,
+    "session_key": "nch7iu0ankz75its7pzjjs7wkstu51zh",
+    "created_at": "2026-02-02T19:39:09.284Z",
+    "updated_at": "2026-02-02T19:39:09.284Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 38,
+  "fields": {
+    "user": null,
+    "session_key": "gr72ei7y2ots5glh38l0l8g1yo3ucmgk",
+    "created_at": "2026-02-03T21:59:16.383Z",
+    "updated_at": "2026-02-03T21:59:16.383Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 39,
+  "fields": {
+    "user": null,
+    "session_key": "ul87tejivetmftfn6ksug6jgtzohokni",
+    "created_at": "2026-02-04T20:56:23.549Z",
+    "updated_at": "2026-02-04T20:56:23.549Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 40,
+  "fields": {
+    "user": null,
+    "session_key": "d18k9i5gr6vfv8qg7zml2984qymorc5w",
+    "created_at": "2026-02-05T22:13:44.452Z",
+    "updated_at": "2026-02-05T22:13:44.452Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 41,
+  "fields": {
+    "user": null,
+    "session_key": "4ghe3fbfasrrcyuns08b0gh5xaeeyera",
+    "created_at": "2026-02-06T18:04:16.008Z",
+    "updated_at": "2026-02-06T18:04:16.008Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 42,
+  "fields": {
+    "user": null,
+    "session_key": "dl1k2h43f11akeyep3ou1nfpzvz6vhcb",
+    "created_at": "2026-02-06T18:05:07.804Z",
+    "updated_at": "2026-02-06T18:05:07.804Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 44,
+  "fields": {
+    "user": null,
+    "session_key": "92khddwolinareiwkgjqpw9av1csnsw8",
+    "created_at": "2026-02-06T18:09:43.319Z",
+    "updated_at": "2026-02-06T18:09:43.319Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 45,
+  "fields": {
+    "user": null,
+    "session_key": "gtyltwyr7bx3r2f86t6asqq5ungl0tbi",
+    "created_at": "2026-02-06T20:19:52.220Z",
+    "updated_at": "2026-02-06T20:19:52.220Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 47,
+  "fields": {
+    "user": null,
+    "session_key": "8wa9844b1qc5zeypylqxzy0wfrhmtr5u",
+    "created_at": "2026-02-06T20:21:38.725Z",
+    "updated_at": "2026-02-06T20:21:38.725Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 49,
+  "fields": {
+    "user": null,
+    "session_key": "7jfolwn3cdjk69owrqtc3umlh2ufskjh",
+    "created_at": "2026-02-06T20:24:44.550Z",
+    "updated_at": "2026-02-06T20:24:44.550Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 50,
+  "fields": {
+    "user": null,
+    "session_key": "n7r3e6qap5tpc2kfh97l982ew7e2lk3e",
+    "created_at": "2026-02-06T20:27:10.742Z",
+    "updated_at": "2026-02-06T20:27:10.742Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 51,
+  "fields": {
+    "user": null,
+    "session_key": "jfzsdkv7s24h54yosgaensl4i94gpze9",
+    "created_at": "2026-02-06T20:39:21.624Z",
+    "updated_at": "2026-02-06T20:39:21.624Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 52,
+  "fields": {
+    "user": null,
+    "session_key": "1509q3yqfsnc79vg84edq48nywp1nrze",
+    "created_at": "2026-02-06T20:52:35.771Z",
+    "updated_at": "2026-02-06T20:52:35.771Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 54,
+  "fields": {
+    "user": null,
+    "session_key": "wl82obhsdkbal1d88pzw7ggnh7cd0tk2",
+    "created_at": "2026-02-06T21:02:29.811Z",
+    "updated_at": "2026-02-06T21:02:29.811Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 55,
+  "fields": {
+    "user": null,
+    "session_key": "y6zhuqkiwzixhe9n2kidiuuy8fmcfk92",
+    "created_at": "2026-02-09T18:02:00.231Z",
+    "updated_at": "2026-02-09T18:02:00.231Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 56,
+  "fields": {
+    "user": null,
+    "session_key": "e9xdvpekz2t2bxdci8fz3fk2psii3687",
+    "created_at": "2026-02-09T18:46:02.010Z",
+    "updated_at": "2026-02-09T18:46:02.010Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 58,
+  "fields": {
+    "user": null,
+    "session_key": "82lcmfw7mrwmhuubyzhnq3p7k4daqbu7",
+    "created_at": "2026-02-10T21:46:33.392Z",
+    "updated_at": "2026-02-10T21:46:33.392Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 59,
+  "fields": {
+    "user": null,
+    "session_key": "0s0vitox647vl6s1bqf4vrdz8tpyr34k",
+    "created_at": "2026-02-10T21:48:02.880Z",
+    "updated_at": "2026-02-10T21:48:02.880Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 60,
+  "fields": {
+    "user": null,
+    "session_key": "atglv08ozzgrm7guv1v06t7wm1b7z5tp",
+    "created_at": "2026-02-11T22:03:39.228Z",
+    "updated_at": "2026-02-11T22:03:39.228Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 61,
+  "fields": {
+    "user": null,
+    "session_key": "mp95cpcueev1lz01zyujw23fq2ofnadl",
+    "created_at": "2026-02-13T18:24:25.409Z",
+    "updated_at": "2026-02-13T18:24:25.409Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 62,
+  "fields": {
+    "user": null,
+    "session_key": "5uotol7m9ke6n8dwh89bq31ausrq7wk3",
+    "created_at": "2026-02-16T17:57:36.734Z",
+    "updated_at": "2026-02-16T17:57:36.734Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 64,
+  "fields": {
+    "user": null,
+    "session_key": "mnlt6f56asbcskixqh8uk58og0hfyvi6",
+    "created_at": "2026-02-18T20:20:30.310Z",
+    "updated_at": "2026-02-18T20:20:30.310Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 65,
+  "fields": {
+    "user": null,
+    "session_key": "bmewowlxcx0lkf9498ytsvk9xcrvp8e2",
+    "created_at": "2026-02-19T21:01:24.367Z",
+    "updated_at": "2026-02-19T21:01:24.367Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 66,
+  "fields": {
+    "user": null,
+    "session_key": "rhkuwrae32zxj7v0ozzetr62hqtfojmh",
+    "created_at": "2026-02-20T20:55:33.984Z",
+    "updated_at": "2026-02-20T20:55:33.984Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 67,
+  "fields": {
+    "user": null,
+    "session_key": "5piuc9uuw196deuzu8hg1khkaiabrr69",
+    "created_at": "2026-02-20T20:55:48.712Z",
+    "updated_at": "2026-02-20T20:55:48.712Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 68,
+  "fields": {
+    "user": null,
+    "session_key": "sog21iuhoftggg03qzxxtqzt4fy71ipm",
+    "created_at": "2026-02-20T21:08:54.466Z",
+    "updated_at": "2026-02-20T21:08:54.466Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 69,
+  "fields": {
+    "user": 13,
+    "session_key": null,
+    "created_at": "2026-02-20T21:09:24.860Z",
+    "updated_at": "2026-02-20T21:09:24.860Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 70,
+  "fields": {
+    "user": null,
+    "session_key": "x61kccurkzhqivsilwlqo32eotplws6k",
+    "created_at": "2026-02-20T21:16:53.129Z",
+    "updated_at": "2026-02-20T21:16:53.129Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 71,
+  "fields": {
+    "user": null,
+    "session_key": "sr2nlo4ivxgb91m4ahewigdkl3ue7fhe",
+    "created_at": "2026-02-20T21:17:39.093Z",
+    "updated_at": "2026-02-20T21:17:39.093Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 72,
+  "fields": {
+    "user": null,
+    "session_key": "mbho6rdk3a8p5pr0nhcwppxha625y6bi",
+    "created_at": "2026-02-20T21:18:11.873Z",
+    "updated_at": "2026-02-20T21:18:11.873Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 73,
+  "fields": {
+    "user": null,
+    "session_key": "4jlh0ta2ivumut6tbxyst1fmu5ap1ls0",
+    "created_at": "2026-02-20T21:24:36.799Z",
+    "updated_at": "2026-02-20T21:24:36.799Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 74,
+  "fields": {
+    "user": null,
+    "session_key": "2tt4wyhf701s90m0eovcdfa8jcyk1qug",
+    "created_at": "2026-02-20T22:28:50.288Z",
+    "updated_at": "2026-02-20T22:28:50.288Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 75,
+  "fields": {
+    "user": null,
+    "session_key": "urpirke03jgthsjambzw0uazzgxud3ao",
+    "created_at": "2026-02-20T22:37:31.389Z",
+    "updated_at": "2026-02-20T22:37:31.389Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 76,
+  "fields": {
+    "user": null,
+    "session_key": "kl57xub9kqqucz2gj72ss3tmr8krnzj9",
+    "created_at": "2026-02-23T16:24:22.835Z",
+    "updated_at": "2026-02-23T16:24:22.835Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 77,
+  "fields": {
+    "user": null,
+    "session_key": "gnzjwcga1v0i0k8802sr2uucmu7yft0h",
+    "created_at": "2026-02-23T18:42:27.356Z",
+    "updated_at": "2026-02-23T18:42:27.356Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 78,
+  "fields": {
+    "user": 14,
+    "session_key": null,
+    "created_at": "2026-02-23T18:42:55.490Z",
+    "updated_at": "2026-02-23T18:42:55.490Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 79,
+  "fields": {
+    "user": null,
+    "session_key": "911flnmfqb7zvv7rer8g7sk4n4hqzmnm",
+    "created_at": "2026-02-23T18:43:10.866Z",
+    "updated_at": "2026-02-23T18:43:10.866Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 80,
+  "fields": {
+    "user": null,
+    "session_key": "r52ctfjkriue8gadblgg3aovkyhqfm35",
+    "created_at": "2026-02-23T18:44:01.538Z",
+    "updated_at": "2026-02-23T18:44:01.538Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 81,
+  "fields": {
+    "user": null,
+    "session_key": "kyv05tq5ve4si1m8tnye0aapag87uvcp",
+    "created_at": "2026-02-23T18:49:28.378Z",
+    "updated_at": "2026-02-23T18:49:28.378Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 82,
+  "fields": {
+    "user": 15,
+    "session_key": null,
+    "created_at": "2026-02-23T19:40:15.681Z",
+    "updated_at": "2026-02-23T19:40:15.681Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 83,
+  "fields": {
+    "user": null,
+    "session_key": "eyvq3vxregkbh563znaqonma3ylf4tep",
+    "created_at": "2026-02-23T19:41:02.066Z",
+    "updated_at": "2026-02-23T19:41:02.066Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 84,
+  "fields": {
+    "user": null,
+    "session_key": "fm8atv4oiiuxtl96qvcujc9mvw7rco4x",
+    "created_at": "2026-02-23T19:42:09.017Z",
+    "updated_at": "2026-02-23T19:42:09.017Z"
+  }
+},
+{
+  "model": "product.cart",
+  "pk": 85,
+  "fields": {
+    "user": null,
+    "session_key": "j9qcs97qaainybjearsrk69vnmldo30i",
+    "created_at": "2026-02-23T19:49:16.333Z",
+    "updated_at": "2026-02-23T19:49:16.333Z"
+  }
+},
+{
+  "model": "product.cartitem",
+  "pk": 1,
+  "fields": {
+    "cart": 11,
+    "product": 2,
+    "quantity": 1,
+    "added_at": "2025-11-27T18:50:36.756Z",
+    "updated_at": "2025-11-27T18:50:36.756Z"
+  }
+},
+{
+  "model": "product.cartitem",
+  "pk": 2,
+  "fields": {
+    "cart": 12,
+    "product": 32,
+    "quantity": 1,
+    "added_at": "2025-11-28T18:00:30.007Z",
+    "updated_at": "2025-11-28T18:00:30.007Z"
+  }
+},
+{
+  "model": "product.cartitem",
+  "pk": 27,
+  "fields": {
+    "cart": 29,
+    "product": 68,
+    "quantity": 1,
+    "added_at": "2025-12-17T20:04:03.625Z",
+    "updated_at": "2025-12-17T20:04:03.625Z"
+  }
+},
+{
+  "model": "product.cartitem",
+  "pk": 28,
+  "fields": {
+    "cart": 29,
+    "product": 69,
+    "quantity": 1,
+    "added_at": "2025-12-17T20:04:06.044Z",
+    "updated_at": "2025-12-17T20:04:06.044Z"
+  }
+},
+{
+  "model": "product.cartitem",
+  "pk": 34,
+  "fields": {
+    "cart": 41,
+    "product": 67,
+    "quantity": 1,
+    "added_at": "2026-02-06T18:04:35.178Z",
+    "updated_at": "2026-02-06T18:04:35.178Z"
+  }
+},
+{
+  "model": "product.cartitem",
+  "pk": 43,
+  "fields": {
+    "cart": 32,
+    "product": 68,
+    "quantity": 1,
+    "added_at": "2026-02-19T21:57:12.608Z",
+    "updated_at": "2026-02-19T21:57:12.608Z"
+  }
+},
+{
+  "model": "product.cartitem",
+  "pk": 47,
+  "fields": {
+    "cart": 2,
+    "product": 69,
+    "quantity": 1,
+    "added_at": "2026-02-20T19:57:45.683Z",
+    "updated_at": "2026-02-20T19:57:45.683Z"
+  }
+},
+{
+  "model": "product.cartitem",
+  "pk": 48,
+  "fields": {
+    "cart": 2,
+    "product": 68,
+    "quantity": 2,
+    "added_at": "2026-02-20T19:57:59.000Z",
+    "updated_at": "2026-02-20T19:58:42.943Z"
+  }
+},
+{
+  "model": "product.cartitem",
+  "pk": 49,
+  "fields": {
+    "cart": 2,
+    "product": 66,
+    "quantity": 1,
+    "added_at": "2026-02-20T19:58:00.412Z",
+    "updated_at": "2026-02-20T19:58:00.412Z"
+  }
+},
+{
+  "model": "product.cartitem",
+  "pk": 50,
+  "fields": {
+    "cart": 2,
+    "product": 57,
+    "quantity": 1,
+    "added_at": "2026-02-20T19:58:01.736Z",
+    "updated_at": "2026-02-20T19:58:01.736Z"
+  }
+},
+{
+  "model": "product.cartitem",
+  "pk": 51,
+  "fields": {
+    "cart": 81,
+    "product": 67,
+    "quantity": 1,
+    "added_at": "2026-02-23T18:57:33.248Z",
+    "updated_at": "2026-02-23T18:57:33.248Z"
+  }
+},
+{
+  "model": "product.cartitem",
+  "pk": 52,
+  "fields": {
+    "cart": 85,
+    "product": 68,
+    "quantity": 1,
+    "added_at": "2026-02-23T19:57:55.724Z",
+    "updated_at": "2026-02-23T19:57:55.724Z"
+  }
+},
+{
+  "model": "product.wishlist",
+  "pk": 2,
+  "fields": {
+    "user": 1,
+    "created_at": "2025-11-27T21:27:05.493Z",
+    "updated_at": "2025-11-27T21:27:05.493Z"
+  }
+},
+{
+  "model": "product.wishlist",
+  "pk": 7,
+  "fields": {
+    "user": 5,
+    "created_at": "2026-02-14T16:06:36.467Z",
+    "updated_at": "2026-02-14T16:06:36.467Z"
+  }
+},
+{
+  "model": "product.wishlistitem",
+  "pk": 58,
+  "fields": {
+    "wishlist": 2,
+    "product": 67,
+    "added_at": "2025-12-10T04:49:30.043Z"
+  }
+},
+{
+  "model": "product.wishlistitem",
+  "pk": 59,
+  "fields": {
+    "wishlist": 2,
+    "product": 66,
+    "added_at": "2025-12-10T04:49:33.694Z"
+  }
+},
+{
+  "model": "product.wishlistitem",
+  "pk": 64,
+  "fields": {
+    "wishlist": 2,
+    "product": 68,
+    "added_at": "2026-02-06T18:51:00.397Z"
+  }
+},
+{
+  "model": "product.wishlistitem",
+  "pk": 71,
+  "fields": {
+    "wishlist": 7,
+    "product": 14,
+    "added_at": "2026-02-14T16:06:36.520Z"
+  }
+},
+{
+  "model": "product.wishlistitem",
+  "pk": 72,
+  "fields": {
+    "wishlist": 7,
+    "product": 26,
+    "added_at": "2026-02-14T16:06:38.138Z"
+  }
+},
+{
+  "model": "product.wishlistitem",
+  "pk": 76,
+  "fields": {
+    "wishlist": 2,
+    "product": 27,
+    "added_at": "2026-02-20T19:57:28.518Z"
+  }
+},
+{
+  "model": "product.wishlistitem",
+  "pk": 77,
+  "fields": {
+    "wishlist": 2,
+    "product": 55,
+    "added_at": "2026-02-20T19:57:30.015Z"
+  }
+},
+{
+  "model": "product.wishlistitem",
+  "pk": 78,
+  "fields": {
+    "wishlist": 2,
+    "product": 56,
+    "added_at": "2026-02-20T19:57:31.694Z"
+  }
+},
+{
+  "model": "product.wishlistitem",
+  "pk": 79,
+  "fields": {
+    "wishlist": 2,
+    "product": 22,
+    "added_at": "2026-02-20T19:57:34.431Z"
+  }
+},
+{
+  "model": "user.usuario",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$JGIPCFWRe1ef1XFExgfiUz$5dzNeJJNlnl4peZvvdBcqxfGCGtWieXt8sjbcjYeUWw=",
+    "last_login": "2026-02-23T18:41:36.713Z",
+    "is_superuser": true,
+    "first_name": "alana",
+    "last_name": "coneo",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-11-25T19:02:09.928Z",
+    "email": "alanconeorodriguez1130@gmail.com",
+    "username": "alanconeorodriguez1130_b9079b44",
+    "telefono": "3118741905",
+    "direccion": "",
+    "ciudad": "Cartagena",
+    "codigo_postal": "",
+    "tipo_usuario": "admin",
+    "fecha_registro": "2025-11-25T19:02:10.601Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "user.usuario",
+  "pk": 5,
+  "fields": {
+    "password": "!B2Tx6Fa46e7ROQ7OduPcZpKeXHUngxiBB2IWwolA",
+    "last_login": "2026-02-23T19:41:54.963Z",
+    "is_superuser": false,
+    "first_name": "electrohome",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-12-17T20:18:48.336Z",
+    "email": "infoelectrohome2025@gmail.com",
+    "username": "electrohome",
+    "telefono": "",
+    "direccion": "",
+    "ciudad": "",
+    "codigo_postal": "",
+    "tipo_usuario": "cliente",
+    "fecha_registro": "2025-12-17T20:18:48.414Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "user.usuario",
+  "pk": 13,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$veBPLgnjDeG2phXdEQ3yAI$dcIz8X+oXMg/kkdHbjKGFFb7Z5Hveh0vnePxItF6b2A=",
+    "last_login": "2026-02-23T19:43:55.274Z",
+    "is_superuser": false,
+    "first_name": "alan",
+    "last_name": "coneo",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-02-20T21:08:39.144Z",
+    "email": "supervisor1@gmail.com",
+    "username": "supervisor1_a87e979c",
+    "telefono": "",
+    "direccion": "",
+    "ciudad": "",
+    "codigo_postal": "",
+    "tipo_usuario": "supervisor",
+    "fecha_registro": "2026-02-20T21:08:39.665Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "user.usuario",
+  "pk": 14,
+  "fields": {
+    "password": "!1CjsHXlQMlHdYLkVtulgO5KXoG9n7U0B0m7dSVY3",
+    "last_login": "2026-02-23T19:58:09.173Z",
+    "is_superuser": false,
+    "first_name": "Alan David",
+    "last_name": "Coneo Rodrφguez",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-02-23T18:42:55.370Z",
+    "email": "coneorodriguezalandavid@gmail.com",
+    "username": "alan_david",
+    "telefono": "",
+    "direccion": "",
+    "ciudad": "",
+    "codigo_postal": "",
+    "tipo_usuario": "cliente",
+    "fecha_registro": "2026-02-23T18:42:55.437Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "user.usuario",
+  "pk": 15,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$0xCKk1Ja6PGAbn1BZDrbAj$a9fHwKAf9ZlpYGR9npVxH/EEgOhWqtI2MbOaL/ZNrJw=",
+    "last_login": "2026-02-23T19:40:15.522Z",
+    "is_superuser": false,
+    "first_name": "JUAN",
+    "last_name": "PABLO",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-02-23T19:38:44.216Z",
+    "email": "juanhc58hc@gmail.com",
+    "username": "juanhc58hc_c4e2bf19",
+    "telefono": "3132030569",
+    "direccion": "",
+    "ciudad": "",
+    "codigo_postal": "",
+    "tipo_usuario": "cliente",
+    "fecha_registro": "2026-02-23T19:38:44.984Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "account.emailaddress",
+  "pk": 2,
+  "fields": {
+    "user": 5,
+    "email": "infoelectrohome2025@gmail.com",
+    "verified": true,
+    "primary": true
+  }
+},
+{
+  "model": "account.emailaddress",
+  "pk": 7,
+  "fields": {
+    "user": 14,
+    "email": "coneorodriguezalandavid@gmail.com",
+    "verified": true,
+    "primary": true
+  }
+}
+]

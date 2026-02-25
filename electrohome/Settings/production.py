@@ -23,13 +23,11 @@ CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 CSRF_TRUSTED_ORIGINS = os.environ.get('CSRF_TRUSTED_ORIGINS', '').split(',')
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.environ.get('alanconeorodriguez1130@gmail.com', '')
-EMAIL_HOST_PASSWORD = os.environ.get('ahwq hgmk qpdf odbl', '')
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_BACKEND = 'anymail.backends.resend.EmailBackend'
+ANYMAIL = {
+    'RESEND_API_KEY': os.environ.get('RESEND_API_KEY', ''),
+}
+DEFAULT_FROM_EMAIL = 'onboarding@resend.dev'
 
 WOMPI_PUBLIC_KEY = os.environ.get('WOMPI_PUBLIC_KEY', '')
 WOMPI_PRIVATE_KEY = os.environ.get('WOMPI_PRIVATE_KEY', '')
@@ -39,7 +37,7 @@ WOMPI_API_URL = 'https://sandbox.wompi.co/v1'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 # ===== CLOUDINARY =====
-INSTALLED_APPS += ['cloudinary_storage', 'cloudinary']
+INSTALLED_APPS += ['cloudinary_storage', 'cloudinary', 'anymail']
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 

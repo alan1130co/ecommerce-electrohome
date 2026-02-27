@@ -957,193 +957,149 @@ body, header, footer, main, section,
 
   <body>
     <!-- HEADER -->
-    <header class="bg-blue-800 shadow-2xl border-b-4 border-blue-500 sticky top-0 z-50">
-      <nav class="container mx-auto px-4 py-3">
-        <div class="flex justify-between items-center gap-4">
+   <header class="bg-blue-800 shadow-2xl border-b-4 border-blue-500 sticky top-0 z-50">
+  <nav class="container mx-auto px-4 py-3">
+    <div class="flex justify-between items-center gap-4">
 
-          <!-- Logo -->
-          <div class="flex items-center space-x-2 flex-shrink-0">
-            <a href="{% url 'product:home' %}">
-              <img src="{% static 'img/logo_de_electrohome.png' %}" alt="ElectroHome"
-                class="w-20 h-auto hover:scale-105 transition-transform duration-500" />
-            </a>
-          </div>
+      <!-- Logo -->
+      <div class="flex items-center space-x-2 flex-shrink-0">
+        <a href="{% url 'product:home' %}">
+          <img src="{% static 'img/logo_de_electrohome.png' %}" alt="ElectroHome"
+               class="w-20 h-auto hover:scale-105 transition-transform duration-500" />
+        </a>
+      </div>
 
-          <!-- Buscador Desktop -->
-          <div class="hidden md:flex flex-grow max-w-xl mx-4">
-            <form action="{% url 'product:search' %}" method="GET" class="relative w-full">
-              <input type="text" name="q" placeholder="Buscar productos..."
-                class="w-full px-4 py-2 pr-12 rounded-lg border-2 border-blue-300 focus:border-yellow-400 focus:outline-none text-gray-800"
-                value="{{ request.GET.q }}" />
-              <button type="submit"
-                class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-yellow-500 text-white px-4 py-1 rounded-lg hover:bg-yellow-600 transition">
-                <i class="fas fa-search"></i>
-              </button>
-            </form>
-          </div>
+      <!-- Buscador Desktop -->
+<div class="hidden md:flex flex-grow min-w-0 max-w-xl mx-4">
+  <form action="{% url 'product:search' %}" method="GET" class="flex w-full">
+    <input type="text" name="q" placeholder="Buscar productos..."
+           class="flex-1 min-w-0 px-4 py-2 rounded-l-lg border-2 border-blue-300 focus:border-yellow-400 focus:outline-none text-gray-800"
+           value="{{ request.GET.q }}" />
+    <button type="submit"
+            class="flex-shrink-0 bg-yellow-500 text-white px-4 py-2 rounded-r-lg hover:bg-yellow-600 transition">
+      <i class="fas fa-search"></i>
+    </button>
+  </form>
+</div>
 
-          <!-- Nav Desktop -->
-          <div class="hidden lg:flex space-x-6">
-            <a href="{% url 'product:home' %}" class="text-yellow-400 font-semibold">Inicio</a>
-            <a href="{% url 'product:products_list' %}" class="text-gray-50 hover:text-yellow-300 transition">Productos</a>
-            <a href="{% url 'product:contact' %}" class="text-gray-50 hover:text-yellow-300 transition">Contacto</a>
-          </div>
+      <!-- Nav Desktop -->
+      <div class="hidden lg:flex space-x-6">
+        <a href="{% url 'product:home' %}"         class="text-yellow-400 font-semibold">Inicio</a>
+        <a href="{% url 'product:products_list' %}" class="text-gray-50 hover:text-yellow-300 transition">Productos</a>
+        <a href="{% url 'product:contact' %}"       class="text-gray-50 hover:text-yellow-300 transition">Contacto</a>
+      </div>
 
-          <!-- Controles derechos -->
-          <div class="flex items-center space-x-3">
+      <!-- Controles derechos -->
+      <div class="flex items-center space-x-3">
 
-            <!-- Botón Tema -->
-            <button id="theme-toggle" class="theme-toggle-button" aria-label="Cambiar tema">
-              <svg class="sun-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="5"/>
-                <line x1="12" y1="1" x2="12" y2="3"/>
-                <line x1="12" y1="21" x2="12" y2="23"/>
-                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-                <line x1="1" y1="12" x2="3" y2="12"/>
-                <line x1="21" y1="12" x2="23" y2="12"/>
-                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-              </svg>
-              <svg class="moon-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-              </svg>
-            </button>
+        <!-- Botón Tema -->
+        <button id="theme-toggle" class="theme-toggle-button" aria-label="Cambiar tema">
+          <svg class="sun-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <svg class="moon-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
 
-            <!-- Wishlist -->
-{% if user.is_authenticated %}
-<a href="{% url 'product:wishlist' %}" class="relative text-white hover:text-red-400 transition">
-  <i class="fas fa-heart text-2xl"></i>   <!-- ← text-xl → text-2xl -->
-  {% if user.wishlist.total_items > 0 %}
-  <span class="absolute -top-1 -right-2 bg-red-500 text-white text-xs font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">
-    {{ user.wishlist.total_items }}
-  </span>
-  {% endif %}
-</a>
-{% endif %}
+        <!-- Wishlist -->
+        {% if user.is_authenticated %}
+        <a href="{% url 'product:wishlist' %}" class="relative text-white hover:text-red-400 transition">
+          <i class="fas fa-heart text-2xl"></i>
+          {% if user.wishlist.total_items > 0 %}
+          <span class="absolute -top-1 -right-2 bg-red-500 text-white text-xs font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">
+            {{ user.wishlist.total_items }}
+          </span>
+          {% endif %}
+        </a>
+        {% endif %}
 
-<!-- Carrito -->
-<a href="{% url 'product:cart' %}" class="relative text-white hover:text-yellow-300 transition">
-  <i class="fas fa-shopping-cart text-2xl"></i>   <!-- ← text-xl → text-2xl -->
-  <span id="cart-counter" class="absolute -top-1 -right-2 bg-red-500 text-white text-xs font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">
-    {{ cart_items_count|default:0 }}
-  </span>
-</a>
+        <!-- Carrito -->
+        <a href="{% url 'product:cart' %}" class="relative text-white hover:text-yellow-300 transition">
+          <i class="fas fa-shopping-cart text-2xl"></i>
+          <span id="cart-counter" class="absolute -top-1 -right-2 bg-red-500 text-white text-xs font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">
+            {{ cart_items_count|default:0 }}
+          </span>
+        </a>
 
-            {% if user.is_authenticated %}
-            <!-- Menú Usuario -->
-            <div class="relative">
-              <button id="user-menu-btn" aria-label="Menú usuario" class="flex items-center justify-center">
-                {{ user.first_name.0|default:user.username.0|upper }}{{ user.last_name.0|default:""|upper }}
-              </button>
-
-              <!-- DROPDOWN REDISEÑADO -->
-              <div id="user-dropdown" class="hidden absolute right-0 mt-3 w-68 z-50" style="width:270px;">
-
-                <!-- Header del dropdown -->
-                <div class="dropdown-header">
-                  <div class="flex items-center gap-3">
-                    <div class="dropdown-avatar">
-                      {{ user.first_name.0|default:user.username.0|upper }}{{ user.last_name.0|default:""|upper }}
-                    </div>
-                    <div>
-                      <div class="dropdown-name">
-                        {% if user.first_name %}{{ user.first_name }} {{ user.last_name }}{% else %}{{ user.username }}{% endif %}
-                      </div>
-                      <div class="dropdown-badge">
-                        <i class="fas fa-user-check" style="font-size:0.6rem;"></i>
-                        Cliente
-                      </div>
-                    </div>
-                  </div>
+        {% if user.is_authenticated %}
+        <!-- Menú Usuario -->
+        <div class="relative">
+          <button id="user-menu-btn" aria-label="Menú usuario" class="flex items-center justify-center">
+            {{ user.first_name.0|default:user.username.0|upper }}{{ user.last_name.0|default:""|upper }}
+          </button>
+          <div id="user-dropdown" class="hidden absolute right-0 mt-3 z-50" style="width:270px;">
+            <div class="dropdown-header">
+              <div class="flex items-center gap-3">
+                <div class="dropdown-avatar">
+                  {{ user.first_name.0|default:user.username.0|upper }}{{ user.last_name.0|default:""|upper }}
                 </div>
-
-                <!-- Items -->
-                <div style="padding: 6px 0;">
-                  <a href="{% url 'user:profile' %}" class="dropdown-item">
-                    <span class="item-icon"><i class="fas fa-user"></i></span>
-                    <span>Mi Perfil</span>
-                  </a>
-
-                  <a href="{% url 'order:order_list' %}" class="dropdown-item">
-                    <span class="item-icon"><i class="fas fa-shopping-bag"></i></span>
-                    <span>Mis Pedidos</span>
-                  </a>
-
-                  <div class="dropdown-divider"></div>
-
-                  <a href="{% url 'user:logout' %}" class="dropdown-item logout">
-                    <span class="item-icon"><i class="fas fa-sign-out-alt"></i></span>
-                    <span>Cerrar Sesión</span>
-                  </a>
+                <div>
+                  <div class="dropdown-name">
+                    {% if user.first_name %}{{ user.first_name }} {{ user.last_name }}{% else %}{{ user.username }}{% endif %}
+                  </div>
+                  <div class="dropdown-badge"><i class="fas fa-user-check" style="font-size:.6rem;"></i> Cliente</div>
                 </div>
               </div>
             </div>
-
-            {% else %}
-            <a href="{% url 'user:login' %}" class="hidden md:inline-flex items-center gap-2 text-white hover:text-yellow-300 font-semibold text-sm transition">
-              <i class="fas fa-sign-in-alt"></i> Ingresar
-            </a>
-            <a href="{% url 'user:register' %}" class="bg-yellow-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-yellow-600 transition text-sm">
-              Registrarse
-            </a>
-            {% endif %}
-
-            <!-- Mobile Menu Btn -->
-            <button class="lg:hidden text-gray-50 hover:text-yellow-300" id="mobile-menu-button">
-              <i class="fas fa-bars text-xl"></i>
-            </button>
+            <div style="padding:6px 0;">
+              <a href="{% url 'user:profile' %}"    class="dropdown-item"><span class="item-icon"><i class="fas fa-user"></i></span><span>Mi Perfil</span></a>
+              <a href="{% url 'order:order_list' %}" class="dropdown-item"><span class="item-icon"><i class="fas fa-shopping-bag"></i></span><span>Mis Pedidos</span></a>
+              <div class="dropdown-divider"></div>
+              <a href="{% url 'user:logout' %}" class="dropdown-item logout"><span class="item-icon"><i class="fas fa-sign-out-alt"></i></span><span>Cerrar Sesión</span></a>
+            </div>
           </div>
         </div>
+        {% else %}
+        <a href="{% url 'user:login' %}"    class="hidden md:inline-flex items-center gap-2 text-white hover:text-yellow-300 font-semibold text-sm transition"><i class="fas fa-sign-in-alt"></i> Ingresar</a>
+        <a href="{% url 'user:register' %}" class="bg-yellow-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-yellow-600 transition text-sm">Registrarse</a>
+        {% endif %}
 
-        <!-- Buscador Mobile -->
-        <div class="md:hidden mt-3">
-          <form action="{% url 'product:search' %}" method="GET" class="relative">
-            <input type="text" name="q" placeholder="Buscar productos..."
-              class="w-full px-4 py-2 pr-12 rounded-lg border-2 border-blue-300 focus:border-yellow-400 focus:outline-none text-gray-800"
-              value="{{ request.GET.q }}" />
-            <button type="submit"
-              class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-yellow-500 text-white px-4 py-1 rounded-lg hover:bg-yellow-600 transition">
-              <i class="fas fa-search"></i>
-            </button>
-          </form>
-        </div>
+        <!-- Mobile Menu Btn -->
+        <button class="lg:hidden text-gray-50 hover:text-yellow-300" id="mobile-menu-button">
+          <i class="fas fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
 
-        <!-- Mobile Menu -->
-        <div class="lg:hidden mt-4 pb-4 hidden" id="mobile-menu">
-          <div class="flex flex-col space-y-2">
-            <a href="{% url 'product:home' %}" class="text-gray-50 hover:text-yellow-300 py-2">
-              <i class="fas fa-home mr-2"></i>Inicio
-            </a>
-            <a href="{% url 'product:products_list' %}" class="text-gray-50 hover:text-yellow-300 py-2">
-              <i class="fas fa-tag mr-2"></i>Productos
-            </a>
-            <a href="{% url 'product:contact' %}" class="text-gray-50 hover:text-yellow-300 py-2">
-              <i class="fas fa-envelope mr-2"></i>Contacto
-            </a>
-            <hr class="border-blue-600">
-            {% if user.is_authenticated %}
-            <a href="{% url 'user:profile' %}" class="flex items-center text-white hover:text-yellow-300 py-2">
-              <i class="fas fa-user mr-3"></i>Mi Perfil
-            </a>
-            <a href="{% url 'product:wishlist' %}" class="flex items-center text-white hover:text-red-300 py-2">
-              <i class="fas fa-heart mr-3"></i>Lista de Deseos
-            </a>
-            <a href="{% url 'order:order_list' %}" class="flex items-center text-white hover:text-yellow-300 py-2">
-              <i class="fas fa-shopping-bag mr-3"></i>Mis Pedidos
-            </a>
-            <a href="{% url 'user:logout' %}" class="flex items-center text-red-300 hover:text-red-100 py-2">
-              <i class="fas fa-sign-out-alt mr-3"></i>Cerrar Sesión
-            </a>
-            {% else %}
-            <a href="{% url 'user:login' %}" class="flex items-center text-white hover:text-yellow-300 py-2">
-              <i class="fas fa-sign-in-alt mr-3"></i>Ingresar
-            </a>
-            {% endif %}
-          </div>
+   <!-- Buscador Mobile -->
+    <div class="md:hidden mt-3">
+      <form action="{% url 'product:search' %}" method="GET">
+        <div class="flex w-full">
+          <input type="text" name="q" placeholder="Buscar productos..."
+                 class="flex-1 min-w-0 px-4 py-2 rounded-l-lg border-2 border-blue-300 focus:border-yellow-400 focus:outline-none text-gray-800"
+                 value="{{ request.GET.q }}" />
+          <button type="submit"
+                  class="flex-shrink-0 bg-yellow-500 text-white px-4 py-2 rounded-r-lg hover:bg-yellow-600 transition">
+            <i class="fas fa-search"></i>
+          </button>
         </div>
-      </nav>
-    </header>
+      </form>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="lg:hidden mt-4 pb-4 hidden" id="mobile-menu">
+      <div class="flex flex-col space-y-2">
+        <a href="{% url 'product:home' %}"         class="text-gray-50 hover:text-yellow-300 py-2"><i class="fas fa-home mr-2"></i>Inicio</a>
+        <a href="{% url 'product:products_list' %}" class="text-gray-50 hover:text-yellow-300 py-2"><i class="fas fa-tag mr-2"></i>Productos</a>
+        <a href="{% url 'product:contact' %}"       class="text-gray-50 hover:text-yellow-300 py-2"><i class="fas fa-envelope mr-2"></i>Contacto</a>
+        <hr class="border-blue-600">
+        {% if user.is_authenticated %}
+        <a href="{% url 'user:profile' %}"    class="flex items-center text-white hover:text-yellow-300 py-2"><i class="fas fa-user mr-3"></i>Mi Perfil</a>
+        <a href="{% url 'product:wishlist' %}" class="flex items-center text-white hover:text-red-300 py-2"><i class="fas fa-heart mr-3"></i>Lista de Deseos</a>
+        <a href="{% url 'order:order_list' %}" class="flex items-center text-white hover:text-yellow-300 py-2"><i class="fas fa-shopping-bag mr-3"></i>Mis Pedidos</a>
+        <a href="{% url 'user:logout' %}"      class="flex items-center text-red-300 hover:text-red-100 py-2"><i class="fas fa-sign-out-alt mr-3"></i>Cerrar Sesión</a>
+        {% else %}
+        <a href="{% url 'user:login' %}" class="flex items-center text-white hover:text-yellow-300 py-2"><i class="fas fa-sign-in-alt mr-3"></i>Ingresar</a>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+</header>
 
     <!-- Mensajes Django -->
     {% if messages %}
